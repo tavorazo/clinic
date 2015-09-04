@@ -1,0 +1,15 @@
+		<h1>Ultimos en blog</h1><hr>
+
+		<div id="blog"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqHg0dw4B_PEpVYDl5u_Te-O1r26tu3bldA63If891X4Eiz4tH">
+			<div id="etiqueta"> <h1>5</h1> <h2>junio</h2></div>
+				<p><span>¿Cómo saber si necesito brackets?</span>
+				<br><br>Más de 90% de los mexicanos padece algún tipo de problemas bucales, así lo señala el dentista Gilberto Alfonso Pérez, catedrático del Instituto Politécnico Nacional (IPN). Los brackets además de ser ...<br><br></p>
+				<a href="#">Leer m&aacute;s → </a>
+		</div>
+		<div id="blog"><img src="https://webdental.files.wordpress.com/2013/07/encuentros-de-odontologc3ada.jpg?w=468&h=311">
+			<div id="etiqueta"> <h1>3</h1> <h2>junio</h2></div>
+				<p><span>¿Qué hacer en caso de una avulsión dentaria?</span>
+				<br><br>Es el desalojo o salida total de un diente completo de su cavidad o alveolo. Más de 5 millones de dientes son perdidos cada año, por accidentes, choques o caídas. ...</p>
+				<a href="#">Leer m&aacute;s → </a>
+		</div>
+		<div id="link"><p><span>Entra y enterat&eacute; de todas nuestras </span>publicaciones</p><div id="botonl">Blog</div></div>

@@ -1,0 +1,123 @@
+#u73
+{
+	vertical-align: top;
+	background: url("../images/home1-u73.png") no-repeat 0px 0px;
+	position: relative;
+}
+
+#u73:hover
+{
+	background: url("../images/home1h-u73-r.png") no-repeat 0px 0px;
+}
+
+#u74
+{
+	background: url("../images/u74_states.png") no-repeat 0px 0px;
+	position: relative;
+}
+
+#u74:hover #u74_states
+{
+	background: url("../images/u74_states-r.png") no-repeat 0px 0px;
+}
+
+#u75
+{
+	vertical-align: top;
+	background: url("../images/home-u75.png") no-repeat 0px 0px;
+	position: relative;
+}
+
+#u75:hover
+{
+	background: url("../images/homeh-u75-r.png") no-repeat 0px 0px;
+}
+
+#u76
+{
+	background: url("../images/u76_states.png") no-repeat 0px 0px;
+	position: relative;
+}
+
+#u76:hover #u76_states
+{
+	background: url("../images/u76_states-r.png") no-repeat 0px 0px;
+}
+
+#u77
+{
+	vertical-align: top;
+	background: url("../images/en2-u77.png") no-repeat 0px 0px;
+	position: relative;
+}
+
+#u77:hover
+{
+	background: url("../images/en2h-u77-r.png") no-repeat 0px 0px;
+}
+
+#u78
+{
+	background: url("../images/u78_states.png") no-repeat 0px 0px;
+	position: relative;
+}
+
+#u78:hover #u78_states
+{
+	background: url("../images/u78_states-r.png") no-repeat 0px 0px;
+}
+
+#u79
+{
+	vertical-align: top;
+	background: url("../images/en3-u79.png") no-repeat 0px 0px;
+	position: relative;
+}
+
+#u79:hover
+{
+	background: url("../images/en3h-u79-r.png") no-repeat 0px 0px;
+}
+
+#u80
+{
+	background: url("../images/u80_states.png") no-repeat 0px 0px;
+	position: relative;
+}
+
+#u74_states,#u76_states,#u78_states,#u80_states
+{
+	vertical-align: top;
+}
+
+#u80:hover #u80_states
+{
+	background: url("../images/u80_states-r.png") no-repeat 0px 0px;
+}
+
+#u1093-7,#u335-6,#u420-6,#u333-6,#u334-4
+{
+	display: block;
+	vertical-align: top;
+	position: relative;
+}
+
+#u164,#u69,#u330,#u462
+{
+	border-style: none;
+	border-color: transparent;
+	background-color: #23adfc;
+	position: relative;
+}
+
+#u461-4
+{
+	text-align: center;
+	position: relative;
+}
+
+#u164_align_to_page,#u151,#u165,#u1094,#u439,#u433,#u427,#u411
+{
+	position: relative;
+}
+
