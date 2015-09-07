@@ -174,7 +174,7 @@ p{
 		</div>
 		<br>
         <form action="System/php/procesar_login.php" method="POST" class="login">
-				<input type="text" placeholder="tucorreo@algo.com" name="nombre"><br>
+				<input type="text" placeholder="user@host.com" name="nombre"><br>
 				<input type="password" placeholder="password" name="password"><br>
 				<input type="submit" value="Login">
       	</form>
