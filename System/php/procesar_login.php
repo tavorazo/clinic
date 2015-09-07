@@ -8,7 +8,8 @@
 	$b=$_POST['password'];
 	//echo $a;
 	//echo $b;
-	include("base.php");
+	include("http://www.endoperio.com.mx/System/php/base.php");
+	//include("base.php");
 	$select = 'select * from usuarios where correo="'.$a.'" and password="'.$b.'";';
 	//echo $select, "<br>";
 	$resul = mysql_query($select, $dbh) or die ("problema con la solicitud");
