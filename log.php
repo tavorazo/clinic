@@ -29,7 +29,7 @@ p{ z-index: 1000; text-align: center; color: #fff; font-family: 'Exo', sans-seri
   </head>
   <body>
     <div class="body"></div>
-		<p><span>Panel de control, CLINICA DENTAL ENDOPERIO</span></p>
+		<p><span>PANEL DE CONTROL, CLINICA DENTAL ENDOPERIO</span></p>
 		<div class="grad"></div>
 		<div class="header">
 			<div>Endoperio</div>
