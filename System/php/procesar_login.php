@@ -19,16 +19,17 @@
   	<center>
 	<img src="../images/35.gif" alt="">
 	<?php
-	if($renglon['correo']==''){
-		echo '<br><h2>Tu inicio de sesi&oacute;n ha sido incorrecto <br> vuelve a intentar  <META HTTP-EQUIV="Refresh" CONTENT="5; URL=../../log.php">';
-	}
-	else{
+	if($renglon['correo']!=''){
+		
 		$_SESSION['u']=$renglon['id_usuario'];
 		//echo $renglon['id_usuario'];
 		$_SESSION['rol']=$renglon['rol'];
 		$_SESSION['nombres'] = $renglon['nombres'];
 		echo "<br>Correcto. . .";
 		echo '<META HTTP-EQUIV="Refresh" CONTENT="5; URL=../panel.php">';
+	}
+	else{
+		echo '<br><h2>Tu inicio de sesi&oacute;n ha sido incorrecto <br> vuelve a intentar  <META HTTP-EQUIV="Refresh" CONTENT="5; URL=../../log.php">';
 	}
 	?>
 	
