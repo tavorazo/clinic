@@ -14,6 +14,8 @@
 	$resul = mysqli_query($select, $conn);
 	$renglon = mysqli_fetch_assoc($resul);
 	
+	print_r($result);
+
 	echo $resul;	
 	
 	echo "Verificando. . .";
