@@ -29,7 +29,7 @@
 		echo '<META HTTP-EQUIV="Refresh" CONTENT="5; URL=../panel.php">';
 	}
 	else{
-		echo '<br><h2>Tu inicio de sesi&oacute;n ha sido incorrecto <br> vuelve a intentar  <META HTTP-EQUIV="Refresh" CONTENT="5; URL=../../log.php">';
+		//echo '<br><h2>Tu inicio de sesi&oacute;n ha sido incorrecto <br> vuelve a intentar  <META HTTP-EQUIV="Refresh" CONTENT="5; URL=../../log.php">';
 	}
 	?>
 	

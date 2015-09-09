@@ -7,7 +7,7 @@
 		date_default_timezone_set("Mexico/General");
 		//echo'<META HTTP-EQUIV="Refresh" CONTENT="0; URL=index.php">';
 	$usuario = $_SESSION['u'];
-	        include('php/base3.php');
+	        //include('php/base3.php');
           include('php/base.php');
 ?>
 
@@ -160,9 +160,9 @@ if($_SESSION['rol']=='admin' || $_SESSION['rol']=='almacen'){
 
 					
 
-					  $result2 = mysql_query("SELECT * FROM inventario where reabastesible='1'");
+					  $result2 = mysqli_query($conn,"SELECT * FROM inventario where reabastesible='1'");
 
-					  while ($row2 = mysql_fetch_array($result2, MYSQL_NUM)) {
+					  while ($row2 = mysqli_fetch_array($result2, MYSQL_NUM)) {
 
 						  if($row2[6]>$row2[4]){
 
@@ -191,18 +191,18 @@ if($_SESSION['rol']=='admin' || $_SESSION['rol']=='almacen'){
 
                   $a = $_SESSION['u'];  
                 echo "<h13>Generales<hr></h13>";
-                $result1 = mysql_query("SELECT * FROM avisos where id_persona='g' order by fecha desc limit 10");
+                $result1 = mysqli_query($conn,"SELECT * FROM avisos where id_persona='g' order by fecha desc limit 10");
 
-              while ($row1 = mysql_fetch_array($result1, MYSQL_NUM)) {
+              while ($row1 = mysqli_fetch_array($result1, MYSQL_NUM)) {
                 echo "<h3>", $row1[1], "</h3><br><br><h13>";
                 echo "", $row1[2];
                 echo "<br>", $row1[4],"<br><br></h13>";
               }
 
                 echo "<h13>Dentistas<hr></h13>";
-                $result1 = mysql_query("SELECT * FROM avisos where id_persona='d' order by fecha desc limit 10");
+                $result1 = mysqli_query($conn,"SELECT * FROM avisos where id_persona='d' order by fecha desc limit 10");
              
-              while ($row1 = mysql_fetch_array($result1, MYSQL_NUM)) {
+              while ($row1 = mysqli_fetch_array($result1, MYSQL_NUM)) {
                 echo "<h3>", $row1[1], "</h3><br><br><h13>";
                 echo "", $row1[2];
                 echo "<br>", $row1[4],"<br><br></h13>";
@@ -211,9 +211,9 @@ if($_SESSION['rol']=='admin' || $_SESSION['rol']=='almacen'){
 
                 echo "<h13>Administrativo<hr></h13>";
 
-                $result1 = mysql_query("SELECT * FROM avisos where id_persona='ad' order by fecha desc limit 10");
+                $result1 = mysqli_query($conn,"SELECT * FROM avisos where id_persona='ad' order by fecha desc limit 10");
 
-              while ($row1 = mysql_fetch_array($result1, MYSQL_NUM)) {
+              while ($row1 = mysqli_fetch_array($result1, MYSQL_NUM)) {
 
                 echo "<h3>", $row1[1], "</h3><br><br><h13>";
 
@@ -225,9 +225,9 @@ if($_SESSION['rol']=='admin' || $_SESSION['rol']=='almacen'){
 
                 echo "<h13>Almacen<hr></h13>";
 
-                $result1 = mysql_query("SELECT * FROM avisos where id_persona='$a' order by fecha desc limit 10");
+                $result1 = mysqli_query($conn,"SELECT * FROM avisos where id_persona='$a' order by fecha desc limit 10");
 
-              while ($row1 = mysql_fetch_array($result1, MYSQL_NUM)) {
+              while ($row1 = mysqli_fetch_array($result1, MYSQL_NUM)) {
 
                 echo "<h3>", $row1[1], "</h3><br><br><h13>";
 
@@ -239,11 +239,11 @@ if($_SESSION['rol']=='admin' || $_SESSION['rol']=='almacen'){
 
 
 
-                $result2 = mysql_query("SELECT * FROM avisos where id_persona='$usuario' order by fecha desc limit 10");
+                $result2 = mysqli_query($conn,"SELECT * FROM avisos where id_persona='$usuario' order by fecha desc limit 10");
 
                 echo "<h13>Avisos para ", $_SESSION['nombres'],"</h13>";
 
-              while ($row2 = mysql_fetch_array($result2, MYSQL_NUM)) {
+              while ($row2 = mysqli_fetch_array($result2, MYSQL_NUM)) {
 
                 echo "<br><h12>", $row2[1], "<br><br>";
 
@@ -267,15 +267,15 @@ if($_SESSION['rol']=='admin' || $_SESSION['rol']=='almacen'){
           <div> 
       <?php
 
-          $a = date(d);
-          $b = date(m);
-          $c = date(Y);
+          $a = date("d");
+          $b = date("m");
+          $c = date("Y");
 
           $fecha_cumplea = "-$b-$a";
-          $pacientes = mysql_query("SELECT * FROM paciente WHERE fecha_nacimiento like '%$fecha_cumplea%' ORDER BY id_paciente DESC limit 10;");
+          $pacientes = mysqli_query($conn,"SELECT * FROM paciente WHERE fecha_nacimiento like '%$fecha_cumplea%' ORDER BY id_paciente DESC limit 10;");
             echo "<br> <h3> Pacientes </h3><br>";
             $count = 0;
-          while ($r_p = mysql_fetch_array($pacientes, MYSQL_NUM)){
+          while ($r_p = mysqli_fetch_array($pacientes, MYSQL_NUM)){
             if($_SESSION['rol']=='admin' || $_SESSION['rol']=='secretaria' || $_SESSION['rol']=='recepcionista') 
               echo "<a href='felicitacion_personalizada.php?id_paciente=",$r_p[0],"&correo=",$r_p[13],"'>",$r_p[1]." ".$r_p[2],"</a>, ";
             else
@@ -283,13 +283,13 @@ if($_SESSION['rol']=='admin' || $_SESSION['rol']=='almacen'){
           }
               echo '<a href="cumpleaneros.php">...</a>';
 
-          $trabajadores = mysql_query("select fecha_nacimiento, nombres, apellido_paterno, apellido_materno from usuarios;");
+          $trabajadores = mysqli_query($conn,"select fecha_nacimiento, nombres, apellido_paterno, apellido_materno from usuarios;");
 
             echo "<br><br><hr> <h3> Trabajadores </h3><br>";
 
             $count = 0;
 
-          while ($r_t = mysql_fetch_array($trabajadores, MYSQL_NUM)){
+          while ($r_t = mysqli_fetch_array($trabajadores, MYSQL_NUM)){
 
             $arr = explode("-", $r_t[0]);
             $fecha_t = "-$arr[2]-$arr[1]";
@@ -371,26 +371,26 @@ if($_SESSION['rol']=='admin' || $_SESSION['rol']=='almacen'){
             $buscar_paciente = $_GET['buscar_paciente'];
             $desde = $hoy - 1; $hasta = $hoy + 5;
             if($buscar_paciente=='')
-            	//$result2 = mysql_query("select * from agenda where confirmacion='0' and mes='$n_mes' and ano='$consulta_anio' and web='0' and dia>='$hoy' order by hora, fecha, minuto; ");
-              $result2 = mysql_query("select * from agenda where confirmacion='0' and mes='$n_mes' and ano='$consulta_anio' and web='0' and dia>'$desde' and dia<'$hasta' order by ano, mes, dia, hora, minuto");
+            	//$result2 = mysqli_query($conn,"select * from agenda where confirmacion='0' and mes='$n_mes' and ano='$consulta_anio' and web='0' and dia>='$hoy' order by hora, fecha, minuto; ");
+              $result2 = mysqli_query($conn,"select * from agenda where confirmacion='0' and mes='$n_mes' and ano='$consulta_anio' and web='0' and dia>'$desde' and dia<'$hasta' order by ano, mes, dia, hora, minuto");
             else 
-            	$result2 = mysql_query("select * from agenda where confirmacion='0' and mes='$n_mes' and ano='$consulta_anio' and web='0' and dia>='$hoy' and id_paciente='$buscar_paciente' order by hora, fecha, minuto; ");
+            	$result2 = mysqli_query($conn,"select * from agenda where confirmacion='0' and mes='$n_mes' and ano='$consulta_anio' and web='0' and dia>='$hoy' and id_paciente='$buscar_paciente' order by hora, fecha, minuto; ");
 
 			if($_SESSION['rol']=='admin' || $_SESSION['rol']=='secretaria' || $_SESSION['rol']=='recepcionista'){
 
-				while ($row3 = mysql_fetch_array($result2, MYSQL_NUM)){
+				while ($row3 = mysqli_fetch_array($result2, MYSQL_NUM)){
 				  $d = $row3[1];
 				  $p = $row3[2];
-				  $doctor = mysql_query("select * from usuarios where id_usuario='$d'; ");
-				  $paciente = mysql_query("select * from paciente where id_paciente='$p';");
+				  $doctor = mysqli_query($conn,"select * from usuarios where id_usuario='$d'; ");
+				  $paciente = mysqli_query($conn,"select * from paciente where id_paciente='$p';");
 
-					while ($row_doctor = mysql_fetch_array($doctor, MYSQL_NUM)){
+					while ($row_doctor = mysqli_fetch_array($doctor, MYSQL_NUM)){
 					  $doctor_nombre = $row_doctor[1];
 					  $doctor_apellido = $row_doctor[2];
 					  $doctor_apellido2 = $row_doctor[3];
 					}
 
-					while ($row_paciente = mysql_fetch_array($paciente, MYSQL_NUM)){
+					while ($row_paciente = mysqli_fetch_array($paciente, MYSQL_NUM)){
 					  $paciente_ficha = $row_paciente[0];
 					  $paciente_nombre = $row_paciente[1];
 					  $paciente_apellido = $row_paciente[2];
@@ -455,13 +455,13 @@ if($_SESSION['rol']=='admin' || $_SESSION['rol']=='almacen'){
 
 			$hoy = date("d");
 
-			$result2 = mysql_query("select * from agenda where confirmacion='0' and web='1' and dia>='$hoy';");
+			$result2 = mysqli_query($conn,"select * from agenda where confirmacion='0' and web='1' and dia>='$hoy';");
 
-			while ($cita = mysql_fetch_array($result2, MYSQL_NUM)){
+			while ($cita = mysqli_fetch_array($result2, MYSQL_NUM)){
 
 				$a = $cita[2];
 				$select = 'select * from paciente where id_paciente="'.$a.'";';
-				$resul = mysql_query($select, $dbh) or die ("problema con la solicitud");
+				$resul = mysqli_query($conn,$select, $dbh) or die ("problema con la solicitud");
 				$renglon_paciente = mysql_fetch_assoc($resul);
 
 				echo "<br>Paciente: ",$renglon_paciente['nombres']," ", $renglon_paciente['apellido_paterno']," ", $$renglon_paciente['apellido_materno'];
@@ -482,14 +482,14 @@ if($_SESSION['rol']=='admin' || $_SESSION['rol']=='almacen'){
 				/*Buscar doctores*/
 
 
-				$doctores = mysql_query("select * from usuarios where rol='dentista';");
+				$doctores = mysqli_query($conn,"select * from usuarios where rol='dentista';");
 				$contador_doctores=0;
 				echo '<form action="conf_citas/web/confirmar.php" method="POST" >';
 				echo "<input type='hidden' name='id' value='".$cita[0]."'>";
 				echo "<input type='hidden' name='doctor' value='".$cita[2]."'>";
 				echo "<select name='doctor'>";
 
-				while ($verificar = mysql_fetch_array($doctores, MYSQL_NUM)){
+				while ($verificar = mysqli_fetch_array($doctores, MYSQL_NUM)){
 
 					$doctor = $verificar[0];
 
@@ -505,13 +505,13 @@ if($_SESSION['rol']=='admin' || $_SESSION['rol']=='almacen'){
 
 				
 
-					$resul_s = mysql_query($seccion1, $dbh) or die ("problema con la solicitud");
+					$resul_s = mysqli_query($conn,$seccion1, $dbh) or die ("problema con la solicitud");
 
 					$resultado_sec1 = mysql_fetch_assoc($resul_s);
 
 					
 
-					$resul_s2 = mysql_query($seccion2, $dbh) or die ("problema con la solicitud");
+					$resul_s2 = mysqli_query($conn,$seccion2, $dbh) or die ("problema con la solicitud");
 
 					$resultado_se2 = mysql_fetch_assoc($resul_s2);
 
