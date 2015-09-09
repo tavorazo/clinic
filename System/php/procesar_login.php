@@ -3,7 +3,6 @@
 
 <body>
 	<?php
-	echo "entroaqui";
 	@session_start();
 	$a=$_POST['nombre'];
 	$b=$_POST['password'];
@@ -32,7 +31,7 @@
 		$_SESSION['rol']=$renglon['rol'];
 		$_SESSION['nombres'] = $renglon['nombres'];
 		echo "<br>Correcto. . .";
-		echo '<META HTTP-EQUIV="Refresh" CONTENT="0; URL=/System/panel.php">';
+		echo '<META HTTP-EQUIV="Refresh" CONTENT="0; URL=../panel.php">';
 	}
 	mysqli_close ($conn);
 
