@@ -23,7 +23,7 @@
 	<?php
 	if($renglon['correo']==''){
 		
-		echo '<br><h2>Tu inicio de sesi&oacute;n ha sido incorrecto <br> vuelve a intentar  <META HTTP-EQUIV="Refresh" CONTENT="1; URL=../../log.php">';
+		echo '<br><h2>Tu inicio de sesi&oacute;n ha sido incorrecto <br> vuelve a intentar  <META HTTP-EQUIV="Refresh" CONTENT="10; URL=../../log.php">';
 	}
 	else{
 		$_SESSION['u']=$renglon['id_usuario'];
