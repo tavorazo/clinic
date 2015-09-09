@@ -368,7 +368,13 @@ if($_SESSION['rol']=='admin' || $_SESSION['rol']=='almacen'){
             $consulta_anio =  date("Y");
             $consulta_hora = date("H");
             $doctor = $row2[0];
-            $buscar_paciente = $_GET['buscar_paciente'];
+            if (isset($_GET['buscar_paciente'])){
+
+             $buscar_paciente = $_GET['buscar_paciente'];
+            }
+            else{
+             $buscar_paciente = 0; 
+            }
             $desde = $hoy - 1; $hasta = $hoy + 5;
             if($buscar_paciente=='')
             	//$result2 = mysqli_query($conn,"select * from agenda where confirmacion='0' and mes='$n_mes' and ano='$consulta_anio' and web='0' and dia>='$hoy' order by hora, fecha, minuto; ");
