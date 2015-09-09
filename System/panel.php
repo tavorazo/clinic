@@ -371,6 +371,7 @@ if($_SESSION['rol']=='admin' || $_SESSION['rol']=='almacen'){
             if (isset($_GET['buscar_paciente'])){
 
              $buscar_paciente = $_GET['buscar_paciente'];
+             echo "nada";
             }
             else{
              $buscar_paciente = 0; 
