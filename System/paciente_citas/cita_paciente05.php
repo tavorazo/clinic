@@ -57,7 +57,7 @@ $insertar = "insert into agenda (id_paciente,ano,mes,dia,hora,minuto, web, confi
 		for($i=0; $i<1; $i++){
 			$minuto2 = $minuto2 + 15;
 $insertar2 = "insert into agenda (id_paciente,ano,mes,dia,hora,minuto, web, confirmacion, observacion, fecha) values ('$paciente', '$ano', '$mes_n', '$dia', '$hora', '$minuto2', '1','1','$observaciones', '$fecha','$paciente',now();";
-			if(!mysql_query($insertar2, $conexion))
+			if(!mysqli_query($conn,))
 				die('Error de consulta: '.mysql_error());
 		}
 
@@ -67,7 +67,7 @@ $insertar2 = "insert into agenda (id_paciente,ano,mes,dia,hora,minuto, web, conf
 		for($i=0; $i<1; $i++){
 			$minuto2 = $minuto2 + 15;
 $insertar2 = "insert into agenda (id_paciente,ano,mes,dia,hora,minuto, web, confirmacion, observacion, fecha) values ('$paciente', '$ano', '$mes_n', '$dia', '$hora', '$minuto2', '1','1','$observaciones', '$fecha');";
-			if(!mysql_query($insertar2, $conexion))
+			if(!mysqli_query($conn,))
 				die('Error de consulta: '.mysql_error());
 		}	
 	}
@@ -76,7 +76,7 @@ $insertar2 = "insert into agenda (id_paciente,ano,mes,dia,hora,minuto, web, conf
 		for($i=0; $i<1; $i++){
 			$minuto2 = $minuto2 + 15;
 $insertar2 = "insert into agenda (id_paciente,ano,mes,dia,hora,minuto, web, confirmacion, observacion, fecha) values ('$paciente', '$ano', '$mes_n', '$dia', '$hora', '$minuto2', '1','1','$observaciones', '$fecha');";
-			if(!mysql_query($insertar2, $conexion))
+			if(!mysqli_query($conn,))
 				die('Error de consulta: '.mysql_error());
 		}	
 	}
@@ -85,14 +85,14 @@ $insertar2 = "insert into agenda (id_paciente,ano,mes,dia,hora,minuto, web, conf
 		for($i=0; $i<1; $i++){
 			$minuto2 = $minuto2 + 15;
 $insertar2 = "insert into agenda (id_paciente,ano,mes,dia,hora,minuto, web, confirmacion, observacion, fecha) values ('$paciente', '$ano', '$mes_n', '$dia', '$hora', '$minuto2', '1','2','$observaciones', '$fecha');";
-			if(!mysql_query($insertar2, $conexion))
+			if(!mysqli_query($conn,))
 				die('Error de consulta: '.mysql_error());
 		}
 	}
 
-		if(!mysql_query($insertar, $conexion))
+		if(!mysqli_query($conn,))
 			die('Error de consulta: '.mysql_error());
-		mysql_close($conexion);
+		mysqli_close($conn);
 
 	
 	echo '<br><br><br><center><img src="../images/endoperio2.png" width="100px" alt=""> <br> ';

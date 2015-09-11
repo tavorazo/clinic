@@ -19,12 +19,12 @@
 
 	$insertar = "insert into publicidad(imagen, descripcion, link) values ('$imagen', '$descripcion', '$link');";
 
-	if(!mysql_query($insertar, $conexion)){
+	if(!mysqli_query($conn,)){
 			die('error: '.mysql_error());
 	}
 
     $select = 'select * from publicidad where imagen="'.$imagen.'";';
-    $resul = mysql_query($select, $dbh) or die ("problema con la solicitud");
+    $resul = mysqli_query($conn,$select) or die ("problema con la solicitud");
     $renglon = mysql_fetch_assoc($resul);
 
     $id = $renglon['id_publicidad'];
@@ -33,10 +33,10 @@
 
     
 
-	if(!mysql_query($editar, $conexion)){
+	if(!mysqli_query($conn,$editar)){
 			die('error: '.mysql_error());
 	}else{
-		mysql_close($conexion);
+		mysqli_close($conn);
 		echo '<META HTTP-EQUIV="Refresh" CONTENT="3; URL=../subir_publicidad.php">
 		Subida con éxito';
 	}

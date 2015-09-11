@@ -46,9 +46,9 @@
 
 			$instruccion = "insert into noticias (imagen,texto,Titulo,fecha) values ('$var4', '$var3','$var1',now());";
 
-			if(!mysql_query($instruccion, $conexion))
+			if(!mysqli_query($conn,))
 				die('Error de consulta: '.mysql_error());
-			mysql_close($conexion);
+			mysqli_close($conn);
 
 		echo '<br><br><br><center><img src="../images/endoperio2.png" width="100px" alt=""> <br> ';
 		echo "Noticia creada con exito<br><br><br>";

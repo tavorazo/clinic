@@ -364,7 +364,7 @@ echo "<br><br><br><br><br><br>";
 				echo "<td>".$row2[5]."</td>";
 				$usuario = $row2[1];
 				$select = 'select * from usuarios where id_usuario="'.$usuario.'";';
-				$resul = mysql_query($select, $dbh) or die ("problema con la solicitud");
+				$resul = mysqli_query($conn,) or die ("problema con la solicitud");
 				$renglon = mysql_fetch_assoc($resul);
 
 				echo "<td>".$renglon['nombres']." ". $renglon['a_paterno']." ".$renglon['a_materno']."</td>";
@@ -396,7 +396,7 @@ echo "<br><br><br>";
 				echo "<td>".$row2[5]."</td>";
 				$usuario = $row2[1];
 				$select = 'select * from usuarios where id_usuario="'.$usuario.'";';
-				$resul = mysql_query($select, $dbh) or die ("problema con la solicitud");
+				$resul = mysqli_query($conn,) or die ("problema con la solicitud");
 				$renglon = mysql_fetch_assoc($resul);
 
 				echo "<td>".$renglon['nombres']." ". $renglon['a_paterno']." ".$renglon['a_materno']."</td>";
@@ -449,7 +449,7 @@ echo "<br><br><br>";
 				echo "<td>".$row2[5]."</td>";
 				$usuario = $row2[1];
 				$select = 'select * from usuarios where id_usuario="'.$usuario.'";';
-				$resul = mysql_query($select, $dbh) or die ("problema con la solicitud");
+				$resul = mysqli_query($conn,) or die ("problema con la solicitud");
 				$renglon = mysql_fetch_assoc($resul);
 
 				echo "<td>".$renglon['nombres']." ". $renglon['a_paterno']." ".$renglon['a_materno']."</td>";
@@ -480,7 +480,7 @@ echo "<br><br><br>";
 				echo "<td>".$row2[5]."</td>";
 				$usuario = $row2[1];
 				$select = 'select * from usuarios where id_usuario="'.$usuario.'";';
-				$resul = mysql_query($select, $dbh) or die ("problema con la solicitud");
+				$resul = mysqli_query($conn,) or die ("problema con la solicitud");
 				$renglon = mysql_fetch_assoc($resul);
 
 				echo "<td>".$renglon['nombres']." ". $renglon['a_paterno']." ".$renglon['a_materno']."</td>";
@@ -511,7 +511,7 @@ echo "<br><br><br>";
 				echo "<td>".$row2[5]."</td>";
 				$usuario = $row2[1];
 				$select = 'select * from usuarios where id_usuario="'.$usuario.'";';
-				$resul = mysql_query($select, $dbh) or die ("problema con la solicitud");
+				$resul = mysqli_query($conn,) or die ("problema con la solicitud");
 				$renglon = mysql_fetch_assoc($resul);
 
 				echo "<td>".$renglon['nombres']." ". $renglon['a_paterno']." ".$renglon['a_materno']."</td>";
@@ -542,7 +542,7 @@ echo "<br><br><br>";
 				echo "<td>".$row2[5]."</td>";
 				$usuario = $row2[1];
 				$select = 'select * from usuarios where id_usuario="'.$usuario.'";';
-				$resul = mysql_query($select, $dbh) or die ("problema con la solicitud");
+				$resul = mysqli_query($conn,) or die ("problema con la solicitud");
 				$renglon = mysql_fetch_assoc($resul);
 
 				echo "<td>".$renglon['nombres']." ". $renglon['a_paterno']." ".$renglon['a_materno']."</td>";
@@ -574,7 +574,7 @@ echo "<br><br><br>";
 				echo "<td>".$row2[5]."</td>";
 				$usuario = $row2[1];
 				$select = 'select * from usuarios where id_usuario="'.$usuario.'";';
-				$resul = mysql_query($select, $dbh) or die ("problema con la solicitud");
+				$resul = mysqli_query($conn,) or die ("problema con la solicitud");
 				$renglon = mysql_fetch_assoc($resul);
 
 				echo "<td>".$renglon['nombres']." ". $renglon['a_paterno']." ".$renglon['a_materno']."</td>";
@@ -605,7 +605,7 @@ echo "<br><br><br>";
 				echo "<td>".$row2[5]."</td>";
 				$usuario = $row2[1];
 				$select = 'select * from usuarios where id_usuario="'.$usuario.'";';
-				$resul = mysql_query($select, $dbh) or die ("problema con la solicitud");
+				$resul = mysqli_query($conn,) or die ("problema con la solicitud");
 				$renglon = mysql_fetch_assoc($resul);
 
 				echo "<td>".$renglon['nombres']." ". $renglon['a_paterno']." ".$renglon['a_materno']."</td>";
@@ -637,7 +637,7 @@ echo "<br><br><br>";
 				echo "<td>".$row2[5]."</td>";
 				$usuario = $row2[1];
 				$select = 'select * from usuarios where id_usuario="'.$usuario.'";';
-				$resul = mysql_query($select, $dbh) or die ("problema con la solicitud");
+				$resul = mysqli_query($conn,) or die ("problema con la solicitud");
 				$renglon = mysql_fetch_assoc($resul);
 
 				echo "<td>".$renglon['nombres']." ". $renglon['a_paterno']." ".$renglon['a_materno']."</td>";
@@ -668,7 +668,7 @@ echo "<br><br><br>";
 				echo "<td>".$row2[5]."</td>";
 				$usuario = $row2[1];
 				$select = 'select * from usuarios where id_usuario="'.$usuario.'";';
-				$resul = mysql_query($select, $dbh) or die ("problema con la solicitud");
+				$resul = mysqli_query($conn,) or die ("problema con la solicitud");
 				$renglon = mysql_fetch_assoc($resul);
 
 				echo "<td>".$renglon['nombres']." ". $renglon['a_paterno']." ".$renglon['a_materno']."</td>";
@@ -698,14 +698,14 @@ echo "<br><br><br>";
         echo "<td>".$row2[5]."</td>";
         $usuario = $row2[4];
         $select = 'select * from usuarios where id_usuario="'.$usuario.'";';
-        $resul = mysql_query($select, $dbh) or die ("problema con la solicitud");
+        $resul = mysqli_query($conn,) or die ("problema con la solicitud");
         $renglon = mysql_fetch_assoc($resul);
 
         echo "<td>".$renglon['nombres']." ". $renglon['a_paterno']." ".$renglon['a_materno']."</td>";
         $producto_inventario = $row2[1];
 
         $select = 'select * from inventario where id_producto="'.$producto_inventario.'";';
-        $resul = mysql_query($select, $dbh) or die ("problema con la solicitud");
+        $resul = mysqli_query($conn,) or die ("problema con la solicitud");
         $renglon = mysql_fetch_assoc($resul);
 
         echo "<td>".$renglon['nombre']."</td>";

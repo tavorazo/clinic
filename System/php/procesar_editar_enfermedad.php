@@ -42,19 +42,19 @@
 		/*$dbh = mysql_connect('localhost','root','') or die('Error de conexion: ' . mysql_error() );
 		$base = mysql_select_db('Endoperio', $dbh) or die('Error de seleccion de base: ' . mysql_error() );*/
 		include("base.php");
-		include("base3.php");
+		
 		$select = 'select * from enfermedades where id_enfermedad="'.$a.'";';
 
 
-		$resul = mysql_query($select, $dbh) or die ("problema con la solicitud");
+		$resul = mysqli_query($conn,) or die ("problema con la solicitud");
 		$renglon = mysql_fetch_assoc($resul);
 
 
 			$insertar = "update enfermedades set nombre_enfermedad='$c', tipo_enfermedad='$d' where id_enfermedad='$a'";
 
-		if(!mysql_query($insertar, $conexion))
+		if(!mysqli_query($conn,))
 			die('Error de consulta: '.mysql_error());
-		mysql_close($conexion);
+		mysqli_close($conn);
 
 		echo '<br><br><br><center><img src="../images/endoperio2.png" width="100px" alt=""> <br> ';
 		echo "Modificacion exitosa<br><br><br>";

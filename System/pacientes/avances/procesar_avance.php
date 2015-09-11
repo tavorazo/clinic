@@ -34,7 +34,7 @@
 	
 	$insertar = "insert into avance_clinico (id_paciente, id_usuario, avance, fecha) values ('$id_paciente', '$id_usuario', '$avance', now());";
 
-	if(!mysql_query($insertar, $conexion))
+	if(!mysqli_query($conn,))
 				die('Error de consulta: '.mysql_error());
 				
 

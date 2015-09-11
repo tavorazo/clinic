@@ -22,14 +22,14 @@
 			while ($row3 = mysql_fetch_array($result_pagos, MYSQL_NUM)){
 				$usuario = $row3[7];
 				$select = 'select * from usuarios where id_usuario="'.$usuario.'";';
-				$resul = mysql_query($select, $dbh) or die ("problema con la solicitud");
+				$resul = mysqli_query($conn,) or die ("problema con la solicitud");
 				$renglon = mysql_fetch_assoc($resul);
 				echo "<br><br><hr> <i>Pago recibido por: ".$renglon['nombres']." ".$renglon['apellido_paterno']." ".$renglon['apellido_materno']."<br>";
 				echo "Cantidad: ", $row3[4], "<br>";
 				
 				$tipo = $row3[1];
 				$select = 'select * from pagos_tipo where id_tipo="'.$tipo.'";';
-				$resul = mysql_query($select, $dbh) or die ("problema con la solicitud");
+				$resul = mysqli_query($conn,) or die ("problema con la solicitud");
 				$renglon = mysql_fetch_assoc($resul);
 				echo "Tipo de pago: ", $renglon['descripcion'], "<br>";
 				echo "Descripci&oacute;n del pago: ", $row3[6], "<br>";

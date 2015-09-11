@@ -6,18 +6,16 @@ $dbh = mysql_connect('localhost','root','') or die('Error de conexion: ' . mysql
 $base = mysql_select_db('Endoperio', $dbh) or die('Error de seleccion de base: ' . mysql_error() );*/
 
 include('base.php');
-include('base3.php');
-include('base2.php');
 
 $select = 'select * from usuarios where id_usuario="'.$id.'";';
-$resul = mysql_query($select, $dbh) or die ("problema con la solicitud");
+$resul = mysqli_query($conn,$select) or die ("problema con la solicitud");
 $renglon = mysql_fetch_assoc($resul);
 
 	$eliminar = 'delete from usuarios where id_usuario="'.$id.'";';
 
-	if(!mysql_query($eliminar, $dbh))
+	if(!mysqli_query($conn,$eliminar))
 		die('Error de consulta: '.mysql_error());
-	mysql_close($conexion);
+	mysqli_close($conn);
 
 header('location:lista_usuarios.php');
 

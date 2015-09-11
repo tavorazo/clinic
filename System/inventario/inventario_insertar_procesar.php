@@ -27,9 +27,9 @@ include('../php/base3.php');
 
 		$select = 'select * from inventario where numero_serial="'.$b.'";';
 		//echo $select;
-		if(!mysql_query($instruccion, $conexion))
+		if(!mysqli_query($conn,))
 			die('Error de consulta: '.mysql_error());
-		$resul = mysql_query($select, $dbh) or die ("problema con la solicitud");
+		$resul = mysqli_query($conn,) or die ("problema con la solicitud");
 		$renglon = mysql_fetch_assoc($resul);
 
 $producto = $renglon['id_producto'];
@@ -38,10 +38,10 @@ $total = $d * $pcompra;
 $instruccion2 = "insert into inventario_historial_entradas (id_producto,cantidad,total_compra,id_usuario,fecha ) values ('$producto', '$d', '$total', '$usuario', now());";
 
 
-	if(!mysql_query($instruccion2, $conexion))
+	if(!mysqli_query($conn,))
 		die('Error de consulta: '.mysql_error());
 
-	mysql_close($conexion);
+	mysqli_close($conn);
 	echo '<meta http-equiv="refresh" content="0; url=../almacen.php" />';
 //header ("location: ../almacen.php");
 

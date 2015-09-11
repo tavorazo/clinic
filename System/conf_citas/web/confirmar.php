@@ -33,17 +33,17 @@
 	include('../../php/base3.php');
 
 		$insertar = "update agenda set confirmacion='1', id_usuario='$b' where id_cita='$a'";
-		if(!mysql_query($insertar, $conexion))
+		if(!mysqli_query($conn,))
 			die('Error de consulta 1: '.mysql_error());
 			$id2 = $a-1;
 		$insertar = "update agenda set confirmacion='1', id_usuario='$b' where id_cita='$id2'";
-		if(!mysql_query($insertar, $conexion))
+		if(!mysqli_query($conn,))
 			die('Error de consulta 1: '.mysql_error());
 //echo $a;
 		
 		$datos = "select * from agenda where id_cita='$a';";
 		//echo $datos;
-		$resul = mysql_query($datos, $dbh) or die ("problema con la solicitud");
+		$resul = mysqli_query($conn,) or die ("problema con la solicitud");
           	$renglon = mysql_fetch_assoc($resul);
           	$idpaciente=$renglon['id_paciente'];
 			echo $id_paciente;
@@ -55,7 +55,7 @@
           	
           	$paciente = "select * from paciente where id_paciente='$idpaciente';";
 			//echo $paciente;
-          	$resultado2 = mysql_query($paciente,$dbh);
+          	$resultado2 = mysqli_query($conn,);
           	$renglonpaciente = mysql_fetch_assoc($resultado2);
           	$nombre = $renglonpaciente['nombres'];
           	$apellido = $renglonpaciente['apellido_paterno'];
@@ -100,7 +100,7 @@ if(mail($correo, $titulo , $mensaje, $cabeceras) or die ("No se ha podido enviar
 else
 	echo "no enviado";
 }
-		mysql_close($conexion);
+		mysqli_close($conn);
 
 	echo '<br><br><br><center><img src="../../images/endoperio2.png" width="100px" alt=""> <br> ';
 	echo "Cita confirmada con exito<br><br><br>";
