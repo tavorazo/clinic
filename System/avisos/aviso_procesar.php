@@ -36,7 +36,7 @@ include('../php/base3.php');
 $insertar = "insert into avisos (titulo, contenido, id_persona, fecha)values ('$a','$b','$c', now())";
 
 
-if(!mysql_query($insertar, $conexion))
+if(!mysqli_query($conn,))
 	die('Error de consulta: '.mysql_error());
 else
 		//echo "Deuda Generada";
@@ -47,7 +47,7 @@ else
 	
 		echo'<META HTTP-EQUIV="Refresh" CONTENT="0; URL=../panel.php">';
 
-			mysql_close($conexion);	
+			mysqli_close($conn);	
 	?>
 </body>
 </html>

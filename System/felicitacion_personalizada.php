@@ -54,18 +54,18 @@
 
 <?php
 	@session_start();
-	include('php/base3.php');
-	include('php/base2.php');
 	include('php/base.php');
-
-	$id_paciente = $_GET['id_paciente'];
-	$correo = $_GET['correo'];
-
+  $id_paciente = 0;
+  $correo = "";
+  if (isset($_GET['id_paciente']) && isset($_GET['correo'])){
+    $buscar_paciente = $_GET['id_paciente'];
+    
+  }
 	$select = 'select * from paciente where id_paciente="'.$id_paciente.'";';
-	$resul = mysql_query($select, $dbh) or die ("problema con la solicitud");
-	$renglon_paciente = mysql_fetch_assoc($resul);
+	$result = mysqli_query($conn,$select);
+	$row_paciente = mysqli_fetch_assoc($result);
 
-	$nombres = $renglon_paciente['nombres']." ". $renglon_paciente['apellido_paterno']." ".$renglon_paciente['apellido_materno'];
+	$nombres = $row_paciente['nombres']." ". $row_paciente['apellido_paterno']." ".$row_paciente['apellido_materno'];
 ?>
 
 <!Doctype html>
@@ -77,7 +77,7 @@
 
   <?php
     if($correo1=''){
-    	echo '<h1>Felicitación personalizada para: '.$renglon_paciente['nombres'].' '.$renglon_paciente['apellido_paterno'].' '.$renglon_paciente['apellido_materno'].' </h1>';
+    	echo '<h1>Felicitación personalizada para: '.$row_paciente['nombres'].' '.$row_paciente['apellido_paterno'].' '.$row_paciente['apellido_materno'].' </h1>';
     	echo '<br>Correo: '.$correo.'<br><br><br>';
     }else{
       print "Envir felicitación a todos<br><br>";

@@ -11,8 +11,6 @@
 $id = $_POST['nickname'];
 
 include('../php/base.php');
-include('../php/base3.php');
-include('../php/base2.php');
 
 
 $nombre = $_POST['nombre'];
@@ -45,9 +43,9 @@ $insertar = "update usuarios set nombres = '$nombre', 		apellido_paterno = '$pat
 				correo = '$correo', 		password = '$password', imagen = '$imagen'		 where id_usuario = '$id';";
 
 
-if(!mysql_query($insertar, $conexion))
+if(!mysqli_query($conn,$insertar))
 	die('Error de consulta: '.mysql_error());
-mysql_close($conexion);
+mysqli_close($conn);
 	
 //header('location: lista_usuarios.php');
 

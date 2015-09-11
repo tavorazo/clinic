@@ -152,9 +152,7 @@ for($a=1;$a <= $TotalDeCeldas;$a++){
 	print "</table>";
 
 		include("php/base.php");
-		include("php/base2.php");
-		include("php/base3.php");
-		
+	
     $dia_seleccionable = $_GET['dia'];
     //print "$dia_seleccionable $mes $ano";
     if($dia_seleccionable==1)
@@ -264,10 +262,9 @@ if($S == 1){
 
     //echo $fechab;
     if($semana_b=='')
-	   $result2 = mysql_query("select * from nomina_historial where fecha like '%$fechab%'");
+	   $result2 = mysqli_query($conn,"select * from nomina_historial where fecha like '%$fechab%'");
     else
-        $result2 = mysql_query("select * from nomina_historial where semana='$semana_b' and y='$ano_s'");
-    
+      $result2 = mysqli_query($conn,"select * from nomina_historial where semana='$semana_b' and y='$ano_s'");
 
 		echo "<table border=1 style='margin-top:100px; '>
     <tr>
@@ -281,16 +278,37 @@ if($S == 1){
           <td style='color:#58ACFA'>Aprobada    </td>
 
     </tr>";
+  $result = mysqli_query($conn,"SELECT * FROM nomina_historial");
+    if (!$result) {
+      echo 'Could not run query: ' . mysql_error();
+      exit;
+    }
+    if (mysql_num_rows($result) > 0) {
+      echo "noob";
+    while($row2 = mysql_fetch_row($result)) {
+      echo '<tr>';
+      foreach($row2 as $key=>$value) {
+        echo '<td>',$value,'</td>';
+      }
+      echo '</tr>';
+    }
+}
+  
+
     $total_semanal = 0;
-	while ($row2 = mysql_fetch_array($result2, MYSQL_NUM)){
+	while ($row2 = mysqli_fetch_array($result2, MYSQL_NUM)){
 			echo "<tr>";
             echo "<td>",$row2[0],"</td>";
 				
 				$usuario = $row2[1];
 				$select = 'select * from usuarios where id_usuario="'.$usuario.'";';
-				$resul = mysql_query($select, $dbh) or die ("problema con la solicitud");
-				$renglon = mysql_fetch_assoc($resul);
-				//vendido por
+				$resul = mysqli_query($select, $dbh) or die ("problema con la solicitud");
+				$renglon = mysqli_fetch_assoc($resul);
+				echo "vendido por";
+
+
+
+
 				echo "<td>".$renglon['nombres']." ".$renglon['apellido_paterno']." ".$renglon['apellido_materno']."</td>";
                 echo "<td>".money_format('%(#10n',$row2[2])."</td>";//sueldo
                 echo "<td>".money_format('%(#10n',$row2[3])."</td>";//vacaciones

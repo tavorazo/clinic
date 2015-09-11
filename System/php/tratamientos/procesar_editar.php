@@ -20,10 +20,10 @@ if (!$conexion){
 	
 $insertar = "update tratamiento_dental set tratamiento='$nombre', precio_1='$p1', precio_2='$p2', precio_3='$p3', precio_4='$p4', precio_5='$p5' where id_tratamiento='$id';";
 
-if(!mysql_query($insertar, $conexion))
+if(!mysqli_query($conn,))
 	die('Error de consulta: '.mysql_error());
 	
-mysql_close($conexion);
+mysqli_close($conn);
 echo'<META HTTP-EQUIV="Refresh" CONTENT="0; URL=lista_precios.php">';
  //header('location: ../../contabilidad.php');
  ?>

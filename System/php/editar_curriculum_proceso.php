@@ -27,16 +27,16 @@
 		$curriculum = $_POST['curriculum'];
 
 		$select = 'select * from curriculum where id_usuario="'.$id.'";';
-		$resul = mysql_query($select, $dbh) or die ("problema con la solicitud");
+		$resul = mysqli_query($conn,) or die ("problema con la solicitud");
 		$renglon = mysql_fetch_assoc($resul);
 		//echo $id, $curriculum;
 		if($renglon['id_usuario']!='')
 			$insertar = "update curriculum set descripcion='$curriculum' where id_usuario='$id'";
 		else
 			$insertar = "insert into curriculum (id_usuario, descripcion) values ('$id','$curriculum')";
-		if(!mysql_query($insertar, $conexion))
+		if(!mysqli_query($conn,))
 			die('Error de consulta: '.mysql_error());
-		mysql_close($conexion);
+		mysqli_close($conn);
 
 		$a = 'lista_usuarios.php';
 		echo "<center><br><br><br<a href='",$a,"' > Proceso realizado con &eacute;xito </a>";

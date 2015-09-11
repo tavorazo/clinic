@@ -29,9 +29,9 @@
 		$alergias = $_POST['alergia'];
 
 		$insertar = "update paciente set alergias='$alergias' where id_paciente='$id'";
-		if(!mysql_query($insertar, $conexion))
+		if(!mysqli_query($conn,))
 			die('Error de consulta: '.mysql_error());
-		mysql_close($conexion);
+		mysqli_close($conn);
 
 		echo '<br><br><br><center><img src="../images/endoperio2.png" width="100px" alt=""> <br> ';
 		$a = 'ficha-paciente.php?id='.$id;

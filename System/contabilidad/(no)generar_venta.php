@@ -42,7 +42,7 @@
 
 			
 			$select  = "select * from inventario where id_producto='".$producto."';";
-			$resul	 = mysql_query($select, $dbh) or die ("problema con la solicitud");
+			$resul	 = mysqli_query($conn,) or die ("problema con la solicitud");
 			$renglon = mysql_fetch_assoc($resul);
 			
 			$precio = $renglon['precio_venta'];
@@ -58,13 +58,13 @@
 				$cantidad = $cantidad*(-1);
 				$insertar2 = "insert into Inventario_Historial (id_usuario, id_producto, cantidad, fecha) values ('$id_usuario', '$producto', '$cantidad', now())";
 
-				if(!mysql_query($actualizar, $conexion))
+				if(!mysqli_query($conn,))
 					die('Error de consulta: '.mysql_error());
 					
-				if(!mysql_query($insertar2, $conexion))
+				if(!mysqli_query($conn,))
 					die('Error de consulta: '.mysql_error());
 			
-				if(!mysql_query($insertar, $conexion))
+				if(!mysqli_query($conn,))
 					die('Error de consulta: '.mysql_error());
 				else
 					//echo " realizada con éxito";
@@ -75,7 +75,7 @@
 			
 				echo'<META HTTP-EQUIV="Refresh" CONTENT="1; URL=compra.php?id_paciente=',$paciente,'">';
 
-				mysql_close($conexion);
+				mysqli_close($conn);
 			}
 			else{
 				echo '<br><br><br><center><img src="../images/endoperio2.png" width="100px" alt=""> <br> ';

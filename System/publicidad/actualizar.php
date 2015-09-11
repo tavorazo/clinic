@@ -6,7 +6,7 @@
 
 	$desactivar_todos = "update publicidad set activado='0', lugar='0';";
 
-	if(!mysql_query($desactivar_todos, $conexion))
+	if(!mysqli_query($conn,))
 		die('error: '.mysql_error());
 
 	$costado = $_POST['costado'];
@@ -15,13 +15,13 @@
 	$activar1 = "update publicidad set activado='1', lugar='1' where id_publicidad='$costado';";
 	$activar2 = "update publicidad set activado='1', lugar='2' where id_publicidad='$abajo';";
 
-	if(!mysql_query($activar1, $conexion))
+	if(!mysqli_query($conn,))
 		die('error: '.mysql_error());
 
-	if(!mysql_query($activar2, $conexion))
+	if(!mysqli_query($conn,))
 		die('error: '.mysql_error());
 
-		mysql_close($conexion);
+		mysqli_close($conn);
 		echo '<META HTTP-EQUIV="Refresh" CONTENT="3; URL=seleccionar_publicidad.php">
 		Cambio con éxito';
 

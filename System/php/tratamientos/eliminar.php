@@ -5,9 +5,9 @@
 	$id = $_GET['id'];
 	$insertar = "delete from tratamiento_dental where id_tratamiento='$id';";
 
-	if(!mysql_query($insertar, $conexion))
+	if(!mysqli_query($conn,))
 		die('Error de consulta: '.mysql_error());
 		
-	mysql_close($conexion);
+	mysqli_close($conn);
 	echo'<META HTTP-EQUIV="Refresh" CONTENT="0; URL=lista_precios.php">';
 ?>
