@@ -159,21 +159,23 @@ if($_SESSION['rol']=='admin' || $_SESSION['rol']=='almacen'){
 
 
 					
+$sql = "SELECT * FROM inventario where reabastesible='1'";
 
-					  $result2 = mysqli_query($conn,"SELECT * FROM inventario where reabastesible='1'");
-
-					  while ($row2 = mysqli_fetch_array($result2, MYSQL_NUM)) {
-
-						  if($row2[6]>$row2[4]){
-
-							echo "<br><div style='float:left; position:relative'>", $row2[1], " necesita ser abastecido. <br>";
-							echo "Canditad mínima que debe exisitir en el inventario: ", $row2[6];
-							echo "<br>Canditad de existencia en el inventario: ", $row2[4];
-							echo "</div>
-								  <div id='botn3' style='margin-left:80%; width:100px; background: #FFFFFF; border:1px solid #848484;'>
-								  <a href='inventario/inventario_editar.php?id=",$row2[0],"'>Abastecer</a></div>";
+if($result = $conn->query($sql)) {
+   while ($row2 = $result->fetch_assoc()) {
+					  //$result2 = mysqli_query($conn,"SELECT * FROM inventario where reabastesible='1'");
+					  //while ($row2 = mysqli_fetch_array($result2, MYSQL_NUM)) {
+						  if($row2["cantidad_minima"] > $row2["cantidad"]){
+  							echo "<br><div style='float:left; position:relative'>", $row2["nombre"], " necesita ser abastecido. <br>";
+  							echo "Canditad mínima que debe exisitir en el inventario: ", $row2["cantidad_minima"];
+  							echo "<br>Canditad de existencia en el inventario: ", $row2["cantidad"];
+  							echo "</div>
+  								  <div id='botn3' style='margin-left:80%; width:100px; background: #FFFFFF; border:1px solid #848484;'>
+  								  <a href='inventario/inventario_editar.php?id=",$row2["id"],"'>Abastecer</a></div>";
 						  }
-					  }
+					  //}
+  } //nw
+} //nw
 
      echo ' </div>';
 }
@@ -225,18 +227,18 @@ if($_SESSION['rol']=='admin' || $_SESSION['rol']=='almacen'){
 
                 echo "<h13>Almacen<hr></h13>";
 
-                $result1 = mysqli_query($conn,"SELECT * FROM avisos where id_persona='$a' order by fecha desc limit 10");
+$sql = "SELECT * FROM avisos where id_persona='$a' order by fecha desc limit 10";
 
-              while ($row1 = mysqli_fetch_array($result1, MYSQL_NUM)) {
-
+if($result = $conn->query($sql)) {
+    foreach($result as $row) {
+            //$result1 = mysqli_query($conn,"SELECT * FROM avisos where id_persona='$a' order by fecha desc limit 10");
+            // while ($row1 = mysqli_fetch_array($result1, MYSQL_NUM)) {
                 echo "<h3>", $row1[1], "</h3><br><br><h13>";
-
                 echo "", $row1[2];
-
                 echo "<br>", $row1[4],"<br><br></h13>";
-
-              }
-
+            //}
+    }
+}
 
 
                 $result2 = mysqli_query($conn,"SELECT * FROM avisos where id_persona='$usuario' order by fecha desc limit 10");
@@ -511,45 +513,32 @@ if($_SESSION['rol']=='admin' || $_SESSION['rol']=='almacen'){
 					$seccion2 = 'select * from agenda where id_usuario="'.$doctor.'" and ano="'.$anio.'" and mes="'.$mes.'" and dia="'.$dia.'" and hora="'.$hora.'" and minuto="'.$minuto2.'";';
 
 				
-
 					$resul_s = mysqli_query($conn,$seccion1, $dbh) or die ("problema con la solicitud");
-
-					$resultado_sec1 = mysql_fetch_assoc($resul_s);
+          $resultado_sec1 = $conn->query($resul_s);
+					//$resultado_sec1 = mysql_fetch_assoc($resul_s);
 
 					
 
 					$resul_s2 = mysqli_query($conn,$seccion2, $dbh) or die ("problema con la solicitud");
-
 					$resultado_se2 = mysql_fetch_assoc($resul_s2);
-
 					
 
 					//echo "<option>".$resultado_sec1['id_usuario']. $resultado_se2['id_usuario']. "</option>";
 
 					if($resultado_sec1['id_usuario']=='' && $resultado_se2['id_usuario']==''){
-
 						echo "<option value='",$verificar[0],"'>",$verificar[1]," ",$verificar[2]," ",$verificar[3]," </option>";
-
 						$contador_doctores++;
-
 					}
-
-
 
 				}
 
 
 
 				echo "</select>";
-
 				if($contador_doctores>0){
-
 					echo "<br><input type='submit' value='Confirmar cita' style='float:left'>";
-
 				} else
-
 					echo "<br>No hay doctores disponibles, contactar al paciente o esperar a que se cancele 1 cita que coincida en la hora<br>";
-
 				echo "<br>
 
 						<div id='botn5' style='background: #FE2E2E; margin-top:-6px; height:20px'>
