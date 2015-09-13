@@ -92,7 +92,6 @@ if($_SESSION['rol']=='admin')
 </div>
 <div class="colelem" id="u464" ><!-- simple frame --></div>
 <div class="verticalspacer" ></div> 
-
 <form action="pacientes/images_pacientes/nuevo_paciente.php" method="POST" enctype="multipart/form-data"  style="margin-top:-100px; z-index:300; background:#FFFFFF; padding:20px; width:90%; padding-top:70px" >
   <!--a href="menu.php">Regresar</a--><br>
   <label style="float:left; width:150px; margin-right:15%">Nombre(s):</label> <input type="text" name="nombre"  class="campoT" required><br>
@@ -227,15 +226,12 @@ if($_SESSION['rol']=='admin')
 <script>
 var video = document.querySelector("#videoElement");
 navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia || navigator.oGetUserMedia;
-
 if (navigator.getUserMedia) {       
   navigator.getUserMedia({video: true}, handleVideo, videoError);
 }
-
 function handleVideo(stream) {
   video.src = window.URL.createObjectURL(stream);
 }
-
 function videoError(e) {
 }
 var v,canvas,context,w,h;
@@ -287,4 +283,4 @@ var v,canvas,context,w,h;
         } catch(e) { Muse.Assert.fail('Error calling selector function:' + e); }});
          </script>
        </body>
-</html>
+       </html>

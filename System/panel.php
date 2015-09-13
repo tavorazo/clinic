@@ -296,7 +296,7 @@ if($_SESSION['rol']=='admin' || $_SESSION['rol']=='secretaria' || $_SESSION['rol
    <br><br><br><br><br><hr>";
  }
 }
-echo '</div>';
+echo '    </div>';
 ?>
 </form>
 <?php
