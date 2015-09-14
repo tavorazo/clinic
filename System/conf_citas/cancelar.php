@@ -47,19 +47,19 @@
 	include('../php/base3.php');
 
 	$select = 'select * from agenda where id_cita="'.$id.'";';
-	$resul = mysqli_query($conn,) or die ("problema con la solicitud");
+	$resul = mysql_query($select, $dbh) or die ("problema con la solicitud");
 	$renglon = mysql_fetch_assoc($resul);
 
 		if($renglon['duracion']=='15'){
 			$eliminar = 'delete from agenda where id_cita="'.$id.'";';
-			if(!mysqli_query($conn,))
+			if(!mysql_query($eliminar, $dbh))
 				die('Error de consulta: '.mysql_error());
 		}
 
 		if($renglon['duracion']=='30'){
 			for($i=0;$i<2;$i++){
 				$eliminar = 'delete from agenda where id_cita="'.$id.'";';
-				if(!mysqli_query($conn,))
+				if(!mysql_query($eliminar, $dbh))
 					die('Error de consulta: '.mysql_error());
 				$id--;
 			}
@@ -69,7 +69,7 @@
 			for($i=0;$i<3;$i++){
 			//echo $id;
 				$eliminar = 'delete from agenda where id_cita="'.$id.'";';
-				if(!mysqli_query($conn,))
+				if(!mysql_query($eliminar, $dbh))
 					die('Error de consulta: '.mysql_error());
 				$id--;
 			}
@@ -78,14 +78,14 @@
 		if($renglon['duracion']=='60'){
 			for($i=0;$i<4;$i++){
 				$eliminar = 'delete from agenda where id_cita="'.$id.'";';
-				if(!mysqli_query($conn,))
+				if(!mysql_query($eliminar, $dbh))
 					die('Error de consulta: '.mysql_error());
 				$id--;
 			}
 		}		
 
 		
-	mysqli_close($conn);
+	mysql_close($conexion);
 
 		echo '<br><br><br><center><img src="../images/endoperio2.png" width="100px" alt=""> <br> ';
 		echo "Cita cancelada<br><br><br>";

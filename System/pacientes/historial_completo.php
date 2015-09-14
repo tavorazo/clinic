@@ -68,7 +68,7 @@
 		$tipo = $_GET['tipo'];
 
 			  $select_p = 'select * from paciente where id_paciente="'.$id_paciente.'";';
-			  $resulp = mysqli_query($conn,) or die ("problema con la solicitud");
+			  $resulp = mysql_query($select_p, $dbh) or die ("problema con la solicitud");
 			  $renglonp = mysql_fetch_assoc($resulp);
 		$nombre_paciente =$renglonp['nombres'] ." ".$renglonp['apellido_paterno']." ". $renglonp['apellido_materno'];
 
@@ -86,7 +86,7 @@
 			  echo "<tr><td> ", $row_avance[4],"</td>";
 			  echo "<td>", $row_avance[3],"</td>";
 			  $select = 'select * from usuarios where id_usuario="'.$row_avance[2].'";';
-			  $resul = mysqli_query($conn,) or die ("problema con la solicitud");
+			  $resul = mysql_query($select, $dbh) or die ("problema con la solicitud");
 			  $renglon = mysql_fetch_assoc($resul);
 			  echo "<td>", $renglon['nombres']," ", $renglon['apellido_paterno'], " ", $renglon['apellido_materno'], "</td></tr>";
 			}
@@ -108,7 +108,7 @@
 			 while ($row_receta = mysql_fetch_array($result3, MYSQL_NUM)) {
 				  echo "<tr><td>", $row_receta[5],"</td>";
 				  $select = 'select * from usuarios where id_usuario="'.$row_receta[1].'";';
-				  $resul = mysqli_query($conn,) or die ("problema con la solicitud");
+				  $resul = mysql_query($select, $dbh) or die ("problema con la solicitud");
 				  $renglon = mysql_fetch_assoc($resul);
 				  echo "<td>", $renglon['nombres']," ", $renglon['apellido_paterno'], " ", $renglon['apellido_materno'], "</td>";
 				echo "<td>", $row_receta[3],"</td>";

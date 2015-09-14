@@ -28,8 +28,10 @@ else {
 $id_usuario = "$nickname-$rol[0]";
 
 include('base.php');
+include('base3.php');
+include('base2.php');
 
-if (!$conn){
+if (!$conexion){
 	die('Error de Conexion: ' .mysql_error());
 }
 /*
@@ -62,9 +64,9 @@ $insertar = "insert into usuarios (id_usuario,
 																	'$fecha_alta',
 																	'$contra');";
 
-if(!mysqli_query($conn,$insertar))
+if(!mysql_query($insertar, $conexion))
 	die('Error de consulta: '.mysql_error());
-mysqli_close($conn);
+mysql_close($conexion);
 
  }
  ?>

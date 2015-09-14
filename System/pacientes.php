@@ -69,7 +69,7 @@
       <div  style="float:left; width:460px;  border:0px solid #BDBDBD; min-height:150px">
         <?php
           $select = 'select * from publicidad where lugar="1";';
-          $resul = mysqli_query($conn,) or die ("problema con la solicitud");
+          $resul = mysql_query($select, $dbh) or die ("problema con la solicitud");
           $renglon = mysql_fetch_assoc($resul);
 
           echo "<img src='publicidad/images/".$renglon['imagen']."' width='460px'>";
@@ -117,12 +117,12 @@
   <div style="width:900px; min-height:50px; position:relative; " >
         <?php
           $select = 'select * from publicidad where lugar="2";';
-          $resul = mysqli_query($conn,) or die ("problema con la solicitud");
+          $resul = mysql_query($select, $dbh) or die ("problema con la solicitud");
           $renglon = mysql_fetch_assoc($resul);
 
           echo "<img src='publicidad/images/".$renglon['imagen']."' width='900px'>";
 
-          mysqli_close($conn);
+          mysql_close($conexion);
         ?>
   </div>
 

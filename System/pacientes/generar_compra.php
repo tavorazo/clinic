@@ -40,7 +40,7 @@
 			//$id_paciente= $_GET['id_paciente'];
 			
 			$select  = "select * from inventario where id_producto='".$producto."';";
-			$resul	 = mysqli_query($conn,) or die ("problema con la solicitud");
+			$resul	 = mysql_query($select, $dbh) or die ("problema con la solicitud");
 			$renglon = mysql_fetch_assoc($resul);
 			
 			$precio = $renglon['precio_venta'];
@@ -57,25 +57,25 @@
 				$cantidad = $cantidad*(-1);
 				$insertar2 = "insert into inventario_historial (id_usuario, id_producto, cantidad, fecha) values ('$id_usuario', '$producto', '$cantidad', now())";
 
-				if(!mysqli_query($conn,))
+				if(!mysql_query($actualizar, $conexion))
 					die('Error de consulta: '.mysql_error());
 					
-				if(!mysqli_query($conn,))
+				if(!mysql_query($insertar2, $conexion))
 					die('Error de consulta: '.mysql_error());
 			
-				if(!mysqli_query($conn,))
+				if(!mysql_query($insertar, $conexion))
 					die('Error de consulta: '.mysql_error());
 
 
 
 				$select = 'select * from inventario where id_producto="'.$producto.'";';
-				$resul = mysqli_query($conn,) or die ("problema con la solicitud");
+				$resul = mysql_query($select, $dbh) or die ("problema con la solicitud");
 				$renglon = mysql_fetch_assoc($resul);
 				$cantidad = $cantidad * (-1);
 				$nombre_producto = $renglon['nombre'];
 				$recibo = "insert into recibos (cantidad, descripcion, total, fecha, comprador, vendedor) values ('$cantidad','$nombre_producto','$total',now(),'$paciente','$id_usuario')";
 				
-				if(!mysqli_query($conn,))
+				if(!mysql_query($recibo, $conexion))
 					die('Error de consulta: '.mysql_error());
 				$id_recibo = mysql_insert_id();
 
@@ -88,7 +88,7 @@
 			
 				//echo'<META HTTP-EQUIV="Refresh" CONTENT="1; URL=compra.php?id_paciente=',$paciente,'">';
 
-				mysqli_close($conn);
+				mysql_close($conexion);
 			}
 			else{
 				echo '<br><br><br><center><img src="../images/endoperio2.png" width="100px" alt=""> <br> ';
@@ -97,7 +97,7 @@
 				echo "<a href='compra.php?id_paciente=",$paciente,"' style='color=#fff'>Regresar </a></center></div>";
 
 				echo'<META HTTP-EQUIV="Refresh" CONTENT="4; URL=compra.php?id_paciente=',$paciente,'">';
-				mysqli_close($conn);
+				mysql_close($conexion);
 			}
 	?>
 	</body>

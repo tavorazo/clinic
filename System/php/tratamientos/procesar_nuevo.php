@@ -18,10 +18,10 @@ if (!$conexion){
 	
 $insertar = "insert into tratamiento_dental (tratamiento, precio_1, precio_2, precio_3, precio_4, precio_5) values ('$nombre','$p1','$p2', '$p3','$p4','$p5');";
 
-if(!mysqli_query($conn,))
+if(!mysql_query($insertar, $conexion))
 	die('Error de consulta: '.mysql_error());
 	
-mysqli_close($conn);
+mysql_close($conexion);
 echo'<META HTTP-EQUIV="Refresh" CONTENT="4; URL=../../contabilidad.php">';
  //header('location: ../../contabilidad.php');
  ?>

@@ -73,7 +73,6 @@ if($_SESSION['rol']=='admin' || $_SESSION['rol']=='secretaria')
 <?php
 /*if($_SESSION['rol']=='admin' || $_SESSION['rol']=='secretaria' || $_SESSION['rol']=='recepcionista' || $_SESSION['rol']=='almacen'){*/
 if($_SESSION['rol']=='admin' || $_SESSION['rol']=='almacen'){
-<<<<<<< HEAD
     echo '<div style="background: #FFFFFF; width:96%; min-height: 90px; margin-bottom:3%; " id="txt2">
     <img src="images/alert.png" width="20px" alt="" style="float:left; margin-right:10px">
     <p>Inventario:</p> ';
@@ -94,27 +93,6 @@ if($_SESSION['rol']=='admin' || $_SESSION['rol']=='almacen'){
 else
   print "error en consulta inventario\n";
 echo ' </div>';
-=======
-
-      echo '<div style="background: #FFFFFF; width:96%; min-height: 90px; margin-bottom:3%; " id="txt2">
-          <img src="images/alert.png" width="20px" alt="" style="float:left; margin-right:10px">
-          <p>Inventario:</p> ';
-					  $result2 = mysqli_query($conn,"SELECT * FROM inventario where reabastesible='1'");
-					  while ($row2 = mysqli_fetch_array($result2, MYSQL_NUM)) {
-
-						  if($row2[6]>$row2[4]){
-
-							echo "<br><div style='float:left; position:relative'>", $row2[1], " necesita ser abastecido. <br>";
-							echo "Canditad mínima que debe exisitir en el inventario: ", $row2[6];
-							echo "<br>Canditad de existencia en el inventario: ", $row2[4];
-							echo "</div>
-								  <div id='botn3' style='margin-left:80%; width:100px; background: #FFFFFF; border:1px solid #848484;'>
-								  <a href='inventario/inventario_editar.php?id=",$row2[0],"'>Abastecer</a></div>";
-						  }
-					  }
-
-     echo ' </div>';
->>>>>>> Update Mysqli
 }
 ?>
 <div>

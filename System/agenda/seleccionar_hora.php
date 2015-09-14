@@ -120,7 +120,7 @@ for($i=0;$i<12;$i++){
 	
 	for($j=0; $j<4;$j++){
 		$select = 'select * from agenda where hora="'.$hour.'" and minuto="'.$minute.'" and dia="'.$dia.'" and mes="'.$mes_n.'" and ano="'.$ano.'" and id_usuario="'.$doctor.'";';
-		$resul = mysqli_query($conn,) or die ("problema con la solicitud");
+		$resul = mysql_query($select, $dbh) or die ("problema con la solicitud");
 		$renglon = mysql_fetch_assoc($resul);
 		
 		if($renglon['id_cita']==''){

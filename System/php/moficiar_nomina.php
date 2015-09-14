@@ -25,7 +25,7 @@
 	<?php
 
 		include("base.php");
-		
+		include("base3.php");
 
 	$id_usuario = $_POST['id_usuario'];
 	$sueldo = $_POST['sueldo'];
@@ -35,8 +35,8 @@
 	//echo $id_usuario;
 
 		$select = 'select * from nomina where id_usuario="'.$id_usuario.'";';
-		$resul = mysqli_query($conn,$select) or die ("problema con la solicitud");
-		$renglon = mysqli_fetch_assoc($resul);
+		$resul = mysql_query($select, $dbh) or die ("problema con la solicitud");
+		$renglon = mysql_fetch_assoc($resul);
 
 
 	if($renglon['id_usuario']==''){
@@ -46,9 +46,9 @@
 		$insertar = "update nomina set sueldo='$sueldo', vacaciones='$vacaciones', aguinaldo='$aguinaldo' where id_usuario='$id_usuario'";
 	}
 //echo $insertar;
-	if(!mysqli_query($conn, $insertar))
-	die('Error de consulta: '.mysqli_error());
-mysqli_close($conn);
+	if(!mysql_query($insertar, $conexion))
+	die('Error de consulta: '.mysql_error());
+mysql_close($conexion);
 
 		echo '<br><br><br><center><img src="../images/endoperio2.png" width="100px" alt=""> <br> ';
 		echo "Nomina modificada con &eacute;xito<br><br><br>";

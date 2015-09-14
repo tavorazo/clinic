@@ -12,7 +12,7 @@ $id_producto = $_GET['id'];
   include('../php/base3.php');
 
   $select = 'select * from inventario where id_producto="'.$id_producto.'";';
-  $resul = mysqli_query($conn,) or die ("problema con la solicitud");
+  $resul = mysql_query($select, $dbh) or die ("problema con la solicitud");
   $renglon = mysql_fetch_assoc($resul)
 ?>
 

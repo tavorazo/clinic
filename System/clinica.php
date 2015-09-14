@@ -106,7 +106,7 @@
                               //echo "<br><label>Fecha de alta: </label>", $row2[9];
                             //  echo "<br><label>Password: </label>", $row2[10];
               $select = 'select * from curriculum where id_usuario="'.$row2[0].'";';
-              $resul = mysqli_query($conn,) or die ("problema con la solicitud");
+              $resul = mysql_query($select, $dbh) or die ("problema con la solicitud");
               $renglon = mysql_fetch_assoc($resul);
                    
                     echo "  </h12>
@@ -130,7 +130,7 @@
                               //echo "<br><label>Fecha de alta: </label>", $row2[9];
                             //  echo "<br><label>Password: </label>", $row2[10];
               $select = 'select * from curriculum where id_usuario="'.$row2[0].'";';
-              $resul = mysqli_query($conn,) or die ("problema con la solicitud");
+              $resul = mysql_query($select, $dbh) or die ("problema con la solicitud");
               $renglon = mysql_fetch_assoc($resul);
                     echo "  </h12>
                     <br><br>
@@ -153,7 +153,7 @@
                               //echo "<br><label>Fecha de alta: </label>", $row2[9];
                             //  echo "<br><label>Password: </label>", $row2[10];
               $select = 'select * from curriculum where id_usuario="'.$row2[0].'";';
-              $resul = mysqli_query($conn,) or die ("problema con la solicitud");
+              $resul = mysql_query($select, $dbh) or die ("problema con la solicitud");
               $renglon = mysql_fetch_assoc($resul);
                      echo "  </h12>
                     <br><br>

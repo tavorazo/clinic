@@ -38,7 +38,7 @@
 			
 				$insertar = "insert into egresos_otros (id_usuario, tipo, concepto, cantidad, fecha) values ('$id_usuario', '$tipo','$concepto', '$cantidad', '$fecha_egreso')";
 				
-				if(!mysqli_query($conn,))
+				if(!mysql_query($insertar, $conexion))
 					die('Error de consulta: '.mysql_error());
 				
 				echo '<br><br><br><center><img src="../images/endoperio2.png" width="100px" alt=""> <br> ';	

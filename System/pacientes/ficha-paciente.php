@@ -154,7 +154,7 @@ $buscar = $_GET['id'];
       $recomendados =  $row2[0];
       $select_reco = 'select count(*) from paciente where recomendado_por="'.$recomendados.'";';
       //echo $select_reco;
-      $resul_reco = mysqli_query($conn,) or die ("problema con la solicitud");
+      $resul_reco = mysql_query($select_reco, $dbh) or die ("problema con la solicitud");
       $renglon_reco = mysql_fetch_assoc($resul_reco);
       echo $renglon_reco['count(*)'];
       echo "<br>";
@@ -163,7 +163,7 @@ $buscar = $_GET['id'];
       $recomendador = $row2[30];
       
       $select_reco = 'select * from paciente where id_paciente="'.$recomendador.'";';
-      $resul_reco = mysqli_query($conn,) or die ("problema con la solicitud");
+      $resul_reco = mysql_query($select_reco, $dbh) or die ("problema con la solicitud");
       $renglon_reco = mysql_fetch_assoc($resul_reco);
       //echo $row2[30];
       echo $renglon_reco['nombres'], " ", $renglon_reco['apellido_paterno'], " ", $renglon_reco['apellido_materno'];
@@ -207,7 +207,7 @@ $buscar = $_GET['id'];
           echo "<label >Fecha de avance:</label> ", $row_avance[4],"<br><br>";
           echo "<label >Descripci&oacute;n</label> ", $row_avance[3],"<br><br>";
           $select = 'select * from usuarios where id_usuario="'.$row_avance[2].'";';
-          $resul = mysqli_query($conn,) or die ("problema con la solicitud");
+          $resul = mysql_query($select, $dbh) or die ("problema con la solicitud");
           $renglon = mysql_fetch_assoc($resul);
           echo "<label'> Atendido por: </label>", $renglon['nombres']," ", $renglon['apellido_paterno'], " ", $renglon['apellido_materno'], "<br><br><br>";
         }
@@ -229,7 +229,7 @@ $buscar = $_GET['id'];
         while ($row_receta = mysql_fetch_array($result3, MYSQL_NUM)) {
           echo "<label >Fecha de receta:</label> <a href='../php/ver_receta.php?id=",$row_receta[0],"' target='_blank' >", $row_receta[5],"</a><br>";
           $select = 'select * from usuarios where id_usuario="'.$row_receta[1].'";';
-          $resul = mysqli_query($conn,) or die ("problema con la solicitud");
+          $resul = mysql_query($select, $dbh) or die ("problema con la solicitud");
           $renglon = mysql_fetch_assoc($resul);
           echo "<label> Asignada por: </label>", $renglon['nombres']," ", $renglon['apellido_paterno'], " ", $renglon['apellido_materno'], "<br><br>";
         }

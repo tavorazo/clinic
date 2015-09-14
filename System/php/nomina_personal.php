@@ -64,19 +64,19 @@
      <?php
 
 	include("base.php");
-	
-	
+	include("base2.php");
+	include("base3.php");
 
 	$id_usuario = $_GET['id'];
 
 		$select = 'select * from nomina where id_usuario="'.$id_usuario.'";';
-		$resul = mysqli_query($conn,$select) or die ("problema con la solicitud");
-		$renglon = mysqli_fetch_assoc($resul);
+		$resul = mysql_query($select, $dbh) or die ("problema con la solicitud");
+		$renglon = mysql_fetch_assoc($resul);
 
 
 		$select2 = 'select * from usuarios where id_usuario="'.$id_usuario.'";';
-		$resul2 = mysqli_query($conn,$select2) or die ("problema con la solicitud");
-		$renglon2 = mysqli_fetch_assoc($resul2);
+		$resul2 = mysql_query($select2, $dbh) or die ("problema con la solicitud");
+		$renglon2 = mysql_fetch_assoc($resul2);
 ?>
 <h1> <a href="lista_usuarios.php" style="float:left; margin-right:10px"> << Regresar </a> </h1>
 <h1>Nomina de <?php echo $renglon2['nombres'], " ", $renglon2['apellido_paterno']," ", $renglon2['apellido_materno']; ?></h1><hr><br>

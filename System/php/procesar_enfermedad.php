@@ -33,9 +33,9 @@ include('base3.php');
 
 $insertar = "insert into enfermedades (id_paciente, tipo_enfermedad, nombre_enfermedad) values ('$c','$b','$a')";
 
-if(!mysqli_query($conn,))
+if(!mysql_query($insertar, $conexion))
 	die('Error de consulta: '.mysql_error());
-mysqli_close($conn);
+mysql_close($conexion);
 $pagina = "../pacientes/ficha-paciente.php?id=".$c;
 
 echo '<br><br><br><center><img src="../images/endoperio2.png" width="100px" alt=""> <br> ';

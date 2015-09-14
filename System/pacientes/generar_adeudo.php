@@ -43,7 +43,7 @@
 
 			
 				$select = "select * from tratamiento_dental where id_tratamiento='".$concepto."';";
-				$resul = mysqli_query($conn,) or die ("problema con la solicitud");
+				$resul = mysql_query($select, $dbh) or die ("problema con la solicitud");
 				$renglon = mysql_fetch_assoc($resul);
 				
 				$concepto2 = $renglon['tratamiento'];
@@ -67,7 +67,7 @@
 				$valor = $precio2;
 			$insertar = "insert into pago_adeudo (adeudo, descripcion, fecha, id_usuario, id_paciente, fecha_adeudo) values ('$valor', '$concepto2', now(),'$id_usuario', '$id_paciente',now())";
 		
-			if(!mysqli_query($conn,))
+			if(!mysql_query($insertar, $conexion))
 				die('Error de consulta: '.mysql_error());
 			else{
 				//echo "Deuda Generada";
@@ -79,7 +79,7 @@
 			}
 		echo'<META HTTP-EQUIV="Refresh" CONTENT="0; URL=adeudo.php?id_paciente=',$id_paciente,'">';
 
-			mysqli_close($conn);	
+			mysql_close($conexion);	
 	?>
 </body>
 </html>
