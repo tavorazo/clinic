@@ -22,11 +22,9 @@
       $tabla="usuarios";
 	
 	include('base.php');
-	include('base3.php');
-	include('base2.php');
 
       //Consultamos a la base de datos para sacar las columnas de la tabla
-      $result = mysql_query("SHOW COLUMNS FROM $tabla");
+      $result = mysqli_query($conn,"SHOW COLUMNS FROM $tabla");
 
       echo "<a href='../panel.php'><img src='../images/endoperio-logo.png' width='200px' style='margin-left:120px; margin-top:40px; float:left'></a>
             <h9 style='position:absolute; margin-top:42px; margin-left:40px '>Lista de usuarios en el Sistema</h9><br><br><br><br><br><br>";
@@ -34,8 +32,8 @@
 
       //ahora consultamos a la base de datos para sacar los registros contenidos
       if($_SESSION['rol']=='admin'){
-	      $result2 = mysql_query("SELECT * FROM $tabla");
-	      while ($row2 = mysql_fetch_array($result2, MYSQL_NUM)) {
+	      $result2 = mysqli_query($conn,"SELECT * FROM $tabla");
+	      while ($row2 = mysqli_fetch_array($result2, MYSQL_NUM)) {
 	 			echo "<div style='width:80%; margin:10px auto; padding:20px; border: #2E2EFE 1px solid;'
 					<br>
 					<div style='padding:10px; width:190px; min-height:300px; float:left; padding-right:40px'>
@@ -53,8 +51,8 @@
 							echo "<br><label>Diplomados e Instrumental:  </label><a href='diplomados.php?id=", $row2[0],"'>Comprar</a><br>";
 	             		//	echo "<br><label>Password: </label>", $row2[10];
 		$select = 'select * from curriculum where id_usuario="'.$row2[0].'";';
-		$resul = mysql_query($select, $dbh) or die ("problema con la solicitud");
-		$renglon = mysql_fetch_assoc($resul);
+		$resul = mysqli_query($conn,$select) or die ("problema con la solicitud");
+		$renglon = mysqli_fetch_assoc($resul);
 					echo "	<br><a href='ver_curriculum.php?id=",$row2[0],"&n=",$row2[1],"&a1=",$row2[2],"&a2=",$row2[3],"&fn=",$row2[4],"' style='margin-top:10px; float:left'>Ver Curriculum >> </a><br>";
 					echo "<br><a href='editar_curriculum.php?id=",$row2[0],"' >Editar Curriculum>> </a><br>";
 						
@@ -73,7 +71,7 @@
 	      }
       }else{
       		if($_SESSION['rol']!='secretaria'){
- 	      $result2 = mysql_query("SELECT * FROM usuarios where id_usuario='$u'");
+ 	      $result2 = mysqli_query($conn,"SELECT * FROM usuarios where id_usuario='$u'");
 
 
  	     //print "SELECT * FROM usuarios where id_usuario=$usuario";
@@ -89,7 +87,7 @@
 	             			echo "<br><label>Fecha de alta: </label>", $row2[9];
 	             			//echo "<br><label>Password: </label>", $row2[10];
 		$select = 'select * from curriculum where id_usuario="'.$row2[0].'";';
-		$resul = mysql_query($select, $dbh) or die ("problema con la solicitud");
+		$resul = mysqli_query($conn,$select, $dbh) or die ("problema con la solicitud");
 		$renglon = mysql_fetch_assoc($resul);
 					echo "	<br><a href='ver_curriculum.php?id=",$row2[0],"&n=",$row2[1],"&a1=",$row2[2],"&a2=",$row2[3],"&fn=",$row2[4],"&c=",$renglon['descripcion'],"' style='margin-top:10px; float:left'>Ver Curriculum >> </a><br>
 							<br><a href='editar_curriculum.php?id=",$row2[0],"' style=''>Editar Curriculum>> </a><br>"; 
@@ -108,7 +106,7 @@
 	      }     
       }
       else{
-	      $result2 = mysql_query("SELECT * FROM $tabla");
+	      $result2 = mysqli_query($conn,"SELECT * FROM $tabla");
 	      while ($row2 = mysql_fetch_array($result2, MYSQL_NUM)) {
 	 			echo "<div style='width:80%; margin:10px auto; padding:20px; border: #2E2EFE 1px solid;'
 					<br>
@@ -127,7 +125,7 @@
 							echo "<br><label>Diplomados e Instrumental:  </label><a href='diplomados.php?id=", $row2[0],"'>Comprar</a><br>";
 	             		//	echo "<br><label>Password: </label>", $row2[10];
 		$select = 'select * from curriculum where id_usuario="'.$row2[0].'";';
-		$resul = mysql_query($select, $dbh) or die ("problema con la solicitud");
+		$resul = mysqli_query($conn,$select, $dbh) or die ("problema con la solicitud");
 		$renglon = mysql_fetch_assoc($resul);
 					echo "	<br><a href='ver_curriculum.php?id=",$row2[0],"&n=",$row2[1],"&a1=",$row2[2],"&a2=",$row2[3],"&fn=",$row2[4],"' style='margin-top:10px; float:left'>Ver Curriculum >> </a><br>";
 					echo "<br><a href='editar_curriculum.php?id=",$row2[0],"' >Editar Curriculum>> </a><br>";

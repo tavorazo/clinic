@@ -20,6 +20,7 @@ $usuario = $_SESSION['u'];
   <link rel="stylesheet" type="text/css" href="css/master_panel-master.css?3855693814"/>
   <link rel="stylesheet" type="text/css" href="css/add-paciente.css?335997060" id="pagesheet"/>
   <style>
+<<<<<<< HEAD
   #container {
     margin: 0px auto;
     width: 250px;
@@ -44,6 +45,91 @@ $usuario = $_SESSION['u'];
     width: 120px;
     height: 30px;
   }
+=======
+      #container {
+          margin: 0px auto;
+          width: 250px;
+          border: 4px #00BFFF solid;
+      }
+      #videoElement {
+          width: 250px;
+          background-color: #666;
+      }
+      #canvas {
+          width: 260px;
+          
+          background-color: #F2F2F2;
+      }
+      .buttom{
+          background: #A4A4A4;
+          opacity:  0.8;
+          padding: 5px;
+          margin-top: -350px;
+          margin-left: 40px;
+          color: white;
+          width: 120px;
+          height: 30px;
+      }
+
+
+
+
+
+
+.modalDialog {
+  position: fixed;
+  font-family: Arial, Helvetica, sans-serif;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(0,0,0,0.8);
+  z-index: 99999;
+  opacity:0;
+  -webkit-transition: opacity 400ms ease-in;
+  -moz-transition: opacity 400ms ease-in;
+  transition: opacity 400ms ease-in;
+  pointer-events: none;
+}
+.modalDialog:target {
+  opacity:1;
+  pointer-events: auto;
+}
+
+.modalDialog > div {
+  width: 400px;
+  position: relative;
+  margin: 10% auto;
+  padding: 5px 20px 13px 20px;
+  border-radius: 10px;
+  background: #fff;
+  background: -moz-linear-gradient(#fff, #999);
+  background: -webkit-linear-gradient(#fff, #999);
+  background: -o-linear-gradient(#fff, #999);
+}
+.close {
+  background: #606061;
+  color: #FFFFFF;
+  line-height: 25px;
+  position: absolute;
+  right: -12px;
+  text-align: center;
+  top: -10px;
+  width: 24px;
+  text-decoration: none;
+  font-weight: bold;
+  -webkit-border-radius: 12px;
+  -moz-border-radius: 12px;
+  border-radius: 12px;
+  -moz-box-shadow: 1px 1px 3px #000;
+  -webkit-box-shadow: 1px 1px 3px #000;
+  box-shadow: 1px 1px 3px #000;
+}
+
+.close:hover { background: #00d9ff; }
+
+
+>>>>>>> add-paciente nomina
   </style>
   <!-- Other scripts -->
   <script type="text/javascript">
@@ -191,6 +277,7 @@ if($_SESSION['rol']=='admin')
         <video autoplay id="videoElement" >
          
         </video>
+<<<<<<< HEAD
       </div>
       <canvas id="canvas" width="500" height="375"  ></canvas>
       <input type="button" value="Capturar" id="save" class="buttom" />
@@ -204,6 +291,29 @@ if($_SESSION['rol']=='admin')
       
     </form>
     
+=======
+    </div>
+
+    <canvas id="canvas" width="500" height="375"  ></canvas>
+
+    <input type="button" value="Capturar" id="save" class="buttom" />
+    <br><br>    
+    <label style="float:left; width:150px; margin-right:15%">Foto de ingreso</label>
+    <input type="file" name="imagen" class="campoT" style="float:left"><br>
+
+
+<br><br><br>
+	<input type="checkbox" name="validar" value="aceptados" required/> 
+    <a href="#openModal">Acepto los terminos</a>
+  <br><br>
+    <input type="submit" value="Guardar" style="margin-left:0%; float:bottom; ">
+    <input type="reset" value="Resetear">
+     
+  </form>
+ 
+
+
+>>>>>>> add-paciente nomina
     <a class="nonblock nontext clip_frame colelem" id="u405" href="http://www.webox.org.mx"><!-- image --><img class="block" id="u405_img" src="images/completo7.png" alt="" width="62" height="19"/></a>
   </div>
 </div>
@@ -260,6 +370,7 @@ var v,canvas,context,w,h;
             fr = new FileReader();
             fr.onload = receivedData; // add onload event
             fr.readAsDataURL(f); // get captured image as data URI
+<<<<<<< HEAD
           })
          </script>
          <script type="text/javascript">
@@ -284,3 +395,45 @@ var v,canvas,context,w,h;
          </script>
        </body>
        </html>
+=======
+        })
+    </script>
+
+  <script type="text/javascript">
+   if (document.location.protocol != 'https:') document.write('\x3Cscript src="http://musecdn.businesscatalyst.com/scripts/4.0/jquery-1.8.3.min.js" type="text/javascript">\x3C/script>');
+</script>
+  <script type="text/javascript">
+   window.jQuery || document.write('\x3Cscript src="scripts/jquery-1.8.3.min.js" type="text/javascript">\x3C/script>');
+</script>
+  <script src="scripts/museutils.js?3865766194" type="text/javascript"></script>
+  <script src="scripts/jquery.tobrowserwidth.js?3842421675" type="text/javascript"></script>
+  <script src="scripts/jquery.watch.js?4068933136" type="text/javascript"></script>
+  <!-- Other scripts -->
+  <script type="text/javascript">
+   $(document).ready(function() { try {
+Muse.Utils.transformMarkupToFixBrowserProblemsPreInit();/* body */
+$('.browser_width').toBrowserWidth();/* browser width elements */
+Muse.Utils.prepHyperlinks(true);/* body */
+Muse.Utils.fullPage('#page');/* 100% height page */
+Muse.Utils.showWidgetsWhenReady();/* body */
+Muse.Utils.transformMarkupToFixBrowserProblems();/* body */
+} catch(e) { Muse.Assert.fail('Error calling selector function:' + e); }});
+</script>
+
+
+
+<div id="openModal" class="modalDialog">
+  <div>
+    <a href="#close" title="Close" class="close">X</a>
+      <h2>Aviso de Privacidad</h2>
+      Doy f&eacute; de que los datos aqu&iacute; se asientan son ver&iacute;dicos, adem&aacute;s doy mi autorizaci&oacute;n para que
+      se practique u ordene cuanto examen, curaci&oacute;n o interveci&oacute;n quirurgica que sea necesaria en atenci&oacute;n a mi
+      padecimiento odontol&oacute;gico, y expreso que he sido claramente informado de los riesgos y complicaciones del tratamiento. Estoy
+      consciente que durante el procedimiento se pueda presentar alguna complicaci&oacute;n que impida continuar y/o disminuya el pronostico
+      del tratamiento. As&iacute; mismo estoy conciente que debo seguir al pie  de la letra las indicaciones especificas que para mi caso
+      me de mi doctor, para no contribuir a que las complicaciones propias del tratamiento se presenten.
+  </div>
+</div>
+   </body>
+</html>
+>>>>>>> add-paciente nomina

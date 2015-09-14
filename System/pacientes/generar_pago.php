@@ -42,7 +42,7 @@
 
 	$insertar = "insert into pagos_historia (id_tipo, id_paciente, id_adeudo, abono, fecha, descripcion, id_usuario, semana, y) values ('$pagos_tipo', '$id_paciente', '$adeudo','$pago', now(), '$detalles', '$id_usuario','$s','$y')";
 
-		if(!mysql_query($insertar, $conexion))
+		if(!mysqli_query($conn,))
 			die('Error de consulta: '.mysql_error());
 		else
 			echo '<br><br><br><center><img src="../images/endoperio2.png" width="100px" alt=""> <br> ';
@@ -60,27 +60,27 @@
 
 
 
-		if(!mysql_query($update, $conexion))
+		if(!mysqli_query($conn,))
 			die('Error de consulta: '.mysql_error());
 
 
 		$select = 'select * from pago_adeudo where id_adeudo="'.$adeudo.'";';
-		$resul = mysql_query($select, $dbh) or die ("problema con la solicitud");
+		$resul = mysqli_query($conn,) or die ("problema con la solicitud");
 		$renglon = mysql_fetch_assoc($resul);
 
 		$desc = $renglon['descripcion'];
 		$recibo = "insert into recibos (cantidad, descripcion, total, fecha, comprador, vendedor) values ('1','$desc','$pago',now(),'$id_paciente','$id_usuario')";
 
-		if(!mysql_query($recibo, $conexion))
+		if(!mysqli_query($conn,))
 			die('Error de consulta: '.mysql_error());
 		//echo "<br><br>ultimo registro: ", mysql_insert_id(),"<br><br>";
 		$id_recibo = mysql_insert_id();
 		/*$select = 'select * from recibos order by id_recibo desc;';
-		$resul = mysql_query($select, $dbh) or die ("problema con la solicitud");
+		$resul = mysqli_query($conn,) or die ("problema con la solicitud");
 		$renglon = mysql_fetch_assoc($resul);
 		$id_recibo = $renglon['id_recibo'];*/
 		//echo "<br><br>ultimo registro: ", mysql_insert_id(),"<br><br>";
-		mysql_close($conexion);
+		mysqli_close($conn);
 		
 
 		echo '<a href="pago.php?id_paciente=',$id_paciente,'" style="color:white">Regresar</a><br><br>';

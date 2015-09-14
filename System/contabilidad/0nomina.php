@@ -224,8 +224,8 @@ if($mes2=='')
     $semana = date(W);
     $ano_s = $ano;
 
-    $S = $_GET["S"];
-    $semana_b = $_GET["semana_b"];
+    $S = $_GET['S'];
+    $semana_b = $_GET['semana_b'];
         $semana_anterior = $semana_b-1;
         $semana_siguiente = $semana_b+1;
 
@@ -259,14 +259,12 @@ if($S == 1){
         </div>
     	</a><br><br><br>";
 }
-    
-    if($semana_b==''){
-      $query = "select * from nomina_historial where fecha like '%$fechab%'";
-   }else{
-    $query = "select * from nomina_historial where semana='$semana_b' and y='$ano_s'";
-   }
 
-      
+    //echo $fechab;
+    if($semana_b=='')
+	   $result2 = mysqli_query($conn,"select * from nomina_historial where fecha like '%$fechab%'");
+    else
+      $result2 = mysqli_query($conn,"select * from nomina_historial where semana='$semana_b' and y='$ano_s'");
 
 		echo "<table border=1 style='margin-top:100px; '>
     <tr>
@@ -278,35 +276,32 @@ if($S == 1){
           <td style='color:#58ACFA'>Total       </td>
           <td style='color:#58ACFA'>Fecha       </td>
           <td style='color:#58ACFA'>Aprobada    </td>
-          
+
     </tr>";
-  
-    if (!$result = mysqli_query($conn,$query)) {
-      echo 'Could not run query: ' . mysqli_error();
+  $result = mysqli_query($conn,"SELECT * FROM nomina_historial");
+    if (!$result) {
+      echo 'Could not run query: ' . mysql_error();
       exit;
     }else{
-      
-      while($rows = mysqli_fetch_row($result)) {
-        ?><tr><?php
-        foreach($rows as $key=>$value) {
-          if ($key<8) {
-          ?>
-          <td>
-          <?php echo $value;?>
-          </td>
-          <?php
+      if (mysql_num_rows($result) > 0) {
+        echo "noob";
+        while($row2 = mysql_fetch_row($result)) {
+          echo '<tr>';
+          foreach($row2 as $key=>$value) {
+            echo 'noob';
+            echo '<td>',$value,'</td>';
           }
+          echo '</tr>';
         }
-        ?></tr><?php
-
-      }
+      }  
     }
-  
     
+  
+
     $total_semanal = 0;
 	while ($row2 = mysqli_fetch_array($result2,MYSQLI_BOTH)){
 			echo "<tr>";
-            //echo "<td>",$row2[2],"</td>";
+            echo "<td>",$row2[1],"</td>";
 				
 				$usuario = $row2[1];
 				$select = 'select * from usuarios where id_usuario="'.$usuario.'";';
@@ -346,7 +341,14 @@ echo "</table>";
     }
 
 ?>
-  </div>
+
+
+
+
+
+
+
+   </div>
   
   </div>
    

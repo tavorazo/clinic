@@ -53,7 +53,7 @@
 include('../php/base.php');
 include('../php/base3.php');
   			$select = 'select * from avisos where id_aviso="'.$id.'";';
-  			$resul = mysql_query($select, $dbh) or die ("problema con la solicitud");
+  			$resul = mysqli_query($conn,) or die ("problema con la solicitud");
   			$renglon = mysql_fetch_assoc($resul);
 			?>
 

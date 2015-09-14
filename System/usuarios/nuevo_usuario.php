@@ -46,8 +46,6 @@ else {
 	$id_usuario = "$nickname-$rol[0]";
 
 	include('../php/base.php');
-	include('../php/base3.php');
-	include('../php/base2.php');
 
 
 	if($_FILES['imagen']['name']!=""){
@@ -64,7 +62,7 @@ else {
 		$imagen = $nickname;
 	}
 
-	if (!$conexion){
+	if (!$conn){
 		die('Error de Conexion: ' .mysql_error());
 	}
 
@@ -93,14 +91,14 @@ else {
 																'$contra',
 																'$imagen');";
 
-		if(!mysql_query($insertar, $conexion)){
-			
+		if(!mysqli_query($conn,$insertar) ){
+			mysqli_error($conn);
 			echo "<br>Tal vez el nickname ya esté en uso, intenta con otro o rellena algún campo faltante<br>";
 			echo "<br><a href='../add-usuario.php'>Regresar</a><br><br>";
 			die('O reporta el siguiente error a tu administrador de la página: '.mysql_error());
 		}
 
-		mysql_close($conexion);
+		mysqli_close($conn);
 
 		echo '<br><br><br><center><img src="../images/endoperio2.png" width="100px" alt=""> <br> ';
 		echo "Creaci&oacute;n con &eacute;xito<br><br><br>";

@@ -61,7 +61,7 @@
 	@session_start();
 	$id = $_GET['id'];
 
-	include("base2.php");
+	
 ?>
 
 <h1 style="float:left; margin-right:20px"> <a href="lista_usuarios.php"> << Regresar </a> </h1> 

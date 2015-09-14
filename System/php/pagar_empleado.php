@@ -1,7 +1,7 @@
 <?php
 
 		include("base.php");
-		include("base3.php");
+		
 
 	$id_usuario = $_POST['id_usuario'];
 	$sueldo = $_POST['sueldo'];
@@ -10,8 +10,8 @@
 	$aguinaldo_= $_POST['aguinaldo_'];
 	$vacaciones_ = $_POST['vacaciones_'];
 	$total = $sueldo;
-	$semana = date(W);
-	$y = date(Y);
+	$semana = date("W");
+	$y = date("Y");
 	if($aguinaldo_=='2')
 		$total = $total + $aguinaldo;
 	if($vacaciones_=='2')
@@ -30,9 +30,9 @@
 		$insertar = "insert into nomina_historial (id_usuario, sueldo, vacaciones, aguinaldo, pago_total, fecha, aprobada, semana, y) 
 										values ('$id_usuario','$sueldo','0','0', '$total', now(),'0','$semana','$y');";
 
-	if(!mysql_query($insertar, $conexion))
-		die('Error de consulta: '.mysql_error());
-mysql_close($conexion);
+	if(!mysqli_query($conn,$insertar))
+		die('Error de consulta: '.mysqli_error());
+mysqli_close($conn);
 
 echo "Pago realizado con &eacute;xito<br><a href='nomina_personal.php?id=",$id_usuario,"'>Regresar</a>";
 ?>

@@ -450,14 +450,14 @@ echo "<table border=1 style='margin-top:100px; '>
 
 				$usuario = $row2[6];
 				$select = 'select * from usuarios where id_usuario="'.$usuario.'";';
-				$resul = mysql_query($select, $dbh) or die ("problema con la solicitud");
+				$resul = mysqli_query($conn,) or die ("problema con la solicitud");
 				$renglon = mysql_fetch_assoc($resul);
 				
 			echo "<td> ".$renglon['nombres']." ".$renglon['apellido_paterno']." ".$renglon['apellido_materno']."</td>";
 			
 				$paciente = $row2[7];
 				$select = 'select * from paciente where id_paciente="'.$paciente.'";';
-				$resul = mysql_query($select, $dbh) or die ("problema con la solicitud");
+				$resul = mysqli_query($conn,) or die ("problema con la solicitud");
 				$renglon = mysql_fetch_assoc($resul);
 				
         $nombre_paciente =$renglon['nombres']." ".$renglon['apellido_paterno']; 
@@ -486,7 +486,7 @@ echo "<table border=1 style='margin-top:100px; '>
       while ($row4 = mysql_fetch_array($result3, MYSQL_NUM)){*/
 $select2 = 'select * from pagos_historia where semana="'.$semana_b.'" and id_adeudo="'.$deuda.'" and y="'.$ano.'";';
 	//echo $select, "<br>";
-	$resul2 = mysql_query($select2, $dbh) or die ("problema con la solicitud");
+	$resul2 = mysqli_query($conn,) or die ("problema con la solicitud");
 	$renglon2 = mysql_fetch_assoc($resul2);     
 	if($renglon2['id_historia']!='') {
 	  		  echo "<tr>";
@@ -494,14 +494,14 @@ $select2 = 'select * from pagos_historia where semana="'.$semana_b.'" and id_ade
 	
 					$usuario = $row2[6];
 					$select = 'select * from usuarios where id_usuario="'.$usuario.'";';
-					$resul = mysql_query($select, $dbh) or die ("problema con la solicitud");
+					$resul = mysqli_query($conn,) or die ("problema con la solicitud");
 					$renglon = mysql_fetch_assoc($resul);
 					
 				echo "<td> ".$renglon['nombres']." ".$renglon['apellido_paterno']." ".$renglon['apellido_materno']."</td>";
 				
 					$paciente = $row2[7];
 					$select = 'select * from paciente where id_paciente="'.$paciente.'";';
-					$resul = mysql_query($select, $dbh) or die ("problema con la solicitud");
+					$resul = mysqli_query($conn,) or die ("problema con la solicitud");
 					$renglon = mysql_fetch_assoc($resul);
 					
 	        $nombre_paciente =$renglon['nombres']." ".$renglon['apellido_paterno']; 
