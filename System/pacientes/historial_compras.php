@@ -85,7 +85,7 @@
 			echo "<tr>";
 				$producto = $row2[3];
 				$select = 'select * from inventario where id_producto="'.$producto.'";';
-				$resul = mysql_query($select, $dbh) or die ("problema con la solicitud");
+				$resul = mysqli_query($conn,) or die ("problema con la solicitud");
 				$renglon = mysql_fetch_assoc($resul);
 				
 				echo "<td>".$renglon['nombre']."</td>";
@@ -96,7 +96,7 @@
 				
 				$usuario = $row2[2];
 				$select = 'select * from usuarios where id_usuario="'.$usuario.'";';
-				$resul = mysql_query($select, $dbh) or die ("problema con la solicitud");
+				$resul = mysqli_query($conn,) or die ("problema con la solicitud");
 				$renglon = mysql_fetch_assoc($resul);
 				
 				echo "<td>".$renglon['nombres']." ".$renglon['apellido_paterno']." ".$renglon['apellido_materno']."</td>";

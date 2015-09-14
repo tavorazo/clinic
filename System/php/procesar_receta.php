@@ -54,9 +54,9 @@ $insertar = "insert into recetas (id_usuario, id_paciente, medicamento, observac
 
 //echo $insertar;
 
-if(!mysql_query($insertar, $conexion))
+if(!mysqli_query($conn,))
 	die('Error de consulta: '.mysql_error());
-mysql_close($conexion);;
+mysqli_close($conn);;
 
 echo '<br><br><br><center><img src="../images/endoperio2.png" width="100px" alt=""> <br> ';
 echo "Receta Agregada con exito<br><br><br>";

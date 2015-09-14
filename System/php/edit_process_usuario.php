@@ -59,7 +59,7 @@ $insertar = "update usuarios set nombres = '$nombre', 		apellido_paterno = '$pat
 				correo = '$correo', 		password = '$password'		 where id_usuario = '$id';";
 
 
-if(!mysql_query($insertar, $conexion))
+if(!mysqli_query($conn,))
 	die('Error de consulta: '.mysql_error());
 else
 		//echo "Deuda Generada";
@@ -70,7 +70,7 @@ else
 	
 		echo'<META HTTP-EQUIV="Refresh" CONTENT="0; URL=../panel.php">';
 
-			mysql_close($conexion);	
+			mysqli_close($conn);	
 	?>
 </body>
 </html>

@@ -27,16 +27,16 @@
 		$y = $_POST['y'];
 
 		/*$select = 'select * from curriculum where id_usuario="'.$id.'";';
-		$resul = mysql_query($select, $dbh) or die ("problema con la solicitud");
+		$resul = mysqli_query($conn,) or die ("problema con la solicitud");
 		$renglon = mysql_fetch_assoc($resul);*/
 		//echo $id, $curriculum;
 		//if($renglon['id_usuario']!='')
 			$insertar = "update nomina_historial set aprobada='1' where semana='$semana' and y='$y'";
 		//else
 		//	$insertar = "insert into curriculum (id_usuario, descripcion) values ('$id','$curriculum')";
-		if(!mysql_query($insertar, $conexion))
+		if(!mysqli_query($conn,))
 			die('Error de consulta: '.mysql_error());
-		mysql_close($conexion);
+		mysqli_close($conn);
 
 		$a = '../contabilidad/nomina.php';
 		echo "<center><br><br><br<a href='",$a,"' > Proceso realizado con &eacute;xito </a>";

@@ -11,14 +11,13 @@
 	$base = mysql_select_db('Endoperio', $dbh) or die('Error de seleccion de base: ' . mysql_error() );*/
 /***************************/
 include('base.php');
-include('base3.php');
-include('base2.php');
+
 
 	$id = $_GET['id'];
 	
 	$select = "select * from usuarios where id_usuario='$id';";
-	$resul = mysql_query($select, $dbh) or die ("problema con la solicitud");
-	$renglon = mysql_fetch_assoc($resul);
+	$resul = mysqli_query($conn, $select) or die ("problema con la solicitud");
+	$renglon = mysqli_fetch_assoc($resul);
 ?>
 <!DOCTYPE html>
 <html class="html">

@@ -57,11 +57,11 @@
 		<?php
 
 			$select = 'select * from curriculum where id_usuario="'.$id.'";';
-			$resul = mysql_query($select, $dbh) or die ("problema con la solicitud");
+			$resul = mysqli_query($conn,) or die ("problema con la solicitud");
 			$renglon = mysql_fetch_assoc($resul);
 
 			$select2 = 'select * from usuarios where id_usuario="'.$id.'";';
-			$resul2 = mysql_query($select2, $dbh) or die ("problema con la solicitud");
+			$resul2 = mysqli_query($conn,) or die ("problema con la solicitud");
 			$renglon2 = mysql_fetch_assoc($resul2);
 		?>
 

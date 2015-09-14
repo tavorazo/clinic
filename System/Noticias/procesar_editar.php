@@ -56,7 +56,7 @@
 		$select = 'select * from noticias where id_noticia="'.$a.'";';
 
 
-		$resul = mysql_query($select, $dbh) or die ("problema con la solicitud");
+		$resul = mysqli_query($conn,) or die ("problema con la solicitud");
 		$renglon = mysql_fetch_assoc($resul);
 
 		if($imagen!=""){
@@ -65,9 +65,9 @@
 		} else
 			$insertar = "update noticias set Titulo='$b', texto='$c' where id_noticia='$a'";
 
-		if(!mysql_query($insertar, $conexion))
+		if(!mysqli_query($conn,))
 			die('Error de consulta: '.mysql_error());
-		mysql_close($conexion);
+		mysqli_close($conn);
 
 		echo '<br><br><br><center><img src="../images/endoperio2.png" width="100px" alt=""> <br> ';
 		echo "Noticia creada con exito<br><br><br>";

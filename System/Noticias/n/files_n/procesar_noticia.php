@@ -41,9 +41,9 @@ include("../../php/base3.php");
 
 $instruccion = "insert into Noticias (imagen,texto,Titulo,fecha) values ('$nom_archivo', '$contenido','$titulo',now());";
 
-if(!mysql_query($instruccion, $conexion))
+if(!mysqli_query($conn,))
 	die('Error de consulta: '.mysql_error());
-mysql_close($conexion);
+mysqli_close($conn);
 //header('location: ../panel/panel_noticias.php');
 
 ?>

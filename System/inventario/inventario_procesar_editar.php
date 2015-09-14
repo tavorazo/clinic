@@ -22,23 +22,23 @@ if(1){
 
 	$select = 'select * from inventario where id_producto="'.$a.'";';
 	//echo $select, "<br>";
-	$resul = mysql_query($select, $dbh) or die ("problema con la solicitud");
+	$resul = mysqli_query($conn,) or die ("problema con la solicitud");
 	$renglon = mysql_fetch_assoc($resul);
 	
 	$cantidad = $renglon['precio_compra'] * $c;
 $instruccion3 = "insert into inventario_historial_entradas (id_producto,cantidad,total_compra,id_usuario,fecha ) values ('$a', '$c', '$cantidad', '$usuario', now());";
 }
-if(!mysql_query($insertar, $conexion))
+if(!mysqli_query($conn,))
 	die('Error de consulta: '.mysql_error());
 	
-if(!mysql_query($insertar2, $conexion))
+if(!mysqli_query($conn,))
 	die('Error de consulta: '.mysql_error());
 if($c>0)
-if(!mysql_query($instruccion3, $conexion))
+if(!mysqli_query($conn,))
 	die('Error de consulta: '.mysql_error());
 
 
-mysql_close($conexion);
+mysqli_close($conn);
 
 header ("Location: ../almacen.php");
 

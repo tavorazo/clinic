@@ -29,13 +29,13 @@ $id = $_GET['id'];
 $base = mysql_select_db('Endoperio', $dbh) or die('Error de seleccion de base: ' . mysql_error() );*/
 include('../../php/base.php');
 $select = 'select * from agenda where id_cita="'.$id.'";';
-$resul = mysql_query($select, $dbh) or die ("problema con la solicitud");
+$resul = mysqli_query($conn,) or die ("problema con la solicitud");
 $renglon = mysql_fetch_assoc($resul);
 
 
 for($i=0;$i<2;$i++){
 	$eliminar = 'delete from agenda where id_cita="'.$id.'";';
-	if(!mysql_query($eliminar, $dbh))
+	if(!mysqli_query($conn,))
 		die('Error de consulta: '.mysql_error());
 	$id--;
 }
@@ -47,7 +47,7 @@ for($i=0;$i<2;$i++){
 	
 	echo'<META HTTP-EQUIV="Refresh" CONTENT="2; URL=../../panel.php">';
 
-	//mysql_close($conexion);
+	//mysqli_close($conn);
 
 ?>
 

@@ -446,14 +446,14 @@ echo "<table border=1 style='margin-top:100px; '>
 
 				$usuario = $row2[6];
 				$select = 'select * from usuarios where id_usuario="'.$usuario.'";';
-				$resul = mysql_query($select, $dbh ) or die ("problema con la solicitud");
+				$resul = mysqli_query($conn, ) or die ("problema con la solicitud");
 				$renglon = mysql_fetch_assoc($resul);
 				
 			echo "<td> ".$renglon['nombres']." ".$renglon['apellido_paterno']." ".$renglon['apellido_materno']."</td>";
 			
 				$paciente = $row2[7];
 				$select = 'select * from paciente where id_paciente="'.$paciente.'";';
-        $resul = mysql_query($select, $dbh) or die ("problema con la solicitud");
+        $resul = mysqli_query($conn,) or die ("problema con la solicitud");
         //$resul =mysql_query("SET NAMES 'iso-8859-1'");
         $renglon = mysql_fetch_assoc($resul);
 

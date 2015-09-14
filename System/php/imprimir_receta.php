@@ -38,17 +38,17 @@
 
           $id_receta = $_GET['id'];
           $select = 'select * from recetas where id_receta="'.$id_receta.'";';
-          $resul = mysql_query($select, $dbh) or die ("problema con la solicitud");
+          $resul = mysqli_query($conn,) or die ("problema con la solicitud");
           $renglon = mysql_fetch_assoc($resul);
           $doctor = $renglon['id_usuario'];
           $paciente = $renglon['id_paciente'];
           
           $select_medico = 'select * from usuarios where id_usuario="'.$doctor.'";';
-          $resul_doc = mysql_query($select_medico, $dbh) or die ("problema con la solicitud");
+          $resul_doc = mysqli_query($conn,) or die ("problema con la solicitud");
           $renglon_doc = mysql_fetch_assoc($resul_doc);
           
           $select_paciente = 'select * from paciente where id_paciente="'.$paciente.'";';
-          $resul_paciente = mysql_query($select_paciente, $dbh) or die ("problema con la solicitud");
+          $resul_paciente = mysqli_query($conn,) or die ("problema con la solicitud");
           $renglon_paciente = mysql_fetch_assoc($resul_paciente);
           
           echo"<div style='margin-left:5%'>";
