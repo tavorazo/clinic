@@ -84,8 +84,8 @@ if($_SESSION['rol']!='recepcionista')
     $result2 = $conn->query($sql);
     //$result2 = mysql_query("select * from usuarios where rol='admin' ||  rol='dentista';");
     //while ($row3 = mysql_fetch_array($result2, MYSQL_NUM)){
-    while ($row3 = $result->fetch_assoc()) {
-      echo "<option value='",$row3[0],"' >", $row3[1]," ",$row3[2]," ",$row3[3],"</option>";
+    while ($row3 = $result2->fetch_assoc()) {
+      echo "<option value='",$row3["id_usuario"],"' >", $row3["nombres"]," ",$row3["apellido_paterno"]," ",$row3["apellido_materno"],"</option>";
     }
     ?>
   </select>
