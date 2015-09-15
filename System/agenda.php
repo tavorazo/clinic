@@ -80,8 +80,11 @@ if($_SESSION['rol']!='recepcionista')
     include('php/base.php');
     $contador = 0;
     $doctor = $row2[0];
-    $result2 = mysql_query("select * from usuarios where rol='admin' ||  rol='dentista';");
-    while ($row3 = mysql_fetch_array($result2, MYSQL_NUM)){
+    $sql = "SELECT * from usuarios where rol='admin' ||  rol='dentista';";
+    $result2 = $conn->query($sql);
+    //$result2 = mysql_query("select * from usuarios where rol='admin' ||  rol='dentista';");
+    //while ($row3 = mysql_fetch_array($result2, MYSQL_NUM)){
+    while ($row3 = $result->fetch_assoc()) {
       echo "<option value='",$row3[0],"' >", $row3[1]," ",$row3[2]," ",$row3[3],"</option>";
     }
     ?>
