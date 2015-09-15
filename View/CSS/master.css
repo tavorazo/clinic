@@ -66,7 +66,7 @@ section{ min-height:400px; width: 100%; height: auto;  padding-bottom: 50px}
 	#divCarousel #divCentro{ width: 90%; float: left; /*el overflow es quien hace gran parte de la magia*/ overflow: hidden; height: 260px;}
 		#divCarousel #divCentro ul{list-style-type: none;padding: 0;margin: 0; }
 			#divCarousel #divCentro ul li{ display: inline-block; margin: 15px 20px; cursor: pointer; background: #F2F2F2; border-bottom:2px solid #2d455f;  padding:2px; text-align: center; -webkit-transition: all 0.3s ease; -moz-transition: all 0.3s ease; -ms-transition: all 0.3s ease; -o-transition: all 0.3s ease; transition: all 0.3s ease;}
-				#divCarousel #divCentro ul li img{ padding: 0 0px; width: 220px; height:140px; margin-top: 5px; -webkit-transition: all 0.3s ease; -moz-transition: all 0.3s ease; -ms-transition: all 0.3s ease; -o-transition: all 0.3s ease; transition: all 0.3s ease;}
+				#divCarousel #divCentro ul li img{ padding: 0 0px; width: 260px; height:140px; margin-top: 5px; -webkit-transition: all 0.3s ease; -moz-transition: all 0.3s ease; -ms-transition: all 0.3s ease; -o-transition: all 0.3s ease; transition: all 0.3s ease;}
 		#divCarousel #divCentro ul li:hover{ border-bottom:2px solid #23adfc; }
 	#divCarousel h2{ font-size: 18px}
 
