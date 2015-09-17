@@ -79,7 +79,7 @@ echo '<a class="nonblock nontext grpelem" id="u552" href="../contabilidad.php"><
 <div style="margin-left:10%; background:#FFFDFD; padding:18px " >
     <a href="../agenda.php" style="float:left;margin-left:10px; color:#A4A4A4" title='Regresar'></a><h3 style="margin-left:20px">Elige la fecha</h3>
 
-<?php /*
+<?php 
 $mes = $_GET["mes"];
 $ano = $_GET["ano"];
 $tipo_semana = 1;
@@ -222,7 +222,7 @@ $AnoSiguienteAno = $ano + 1;
     }
     print "<tr><td align=center colspan=10></a></td></tr>";
     print "</table>";
-  */?>
+  ?>
 
  <?php
 
