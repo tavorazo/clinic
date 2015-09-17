@@ -32,12 +32,12 @@
 	
 
 include('../php/base.php');
-include('../php/base3.php');
+
 $insertar = "insert into avisos (titulo, contenido, id_persona, fecha)values ('$a','$b','$c', now())";
+$result=$conn->query($insertar);
 
-
-if(!mysql_query($insertar, $conexion))
-	die('Error de consulta: '.mysql_error());
+if(!$result)
+	print_r($result->errorInfo());
 else
 		//echo "Deuda Generada";
 		echo '<br><br><br><center><img src="../images/endoperio2.png" width="100px" alt=""> <br> ';
@@ -47,7 +47,7 @@ else
 	
 		echo'<META HTTP-EQUIV="Refresh" CONTENT="0; URL=../panel.php">';
 
-			mysql_close($conexion);	
+			$conn=null;
 	?>
 </body>
 </html>

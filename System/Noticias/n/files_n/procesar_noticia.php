@@ -36,14 +36,14 @@ echo $contenido, "<br>";
 echo $nom_archivo;
 
 include("../../php/base.php");
-include("../../php/base2.php");
-include("../../php/base3.php");
+/*include("../../php/base2.php");
+include("../../php/base3.php");*/
 
 $instruccion = "insert into Noticias (imagen,texto,Titulo,fecha) values ('$nom_archivo', '$contenido','$titulo',now());";
 
-if(!mysql_query($instruccion, $conexion))
+if(!$conn->query($instruccion)
 	die('Error de consulta: '.mysql_error());
-mysql_close($conexion);
+$conn=null;
 //header('location: ../panel/panel_noticias.php');
 
 ?>

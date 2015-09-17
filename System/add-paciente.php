@@ -52,21 +52,22 @@ $usuario = $_SESSION['u'];
 </head>
 <body>
   <div class="clearfix" id="page"><!-- column -->
-   <div class="position_content" id="page_position_content">
-    <div class="clearfix colelem" id="pu366"><!-- group -->
-     <div class="browser_width grpelem" id="u366"><!-- group -->
-      <div class="clearfix" id="u366_align_to_page">
-       <a class="nonblock nontext clip_frame grpelem" id="u513" href="index.php"><!-- image --><img class="block" id="u513_img" src="images/logo-endoperio-dental-center.jpg" alt="" width="134" height="38"/></a>
-       <div class="grpelem" id="u516"><!-- simple frame --></div>
-       <div class="clearfix grpelem" id="u518-5"><!-- content --> 
-         <p><?php echo $_SESSION['nombres'];?>&nbsp; | <span id="u518-2"> <a href="php/logout.php"><h12> cerrar sesión</h12></a></span></p>
-       </div>
-     </div>
-   </div>
-   <a href="panel.php">
-    <img class="grpelem" id="u372" alt="servicios" src="images/blank.gif"/><!-- state-based BG images -->
-  </a>
-</div>
+    <div class="position_content" id="page_position_content">
+      <div class="clearfix colelem" id="pu366"><!-- group -->
+        <div class="browser_width grpelem" id="u366"><!-- group -->
+          <div class="clearfix" id="u366_align_to_page">
+            <a class="nonblock nontext clip_frame grpelem" id="u513" href="index.php"><!-- image --><img class="block" id="u513_img" src="images/logo-endoperio-dental-center.jpg" alt="" width="134" height="38"/></a>
+            <div class="grpelem" id="u516"><!-- simple frame --></div>
+            <div class="clearfix grpelem" id="u518-5"><!-- content --> 
+              <p><?php echo $_SESSION['nombres'];?>&nbsp; | <span id="u518-2"> <a href="php/logout.php"><h12> cerrar sesión</h12></a></span></p>
+            </div>
+          </div>
+        </div>
+        <a href="panel.php">
+        <img class="grpelem" id="u372" alt="servicios" src="images/blank.gif"/><!-- state-based BG images -->
+        </a>
+      </div>
+ 
 <div class="clearfix colelem" id="pu375"><!-- group -->
  <div class="browser_width grpelem" id="u375"><!-- simple frame --></div>
  <?php
@@ -206,81 +207,79 @@ if($_SESSION['rol']=='admin')
     
     <a class="nonblock nontext clip_frame colelem" id="u405" href="http://www.webox.org.mx"><!-- image --><img class="block" id="u405_img" src="images/completo7.png" alt="" width="62" height="19"/></a>
   </div>
-</div>
-<div class="preload_images">
- <img class="preload" src="images/u372-r.png" alt=""/>
- <img class="preload" src="images/u376_states-r.png" alt=""/>
- <img class="preload" src="images/u376_states-a.png" alt=""/>
- <img class="preload" src="images/u377_states-r.png" alt=""/>
- <img class="preload" src="images/u377_states-a.png" alt=""/>
- <img class="preload" src="images/u378_states-r.png" alt=""/>
- <img class="preload" src="images/u378_states-a.png" alt=""/>
- <img class="preload" src="images/u480_states-r.png" alt=""/>
- <img class="preload" src="images/u480_states-a.png" alt=""/>
- <img class="preload" src="images/u550_states-r.png" alt=""/>
- <img class="preload" src="images/u550_states-a.png" alt=""/>
- <img class="preload" src="images/u552_states-r.png" alt=""/>
- <img class="preload" src="images/u552_states-a.png" alt=""/>
-</div>
-<!-- JS includes -->
-<script>
-var video = document.querySelector("#videoElement");
-navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia || navigator.oGetUserMedia;
-if (navigator.getUserMedia) {       
-  navigator.getUserMedia({video: true}, handleVideo, videoError);
-}
-function handleVideo(stream) {
-  video.src = window.URL.createObjectURL(stream);
-}
-function videoError(e) {
-}
-var v,canvas,context,w,h;
-        var sel = document.getElementById('fileselect'); // get reference to file select input element
-        document.addEventListener('DOMContentLoaded', function(){
-          v = document.getElementById('videoElement');
-          canvas = document.getElementById('canvas');
-          context = canvas.getContext('2d');
-          w = canvas.width;
-          h = canvas.height;
-        },false);
-        function draw(v,c,w,h) {
-            if(v.paused || v.ended) return false; // if no video, exit here
-            context.drawImage(v,0,0,w,h); // draw video feed to canvas      
-           var uri = canvas.toDataURL("image/png"); // convert canvas to data URI
-         }
-         document.getElementById('save').addEventListener('click',function(e){
-          
-            draw(v,context,w,h); // when save button is clicked, draw video feed to canvas
-            
-          });
-         var fr;
-         sel.addEventListener('change',function(e){
-            var f = sel.files[0]; // get selected file (camera capture)
-            
-            fr = new FileReader();
-            fr.onload = receivedData; // add onload event
-            fr.readAsDataURL(f); // get captured image as data URI
-          })
-         </script>
-         <script type="text/javascript">
-         if (document.location.protocol != 'https:') document.write('\x3Cscript src="http://musecdn.businesscatalyst.com/scripts/4.0/jquery-1.8.3.min.js" type="text/javascript">\x3C/script>');
-         </script>
-         <script type="text/javascript">
-         window.jQuery || document.write('\x3Cscript src="scripts/jquery-1.8.3.min.js" type="text/javascript">\x3C/script>');
-         </script>
-         <script src="scripts/museutils.js?3865766194" type="text/javascript"></script>
-         <script src="scripts/jquery.tobrowserwidth.js?3842421675" type="text/javascript"></script>
-         <script src="scripts/jquery.watch.js?4068933136" type="text/javascript"></script>
-         <!-- Other scripts -->
-         <script type="text/javascript">
-         $(document).ready(function() { try {
-          Muse.Utils.transformMarkupToFixBrowserProblemsPreInit();/* body */
-          $('.browser_width').toBrowserWidth();/* browser width elements */
-          Muse.Utils.prepHyperlinks(true);/* body */
-          Muse.Utils.fullPage('#page');/* 100% height page */
-          Muse.Utils.showWidgetsWhenReady();/* body */
-          Muse.Utils.transformMarkupToFixBrowserProblems();/* body */
-        } catch(e) { Muse.Assert.fail('Error calling selector function:' + e); }});
-         </script>
-       </body>
-       </html>
+  </div>
+  <div class="preload_images">
+   <img class="preload" src="images/u372-r.png" alt=""/>
+   <img class="preload" src="images/u376_states-r.png" alt=""/>
+   <img class="preload" src="images/u376_states-a.png" alt=""/>
+   <img class="preload" src="images/u377_states-r.png" alt=""/>
+   <img class="preload" src="images/u377_states-a.png" alt=""/>
+   <img class="preload" src="images/u378_states-r.png" alt=""/>
+   <img class="preload" src="images/u378_states-a.png" alt=""/>
+   <img class="preload" src="images/u480_states-r.png" alt=""/>
+   <img class="preload" src="images/u480_states-a.png" alt=""/>
+   <img class="preload" src="images/u550_states-r.png" alt=""/>
+   <img class="preload" src="images/u550_states-a.png" alt=""/>
+   <img class="preload" src="images/u552_states-r.png" alt=""/>
+   <img class="preload" src="images/u552_states-a.png" alt=""/>
+  </div>
+  <!-- JS includes -->
+  <script>
+    var video = document.querySelector("#videoElement");
+    navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia || navigator.oGetUserMedia;
+    if (navigator.getUserMedia) {       
+      navigator.getUserMedia({video: true}, handleVideo, videoError);
+    }
+      function handleVideo(stream) {
+      video.src = window.URL.createObjectURL(stream);
+    }
+    function videoError(e) {
+    }
+    var v,canvas,context,w,h;
+    var sel = document.getElementById('fileselect'); // get reference to file select input element
+    document.addEventListener('DOMContentLoaded', function(){
+      v = document.getElementById('videoElement');
+      canvas = document.getElementById('canvas');
+      context = canvas.getContext('2d');
+      w = canvas.width;
+      h = canvas.height;
+    },false);
+    function draw(v,c,w,h) {
+      if(v.paused || v.ended) return false; // if no video, exit here
+      context.drawImage(v,0,0,w,h); // draw video feed to canvas      
+      var uri = canvas.toDataURL("image/png"); // convert canvas to data URI
+    }
+    document.getElementById('save').addEventListener('click',function(e){
+      draw(v,context,w,h); // when save button is clicked, draw video feed to canvas
+    });
+    var fr;
+    sel.addEventListener('change',function(e){
+    var f = sel.files[0]; // get selected file (camera capture)
+
+    fr = new FileReader();
+    fr.onload = receivedData; // add onload event
+    fr.readAsDataURL(f); // get captured image as data URI
+    })
+    </script>
+    <script type="text/javascript">
+    if (document.location.protocol != 'https:') document.write('\x3Cscript src="http://musecdn.businesscatalyst.com/scripts/4.0/jquery-1.8.3.min.js" type="text/javascript">\x3C/script>');
+    </script>
+    <script type="text/javascript">
+    window.jQuery || document.write('\x3Cscript src="scripts/jquery-1.8.3.min.js" type="text/javascript">\x3C/script>');
+    </script>
+    <script src="scripts/museutils.js?3865766194" type="text/javascript"></script>
+    <script src="scripts/jquery.tobrowserwidth.js?3842421675" type="text/javascript"></script>
+    <script src="scripts/jquery.watch.js?4068933136" type="text/javascript"></script>
+    <!-- Other scripts -->
+    <script type="text/javascript">
+    $(document).ready(function() { try {
+    Muse.Utils.transformMarkupToFixBrowserProblemsPreInit();/* body */
+    $('.browser_width').toBrowserWidth();/* browser width elements */
+    Muse.Utils.prepHyperlinks(true);/* body */
+    Muse.Utils.fullPage('#page');/* 100% height page */
+    Muse.Utils.showWidgetsWhenReady();/* body */
+    Muse.Utils.transformMarkupToFixBrowserProblems();/* body */
+    } catch(e) { Muse.Assert.fail('Error calling selector function:' + e); }});
+  </script>
+</body>
+</html>

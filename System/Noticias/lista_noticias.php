@@ -30,12 +30,10 @@
                $usuario="root";
                $contrasena="";
                $bdd="Endoperio";*/
-			   include('../php/base2.php');
+			   include('../php/base.php');
                $tabla="noticias";
-               mysql_connect($host,$usuario,$contrasena);
-               mysql_select_db($bdd);
                //Consultamos a la base de datos para sacar las columnas de la tabla
-               $result = mysql_query("SHOW COLUMNS FROM $tabla");
+               $result = $conn->query("SHOW COLUMNS FROM $tabla");
                ?>
 <div style="width:1020px; margin: auto auto; min-height:100px; ">
          <table style='width:100%x; margin-top:30px; '>
@@ -51,22 +49,22 @@
 
                <?php
                //ahora consultamos a la base de datos para sacar los registros contenidos
-               $result2 = mysql_query("SELECT * FROM $tabla");
-               while ($row2 = mysql_fetch_array($result2, MYSQL_NUM)) {
+               $result =$conn->query("SELECT * FROM $tabla");
+               while ($row = $result->fetch_array(MYSQLI_NUM)) {
                	echo "<tr>";
-                        echo "<td style='width: 70px; color:#4457AA' ><center>",$row2[0],"</td>";
+                        echo "<td style='width: 70px; color:#4457AA' ><center>",$row[0],"</td>";
          				
-         					echo "<td style='width: 70px; border:1px solid #EAEAF8;'><img src='",$row2[1],"' width='150px' height='150px'></td>";
-                        echo "<td style='max-width: 400px; background:#FAFFFE; padding:10px' >".$row2[3],"<br>",$row2[2],"<br><br><br></td>";
-                        echo "<td style='width: 70px; padding:10px; color:#4457AA ' >",$row2[4],"<br><br><br></td>";
+         					echo "<td style='width: 70px; border:1px solid #EAEAF8;'><img src='",$row[1],"' width='150px' height='150px'></td>";
+                        echo "<td style='max-width: 400px; background:#FAFFFE; padding:10px' >".$row[3],"<br>",$row[2],"<br><br><br></td>";
+                        echo "<td style='width: 70px; padding:10px; color:#4457AA ' >",$row[4],"<br><br><br></td>";
                
          			echo '<td>
                         <div style=" float:left; padding:9px;  margin-right:10px; border:1px solid #6FCCE3; height:18px; width:90px; margin-top:12px; text-align:center ">
-                           <a href="editar.php?id=',$row2[0],'">Editar</a></div>
+                           <a href="editar.php?id=',$row[0],'">Editar</a></div>
                         </td>
                         <td>
                         <div style=" float:left; padding:9px; margin-right:10px; border:1px solid #6FCCE3; height:18px; width:90px; margin-top:12px; text-align:center ">
-                           <a href="eliminar_noticia.php?id=',$row2[0],'">Eliminar</a></div>
+                           <a href="eliminar_noticia.php?id=',$row[0],'">Eliminar</a></div>
                         </td>';
                	echo "</tr>";
                }

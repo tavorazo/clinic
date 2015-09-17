@@ -9,8 +9,6 @@
     }
     $usuario = $_SESSION['u'];
     include('../php/base.php');
-    include('../php/base2.php');
-    include('../php/base3.php');
    date_default_timezone_set("Mexico/General");
 ?>
 

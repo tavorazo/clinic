@@ -1,19 +1,20 @@
-<?php
-	@session_start();
-	if($_SESSION['u']=='')
-		header('location: index.php');
-		//echo'<META HTTP-EQUIV="Refresh" CONTENT="0; URL=index.php">';
-	$usuario = $_SESSION['u'];
+ <?php
+  @session_start();
+  if($_SESSION['u']=='')
+    header('location: index.php');
+    //echo'<META HTTP-EQUIV="Refresh" CONTENT="0; URL=index.php">';
+  $usuario = $_SESSION['u'];
 ?>
 
 <!DOCTYPE html>
 <html class="html">
+<meta charset="UTF-8">
  <head><meta http-equiv="Content-Type" content="text/html; charset=gb18030">
 
   
   <meta name="generator" content="7.0.314.244"/>
   <title>Buscar paciente</title>
-      		<link rel="shortcut icon" type="x-icon" href="images/icon.png" /><!--para logo en barra-->
+          <link rel="shortcut icon" type="x-icon" href="images/icon.png" /><!--para logo en barra-->
   <!-- CSS -->
   <link rel="stylesheet" type="text/css" href="css/s1.css"/>
   <link rel="stylesheet" type="text/css" href="css/texto.css"/>
@@ -48,23 +49,17 @@
      <div class="browser_width grpelem" id="u375"><!-- simple frame --></div>
 <?php
 if($_SESSION['rol']=='admin' || $_SESSION['rol']=='secretaria' || $_SESSION['rol']=='recepcionista')
-echo '<a class="nonblock nontext grpelem" id="u376" href="agenda.php"> <img id="u376_states" alt="Registro de consultas" src="images/blank.gif"/></a>';
-
+  echo '<a class="nonblock nontext grpelem" id="u376" href="agenda.php"> <img id="u376_states" alt="Registro de consultas" src="images/blank.gif"/></a>';
 if($_SESSION['rol']=='admin' || $_SESSION['rol']=='secretaria' || $_SESSION['rol']=='recepcionista' || $_SESSION['rol']=='dentista')
-echo '<a class="nonblock nontext MuseLinkActive grpelem" id="u377" href="buscar-paciente.php"> <img id="u377_states" alt="Buscar paciente" src="images/blank.gif"/></a>';
-
+  echo '<a class="nonblock nontext MuseLinkActive grpelem" id="u377" href="buscar-paciente.php"> <img id="u377_states" alt="Buscar paciente" src="images/blank.gif"/></a>';
 if($_SESSION['rol']=='admin' || $_SESSION['rol']=='secretaria' || $_SESSION['rol']=='recepcionista')
-echo '<a class="nonblock nontext grpelem" id="u378" href="add-paciente.php"> <img id="u378_states" alt="Agregar pacientes" src="images/blank.gif"/></a>';
-
+  echo '<a class="nonblock nontext grpelem" id="u378" href="add-paciente.php"> <img id="u378_states" alt="Agregar pacientes" src="images/blank.gif"/></a>';
 if($_SESSION['rol']=='admin')
-echo '<a class="nonblock nontext grpelem" id="u480" href="add-usuario.php"> <img id="u480_states" alt="Agregar usuarios" src="images/blank.gif"/></a>';
-
+  echo '<a class="nonblock nontext grpelem" id="u480" href="add-usuario.php"> <img id="u480_states" alt="Agregar usuarios" src="images/blank.gif"/></a>';
 if($_SESSION['rol']=='admin' || $_SESSION['rol']=='almacen')
-echo '<a class="nonblock nontext grpelem" id="u550" href="almacen.php"> <img id="u550_states" alt="Almacen" src="images/blank.gif"/></a>';
-
+  echo '<a class="nonblock nontext grpelem" id="u550" href="almacen.php"> <img id="u550_states" alt="Almacen" src="images/blank.gif"/></a>';
 if($_SESSION['rol']=='admin')
-echo '<a class="nonblock nontext grpelem" id="u552" href="contabilidad.php"> <img id="u552_states" alt="Contabilidad" src="images/blank.gif"/></a>';
-
+  echo '<a class="nonblock nontext grpelem" id="u552" href="contabilidad.php"> <img id="u552_states" alt="Contabilidad" src="images/blank.gif"/></a>';
 ?>
     </div>
     <div class="clearfix colelem" id="pu472-4"><!-- group -->
@@ -97,20 +92,18 @@ echo '<a class="nonblock nontext grpelem" id="u552" href="contabilidad.php"> <im
           
 <?php
   include('php/base.php');
-  
-      $buscar = $_POST['b_paciente'];
+  $result= $conn->query('');
   if(!isset($_POST['id'])){
     if(isset($_POST['b_paciente'])){
-      //echo isset($_POST['b_paciente']);
+      echo isset($_POST['b_paciente']);
       $buscar = $_POST['b_paciente'];
-      $slq="select * from paciente where nombres like ".$buscar." or apellido_paterno like ".$buscar." or apellido_materno like ".$buscar." or id_paciente like ".$buscar." or n_registro like ".$buscar."  LIMIT 10;";
+      $result = $conn->query("select * from paciente where nombres like ".$_POST['b_paciente']." or apellido_paterno like ".$_POST['b_paciente']." or apellido_materno like ".$_POST['b_paciente']." or id_paciente like ".$_POST['b_paciente']." or n_registro like ".$_POST['b_paciente']."  LIMIT 10;");
     }
   }
   else{
-    $id = $_POST['id'];
-      $slq="select * from paciente where  id_paciente like '%$id%'  LIMIT 10;";
+      $result = $conn->query("select * from paciente where  id_paciente like '%$id%'  LIMIT 10;");
   }
-  $result = $conn->query($slq)or trigger_error($conn->error."[$slq]");
+
   while ($row = $result->fetch_array() ) {
 
   echo ' <br><br><fieldset><legend style="width:90%; background:#585A5A; padding:6px; padding-left:24px;">
@@ -163,14 +156,14 @@ echo '<a class="nonblock nontext grpelem" id="u552" href="contabilidad.php"> <im
   </div>
   <!-- JS includes -->
   <script type="text/javascript">
-   if (document.location.protocol != 'https:') document.write('\x3Cscript src="http://musecdn.businesscatalyst.com/scripts/4.0/jslq-1.8.3.min.js" type="text/javascript">\x3C/script>');
+   if (document.location.protocol != 'https:') document.write('\x3Cscript src="http://musecdn.businesscatalyst.com/scripts/4.0/jquery-1.8.3.min.js" type="text/javascript">\x3C/script>');
 </script>
   <script type="text/javascript">
-   window.jslq || document.write('\x3Cscript src="scripts/jslq-1.8.3.min.js" type="text/javascript">\x3C/script>');
+   window.jQuery || document.write('\x3Cscript src="scripts/jquery-1.8.3.min.js" type="text/javascript">\x3C/script>');
 </script>
   <script src="scripts/museutils.js?3865766194" type="text/javascript"></script>
-  <script src="scripts/jslq.tobrowserwidth.js?3842421675" type="text/javascript"></script>
-  <script src="scripts/jslq.watch.js?4068933136" type="text/javascript"></script>
+  <script src="scripts/jquery.tobrowserwidth.js?3842421675" type="text/javascript"></script>
+  <script src="scripts/jquery.watch.js?4068933136" type="text/javascript"></script>
   <!-- Other scripts -->
   <script type="text/javascript">
    $(document).ready(function() { try {
