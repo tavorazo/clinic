@@ -78,12 +78,14 @@ if($_SESSION['rol']!='recepcionista')
     or die('No se pudo conectar: ' . mysql_error());
     mysql_select_db('Endoperio') or die('No se pudo seleccionar la base de datos');*/
     include('php/base.php');
-    $result=$conn->query("select * from usuarios where rol='admin' ||  rol='dentista';");
     $contador = 0;
-    //$doctor = $row2[0];
+    $doctor = $row2[0];
+    $sql = "SELECT * from usuarios where rol='admin' ||  rol='dentista';";
+    $result2 = $conn->query($sql);
     //$result2 = mysql_query("select * from usuarios where rol='admin' ||  rol='dentista';");
-    while ($row = $result->fetch_assoc()){
-      echo "<option value='",$row["id_usuario"],"' >", $row["nombres"]," ",$row["apellido_paterno"]," ",$row["apellido_materno"],"</option>";
+    //while ($row3 = mysql_fetch_array($result2, MYSQL_NUM)){
+    while ($row3 = $result2->fetch_assoc()) {
+      echo "<option value='",$row3["id_usuario"],"' >", $row3["nombres"]," ",$row3["apellido_paterno"]," ",$row3["apellido_materno"],"</option>";
     }
     ?>
   </select>

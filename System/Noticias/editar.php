@@ -55,8 +55,8 @@
 
 			include('../php/base.php');
 			$select = 'select * from noticias where id_noticia="'.$id.'";';
-			$resul = $conn->query($select) or die ("problema con la solicitud");
-			$renglon = $resul->fetch_assoc();
+			$resul = mysql_query($select, $dbh) or die ("problema con la solicitud");
+			$renglon = mysql_fetch_assoc($resul);
 
 
 			?>

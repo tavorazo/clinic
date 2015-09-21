@@ -21,26 +21,29 @@
 		</tr>
 	<?php
 		include('../base.php');
-		include('../base3.php');
-		include('../base2.php');
 		setlocale(LC_MONETARY, 'en_US');
-		$result = mysql_query("select * from tratamiento_dental");
+		//$result = mysql_query("select * from tratamiento_dental");
+
+		$sql = "SELECT * FROM tratamiento_dental";
+    	$result = $conn->query($sql);
+		
+
 		$i = 0;
-		while ($row2 = mysql_fetch_array($result, MYSQL_NUM)) {
+		while ($tratamiento = $result->fetch_assoc()) {
 			if ($i%2 == 0) 
 				$bg= "#fff";
 			else
 				$bg= "#E6E6E6";
 
 			echo '<tr style="background:'.$bg.'; height:30px">';
-				echo "<td>".$row2[1]."</td>";
-				echo "<td>".money_format('%(#10n', $row2[2])."</td>";
-				echo "<td>".money_format('%(#10n', $row2[3])."</td>";
-				echo "<td>".money_format('%(#10n', $row2[4])."</td>";
-				echo "<td>".money_format('%(#10n', $row2[5])."</td>";
+				echo "<td>".$tratamiento['tratamiento']."</td>";
+				echo "<td>".money_format('%(#10n', $tratamiento['precio_1'])."</td>";
+				echo "<td>".money_format('%(#10n', $tratamiento['precio_2'])."</td>";
+				echo "<td>".money_format('%(#10n', $tratamiento['precio_3'])."</td>";
+				echo "<td>".money_format('%(#10n', $tratamiento['precio_4'])."</td>";
 				echo "<td> - - - </td>";
-				echo "<td><a href='editar.php?id=".$row2[0]."'>Editar</a></td>";
-				echo "<td><a href='eliminar.php?id=".$row2[0]."'>Eliminar</a></td>";
+				echo "<td><a href='editar.php?id=".$tratamiento['id_tratamiento']."'>Editar</a></td>";
+				echo "<td><a href='eliminar.php?id=".$tratamiento['id_tratamiento']."'>Eliminar</a></td>";
 			echo "</tr>";
 			$i++;
 		}

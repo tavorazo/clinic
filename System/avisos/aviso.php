@@ -61,10 +61,10 @@
 				<option value="a">Almacen</option>
 				
 			<?php
-				include('../php/base.php');
-				$result = $conn->query("SELECT * FROM usuarios order by apellido_paterno");
-		      while ($row = $result->fetch_assoc()) {
-		      	echo "<option value='",$row["id_usuario"],"'>",$row["nombres"],"</option>";
+				include('../php/base2.php');
+				$result2 = mysql_query("SELECT * FROM usuarios order by apellido_paterno");
+		      while ($row2 = mysql_fetch_array($result2, MYSQL_NUM)) {
+		      	echo "<option value='",$row2[0],"'>",$row2['1'],"</option>";
 		      }
 			?>
 			</select>

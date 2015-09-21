@@ -79,7 +79,7 @@ echo '<a class="nonblock nontext grpelem" id="u552" href="contabilidad.php"> <im
     </div>
     <div class="verticalspacer"></div>
     
-        <form action="find-paciente.php" method="POST" style="margin-top:-20px; z-index:300; background:#FFFFFF; padding:20px; width:89%" >
+        <form action="buscar-paciente.php" method="POST" style="margin-top:-20px; z-index:300; background:#FFFFFF; padding:20px; width:89%" >
           <label style="float:left; margin-left:60px; margin-right:20px; "> Ingrese nombre del paciente   </label>
             <input type="search" name="b_paciente"  class="campoT" style=" border: 1px solid gray; height:35px; margin-right:20px; ">
           <label style="float:left; margin-left:60px; margin-top:10px; margin-right:50px; "> O ingrese ID del paciente   </label>
@@ -95,50 +95,56 @@ echo '<a class="nonblock nontext grpelem" id="u552" href="contabilidad.php"> <im
         <h1 style="padding:7px">Busqueda avanzada</h1>
       </div><br>
           
-<?php
-  include('php/base.php');
-  
-      $buscar = $_POST['b_paciente'];
-  if(!isset($_POST['id'])){
-    if(isset($_POST['b_paciente'])){
-      //echo isset($_POST['b_paciente']);
-      $buscar = $_POST['b_paciente'];
-      $slq="select * from paciente where nombres like ".$buscar." or apellido_paterno like ".$buscar." or apellido_materno like ".$buscar." or id_paciente like ".$buscar." or n_registro like ".$buscar."  LIMIT 10;";
-    }
-  }
-  else{
-    $id = $_POST['id'];
-      $slq="select * from paciente where  id_paciente like '%$id%'  LIMIT 10;";
-  }
-  $result = $conn->query($slq)or trigger_error($conn->error."[$slq]");
-  while ($row = $result->fetch_array() ) {
+      <?php
+     /* $link = mysql_connect('localhost', 'root', '')
+          or die('No se pudo conectar: ' . mysql_error());
+      mysql_select_db('Endoperio') or die('No se pudo seleccionar la base de datos');*/
+	  include('php/base.php');
 
-  echo ' <br><br><fieldset><legend style="width:90%; background:#585A5A; padding:6px; padding-left:24px;">
-  <h10 style="color:#FFFFFF">Datos Personales</legend></h10>';
+      //echo '<h9>Resultados para: ',$_POST['b_paciente'],'</h9><br><br><br>';
+      $buscar = $_POST['b_paciente'];
+      $id = $_POST['id'];
+      ?>
 
-  echo "<div style='width:90%; background:#FFFFFF; padding:15px;  '>
-  <div  style='width:25%; height:220px; float:left; '>";
-    echo "<br><br>";
-    if($row[21] == "")
+      <!--a href="menu.php">Regresar</a-->
+      <?php
+      if($id == 0)
+        $result2 = mysql_query("select * from paciente where nombres like '%$buscar%' or apellido_paterno like '%$buscar%' or apellido_materno like '%$buscar%' or id_paciente like '%$buscar%' or n_registro like '%$buscar%'  LIMIT 10;");
+      else
+        $result2 = mysql_query("select * from paciente where  id_paciente like '%$id%'  LIMIT 10;");
+
+      //$result2 = mysql_query("select * from Paciente where nombres like '%$buscar%' or apellido_paterno like '%$buscar%' or apellido_materno like '%$buscar%' or id_paciente like '%$buscar%';");
+
+    
+    while ($row2 = mysql_fetch_array($result2, MYSQL_NUM) ) {
+      //while ($row2 = mysql_fetch_array($result2, MYSQL_NUM)) {
+      
+      echo ' <br><br><fieldset><legend style="width:90%; background:#585A5A; padding:6px; padding-left:24px;">
+              <h10 style="color:#FFFFFF">Datos Personales</legend></h10>';
+
+      echo "<div style='width:90%; background:#FFFFFF; padding:15px;  '>
+          <div  style='width:25%; height:220px; float:left; '>";
+      echo "<br><br>";
+        if($row2[21] == "")
       echo "<img src='pacientes/images_pacientes/predeterminado.png' width='130px' height='130px' style='border-radius:50%;  border: 1px solid #D8D8D8;'> </div>";
-    else
-      echo "<img src='pacientes/images_pacientes/",$row[21],"' width='130px' height='130px' style='border-radius:50%;  border: 1px solid #D8D8D8;'> </div>";
+        else
+      echo "<img src='pacientes/images_pacientes/",$row2[21],"' width='130px' height='130px' style='border-radius:50%;  border: 1px solid #D8D8D8;'> </div>";
 
-    echo "<div  style='width:50%; height:220px; float:left; margin-left:-5%; ' ><br><br><br>";
-    echo "<label style='width:200px; float:left; margin-left:15px; '>Numero de ficha:</label> ", $row[0], "<br>";
-    echo "<label style='width:200px; float:left; margin-left:15px; '>Nombre: </label>", $row[1]," ", $row[2]," ",$row[3],"<br>";
-    echo "<label style='width:200px; float:left; margin-left:15px; '>Fecha de nacimiento: </label>", $row[4];
-    echo "<br><label style='width:200px; float:left; margin-left:15px;'>Sexo: </label>", $row[23];
-    echo "<br><label style='width:200px; float:left; margin-left:15px;'>Referencia: </label>", $row[16];
-    echo "</div>
-    <div  style='width:25%; height:220px; floar:right; margin-left:70%'> ";
+      echo "<div  style='width:50%; height:220px; float:left; margin-left:-5%; ' ><br><br><br>";
+      echo "<label style='width:200px; float:left; margin-left:15px; '>Numero de ficha:</label> ", $row2[0], "<br>";
+      echo "<label style='width:200px; float:left; margin-left:15px; '>Nombre: </label>", $row2[1]," ", $row2[2]," ",$row2[3],"<br>";
+      echo "<label style='width:200px; float:left; margin-left:15px; '>Fecha de nacimiento: </label>", $row2[4];
+      echo "<br><label style='width:200px; float:left; margin-left:15px;'>Sexo: </label>", $row2[23];
+      echo "<br><label style='width:200px; float:left; margin-left:15px;'>Referencia: </label>", $row2[16];
+      echo "</div>
+            <div  style='width:25%; height:220px; floar:right; margin-left:70%'> ";
       echo "<br><br><br><br><br>
-      <div id='botn'><a href='pacientes/ficha-paciente.php?id=",$row[0],"'>Revisar</a></div><br>";
+            <div id='botn'><a href='pacientes/ficha-paciente.php?id=",$row2[0],"'>Revisar</a></div><br>";
       echo "</div></div></fieldset>";
       //echo "<hr style='margin-bottom:20px;'>";
-  }
-?>
-             <a href='buscar-paciente.php'> << Regresar </a> 
+    }
+      ?>
+            <a href='buscar-paciente.php'> << Regresar </a> 
 
 
 
@@ -163,14 +169,14 @@ echo '<a class="nonblock nontext grpelem" id="u552" href="contabilidad.php"> <im
   </div>
   <!-- JS includes -->
   <script type="text/javascript">
-   if (document.location.protocol != 'https:') document.write('\x3Cscript src="http://musecdn.businesscatalyst.com/scripts/4.0/jslq-1.8.3.min.js" type="text/javascript">\x3C/script>');
+   if (document.location.protocol != 'https:') document.write('\x3Cscript src="http://musecdn.businesscatalyst.com/scripts/4.0/jquery-1.8.3.min.js" type="text/javascript">\x3C/script>');
 </script>
   <script type="text/javascript">
-   window.jslq || document.write('\x3Cscript src="scripts/jslq-1.8.3.min.js" type="text/javascript">\x3C/script>');
+   window.jQuery || document.write('\x3Cscript src="scripts/jquery-1.8.3.min.js" type="text/javascript">\x3C/script>');
 </script>
   <script src="scripts/museutils.js?3865766194" type="text/javascript"></script>
-  <script src="scripts/jslq.tobrowserwidth.js?3842421675" type="text/javascript"></script>
-  <script src="scripts/jslq.watch.js?4068933136" type="text/javascript"></script>
+  <script src="scripts/jquery.tobrowserwidth.js?3842421675" type="text/javascript"></script>
+  <script src="scripts/jquery.watch.js?4068933136" type="text/javascript"></script>
   <!-- Other scripts -->
   <script type="text/javascript">
    $(document).ready(function() { try {
