@@ -4,6 +4,7 @@
 		header('location: index.php');
 		//echo'<META HTTP-EQUIV="Refresh" CONTENT="0; URL=index.php">';
 	$usuario = $_SESSION['u'];
+  error_reporting(E_ALL & ~E_NOTICE);
 ?>
 
 <!DOCTYPE html>
@@ -99,8 +100,8 @@ echo '<a class="nonblock nontext grpelem" id="u552" href="contabilidad.php"> <im
   include('php/base.php');
   
       $buscar = $_POST['b_paciente'];
-  if(!isset($_POST['id'])){
-    if(isset($_POST['b_paciente'])){
+  if(isset($_POST['id'])){
+    if(!isset($_POST['b_paciente'])){
       //echo isset($_POST['b_paciente']);
       $buscar = $_POST['b_paciente'];
       $slq="select * from paciente where nombres like ".$buscar." or apellido_paterno like ".$buscar." or apellido_materno like ".$buscar." or id_paciente like ".$buscar." or n_registro like ".$buscar."  LIMIT 10;";
@@ -110,7 +111,11 @@ echo '<a class="nonblock nontext grpelem" id="u552" href="contabilidad.php"> <im
     $id = $_POST['id'];
       $slq="select * from paciente where  id_paciente like '%$id%'  LIMIT 10;";
   }
-  $result = $conn->query($slq)or trigger_error($conn->error."[$slq]");
+  try{
+    $result = $conn->query($slq);
+  }catch(\Exception $e){
+    printf('Error: %s', $e->getMessage());  
+  }
   while ($row = $result->fetch_array() ) {
 
   echo ' <br><br><fieldset><legend style="width:90%; background:#585A5A; padding:6px; padding-left:24px;">

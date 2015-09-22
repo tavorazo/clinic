@@ -4,6 +4,7 @@
 		header('location: ../index.php');
 		//echo'<META HTTP-EQUIV="Refresh" CONTENT="0; URL=index.php">';
 	$usuario = $_SESSION['u'];
+  error_reporting(E_ALL & ~E_NOTICE);
 ?>
 
 <!DOCTYPE html>
@@ -106,8 +107,6 @@ echo '<a class="nonblock nontext grpelem" id="u552" href="../contabilidad.php"><
   <form action="Verificar.php" method="POST"  >
 <?php
 include('../php/base.php');
-include('../php/base3.php');
-include('../php/base2.php');
 
 //$result = mysql_query("select * from agenda where dia='$dia' and mes='$mes_n' and ano='$ano' and id_usuario='$doctor';");
 $hour = 8;
@@ -120,8 +119,8 @@ for($i=0;$i<12;$i++){
 	
 	for($j=0; $j<4;$j++){
 		$select = 'select * from agenda where hora="'.$hour.'" and minuto="'.$minute.'" and dia="'.$dia.'" and mes="'.$mes_n.'" and ano="'.$ano.'" and id_usuario="'.$doctor.'";';
-		$resul = mysql_query($select, $dbh) or die ("problema con la solicitud");
-		$renglon = mysql_fetch_assoc($resul);
+		$resul = $conn->query($select) or die ("problema con la solicitud");
+		$renglon = $resul->fetch_assoc();
 		
 		if($renglon['id_cita']==''){
 			
