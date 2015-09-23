@@ -130,7 +130,7 @@ if($_SESSION['rol']=='admin')
   $a = 0;
   echo "<table style='border:none; min-width:90%; color:#A0ABAB'>";
   echo "<tr style=' background:#585A5A'>
-  <td>Nombre</td><td>Serial</td><td>Descripcion</td><td>Tipo</td><td>Existencia</td><td>A la venta</td><td>Cantidad minima</td><td>Ajustar</td><td></td><td></td><td></td></tr>
+  <td>Nombre</td><td>Serial</td><td>Descripcion</td><td>Tipo</td><td>En existencia</td><td> Abastecible </td><td>Cantidad minima</td><td>Ajustar</td><td></td><td></td><td></td></tr>
   <td></td><td></td><td></td><td></td><td></td><td> </td><td></td><td></td><td></td><td></td></tr>";
   
   //while ($row2 = mysql_fetch_array($result2, MYSQL_NUM)) {
@@ -144,7 +144,7 @@ if($_SESSION['rol']=='admin')
       <form action="inventario/inventario_procesar_editar.php" method="POST">
       <input type="hidden" name="id" value="',$row2[0],'">
       <input type="hidden" name="cantidad" value="',$row2[4],'">
-      <input class="campoT" type="number" style="width:50px; margin-left:10px" name="nueva_cantidad"> 
+      <input class="campoT" type="number" style="width:50px; height:35px; margin-top:10px" name="nueva_cantidad"> 
       </td><td>
       <input type="submit" value="Ajustar" style="width:80px;">
       </td>
@@ -170,7 +170,7 @@ if($_SESSION['rol']=='admin')
       <form action="inventario/inventario_procesar_editar.php" method="POST">
       <input type="hidden" name="id" value="',$row2[0],'">
       <input type="hidden" name="cantidad" value="',$row2[4],'">
-      <input class="campoT" type="number" style="width:50px; margin-left:10px" name="nueva_cantidad"> 
+      <input class="campoT" type="number" style="width:50px; height:35px; margin-top:10px" " name="nueva_cantidad"> 
       </td><td>
       ';
       echo '<input type="submit" value="Ajustar" style="width:80px;">';

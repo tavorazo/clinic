@@ -8,8 +8,14 @@ $d = $_POST['cantidad'];
 $e = $_POST['abastecer'];
 $f = $_POST['minima'];
 $venta = $_POST['venta'];
+if ($venta == 0) 
+	$pventa = 0;
+else
+	$pventa = $_POST['pventa'];
+
 $pcompra = $_POST['pcompra'];
-$pventa = $_POST['pventa'];
+
+ 
 $tipo = $_POST['tipo_definicion'];
 $usuario = $_SESSION['u'];
 $a = htmlspecialchars($a);
