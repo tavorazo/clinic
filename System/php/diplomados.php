@@ -54,7 +54,7 @@ $usuario = $_SESSION['u'];
   <?php
   @session_start();
   $id = $_GET['id'];
-  include("base2.php");
+  include("base.php");
   ?>
   <h1 style="float:left; margin-right:20px"> <a href="lista_usuarios.php"> << Regresar </a> </h1> 
   <h1> Compras para usuarios </h1> <hr>
