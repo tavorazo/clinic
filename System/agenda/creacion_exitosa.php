@@ -38,14 +38,18 @@ $duracion = $_POST['duracion'];
 $observacion = $_POST['observacion'];
 
 include('../php/base.php');
-include('../php/base3.php');
 
 		$fecha = $ano."/".$mes_n."/".$dia;
 		//echo $fecha;
 
 $verifica = 'select * from agenda where hora="'.$hour.'" and minuto="'.$minute.'" and dia="'.$dia.'" and mes="'.$mes_n.'" and ano="'.$ano.'" and id_usuario="'.$doctor.'";';
-$resultadoverifica = mysql_query($verifica, $dbh) or die ("problema con la solicitud");
-$r = mysql_fetch_assoc($resultadoverifica);
+try {
+	$resultadoverifica = $conn->query($verifica);	
+ }catch(\Exception $e){
+    printf('Error: %s', $e->getMessage());  
+  }
+
+$r = $resultadoverifica->fetch_assoc();
 
 if($r['id_usuario']==''){
 
@@ -114,7 +118,7 @@ else if($duracion=='30'){
 
 			$insertar2 = "insert into agenda (id_usuario,id_paciente,ano,mes,dia,hora,minuto, confirmacion, duracion, observacion, fecha,realidada) values ('$doctor','$paciente', '$ano', '$mes_n', '$dia', '$hora', '$minuto2', '1', '$duracion', '$observacion', '$fecha', '$id_creador');";
 
-			if(!mysql_query($insertar2, $conexion))
+			if(!$conn->query($insertar2))
 
 				die('Error de consulta: '.mysql_error());
 
