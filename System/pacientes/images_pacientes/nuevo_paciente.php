@@ -114,10 +114,13 @@ if (!$conexion_base) {
 	echo "Error en la conexi贸n 2";
 }	*/
 include('../../php/base.php');
-include('../../php/base3.php');
 
 	$select = 'select * from paciente order by id_paciente desc limit 1;';
-	$resul = mysql_query($select, $dbh) or die ("problema con la solicitud");
+	try {
+		$result = $conn->query($select);
+	} catch (Exception $e) {
+	echo $e->getMessage();
+	}
 	$renglon = mysql_fetch_assoc($resul);
 	
 	$ultimo_registro = $renglon['id_paciente'];
