@@ -51,9 +51,10 @@
   			$id = $_GET['id'];
 
 include('../php/base.php');
+include('../php/base3.php');
   			$select = 'select * from avisos where id_aviso="'.$id.'";';
-  			$resul = $conn->query($select) or die ("problema con la solicitud");
-  			$renglon = $resul->fetch_assoc();
+  			$resul = mysql_query($select, $dbh) or die ("problema con la solicitud");
+  			$renglon = mysql_fetch_assoc($resul);
 			?>
 
       <a   href="lista_avisos.php" style="float:left; margin-right:10px"> << Regresar </a> <h3  style="margin-right:5px">|</h3>

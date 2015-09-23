@@ -29,13 +29,13 @@
 	$c = htmlspecialchars($c);
 
 
-include('../php/base.php');
+include('../php/base3.php');
 				$insertar = "UPDATE avisos SET contenido='$c', titulo='$b' WHERE id_aviso = '$a'";
 
-		if(!$conn->query($insertar))
+		if(!mysql_query($insertar, $conexion))
 			die('Error de consulta: '.mysql_error());
 
-		$conn=null;
+		mysql_close($conexion);
 
 		echo '<br><br><br><center><img src="../images/endoperio2.png" width="100px" alt=""> <br> ';
 		echo "Aviso modificado con exito<br><br><br>";

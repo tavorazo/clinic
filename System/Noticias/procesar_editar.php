@@ -52,12 +52,12 @@
 		$dbh = mysql_connect('localhost','root','') or die('Error de conexion: ' . mysql_error() );
 		$base = mysql_select_db('Endoperio', $dbh) or die('Error de seleccion de base: ' . mysql_error() );*/
 		include('../php/base.php');
-		//include('../php/base3.php');
+		include('../php/base3.php');
 		$select = 'select * from noticias where id_noticia="'.$a.'";';
 
 
-		$result = $conn->query($select) or die ("problema con la solicitud");
-		$renglon = $result->fetch_assoc();
+		$resul = mysql_query($select, $dbh) or die ("problema con la solicitud");
+		$renglon = mysql_fetch_assoc($resul);
 
 		if($imagen!=""){
 			unlink($renglon['imagen']);
@@ -65,9 +65,9 @@
 		} else
 			$insertar = "update noticias set Titulo='$b', texto='$c' where id_noticia='$a'";
 
-		if(!$conn->query($insertar))
+		if(!mysql_query($insertar, $conexion))
 			die('Error de consulta: '.mysql_error());
-		$conn=null;
+		mysql_close($conexion);
 
 		echo '<br><br><br><center><img src="../images/endoperio2.png" width="100px" alt=""> <br> ';
 		echo "Noticia creada con exito<br><br><br>";

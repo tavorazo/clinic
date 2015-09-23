@@ -25,14 +25,15 @@
 
 	/*$base = mysql_select_db('Endoperio', $dbh) or die('Error de seleccion de base: ' . mysql_error() );*/
 include('../php/base.php');
+include('../php/base3.php');
 	$select = 'select * from avisos where id_aviso="'.$id.'";';
-	$resul = $conn->query($select) or die ("problema con la solicitud");
-	$renglon = $resul->fetch_assoc();
+	$resul = mysql_query($select, $dbh) or die ("problema con la solicitud");
+	$renglon = mysql_fetch_assoc($resul);
 		$eliminar = 'delete from avisos where id_aviso="'.$id.'";';
 
-		if(!$conn->query($eliminar))
+		if(!mysql_query($eliminar, $dbh))
 			die('Error de consulta: '.mysql_error());
-		$conn=null;
+		mysql_close($conexion);
 
 		echo '<br><br><br><center><img src="../images/endoperio2.png" width="100px" alt=""> <br> ';
 		echo "Proceso realizado con exito<br><br><br>";

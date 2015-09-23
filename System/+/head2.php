@@ -34,7 +34,7 @@
     <div class="clearfix colelem" id="pu1145"><!-- group -->
      <div class="browser_width grpelem" id="u1145"><!-- group -->
       <div class="clearfix" id="u1145_align_to_page">
-       <a class="nonblock nontext clip_frame grpelem" id="u1147" href="../../index.php"><!-- image --><img class="block" id="u1147_img" src="../../images/logo-endoperio-dental-center.jpg" alt="" width="134" height="38"/></a>
+       <a class="nonblock nontext clip_frame grpelem" id="u1147" href="../../panel.php"><!-- image --><img class="block" id="u1147_img" src="../../images/logo-endoperio-dental-center.jpg" alt="" width="134" height="38"/></a>
        <div class="grpelem" id="u1149"><!-- simple frame --></div>
        <div class="clearfix grpelem" id="u1150-5"><!-- content -->
          <p><?php echo $_SESSION['nombres'];?>&nbsp; | <span id="u518-2"> <a href="../../php/logout.php"><h12> cerrar sesion</h12></a></span></p>

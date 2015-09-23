@@ -81,15 +81,12 @@ if($_SESSION['rol']=='admin' || $_SESSION['rol']=='almacen'){
     if($result = $conn->query($sql)) {
      while ($row2 = $result->fetch_assoc()) {
       if($row2["cantidad_minima"] > $row2["cantidad"]){
-        ?>
-
-       <br><div style='float:left; position:relative'><?php echo $row2["nombre"]?> necesita ser abastecido. <br>
-       Canditad mínima que debe exisitir en el inventario: <?php echo $row2["cantidad_minima"] ?>
-       <br>Canditad de existencia en el inventario: <?php echo $row2["cantidad"] ?>
-       </div>
+       echo "<br><div style='float:left; position:relative'>", $row2["nombre"], " necesita ser abastecido. <br>";
+       echo "Canditad mínima que debe exisitir en el inventario: ", $row2["cantidad_minima"];
+       echo "<br>Canditad de existencia en el inventario: ", $row2["cantidad"];
+       echo "</div>
        <div id='botn3' style='margin-left:80%; width:100px; background: #FFFFFF; border:1px solid #848484;'>
-       <a href='inventario/inventario_editar.php?id=<?php echo $row2["id_producto"]?>'>Abastecer</a></div>
-       <?php
+       <a href='inventario/inventario_editar.php?id=",$row2["id"],"'>Abastecer</a></div>";
      }
   } 
 } 

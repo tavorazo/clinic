@@ -41,14 +41,14 @@
 				$var4='default.png';
 			
 
-			include('../php/base.php');
+			include('../php/base3.php');
 
 
 			$instruccion = "insert into noticias (imagen,texto,Titulo,fecha) values ('$var4', '$var3','$var1',now());";
 
-			if(!$conn->query($instruccion))
+			if(!mysql_query($instruccion, $conexion))
 				die('Error de consulta: '.mysql_error());
-			$conn=null;
+			mysql_close($conexion);
 
 		echo '<br><br><br><center><img src="../images/endoperio2.png" width="100px" alt=""> <br> ';
 		echo "Noticia creada con exito<br><br><br>";

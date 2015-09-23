@@ -27,11 +27,11 @@
                $usuario="root";
                $contrasena="";
                $bdd="Endoperio";*/
-include('../php/base.php');			   
+include('../php/base2.php');			   
                $tabla="avisos";
 
                //Consultamos a la base de datos para sacar las columnas de la tabla
-               $result = $conn->query("SHOW COLUMNS FROM $tabla");
+               $result = mysql_query("SHOW COLUMNS FROM $tabla");
                ?>
 
          <table style='max-width:90%; margin-top:30px;'>
@@ -46,9 +46,8 @@ include('../php/base.php');
 
                <?php
                //ahora consultamos a la base de datos para sacar los registros contenidos
-               $result = $conn->query("SELECT * FROM $tabla");
-               
-               while ($row2 = $result->fetch_array(MYSQLI_NUM)) {
+               $result2 = mysql_query("SELECT * FROM $tabla");
+               while ($row2 = mysql_fetch_array($result2, MYSQL_NUM)) {
                	echo "<tr>";
                         echo "<td style='width: 10%; color:#4457AA' ><center>",$row2[0],"</td>";
          					
