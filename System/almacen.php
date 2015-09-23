@@ -7,9 +7,7 @@ if($_SESSION['rol']!='admin'){
     if($_SESSION['rol']!='secretaria')
       header('location: panel.php');
   }
-}
-  //if($_SESSION['rol']!='admin' || $_SESSION['rol']!='almacen' )
-  //  header('location: panel.php');
+} 
 $usuario = $_SESSION['u'];
 ?>
 <!DOCTYPE html>
@@ -75,15 +73,13 @@ if($_SESSION['rol']=='admin')
 </div>
 </div>
 <div style="position:relative; top:220px">
-  <!-- codigo para almacen -->
   <?php
-  include('php/base3.php');
-  $result = mysql_query("SHOW COLUMNS FROM inventario");
+  include('php/base.php');
+  $sql = "SHOW COLUMNS FROM inventario";
+  $result = $conn->query($sql);
   
   if($_SESSION['rol']=='admin')
-   
-    
-    ?>
+  ?>
   <div style="background:#FFFFFF; padding:30px; width:85%; margin-left:50px">
     <form action="almacen.php" method="POST" >
      
@@ -100,7 +96,6 @@ if($_SESSION['rol']=='admin')
         echo '</a> </div>';
         echo "<div id='botn3' style='border:green 1px solid; '>
         <a href='inventario/historial_admin.php' style='color:green'>Historial de inventario</a></div>";
-         //if($_SESSION['rol']=='admin' || $_SESSION['rol']=='almacen')
       }
       ?>
       
@@ -111,162 +106,134 @@ if($_SESSION['rol']=='admin')
     <tr>
       <?php
       $i=0;
-   /* if (mysql_num_rows($result)> 0) {
-       while ($row = mysql_fetch_assoc($result)) {
-           /*echo "<td>",$row['Field'],"</td>";
-           if($i==0)
-          echo "<td>Id_Producto</td>";
-        if($i==1)
-          echo "<td>Nombre del Producto</td>";
-        if($i==2)
-          echo "<td>N&uacute;mero Serial</td>";
-        if($i==3)
-          echo "<td>Descripci&oacute;n</td>";
-        if($i==4)
-          echo "<td>Cantidad en Inventario</td>";
-        if($i==5)
-          echo "<td>Reabastecible</td>";
-        if($i==6)
-          echo "<td>Cantidad M&iacute;nima Obligatoria</td>";
-        $i++;
-       }
-     }*/
-     ?>
-   </tr>
-   <?php
-          //ahora consultamos a la base de datos para sacar los registros contenidos
-   $result2 = mysql_query("SELECT * FROM inventario");
-          /*while ($row2 = mysql_fetch_array($result2, MYSQL_NUM)) {
-            echo "<tr>";
-            for($i=0; $i<count($row2); $i++){
-              echo "<td>",$row2[$i],"</td>";
-            }
-            echo "<td><a href='inventario/inventario_editar.php?id=",$row2[0],"'>Abastecer</a></td><td><a href='inventario/inventario_eliminar.php?id=",$row2[0],"'>Eliminar</a></td>";
-            echo "</tr>";
-          }*/
-          ?>
-        </table>
-        <!-- codigo para BUSCAR en almacen -->
-        <?php
+      ?>
+    </tr>
+    <?php
+    //$result2 = mysql_query("SELECT * FROM inventario");
+    $result2 = $conn->query("SELECT * FROM inventario");
+    ?>
+  </table>
+  <?php
+  
+  include("php/base.php");
+  ?>
+  <?php
+  if (isset($_POST["buscar"])) 
+    $buscar = $_POST['buscar'];
+  else
+    $buscar = "";
+  
+  //$result2 = mysql_query("select * from inventario where nombre like '%$buscar%' or numero_serial like '%$buscar%' or descripcion like '%$buscar%' order by nombre;");
+  $result2 = $conn->query("SELECT * FROM inventario where nombre like '%$buscar%' or numero_serial like '%$buscar%' or descripcion like '%$buscar%' order by nombre;");
+  //ocultar esto mientra no busque
+  echo '<h1>En almacen: ',$buscar,'</h1>';
+  $a = 0;
+  echo "<table style='border:none; min-width:90%; color:#A0ABAB'>";
+  echo "<tr style=' background:#585A5A'>
+  <td>Nombre</td><td>Serial</td><td>Descripcion</td><td>Tipo</td><td>En existencia</td><td> Abastecible </td><td>Cantidad minima</td><td>Ajustar</td><td></td><td></td><td></td></tr>
+  <td></td><td></td><td></td><td></td><td></td><td> </td><td></td><td></td><td></td><td></td></tr>";
+  
+  //while ($row2 = mysql_fetch_array($result2, MYSQL_NUM)) {
+  while ($row2 = $result2->fetch_row()) {
+    $a = 1;
+    echo "<tr style='background:#FFFFFF'><td>",$row2[1],"</td><td>", $row2[2],"</td><td>", $row2[3],"</td><td>",$row2[11],"</td><td>", $row2[4],"</td>";
+    if($row2[5]=='1'){
+      echo "<td> Si</td><td>",$row2[6],"</td>";
+      
+      echo '<td>
+      <form action="inventario/inventario_procesar_editar.php" method="POST">
+      <input type="hidden" name="id" value="',$row2[0],'">
+      <input type="hidden" name="cantidad" value="',$row2[4],'">
+      <input class="campoT" type="number" style="width:50px; height:35px; margin-top:10px" name="nueva_cantidad"> 
+      </td><td>
+      <input type="submit" value="Ajustar" style="width:80px;">
+      </td>
+      </form>';
+      echo "<td style='padding:3px'>";
+      if($_SESSION['rol']=='admin' || $_SESSION['rol']=='almacen'){
+       echo "<div id='botn2' style='margin-left:2px; height:15px;  width:80px'>";
+       
+       echo "<a href='inventario/inventario_eliminar.php?id=",$row2[0],"'>Eliminar
+       </a>";
+       echo" </div>";}
+       echo "</td>";
+       echo "<td>";
+       echo "<div id='botn2' style='margin-left:2px; height:15px;  width:80px; background:#333'>";
+       echo "<a href='inventario/inventario_editar_informacion.php?id=",$row2[0],"'>Editar</a>";
+       echo" </div>";
+       echo "</td>";
+       echo "</tr>";
+     }else{
+      echo "<td> No</td><td>",$row2[6],"</td>";
+      
+      echo '<td>
+      <form action="inventario/inventario_procesar_editar.php" method="POST">
+      <input type="hidden" name="id" value="',$row2[0],'">
+      <input type="hidden" name="cantidad" value="',$row2[4],'">
+      <input class="campoT" type="number" style="width:50px; height:35px; margin-top:10px" " name="nueva_cantidad"> 
+      </td><td>
+      ';
+      echo '<input type="submit" value="Ajustar" style="width:80px;">';
+      echo '</td>
+      </form>';
+      echo "<td style='padding:3px'>";
+      if($_SESSION['rol']=='admin' || $_SESSION['rol']=='almacen'){
+        echo "<div id='botn2' style='margin-left:2px; height:15px;  width:80px'>";
         
-        include("php/base.php");
-   /* $link = mysql_connect('localhost', 'root', '')
-        or die('No se pudo conectar: ' . mysql_error());
-        mysql_select_db('Endoperio') or die('No se pudo seleccionar la base de datos');*/
-        include('php/base3.php');
-        ?>
-        <?php
-        $buscar = $_POST['buscar'];
-        $result2 = mysql_query("select * from inventario where nombre like '%$buscar%' or numero_serial like '%$buscar%' or descripcion like '%$buscar%' order by nombre;");
-//ocultar esto mientra no busque
-        echo '<h1>En almacen: ',$buscar,'</h1>';
-        $a = 0;
-        echo "<table style='border:none; min-width:90%; color:#A0ABAB'>";
-        echo "<tr style=' background:#585A5A'>
-        <td>Nombre</td><td>Serial</td><td>Descripcion</td><td>Tipo</td><td>Existencia</td><td></td><td>Cantidad minima</td><td>Ajustar</td><td></td><td></td></tr>
-        <td></td><td></td><td></td><td></td><td></td><td> </td><td></td><td></td><td></td><td></td></tr>";
-        
-        while ($row2 = mysql_fetch_array($result2, MYSQL_NUM)) {
-          $a = 1;
-          echo "<tr style='background:#FFFFFF'><td>",$row2[1],"</td><td>", $row2[2],"</td><td>", $row2[3],"</td><td>",$row2[11],"</td><td>", $row2[4],"</td>";
-          if($row2[5]=='1'){
-            echo "<td> Si</td><td>",$row2[6],"</td>";
-            
-            echo '<td>
-            <form action="inventario/inventario_procesar_editar.php" method="POST">
-            <input type="hidden" name="id" value="',$row2[0],'">
-            <input type="hidden" name="cantidad" value="',$row2[4],'">
-            <input class="campoT" type="number" style="width:50px; margin-left:10px" name="nueva_cantidad"> 
-            </td><td>
-            <input type="submit" value="Ajustar" style="width:80px;">
-            </td>
-            </form>';
-            echo "<td style='padding:3px'>";
-            if($_SESSION['rol']=='admin' || $_SESSION['rol']=='almacen'){
-             echo "<div id='botn2' style='margin-left:2px; height:15px;  width:80px'>";
-             
-             echo "<a href='inventario/inventario_eliminar.php?id=",$row2[0],"'>Eliminar
-             </a>";
-             echo" </div>";}
-             echo "</td>";
-             echo "<td>";
-             echo "<div id='botn2' style='margin-left:2px; height:15px;  width:80px'>";
-             echo "<a href='inventario/inventario_editar_informacion.php?id=",$row2[0],"'>Editar</a>";
-             echo" </div>";
-             echo "</td>";
-             echo "</tr>";
-           }else{
-            echo "<td> No</td><td>",$row2[6],"</td>";
-            
-            echo '<td>
-            <form action="inventario/inventario_procesar_editar.php" method="POST">
-            <input type="hidden" name="id" value="',$row2[0],'">
-            <input type="hidden" name="cantidad" value="',$row2[4],'">
-            <input class="campoT" type="number" style="width:50px; margin-left:10px" name="nueva_cantidad"> 
-            </td><td>
-            ';
-            echo '<input type="submit" value="Ajustar" style="width:80px;">';
-            echo '</td>
-            </form>';
-            echo "<td style='padding:3px'>";
-            if($_SESSION['rol']=='admin' || $_SESSION['rol']=='almacen'){
-              echo "<div id='botn2' style='margin-left:2px; height:15px;  width:80px'>";
-              
-              echo "<a href='inventario/inventario_eliminar.php?id=",$row2[0],"'>Eliminar
-              </a>";
-              echo" </div>";}
-              echo "</td>";
-              echo "<td>";
-              echo "<div id='botn2' style='margin-left:2px; height:15px;  width:80px'>";
-              echo "<a href='inventario/inventario_editar_informacion.php?id=",$row2[0],"'>Editar</a>";
-              echo" </div>";
-              echo "</td>";
-              echo "</tr>";
-            }
-          //echo "<hr style='margin-bottom:20px;'>";
-          }
-          echo "</table>";
-          if($a==0)
-            print "no hay resultados<br><br>";
-          ?>
-          <a class="nonblock nontext clip_frame colelem" id="u405" href="http://www.webox.org.mx"><!-- image --><img class="block" id="u405_img" src="images/completo7.png" alt="" width="62" height="19"/></a>
-        </div>
-      </div>
-      <div class="preload_images">
-       <img class="preload" src="images/u372-r.png" alt=""/>
-       <img class="preload" src="images/u376_states-r.png" alt=""/>
-       <img class="preload" src="images/u376_states-a.png" alt=""/>
-       <img class="preload" src="images/u377_states-r.png" alt=""/>
-       <img class="preload" src="images/u377_states-a.png" alt=""/>
-       <img class="preload" src="images/u378_states-r.png" alt=""/>
-       <img class="preload" src="images/u378_states-a.png" alt=""/>
-       <img class="preload" src="images/u480_states-r.png" alt=""/>
-       <img class="preload" src="images/u480_states-a.png" alt=""/>
-       <img class="preload" src="images/u550_states-r.png" alt=""/>
-       <img class="preload" src="images/u550_states-a.png" alt=""/>
-       <img class="preload" src="images/u552_states-r.png" alt=""/>
-       <img class="preload" src="images/u552_states-a.png" alt=""/>
-     </div>
-     <!-- JS includes -->
-     <script type="text/javascript">
-     if (document.location.protocol != 'https:') document.write('\x3Cscript src="http://musecdn.businesscatalyst.com/scripts/4.0/jquery-1.8.3.min.js" type="text/javascript">\x3C/script>');
-     </script>
-     <script type="text/javascript">
-     window.jQuery || document.write('\x3Cscript src="scripts/jquery-1.8.3.min.js" type="text/javascript">\x3C/script>');
-     </script>
-     <script src="scripts/museutils.js?3865766194" type="text/javascript"></script>
-     <script src="scripts/jquery.tobrowserwidth.js?3842421675" type="text/javascript"></script>
-     <script src="scripts/jquery.watch.js?4068933136" type="text/javascript"></script>
-     <!-- Other scripts -->
-     <script type="text/javascript">
-     $(document).ready(function() { try {
-      Muse.Utils.transformMarkupToFixBrowserProblemsPreInit();/* body */
-      $('.browser_width').toBrowserWidth();/* browser width elements */
-      Muse.Utils.prepHyperlinks(true);/* body */
-      Muse.Utils.fullPage('#page');/* 90% height page */
-      Muse.Utils.showWidgetsWhenReady();/* body */
-      Muse.Utils.transformMarkupToFixBrowserProblems();/* body */
-    } catch(e) { Muse.Assert.fail('Error calling selector function:' + e); }});
-     </script>
-   </body>
-   </html>
+        echo "<a href='inventario/inventario_eliminar.php?id=",$row2[0],"'>Eliminar
+        </a>";
+        echo" </div>";}
+        echo "</td>";
+        echo "<td>";
+        echo "<div id='botn2' style='margin-left:2px; height:15px;  width:80px; background:#333'>";
+        echo "<a href='inventario/inventario_editar_informacion.php?id=",$row2[0],"'>Editar</a>";
+        echo" </div>";
+        echo "</td>";
+        echo "</tr>";
+      }
+    }
+    echo "</table>";
+    if($a==0)
+      print "no hay resultados<br><br>";
+    ?>
+    <a class="nonblock nontext clip_frame colelem" id="u405" href="http://www.webox.org.mx"><!-- image --><img class="block" id="u405_img" src="images/completo7.png" alt="" width="62" height="19"/></a>
+  </div>
+</div>
+<div class="preload_images">
+ <img class="preload" src="images/u372-r.png" alt=""/>
+ <img class="preload" src="images/u376_states-r.png" alt=""/>
+ <img class="preload" src="images/u376_states-a.png" alt=""/>
+ <img class="preload" src="images/u377_states-r.png" alt=""/>
+ <img class="preload" src="images/u377_states-a.png" alt=""/>
+ <img class="preload" src="images/u378_states-r.png" alt=""/>
+ <img class="preload" src="images/u378_states-a.png" alt=""/>
+ <img class="preload" src="images/u480_states-r.png" alt=""/>
+ <img class="preload" src="images/u480_states-a.png" alt=""/>
+ <img class="preload" src="images/u550_states-r.png" alt=""/>
+ <img class="preload" src="images/u550_states-a.png" alt=""/>
+ <img class="preload" src="images/u552_states-r.png" alt=""/>
+ <img class="preload" src="images/u552_states-a.png" alt=""/>
+</div>
+<!-- JS includes -->
+<script type="text/javascript">
+if (document.location.protocol != 'https:') document.write('\x3Cscript src="http://musecdn.businesscatalyst.com/scripts/4.0/jquery-1.8.3.min.js" type="text/javascript">\x3C/script>');
+</script>
+<script type="text/javascript">
+window.jQuery || document.write('\x3Cscript src="scripts/jquery-1.8.3.min.js" type="text/javascript">\x3C/script>');
+</script>
+<script src="scripts/museutils.js?3865766194" type="text/javascript"></script>
+<script src="scripts/jquery.tobrowserwidth.js?3842421675" type="text/javascript"></script>
+<script src="scripts/jquery.watch.js?4068933136" type="text/javascript"></script>
+<!-- Other scripts -->
+<script type="text/javascript">
+$(document).ready(function() { try {
+  Muse.Utils.transformMarkupToFixBrowserProblemsPreInit();/* body */
+  $('.browser_width').toBrowserWidth();/* browser width elements */
+  Muse.Utils.prepHyperlinks(true);/* body */
+  Muse.Utils.fullPage('#page');/* 90% height page */
+  Muse.Utils.showWidgetsWhenReady();/* body */
+  Muse.Utils.transformMarkupToFixBrowserProblems();/* body */
+} catch(e) { Muse.Assert.fail('Error calling selector function:' + e); }});
+</script>
+</body>
+</html>
