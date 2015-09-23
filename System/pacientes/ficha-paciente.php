@@ -100,16 +100,16 @@
     or die('No se pudo conectar: ' . mysql_error());
 mysql_select_db('Endoperio') or die('No se pudo seleccionar la base de datos');
 */
-include('../php/base3.php');
+
 include('../php/base.php');
 $buscar = $_GET['id'];
 ?>
 
 <!--a href="menu.php">Regresar</a-->
 <?php
-    $result2 = mysql_query("select * from paciente where id_paciente='$buscar';");
+    $result2 = $conn->query("select * from paciente where id_paciente='$buscar';");
   echo " <div class='colelem' style='max-width:800px; width:700px'>";
-      while ($row2 = mysql_fetch_array($result2, MYSQL_NUM)) {
+      while ($row2 = $result2->fetch_array()) {
       echo "<h1>Ficha de Paciente <font color='black'> [",$row2[1]," ", $row2[2]," ",$row2[3]," ]</font></h1>";
       if($_SESSION['rol']=='admin' || $_SESSION['rol']=='recepcionista')
       echo "<a href='edit-paciente.php?id= ".$row2[0]."&paciente=".$buscar."'> Editar </a>";

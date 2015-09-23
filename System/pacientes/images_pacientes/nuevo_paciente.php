@@ -27,6 +27,7 @@
 
 <?php
 @session_start();
+error_reporting(E_ALL & ~E_NOTICE);
 $id_usuario = $_SESSION['u'];
   date_default_timezone_set("Mexico/General");
 function edad($fecha_de_nacimiento) {
@@ -35,6 +36,7 @@ function edad($fecha_de_nacimiento) {
     }
     $diferencia_de_fechas = time() - $fecha_de_nacimiento;
     return ($diferencia_de_fechas / (60 * 60 * 24 * 365));
+
 }
 /*$exp = $_POST['expediente'];
 $a = $_POST['nombre'];
@@ -186,17 +188,22 @@ $insertar = "insert into paciente(id_paciente, nombres,
 
 try {
 	$conn->query($insertar);
+
 } catch (Exception $e) {
 	 printf('Error: %s', $e->getMessage());  
 }
 	
-$id_p = $conn->lastInsertId();
+$id_p = $conn->insert_id;
 
 
 $historial = "insert into historial_tabla_pacientes (id_paciente, id_usuario, estado, fecha) values ('$id_p','$id_usuario','Ha agregado al paciente',now())";
-if(!mysql_query($historial, $conexion))
-	die('Error de consulta 5: '.mysql_error());
 
+try {
+	$conn->query($historial);
+	
+} catch (Exception $e) {
+	 printf('Error: %s', $e->getMessage());  
+}
 /****************************************/
 if($imagen!='predeterminado.png'){
 	/*$dbh = mysql_connect('localhost','root','') or die('Error de conexion: ' . mysql_error() );

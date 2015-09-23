@@ -5,6 +5,7 @@
 		//echo'<META HTTP-EQUIV="Refresh" CONTENT="0; URL=index.php">';
 	$usuario = $_SESSION['u'];
 	date_default_timezone_set("Mexico/General");
+  error_reporting(E_ALL & ~E_NOTICE);
   ?>
 
 <!DOCTYPE html>
