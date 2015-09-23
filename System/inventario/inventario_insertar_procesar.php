@@ -21,7 +21,7 @@ include('../php/base.php');
 	//echo $select;
 	//if(!mysql_query($instruccion, $conexion))
 	if(!$conn->query($instruccion))
-		die('Error de consulta: '.mysqli_error());
+		die('Error de consulta: '.mysqli_error($conn));
 	
 	//$resul = mysql_query($sql, $dbh) or die ("problema con la solicitud");
 	//$renglon = mysql_fetch_assoc($resul);
@@ -33,7 +33,7 @@ $total = $d * $pcompra;
 $instruccion2 = "INSERT into inventario_historial_entradas (id_producto,cantidad,total_compra,id_usuario,fecha ) values ('$producto', '$d', '$total', '$usuario', now());";
 //if(!mysql_query($instruccion2, $conexion))
 if(!$conn->query($instruccion2))
-	die('Error de consulta: '.mysqli_error());
+	die('Error de consulta: '.mysqli_error($conn));
 
 $conn->close();
 //mysql_close($conexion);
