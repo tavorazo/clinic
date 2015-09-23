@@ -86,7 +86,7 @@ include("base.php");
 	while ($row_receta = mysql_fetch_array($result3, MYSQL_NUM)) {
 		echo "Fecha de receta: <a href='ver_receta.php?id=",$row_receta[0],"' target='_blank'>", $row_receta[5],"</a><br>";
 		$select = 'select * from Usuarios where id_usuario="'.$row_receta[1].'";';
-		$resul = mysqli_query($conn,) or die ("problema con la solicitud");
+		$resul = mysql_query($select, $dbh) or die ("problema con la solicitud");
 		$renglon = mysql_fetch_assoc($resul);
 		echo "Asignada por: ", $renglon['nombres']," ", $renglon['apellido_paterno'], " ", $renglon['apellido_materno'], "<br><br>";
 	}

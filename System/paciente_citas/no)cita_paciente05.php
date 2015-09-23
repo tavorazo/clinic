@@ -44,9 +44,9 @@
 
 	$insertar = "insert into agenda (id_usuario,id_paciente,ano,mes,dia,hora,minuto, confirmacion, duracion) values ('$doctor','$paciente', '$ano', '$mes_n', '$dia', '$hora', '$minuto', '0', '$duracion');";
 
-	if(!mysqli_query($conn,))
+	if(!mysql_query($insertar, $conexion))
 		die('Error de consulta: '.mysql_error());
-	mysqli_close($conn);
+	mysql_close($conexion);
 
 
 

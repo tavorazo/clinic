@@ -27,7 +27,7 @@
 	$base = mysql_select_db('Endoperio', $dbh) or die('Error de seleccion de base: ' . mysql_error() );*/
 	include('../php/base.php');
 	$select = 'select * from noticias where id_noticia="'.$id.'";';
-	$resul = mysqli_query($conn,) or die ("problema con la solicitud");
+	$resul = mysql_query($select, $dbh) or die ("problema con la solicitud");
 	$renglon = mysql_fetch_assoc($resul);
 	$imagen = $renglon['imagen'];
 	
@@ -36,7 +36,7 @@
 
 		$eliminar = 'delete from noticias where id_noticia="'.$id.'";';
 
-		if(!mysqli_query($conn,))
+		if(!mysql_query($eliminar, $dbh))
 			die('Error de consulta: '.mysql_error());
 
 		echo '<br><br><br><center><img src="../images/endoperio2.png" width="100px" alt=""> <br> ';

@@ -36,7 +36,7 @@
 		$select = 'select * from fotografias_clinicas where id_foto="'.$a.'";';
 
 
-		$resul = mysqli_query($conn,) or die ("problema con la solicitud");
+		$resul = mysql_query($select, $dbh) or die ("problema con la solicitud");
 		$renglon = mysql_fetch_assoc($resul);
 		$ficha = $renglon['id_paciente'];
 
@@ -48,9 +48,9 @@
 
 			$insertar = "update fotografias_clinicas set nombre_foto='$ultimo' where id_foto='$a'";
 
-		if(!mysqli_query($conn,))
+		if(!mysql_query($insertar, $conexion))
 			die('Error de consulta: '.mysql_error());
-		mysqli_close($conn);
+		mysql_close($conexion);
 		$a = '../ficha-paciente.php?id='.$ficha;
 		//header('location: ../ficha-paciente.php?id='.$ficha);
 		echo '<br><br><br><center><img src="../../images/endoperio2.png" width="100px" alt=""> <br> ';

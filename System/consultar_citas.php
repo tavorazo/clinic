@@ -31,7 +31,7 @@
 			include('php/base3.php');
 				
 				$select3 = 'select * from usuarios where id_usuario="'.$doctor.'";';
-				$resul3 = mysqli_query($conn,) or die ("problema con la solicitud 1");
+				$resul3 = mysql_query($select3, $dbh) or die ("problema con la solicitud 1");
 
 				$renglon3 = mysql_fetch_assoc($resul3);
 				$rol = $renglon3['rol'];	
@@ -125,8 +125,8 @@
 					   while ($row2 = mysql_fetch_array($result2, MYSQL_NUM)) {
 					 	  	$select2 = 'select * from usuarios where id_usuario="'.$row2[1].'";';
 							$select = 'select * from paciente where id_paciente="'.$row2[2].'";';
-							$resul = mysqli_query($conn,) or die ("problema con la solicitud 2");
-							$resul2 = mysqli_query($conn,) or die ("problema con la solicitud 3");
+							$resul = mysql_query($select, $dbh) or die ("problema con la solicitud 2");
+							$resul2 = mysql_query($select2, $dbh) or die ("problema con la solicitud 3");
 							$renglon = mysql_fetch_assoc($resul);
 							$renglon2 = mysql_fetch_assoc($resul2);
 								
@@ -185,7 +185,7 @@
 					   while ($row2 = mysql_fetch_array($result2, MYSQL_NUM)) {
   						
 						$select = 'select * from paciente where id_paciente="'.$row2[2].'";';
-						$resul = mysqli_query($conn,) or die ("problema con la solicitud 4");
+						$resul = mysql_query($select, $dbh) or die ("problema con la solicitud 4");
 						$renglon = mysql_fetch_assoc($resul);
 												
   						echo "<tr><td>";

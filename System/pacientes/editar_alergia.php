@@ -62,7 +62,7 @@
         echo " <h1><a href='ficha-paciente.php?id=",$id,"' style='float:left; margin-right:4px'> < Regresar   |</a>";
 
 		$select = 'select * from paciente where id_paciente="'.$id.'";';
-		$resul = mysqli_query($conn,) or die ("problema con la solicitud");
+		$resul = mysql_query($select, $dbh) or die ("problema con la solicitud");
 		$renglon = mysql_fetch_assoc($resul);
 	?>
 

@@ -68,7 +68,7 @@
 
       if($cat == '1'){
       $select = 'select * from fotografias_clinicas where id_foto="'.$id.'";';
-      $resul = mysqli_query($conn,) or die ("problema con la solicitud");
+      $resul = mysql_query($select, $dbh) or die ("problema con la solicitud");
       $renglon = mysql_fetch_assoc($resul);
       $imagen = $renglon['nombre_foto'];
 
@@ -84,7 +84,7 @@
 
       if($cat == '2'){
       $select = 'select * from fotografias_externas where id_foto="'.$id.'";';
-      $resul = mysqli_query($conn,) or die ("problema con la solicitud");
+      $resul = mysql_query($select, $dbh) or die ("problema con la solicitud");
       $renglon = mysql_fetch_assoc($resul);
       $imagen = $renglon['nombre_foto'];
 
@@ -99,7 +99,7 @@
 
       if($cat == '3'){
       $select = 'select * from radiografias where id_foto="'.$id.'";';
-      $resul = mysqli_query($conn,) or die ("problema con la solicitud");
+      $resul = mysql_query($select, $dbh) or die ("problema con la solicitud");
       $renglon = mysql_fetch_assoc($resul);
       $imagen = $renglon['nombre_foto'];
 
@@ -114,7 +114,7 @@
 
       if($cat == '4'){
       $select = 'select * from enfermedades where id_enfermedad="'.$id.'";';
-      $resul = mysqli_query($conn,) or die ("problema con la solicitud");
+      $resul = mysql_query($select, $dbh) or die ("problema con la solicitud");
       $renglon = mysql_fetch_assoc($resul);
 
 

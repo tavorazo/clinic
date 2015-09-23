@@ -1,0 +1,8 @@
+label{
+	width:200px;
+	float:left;
+	margin-left:15px
+}
+#table{
+	width:50%; height:220px; float:left; margin-left:-5%;
+}

@@ -36,7 +36,7 @@
 		include('php/base2.php');
 
 	    $select = 'select * from curriculum where id_usuario="'.$id.'";';
-		$resul = mysqli_query($conn,) or die ("problema con la solicitud");
+		$resul = mysql_query($select, $dbh) or die ("problema con la solicitud");
 		$renglon = mysql_fetch_assoc($resul);
 			echo "<hr><h19><br>",nl2br($renglon['descripcion']),"</h19><br><hr>";
 	    ?>

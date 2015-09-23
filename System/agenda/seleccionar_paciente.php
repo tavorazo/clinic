@@ -3,8 +3,8 @@
 	if($_SESSION['u']=='')
 		header('location: ../index.php');
 		//echo'<META HTTP-EQUIV="Refresh" CONTENT="0; URL=index.php">';
-	$usuario = $_SESSION['u'];
-?>
+	$usuario = $_SESSION['u'];  
+  ?>
 <!DOCTYPE html>
 <html class="html">
  <head><meta http-equiv="Content-Type" content="text/html; charset=gb18030">

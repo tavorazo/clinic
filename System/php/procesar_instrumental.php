@@ -27,7 +27,7 @@
 		date_default_timezone_set("Mexico/General");
 		
 		include("base.php");
-		
+		include("base3.php");
 		
 		$id_usuario = $_SESSION['u'];
 		$comprador = $_POST['usuario'];
@@ -40,11 +40,11 @@
 
 				$insertar2 = "insert into historial_instrumental (id_usuario, id_comprador, diplomado_descripcion, precio, tipo_pago, descripcion_pago, fecha, semana, y) values ('$id_usuario', '$comprador', '$diplomado', '$precio', '$tipo_pago', '$descripcion_pago', now(),'$s','$y')";
 
-				if(!mysqli_query($conn,))
+				if(!mysql_query($insertar2, $conexion))
 					die('Error de consulta: '.mysql_error());
 
 				$recibo = "insert into recibos (cantidad, descripcion, total, fecha, comprador, vendedor) values ('1','$diplomado','$precio',now(),'$comprador','$id_usuario')";
-				if(!mysqli_query($conn,))
+				if(!mysql_query($recibo, $conexion))
 					die('Error de consulta: '.mysql_error());
 				$id_recibo = mysql_insert_id();
 					//echo " realizada con éxito";
@@ -57,7 +57,7 @@
 			
 				//echo'<META HTTP-EQUIV="Refresh" CONTENT="1; URL=../panel.php">';
 
-				mysqli_close($conn);
+				mysql_close($conexion);
 	?>
 	</body>
 </html>

@@ -375,7 +375,7 @@ setlocale(LC_MONETARY, 'en_US');
 
             $paciente = $fila_pagos2[2];
             $select = 'select * from paciente where id_paciente="'.$paciente.'";';
-            $resul = mysqli_query($conn,) or die ("problema con la solicitud");
+            $resul = mysql_query($select, $dbh) or die ("problema con la solicitud");
             $renglon = mysql_fetch_assoc($resul);
             echo "<td>".$renglon['nombres']." ".$renglon['apellido_paterno']." ".$renglon['apellido_materno']."</td>";
 
@@ -413,7 +413,7 @@ $fecha = $ano."-".$mes;
 
             $paciente = $fila_pagos2[1];
             $select = 'select * from paciente where id_paciente="'.$paciente.'";';
-            $resul = mysqli_query($conn,) or die ("problema con la solicitud");
+            $resul = mysql_query($select, $dbh) or die ("problema con la solicitud");
             $renglon = mysql_fetch_assoc($resul);
             if($renglon['nombres']!='')
             echo "<td>".$renglon['nombres']." ".$renglon['apellido_paterno']." ".$renglon['apellido_materno']."</td>";
@@ -422,7 +422,7 @@ $fecha = $ano."-".$mes;
 
             $producto = $fila_pagos2[3];
             $select = 'select * from inventario where id_producto="'.$producto.'";';
-            $resul = mysqli_query($conn,) or die ("problema con la solicitud");
+            $resul = mysql_query($select, $dbh) or die ("problema con la solicitud");
             $renglon = mysql_fetch_assoc($resul);
             echo "<td>",$renglon['nombre'],"</td>";
             $total = $total + $fila_pagos2[6];
@@ -451,11 +451,11 @@ $result_pagos = mysql_query("select * from historial_diplomados where fecha like
       echo "<td>",$fila_pagos[7],"</td>";
       $usuario = $fila_pagos[2];
             $select = 'select * from paciente where id_paciente="'.$usuario.'";';
-            $resul = mysqli_query($conn,) or die ("problema con la solicitud");
+            $resul = mysql_query($select, $dbh) or die ("problema con la solicitud");
             $renglon = mysql_fetch_assoc($resul);
             if($renglon['nombres']==''){
               $select = 'select * from usuarios where id_usuario="'.$usuario.'";';
-              $resul = mysqli_query($conn,) or die ("problema con la solicitud");
+              $resul = mysql_query($select, $dbh) or die ("problema con la solicitud");
               $renglon = mysql_fetch_assoc($resul);
             }
       echo "<td>".$renglon['nombres']." ".$renglon['apellido_paterno']." ".$renglon['apellido_materno']."</td>";
@@ -487,11 +487,11 @@ $result_pagos = mysql_query("select * from historial_instrumental where fecha li
       echo "<td>",$fila_pagos[7],"</td>";
       $usuario = $fila_pagos[2];
             $select = 'select * from paciente where id_paciente="'.$usuario.'";';
-            $resul = mysqli_query($conn,) or die ("problema con la solicitud");
+            $resul = mysql_query($select, $dbh) or die ("problema con la solicitud");
             $renglon = mysql_fetch_assoc($resul);
             if($renglon['nombres']==''){
               $select = 'select * from usuarios where id_usuario="'.$usuario.'";';
-              $resul = mysqli_query($conn,) or die ("problema con la solicitud");
+              $resul = mysql_query($select, $dbh) or die ("problema con la solicitud");
               $renglon = mysql_fetch_assoc($resul);
             }
       echo "<td>".$renglon['nombres']." ".$renglon['apellido_paterno']." ".$renglon['apellido_materno']."</td>";

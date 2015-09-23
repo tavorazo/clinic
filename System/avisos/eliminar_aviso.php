@@ -27,13 +27,13 @@
 include('../php/base.php');
 include('../php/base3.php');
 	$select = 'select * from avisos where id_aviso="'.$id.'";';
-	$resul = mysqli_query($conn,) or die ("problema con la solicitud");
+	$resul = mysql_query($select, $dbh) or die ("problema con la solicitud");
 	$renglon = mysql_fetch_assoc($resul);
 		$eliminar = 'delete from avisos where id_aviso="'.$id.'";';
 
-		if(!mysqli_query($conn,))
+		if(!mysql_query($eliminar, $dbh))
 			die('Error de consulta: '.mysql_error());
-		mysqli_close($conn);
+		mysql_close($conexion);
 
 		echo '<br><br><br><center><img src="../images/endoperio2.png" width="100px" alt=""> <br> ';
 		echo "Proceso realizado con exito<br><br><br>";

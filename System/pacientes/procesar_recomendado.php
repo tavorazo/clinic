@@ -9,9 +9,9 @@
 	$recomendador = $_POST['recomendador'];
 
 	$update = "update paciente set recomendado_por = '$recomendador' where id_paciente = '$id_paciente'";
-		if(!mysqli_query($conn,))
+		if(!mysql_query($update, $conexion))
 			die('Error de consulta: '.mysql_error());
-	mysqli_close($conn);
+	mysql_close($conexion);
 
 
 

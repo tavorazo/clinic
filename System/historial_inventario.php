@@ -51,13 +51,13 @@ if (mysql_num_rows($result)> 0) {
 					
 					$select = 'select * from usuarios where id_usuario="'.$u.'";';
 					
-					$resul = mysqli_query($conn,) or die ("problema con la solicitud");
+					$resul = mysql_query($select, $dbh) or die ("problema con la solicitud");
 					$renglon = mysql_fetch_assoc($resul);
 
 					echo "<td>",$renglon['nombres']," ",$renglon['apellido_paterno']," ",$renglon['apellido_materno'],"</td>";
 
 					$select = 'select * from inventario where id_producto="'.$p.'";';
-					$resul = mysqli_query($conn,) or die ("problema con la solicitud");
+					$resul = mysql_query($select, $dbh) or die ("problema con la solicitud");
 					$renglon = mysql_fetch_assoc($resul);
 
 					echo "<td>",$renglon['nombre'],"</td>";

@@ -121,12 +121,12 @@ session_start();
   include('../php/base2.php');
 
           $select = 'select * from publicidad where lugar="2";';
-          $resul = mysqli_query($conn,) or die ("problema con la solicitud");
+          $resul = mysql_query($select, $dbh) or die ("problema con la solicitud");
           $renglon = mysql_fetch_assoc($resul);
 
           echo "<img src='../publicidad/images/".$renglon['imagen']."' width='900px'>";
 
-          mysqli_close($conn);
+          mysql_close($conexion);
 ?>
       </div>
 

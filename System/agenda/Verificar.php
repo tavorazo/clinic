@@ -4,7 +4,7 @@
 		header('location: ../index.php');
 		//echo'<META HTTP-EQUIV="Refresh" CONTENT="0; URL=index.php">';
 	$usuario = $_SESSION['u'];
-?>
+  ?>
 <!DOCTYPE html>
 <html class="html">
  <head>
@@ -81,8 +81,9 @@ echo '<a class="nonblock nontext grpelem" id="u552" href="../contabilidad.php"><
 mysql_select_db('Endoperio') or die('No se pudo seleccionar la base de datos');
 */
 include('../php/base.php');
+/*
 include('../php/base3.php');
-include('../php/base2.php');
+include('../php/base2.php');*/
 //$result3 = mysql_query("select * from Usuarios where rol='dentista';");
 $show = 1;
 ?>
@@ -104,10 +105,9 @@ $minuto2=$minuto;
 $hora2=$hora;
 
 $contador = 0;
-
-  $result2 = mysql_query("select * from agenda where dia='$dia' and mes='$mes_n' and ano='$ano' and hora='$hora' and minuto='$minuto' and id_usuario='$doctor';");
-
-  while ($row3 = mysql_fetch_array($result2, MYSQL_NUM)){
+  $result = $conn->query("select * from agenda where dia='$dia' and mes='$mes_n' and ano='$ano' and hora='$hora' and minuto='$minuto' and id_usuario='$doctor';");
+  
+  while($row = $result->fetch_assoc()){
     $contador = 1;
   }
 
@@ -125,9 +125,10 @@ $a = 1;
       $minuto2 = '00';
       $hora2++;
     }
-    $result_tiempos = mysql_query("select * from agenda where dia='$dia' and mes='$mes_n' and ano='$ano' and hora='$hora2' and minuto='$minuto2' and id_usuario='$doctor';");
 
-    while($fila = mysql_fetch_array($result_tiempos, MYSQL_NUM)){
+    $result_tiempos = $conn->query("select * from agenda where dia='$dia' and mes='$mes_n' and ano='$ano' and hora='$hora2' and minuto='$minuto2' and id_usuario='$doctor';");
+
+    while($fila = $result_tiempos->fetch_assoc()){
       $espacio=0;
     }
     if($espacio == 1)
