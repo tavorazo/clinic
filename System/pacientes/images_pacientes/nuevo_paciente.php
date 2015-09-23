@@ -114,11 +114,15 @@ if (!$conexion_base) {
 	echo "Error en la conexi贸n 2";
 }	*/
 include('../../php/base.php');
-include('../../php/base3.php');
 
 	$select = 'select * from paciente order by id_paciente desc limit 1;';
-	$resul = mysql_query($select, $dbh) or die ("problema con la solicitud");
-	$renglon = mysql_fetch_assoc($resul);
+	try {
+		$result = $conn->query($select);	
+	} catch (Exception $e) {
+		 printf('Error: %s', $e->getMessage());  
+	}
+	
+	$renglon = $result->fetch_assoc();
 	
 	$ultimo_registro = $renglon['id_paciente'];
 	
@@ -179,9 +183,13 @@ $insertar = "insert into paciente(id_paciente, nombres,
 //$insertar = "insert into paciente (nombres,apellido_paterno, apellido_materno, fecha_nacimiento, edad, estado, ciudad, colonia, calle, numero, telefono, celular, referencia, CP, sexo, n_registro) values ('$a','$b','$c','$fecha_nac','$edad','$d','$e','$f','$g','$h', '$i', '$j', '$k', '$cp', '$sexo', '$exp')";
 
 
-if(!mysql_query($insertar, $conexion))
-	die('Error de consulta 3: '.mysql_error());
-$id_p = mysql_insert_id();
+try {
+	$conn->query($insertar);
+} catch (Exception $e) {
+	 printf('Error: %s', $e->getMessage());  
+}
+	
+$id_p = $conn->lastInsertId();
 
 
 $historial = "insert into historial_tabla_pacientes (id_paciente, id_usuario, estado, fecha) values ('$id_p','$id_usuario','Ha agregado al paciente',now())";
