@@ -23,12 +23,10 @@
 		include('../base.php');
 		setlocale(LC_MONETARY, 'en_US');
 		//$result = mysql_query("select * from tratamiento_dental");
+		$i = 0;
 
 		$sql = "SELECT * FROM tratamiento_dental";
     	$result = $conn->query($sql);
-		
-
-		$i = 0;
 		while ($tratamiento = $result->fetch_assoc()) {
 			if ($i%2 == 0) 
 				$bg= "#fff";
