@@ -1,4 +1,5 @@
 <?php
+
 @session_start();
 if($_SESSION['u']=='')
   header('location: ../index.php');
@@ -68,78 +69,7 @@ if($_SESSION['rol']=='admin')
 <div class="verticalspacer"></div>
 <br><br><br>
 <div style="margin-left:10%; background:#FFFDFD; padding:18px " >
-<<<<<<< HEAD
-    <a href="../agenda.php" style="float:left;margin-left:10px; color:#A4A4A4" title='Regresar'></a><h3 style="margin-left:20px">Elige la fecha</h3>
 
-<?php 
-$mes = $_GET["mes"];
-$ano = $_GET["ano"];
-$tipo_semana = 1;
-$tipo_mes = 1;
-
-$doctor = $_POST['doctor'];
-if($doctor=='')
-  $doctor = $_GET['doctor'];
-
-$MESCOMPLETO[1] = 'Enero';
-$MESCOMPLETO[2] = 'Febrero';
-$MESCOMPLETO[3] = 'Marzo';
-$MESCOMPLETO[4] = 'Abril';
-$MESCOMPLETO[5] = 'Mayo';
-$MESCOMPLETO[6] = 'Junio';
-$MESCOMPLETO[7] = 'Julio';
-$MESCOMPLETO[8] = 'Agosto';
-$MESCOMPLETO[9] = 'Septiembre';
-$MESCOMPLETO[10] = 'Octubre';
-$MESCOMPLETO[11] = 'Noviembre';
-$MESCOMPLETO[12] = 'Diciembre';
-
-$MESABREVIADO[1] = 'Ene';
-$MESABREVIADO[2] = 'Feb';
-$MESABREVIADO[3] = 'Mar';
-$MESABREVIADO[4] = 'Abr';
-$MESABREVIADO[5] = 'May';
-$MESABREVIADO[6] = 'Jun';
-$MESABREVIADO[7] = 'Jul';
-$MESABREVIADO[8] = 'Ago';
-$MESABREVIADO[9] = 'Sep';
-$MESABREVIADO[10] = 'Oct';
-$MESABREVIADO[11] = 'Nov';
-$MESABREVIADO[12] = 'Dic';
-
-$SEMANACOMPLETA[0] = 'Domingo';
-$SEMANACOMPLETA[1] = 'Lunes';
-$SEMANACOMPLETA[2] = 'Martes';
-$SEMANACOMPLETA[3] = 'Miércoles';
-$SEMANACOMPLETA[4] = 'Jueves';
-$SEMANACOMPLETA[5] = 'Viernes';
-$SEMANACOMPLETA[6] = 'Sábado';
-
-$SEMANAABREVIADA[0] = 'Dom';
-$SEMANAABREVIADA[1] = 'Lun';
-$SEMANAABREVIADA[2] = 'Mar';
-$SEMANAABREVIADA[3] = 'Mie';
-$SEMANAABREVIADA[4] = 'Jue';
-$SEMANAABREVIADA[5] = 'Vie';
-$SEMANAABREVIADA[6] = 'Sáb';
-
-////////////////////////////////////
-if($tipo_semana == 1){
-$ARRDIASSEMANA = $SEMANACOMPLETA;
-}elseif($tipo_semana == 0){
-$ARRDIASSEMANA = $SEMANAABREVIADA;
-}
-if($tipo_mes == 0){
-$ARRMES = $MESCOMPLETO;
-}elseif($tipo_mes == 1){
-$ARRMES = $MESABREVIADO;
-}
-
-if(!$dia) $dia = date(d);
-if(!$mes) $mes = date(n);
-if(!$ano) $ano = date(Y);
-
-=======
   <a href="../agenda.php" style="float:left;margin-left:10px; color:#A4A4A4" title='Regresar'><<<</a><h3 style="margin-left:20px">Elige la fecha</h3>
   <?php 
   $mes = isset($_GET['mes']) ? $_GET['mes'] : ''; 
@@ -201,7 +131,7 @@ if($tipo_mes == 0){
 if(!$dia) $dia = date(d);
 if(!$mes) $mes = date(n);
 if(!$ano) $ano = date(Y);
->>>>>>> 758a59467d6aa6bcb52ce011510f734e6c926a65
+
 $TotalDiasMes = date(t,mktime(0,0,0,$mes,$dia,$ano));
 $DiaSemanaEmpiezaMes = date(w,mktime(0,0,0,$mes,1,$ano));
 $DiaSemanaTerminaMes = date(w,mktime(0,0,0,$mes,$TotalDiasMes,$ano));
