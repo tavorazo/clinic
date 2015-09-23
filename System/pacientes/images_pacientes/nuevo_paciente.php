@@ -117,6 +117,7 @@ include('../../php/base.php');
 
 	$select = 'select * from paciente order by id_paciente desc limit 1;';
 	try {
+
 		$result = $conn->query($select);	
 	} catch (Exception $e) {
 		 printf('Error: %s', $e->getMessage());  
