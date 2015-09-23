@@ -73,6 +73,7 @@ if($_SESSION['rol']=='admin' || $_SESSION['rol']=='secretaria')
 <?php
 /*if($_SESSION['rol']=='admin' || $_SESSION['rol']=='secretaria' || $_SESSION['rol']=='recepcionista' || $_SESSION['rol']=='almacen'){*/
 if($_SESSION['rol']=='admin' || $_SESSION['rol']=='almacen'){
+
     echo '<div style="background: #FFFFFF; width:96%; min-height: 90px; margin-bottom:3%; " id="txt2">
     <img src="images/alert.png" width="20px" alt="" style="float:left; margin-right:10px">
     <p>Inventario:</p> ';
@@ -86,13 +87,14 @@ if($_SESSION['rol']=='admin' || $_SESSION['rol']=='almacen'){
        echo "<br>Canditad de existencia en el inventario: ", $row2["cantidad"];
        echo "</div>
        <div id='botn3' style='margin-left:80%; width:100px; background: #FFFFFF; border:1px solid #848484;'>
-       <a href='inventario/inventario_editar.php?id=",$row2["id"],"'>Abastecer</a></div>";
+       <a href='inventario/inventario_editar.php?id=",$row2["id_producto"],"'>Abastecer</a></div>";
      }
   } 
 } 
 else
   print "error en consulta inventario\n";
 echo ' </div>';
+
 }
 ?>
 <div>
