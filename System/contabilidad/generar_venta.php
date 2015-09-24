@@ -30,7 +30,7 @@
 	
 	$select = "SELECT * from inventario where id_producto='".$producto."';";
 	$resul	= $conn->query($select);
-	$renglon = $result->fetch_assoc();
+	$renglon = $resul->fetch_assoc();
 	//$resul	= mysql_query($select, $dbh) or die ("problema con la solicitud");
 	//$renglon = mysql_fetch_assoc($resul);
 	
@@ -51,11 +51,11 @@
 			die('Error de consulta: '.mysqli_error($conn));
 		
 		//if(!mysql_query($insertar2, $conexion))
-		if(!$conn->query($actualizar))
+		if(!$conn->query($insertar2))
 			die('Error de consulta: '.mysqli_error($conn));
 		
 		//if(!mysql_query($insertar, $conexion))
-		if(!$conn->query($actualizar))
+		if(!$conn->query($insertar))
 			die('Error de consulta: '.mysqli_error($conn));
 		else{
 					//echo $paciente;
