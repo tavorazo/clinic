@@ -92,17 +92,42 @@ if($_SESSION['rol']=='admin')
           
 <?php
   include('php/base.php');
-  $result= $conn->query('');
-  if(!isset($_POST['id'])){
-    if(isset($_POST['b_paciente'])){
-      echo isset($_POST['b_paciente']);
-      $buscar = $_POST['b_paciente'];
-      $result = $conn->query("select * from paciente where nombres like ".$_POST['b_paciente']." or apellido_paterno like ".$_POST['b_paciente']." or apellido_materno like ".$_POST['b_paciente']." or id_paciente like ".$_POST['b_paciente']." or n_registro like ".$_POST['b_paciente']."  LIMIT 10;");
+  $idPacinete = $_POST["id"];
+  $paciente = $_POST["b_paciente"];
+  echo $paciente;
+  echo $paciente==""?"sip":"nop";
+  echo $idPacinete;
+  echo $idPacinete==""?"sip":"nop";
+  if ($paciente==""&&$id="") {
+    echo "empty";
+    $sql="SELECT * from paciente LIMIT 10;";
+  } else if(!$paciente=="") {
+    echo "paciente : "; echo $paciente;
+     $sql="SELECT * from paciente where nombres like ".$_POST['b_paciente']." or apellido_paterno like ".$_POST['b_paciente']." or apellido_materno like ".$_POST['b_paciente']." or id_paciente like ".$_POST['b_paciente']." or n_registro like ".$_POST['b_paciente']."  LIMIT 10;";
+  }else{
+    echo "id";
+    $sql="SELECT * from paciente where  id_paciente = '" . $id_paciente . "'  LIMIT 10;";
+  }
+  /*
+  if ($_POST['id'] && $_POST['b_paciente']) {
+    if($_POST['b_paciente']){
+      echo "name";
+      $sql="SELECT * from paciente where nombres like ".$_POST['b_paciente']." or apellido_paterno like ".$_POST['b_paciente']." or apellido_materno like ".$_POST['b_paciente']." or id_paciente like ".$_POST['b_paciente']." or n_registro like ".$_POST['b_paciente']."  LIMIT 10;";
+    }else{
+      echo "empty";
+      $sql="SELECT * from paciente LIMIT 10;";
     }
+  }else{
+    echo "id";
+    $sql="SELECT * from paciente where  id_paciente = '%$id%'  LIMIT 10;";
   }
-  else{
-      $result = $conn->query("select * from paciente where  id_paciente like '%$id%'  LIMIT 10;");
+  */
+  try {
+    $result = $conn->query($sql);
+  } catch (Exception $e) {
+    print "Error!: " . $e->getMessage() ; 
   }
+ 
 
   while ($row = $result->fetch_array() ) {
 
