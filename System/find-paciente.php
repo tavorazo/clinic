@@ -96,8 +96,8 @@ if($_SESSION['rol']=='admin')
   $paciente = $_POST["b_paciente"];
   echo $paciente;
   echo $paciente==""?"sip":"nop";
-  echo $idPacinete;
-  echo $idPacinete==""?"sip":"nop";
+  echo $id_pacinete;
+  echo $id_pacinete==""?"sip":"nop";
   if ($paciente==""&&$id="") {
     echo "empty";
     $sql="SELECT * from paciente LIMIT 10;";
@@ -105,7 +105,7 @@ if($_SESSION['rol']=='admin')
     echo "paciente : "; echo $paciente;
      $sql="SELECT * from paciente where nombres like ".$_POST['b_paciente']." or apellido_paterno like ".$_POST['b_paciente']." or apellido_materno like ".$_POST['b_paciente']." or id_paciente like ".$_POST['b_paciente']." or n_registro like ".$_POST['b_paciente']."  LIMIT 10;";
   }else{
-    echo "id";
+    echo "id : "; echo $id_paciente;
     $sql="SELECT * from paciente where  id_paciente = '" . $id_paciente . "'  LIMIT 10;";
   }
   /*
