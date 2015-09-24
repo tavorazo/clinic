@@ -142,7 +142,7 @@ date_default_timezone_set("Mexico/General");
  if($_SESSION['rol']=='admin'){
   echo '
   <a class="nonblock nontext grpelem" id="u552" href="../contabilidad.php"><!-- state-based BG images --><img id="u552_states" alt="Contabilidad" src="../images/blank.gif"/></a>';
-  }
+}
 ?>
 </div>
 <div class="clearfix colelem" id="pu1078-4"><!-- group -->
@@ -284,188 +284,181 @@ date_default_timezone_set("Mexico/General");
     if($contador_dia==7)  $contador_dia=0;
     //print $SEMANAABREVIADA[$contador_dia];
   }
-print "<tr><td align=center colspan=10></a></td></tr>";
-print "</table>";
-include("php/base.php");
+  print "<tr><td align=center colspan=10></a></td></tr>";
+  print "</table>";
+  include("php/base.php");
 //include("php/base2.php");
 //include("php/base3.php");
-$dia_seleccionable = $_GET['dia'];
+  $dia_seleccionable = $_GET['dia'];
     //print "$dia_seleccionable $mes $ano";
-if($dia_seleccionable==1) $dia_seleccionable='01';
-if($dia_seleccionable==2)  $dia_seleccionable='02';
-if($dia_seleccionable==3) $dia_seleccionable='03';     
-if($dia_seleccionable==4) $dia_seleccionable='04';   
-if($dia_seleccionable==5) $dia_seleccionable='05';   
-if($dia_seleccionable==6) $dia_seleccionable='06';                     
-if($dia_seleccionable==7) $dia_seleccionable='07';   
-if($dia_seleccionable==8) $dia_seleccionable='08';   
-if($dia_seleccionable==9) $dia_seleccionable='09'; 
-if($mes2==1) $mes2='01';
-if($mes2==2) $mes2='02';
-if($mes2==3) $mes2='03';      
-if($mes2==4) $mes2='04';   
-if($mes2==5) $mes2='05';   
-if($mes2==6) $mes2='06';                    
-if($mes2==7) $mes2='07';   
-if($mes2==8) $mes2='08';   
-if($mes2==9) $mes2='09'; 
-$fechab = $ano."-".$mes2."-".$dia_seleccionable;
-if($mes2=='') $fechab = $ano;
-
-echo "<div style='width:730px; background: #F2F2F2; min-height:130px; margin-left:-20px; position: absolute; padding:20px; margin-bottom:40px'>
-<center>
-<label>";
-if($mes2!='') echo " Historial de  ", $dia_seleccionable," de ",$MESCOMPLETO[$mes]," del ",$ano ,"</label><br><br>";
-else          echo "Historial del año: ",$ano ," </label><br><br>";
-
-echo "<br> <a href='?ano=",$ano,"&S=0'> <div id='botnH' style=''> Ver historial de este año </div> </a>";  
-echo "<a href='?mes=",$mes,"&S=0'> <div id='botnH' style='width:170px'> Ver historial de este mes </div> </a>";
-
-$semana = date(W);
-$ano_s = $ano;
-$S = $_GET['S'];
-$semana_b = $_GET['semana_b'];
-$semana_anterior = $semana_b-1;
-$semana_siguiente = $semana_b+1;
-if($semana_anterior=='-1'){
-  $semana_anterior = 51;
-  $ano_s = $ano-1;
-}
-if($semana_siguiente=='51'){
-  $semana_siguiente = 0;
-  $ano_s = $ano+1;
-}
-
-echo "<a href='?semana_b=",$semana,"&ano=",$ano,"&S=1'> <div id='botnH' style=''> Ver hist. por semana </div> </a><br><br><br>";
-if($S == 1){
-  echo "<a href='?semana_b=",$semana_anterior,"&ano=",$ano_s,"&S=1'>  <div id='botnH' style='margin-left:180px; border:0px #888 solid; width:140px; border-top-left-radius:30px; border-bottom-left-radius:30px;'>  semana anterior  </div></a>";
-  echo "<a href='?semana_b=",$semana_siguiente,"&ano=",$ano_s,"&S=1'> <div id='botnH' style='border:0px #888 solid; width:140px; border-top-right-radius:30px; border-bottom-right-radius:30px;'> semana siguiente </div> </a><br><br><br>";
-}
-
-if($semana_b=='') $result2 = $conn->query("SELECT * from pago_adeudo where fecha like '%$fechab%'");
+  if($dia_seleccionable==1) $dia_seleccionable='01';
+  if($dia_seleccionable==2)  $dia_seleccionable='02';
+  if($dia_seleccionable==3) $dia_seleccionable='03';     
+  if($dia_seleccionable==4) $dia_seleccionable='04';   
+  if($dia_seleccionable==5) $dia_seleccionable='05';   
+  if($dia_seleccionable==6) $dia_seleccionable='06';                     
+  if($dia_seleccionable==7) $dia_seleccionable='07';   
+  if($dia_seleccionable==8) $dia_seleccionable='08';   
+  if($dia_seleccionable==9) $dia_seleccionable='09'; 
+  if($mes2==1) $mes2='01';
+  if($mes2==2) $mes2='02';
+  if($mes2==3) $mes2='03';      
+  if($mes2==4) $mes2='04';   
+  if($mes2==5) $mes2='05';   
+  if($mes2==6) $mes2='06';                    
+  if($mes2==7) $mes2='07';   
+  if($mes2==8) $mes2='08';   
+  if($mes2==9) $mes2='09'; 
+  $fechab = $ano."-".$mes2."-".$dia_seleccionable;
+  if($mes2=='') $fechab = $ano;
+  echo "<div style='width:730px; background: #F2F2F2; min-height:130px; margin-left:-20px; position: absolute; padding:20px; margin-bottom:40px'>
+  <center>
+  <label>";
+  if($mes2!='') echo " Historial de  ", $dia_seleccionable," de ",$MESCOMPLETO[$mes]," del ",$ano ,"</label><br><br>";
+  else          echo "Historial del año: ",$ano ," </label><br><br>";
+  echo "<br> <a href='?ano=",$ano,"&S=0'> <div id='botnH' style=''> Ver historial de este año </div> </a>";  
+  echo "<a href='?mes=",$mes,"&S=0'> <div id='botnH' style='width:170px'> Ver historial de este mes </div> </a>";
+  $semana = date(W);
+  $ano_s = $ano;
+  $S = $_GET['S'];
+  $semana_b = $_GET['semana_b'];
+  $semana_anterior = $semana_b-1;
+  $semana_siguiente = $semana_b+1;
+  if($semana_anterior=='-1'){
+    $semana_anterior = 51;
+    $ano_s = $ano-1;
+  }
+  if($semana_siguiente=='51'){
+    $semana_siguiente = 0;
+    $ano_s = $ano+1;
+  }
+  echo "<a href='?semana_b=",$semana,"&ano=",$ano,"&S=1'> <div id='botnH' style=''> Ver hist. por semana </div> </a><br><br><br>";
+  if($S == 1){
+    echo "<a href='?semana_b=",$semana_anterior,"&ano=",$ano_s,"&S=1'>  <div id='botnH' style='margin-left:180px; border:0px #888 solid; width:140px; border-top-left-radius:30px; border-bottom-left-radius:30px;'>  semana anterior  </div></a>";
+    echo "<a href='?semana_b=",$semana_siguiente,"&ano=",$ano_s,"&S=1'> <div id='botnH' style='border:0px #888 solid; width:140px; border-top-right-radius:30px; border-bottom-right-radius:30px;'> semana siguiente </div> </a><br><br><br>";
+  }
+  if($semana_b=='') $result2 = $conn->query("SELECT * from pago_adeudo where fecha like '%$fechab%'");
   //$result2 = mysql_query("select * from pago_adeudo where fecha like '%$fechab%'");
-else              $result2 = $conn->query("SELECT * from pago_adeudo");
+  else              $result2 = $conn->query("SELECT * from pago_adeudo");
   //$result2 = mysql_query("select * from pago_adeudo");
   //
-echo "<table border=1 style='margin-top:100px; '>
-<tr> <td style='color:#58ACFA'>No. </td> <td style='color:#58ACFA'>Generado por  </td> <td style='color:#58ACFA'>Paciente    </td> <td style='color:#58ACFA'>Descripción   </td> <td style='color:#58ACFA'>Costo       </td> <td style='color:#58ACFA'>Pagado      </td> <td style='color:#58ACFA'>Saldo      </td> <td style='color:#58ACFA'>Detalles   </td> </tr>";
-
+  echo "<table border=1 style='margin-top:100px; '>
+  <tr> <td style='color:#58ACFA'>No. </td> <td style='color:#58ACFA'>Generado por  </td> <td style='color:#58ACFA'>Paciente    </td> <td style='color:#58ACFA'>Descripción   </td> <td style='color:#58ACFA'>Costo       </td> <td style='color:#58ACFA'>Pagado      </td> <td style='color:#58ACFA'>Saldo      </td> <td style='color:#58ACFA'>Detalles   </td> </tr>";
 //while ($dato_pagos = mysql_fetch_array($result2, MYSQL_NUM)){
-while ($dato_pagos = $result2->fetch_row()) {
-  if($semana_b==''){
-    echo "<tr>";
-    echo "<td>",$dato_pagos[0],"</td>";
-    $usuario = $dato_pagos[6];
+  while ($dato_pagos = $result2->fetch_row()) {
+    if($semana_b==''){
+      echo "<tr>";
+      echo "<td>",$dato_pagos[0],"</td>";
+      $usuario = $dato_pagos[6];
     //$select = 'select * from usuarios where id_usuario="'.$usuario.'"';
     //$resul = mysql_query($select, $dbh) or die ("problema con la solicitud");
     //$renglon = mysql_fetch_assoc($resul);
-    
-    $sql = 'SELECT * FROM usuarios where id_usuario="'.$usuario.'"';
-    if ($result = $conn->query($sql)) 
-      while ($user = $result->fetch_row()) 
-        echo "<td> ".$user[1]." ".$user[2]." ".$user[3]."</td>";
-    
-    $paciente = $dato_pagos[7];
+      
+      $sql = 'SELECT * FROM usuarios where id_usuario="'.$usuario.'"';
+      if ($result = $conn->query($sql)) 
+        while ($user = $result->fetch_row()) 
+          echo "<td> ".$user[1]." ".$user[2]." ".$user[3]."</td>";
+        
+        $paciente = $dato_pagos[7];
     //$select = 'select * from paciente where id_paciente="'.$paciente.'";';
     //$resul = mysql_query($select, $dbh) or die ("problema con la solicitud");
     //$renglon = mysql_fetch_assoc($resul);
-    $sql = 'SELECT * FROM paciente where id_paciente="'.$paciente.'"';
-    if ($result = $conn->query($sql)) 
-      while ($pacient = $result->fetch_assoc())
-        $nombre_paciente =$pacient['nombres']." ".$pacient['apellido_paterno']." ".$pacient['apellido_materno']; 
-    
-    echo "<td>".$nombre_paciente."</td>";
-    echo "<td>", htmlentities($dato_pagos[4]),"</td>";
-    echo "<td>", money_format('%(#10n',$dato_pagos[2]),"</td>"; 
-
-    echo " <td>", htmlentities($dato_pagos[3]),"</td>
-          <td>",money_format('%(#10n',$dato_pagos[2]-$dato_pagos[3])," </td>";
-    $deuda = $dato_pagos[0];
-         
-    echo '<td><a href="abonos.php?id_adeudo=',$deuda,'&fecha=',$fechab,'&nombre_paciente=',$nombre_paciente,'" class="prueba2">Ver >></a></td></tr>';
-  }else{
-    $id_deuda = $dato_pagos[0];
-    $ano = date(Y);
-      
+        $sql = 'SELECT * FROM paciente where id_paciente="'.$paciente.'"';
+        if ($result = $conn->query($sql)) 
+          while ($pacient = $result->fetch_assoc())
+            $nombre_paciente =$pacient['nombres']." ".$pacient['apellido_paterno']." ".$pacient['apellido_materno']; 
+          
+          echo "<td>".$nombre_paciente."</td>";
+          echo "<td>", htmlentities($dato_pagos[4]),"</td>";
+          echo "<td>", money_format('%(#10n',$dato_pagos[2]),"</td>"; 
+            echo " <td>", htmlentities($dato_pagos[3]),"</td>
+            <td>",money_format('%(#10n',$dato_pagos[2]-$dato_pagos[3])," </td>";
+              $deuda = $dato_pagos[0];
+              
+              echo '<td><a href="abonos.php?id_adeudo=',$deuda,'&fecha=',$fechab,'&nombre_paciente=',$nombre_paciente,'" class="prueba2">Ver >></a></td></tr>';
+            }else{
+              $id_deuda = $dato_pagos[0];
+              $ano = date(Y);
+              
     //$resul2 = mysql_query($sql, $conn) or die ("problema con la solicitud");
     //$renglon2 = mysql_fetch_assoc($resul2);  
-    $sql = 'SELECT * from pagos_historia WHERE semana="'.$semana_b.'" AND id_adeudo="'.$id_deuda.'" AND y="'.$ano.'";';
+              $sql = 'SELECT * from pagos_historia WHERE semana="'.$semana_b.'" AND id_adeudo="'.$id_deuda.'" AND y="'.$ano.'";';
     //echo $sql;
-    $result = $conn->query($sql);
-    while ($renglon2 = $result->fetch_assoc())
-      if($renglon2['id_historia']!= '') {
-         echo "<tr>";
-         echo "<td>",$id_deuda,"</td>";
-         
-         $usuario = $dato_pagos[6];
+              $result = $conn->query($sql);
+              while ($renglon2 = $result->fetch_assoc())
+                if($renglon2['id_historia']!= '') {
+                 echo "<tr>";
+                 echo "<td>",$id_deuda,"</td>";
+                 
+                 $usuario = $dato_pagos[6];
          //$resul = mysql_query($select, $dbh) or die ("problema con la solicitud");
          //$renglon = mysql_fetch_assoc($resul);
-        $sql = 'SELECT * from usuarios where id_usuario="'.$usuario.'";';
-        $result = $conn->query($sql);
-        while ($renglon = $result->fetch_assoc())
-         echo "<td> ".$renglon['nombres']." ".$renglon['apellido_paterno']." ".$renglon['apellido_materno']."</td>";
-         
-         $paciente = $dato_pagos[7];
+                 $sql = 'SELECT * from usuarios where id_usuario="'.$usuario.'";';
+                 $result = $conn->query($sql);
+                 while ($renglon = $result->fetch_assoc())
+                   echo "<td> ".$renglon['nombres']." ".$renglon['apellido_paterno']." ".$renglon['apellido_materno']."</td>";
+                 
+                 $paciente = $dato_pagos[7];
          //$resul = mysql_query($select, $dbh) or die ("problema con la solicitud");
          //$renglon = mysql_fetch_assoc($resul);
-         $sql = 'SELECT * from paciente where id_paciente="'.$paciente.'";';
-         $result = $conn->query($sql);
-         while ($renglon = $result->fetch_assoc())
-          $nombre_paciente =$renglon['nombres']." ".$renglon['apellido_paterno']." ".$renglon['apellido_materno']; 
-         
-         echo "<td> ".$nombre_paciente."</td>";
-         echo "<td> ", $dato_pagos['4'],"</td>";
-         echo "<td> ", $dato_pagos['2'],"</td>";  
-         
-         echo " <td>", htmlentities($dato_pagos['3']),"</td>
-         <td>",$dato_pagos['2']-$dato_pagos['3']," </td>";
-         $deuda = $dato_pagos[0];
-         
-         echo '<td><a href="abonos.php?id_adeudo=',$deuda,'&semana_b=',$semana_b,'&y=',$ano_s,'&nombre_paciente=',$nombre_paciente,'" class="prueba2">Ver >></a></td></tr>';      
-      }  
-  }
-}
-   echo "</table>";
-   echo "<hr>";
-   ?>
- </div>
- 
-</div>
-<div class="preload_images">
- <img class="preload" src="../images/u372-r.png" alt=""/>
- <img class="preload" src="../images/u376_states-r.png" alt=""/>
- <img class="preload" src="../images/u376_states-a.png" alt=""/>
- <img class="preload" src="../images/u377_states-r.png" alt=""/>
- <img class="preload" src="../images/u377_states-a.png" alt=""/>
- <img class="preload" src="../images/u378_states-r.png" alt=""/>
- <img class="preload" src="../images/u378_states-a.png" alt=""/>
- <img class="preload" src="../images/u480_states-r.png" alt=""/>
- <img class="preload" src="../images/u480_states-a.png" alt=""/>
- <img class="preload" src="../images/u550_states-r.png" alt=""/>
- <img class="preload" src="../images/u550_states-a.png" alt=""/>
- <img class="preload" src="../images/u552_states-r.png" alt=""/>
- <img class="preload" src="../images/u552_states-a.png" alt=""/>
-</div>
-<!-- JS includes -->
-<script type="text/javascript">
-if (document.location.protocol != 'https:') document.write('\x3Cscript src="http://musecdn.businesscatalyst.com/scripts/4.0/jquery-1.8.3.min.js" type="text/javascript">\x3C/script>');
-</script>
-<script type="text/javascript">
-window.jQuery || document.write('\x3Cscript src="scripts/jquery-1.8.3.min.js" type="text/javascript">\x3C/script>');
-</script>
-<script src="../scripts/museutils.js?3865766194" type="text/javascript"></script>
-<script src="../scripts/jquery.tobrowserwidth.js?3842421675" type="text/javascript"></script>
-<script src="../scripts/jquery.watch.js?4068933136" type="text/javascript"></script>
-<!-- Other scripts -->
-<script type="text/javascript">
-$(document).ready(function() { try {
-  Muse.Utils.transformMarkupToFixBrowserProblemsPreInit();/* body */
-  $('.browser_width').toBrowserWidth();/* browser width elements */
-  Muse.Utils.prepHyperlinks(true);/* body */
-  Muse.Utils.fullPage('#page');/* 100% height page */
-  Muse.Utils.showWidgetsWhenReady();/* body */
-  Muse.Utils.transformMarkupToFixBrowserProblems();/* body */
-} catch(e) { Muse.Assert.fail('Error calling selector function:' + e); }});
-</script>
-</body>
-</html>
+                 $sql = 'SELECT * from paciente where id_paciente="'.$paciente.'";';
+                 $result = $conn->query($sql);
+                 while ($renglon = $result->fetch_assoc())
+                  $nombre_paciente =$renglon['nombres']." ".$renglon['apellido_paterno']." ".$renglon['apellido_materno']; 
+                
+                echo "<td> ".$nombre_paciente."</td>";
+                echo "<td> ", $dato_pagos['4'],"</td>";
+                echo "<td> ", $dato_pagos['2'],"</td>";  
+                
+                echo " <td>", htmlentities($dato_pagos['3']),"</td>
+                <td>",$dato_pagos['2']-$dato_pagos['3']," </td>";
+                $deuda = $dato_pagos[0];
+                
+                echo '<td><a href="abonos.php?id_adeudo=',$deuda,'&semana_b=',$semana_b,'&y=',$ano_s,'&nombre_paciente=',$nombre_paciente,'" class="prueba2">Ver >></a></td></tr>';      
+              }  
+            }
+          }
+          echo "</table>";
+          echo "<hr>";
+          ?>
+        </div>
+        
+      </div>
+      <div class="preload_images">
+       <img class="preload" src="../images/u372-r.png" alt=""/>
+       <img class="preload" src="../images/u376_states-r.png" alt=""/>
+       <img class="preload" src="../images/u376_states-a.png" alt=""/>
+       <img class="preload" src="../images/u377_states-r.png" alt=""/>
+       <img class="preload" src="../images/u377_states-a.png" alt=""/>
+       <img class="preload" src="../images/u378_states-r.png" alt=""/>
+       <img class="preload" src="../images/u378_states-a.png" alt=""/>
+       <img class="preload" src="../images/u480_states-r.png" alt=""/>
+       <img class="preload" src="../images/u480_states-a.png" alt=""/>
+       <img class="preload" src="../images/u550_states-r.png" alt=""/>
+       <img class="preload" src="../images/u550_states-a.png" alt=""/>
+       <img class="preload" src="../images/u552_states-r.png" alt=""/>
+       <img class="preload" src="../images/u552_states-a.png" alt=""/>
+     </div>
+     <!-- JS includes -->
+     <script type="text/javascript">
+     if (document.location.protocol != 'https:') document.write('\x3Cscript src="http://musecdn.businesscatalyst.com/scripts/4.0/jquery-1.8.3.min.js" type="text/javascript">\x3C/script>');
+     </script>
+     <script type="text/javascript">
+     window.jQuery || document.write('\x3Cscript src="scripts/jquery-1.8.3.min.js" type="text/javascript">\x3C/script>');
+     </script>
+     <script src="../scripts/museutils.js?3865766194" type="text/javascript"></script>
+     <script src="../scripts/jquery.tobrowserwidth.js?3842421675" type="text/javascript"></script>
+     <script src="../scripts/jquery.watch.js?4068933136" type="text/javascript"></script>
+     <!-- Other scripts -->
+     <script type="text/javascript">
+     $(document).ready(function() { try {
+      Muse.Utils.transformMarkupToFixBrowserProblemsPreInit();/* body */
+      $('.browser_width').toBrowserWidth();/* browser width elements */
+      Muse.Utils.prepHyperlinks(true);/* body */
+      Muse.Utils.fullPage('#page');/* 100% height page */
+      Muse.Utils.showWidgetsWhenReady();/* body */
+      Muse.Utils.transformMarkupToFixBrowserProblems();/* body */
+    } catch(e) { Muse.Assert.fail('Error calling selector function:' + e); }});
+     </script>
+   </body>
+   </html>
