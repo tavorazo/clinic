@@ -98,31 +98,25 @@ if($_SESSION['rol']=='admin')
   echo $paciente==""?"sip":"nop";
   echo $id_pacinete;
   echo $id_pacinete==""?"sip":"nop";
-  if ($paciente==""&&$id="") {
+/*
+  if($id==0){
+    $sql="SELECT * from paciente where  id_paciente = '" . $id_paciente . "'  LIMIT 1;";
+  }
+  else{
+    $sql="SELECT * from paciente where nombres like ".$_POST['b_paciente']." or apellido_paterno like ".$_POST['b_paciente']." or apellido_materno like ".$_POST['b_paciente']." or id_paciente like ".$_POST['b_paciente']." or n_registro like ".$_POST['b_paciente']." LIMIT 10;";
+  }
+ /* if ($paciente==""&&$id="") {
     echo "empty";
     $sql="SELECT * from paciente LIMIT 10;";
   } else if(!$paciente=="") {
     echo "paciente : "; echo $paciente;
-     $sql="SELECT * from paciente where nombres like ".$_POST['b_paciente']." or apellido_paterno like ".$_POST['b_paciente']." or apellido_materno like ".$_POST['b_paciente']." or id_paciente like ".$_POST['b_paciente']." or n_registro like ".$_POST['b_paciente']."  LIMIT 10;";
+     $sql="SELECT * from paciente where nombres like ".$_POST['b_paciente']." or apellido_paterno like ".$_POST['b_paciente']." or apellido_materno like ".$_POST['b_paciente']." or id_paciente like ".$_POST['b_paciente']." or n_registro like ".$_POST['b_paciente']." or id_paciente = '" . $id_paciente . "' LIMIT 10;";
   }else{
     echo "id : "; echo $id_paciente;
     $sql="SELECT * from paciente where  id_paciente = '" . $id_paciente . "'  LIMIT 10;";
-  }
-  /*
-  if ($_POST['id'] && $_POST['b_paciente']) {
-    if($_POST['b_paciente']){
-      echo "name";
-      $sql="SELECT * from paciente where nombres like ".$_POST['b_paciente']." or apellido_paterno like ".$_POST['b_paciente']." or apellido_materno like ".$_POST['b_paciente']." or id_paciente like ".$_POST['b_paciente']." or n_registro like ".$_POST['b_paciente']."  LIMIT 10;";
-    }else{
-      echo "empty";
-      $sql="SELECT * from paciente LIMIT 10;";
-    }
-  }else{
-    echo "id";
-    $sql="SELECT * from paciente where  id_paciente = '%$id%'  LIMIT 10;";
-  }
-  */
-  try {
+  }*/
+
+  /*try {
     $result = $conn->query($sql);
   } catch (Exception $e) {
     print "Error!: " . $e->getMessage() ; 
@@ -130,7 +124,14 @@ if($_SESSION['rol']=='admin')
  
 
   while ($row = $result->fetch_array() ) {
-
+*/
+          if($id == 0)
+        $result2 = $conn->query("SELECT * from paciente where nombres like '%$buscar%' or apellido_paterno like '%$buscar%' or apellido_materno like '%$buscar%' or id_paciente like '%$buscar%' or n_registro like '%$buscar%'  LIMIT 10;");
+        //$result2 = mysql_query("SELECT * from paciente where nombres like '%$buscar%' or apellido_paterno like '%$buscar%' or apellido_materno like '%$buscar%' or id_paciente like '%$buscar%' or n_registro like '%$buscar%'  LIMIT 10;");
+      else
+        $result2 = $conn->query("SELECT * from paciente where  id_paciente like '%$id%'  LIMIT 10;");
+        //$result2 = mysql_query("SELECT * from paciente where  id_paciente like '%$id%'  LIMIT 10;");
+    while ($row2 = $result2->fetch_row()) {
   echo ' <br><br><fieldset><legend style="width:90%; background:#585A5A; padding:6px; padding-left:24px;">
   <h10 style="color:#FFFFFF">Datos Personales</legend></h10>';
 
