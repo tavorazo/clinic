@@ -23,7 +23,7 @@
 	<?php
 	$id = $_GET['id'];
 
-	/*$base = mysql_select_db('Endoperio', $dbh) or die('Error de seleccion de base: ' . mysql_error() );*/
+	/*$base = mysql_select_db('Endoperio') or die('Error de seleccion de base: ' . mysql_error() );*/
 include('../php/base.php');
 	$select = 'select * from avisos where id_aviso="'.$id.'";';
 	$resul = $conn->query($select) or die ("problema con la solicitud");

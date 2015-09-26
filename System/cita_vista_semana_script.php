@@ -28,13 +28,13 @@
 		echo "<td style=' background:#C3DEEE;'><center>";
 		$id_usuario = $fila_agenda[1];
 		$select = 'select * from usuarios where id_usuario="'.$id_usuario.'";';
-		$resul = $conn->query($select, $dbh) or die ("problema con la solicitud");
+		$resul = $conn->query($select) or die ("problema con la solicitud");
 		$renglon = mysql_fetch_assoc($resul);
 		echo "Dr. ", $renglon['nombres']," ",$renglon['apellido_paterno']," ",$renglon['apellido_materno'],"<br><br>";
 
 		$id_paciente = $fila_agenda[2];
 		$select = 'select * from paciente where id_paciente="'.$id_paciente.'";';
-		$resul = $conn->query($select, $dbh) or die ("problema con la solicitud");
+		$resul = $conn->query($select) or die ("problema con la solicitud");
 		$renglon = mysql_fetch_assoc($resul);
 		echo "<img src='http://endoperio.wbx.technology/pacientes/images_pacientes/".$renglon['foto_ingreso']."' style='height:150px; width:130px'><br><br>";
 		echo "Paciente: ", $renglon['nombres']," ",$renglon['apellido_paterno']," ",$renglon['apellido_materno'],"<br><br>";

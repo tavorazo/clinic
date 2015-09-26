@@ -26,16 +26,16 @@
 $id = $_GET['id'];
 
 /*$dbh = mysql_connect('localhost','root','12qwaszx') or die('Error de conexion: ' . mysql_error() );
-$base = mysql_select_db('Endoperio', $dbh) or die('Error de seleccion de base: ' . mysql_error() );*/
+$base = mysql_select_db('Endoperio') or die('Error de seleccion de base: ' . mysql_error() );*/
 include('../../php/base.php');
 $select = 'select * from agenda where id_cita="'.$id.'";';
-$resul = $conn->query($select, $dbh) or die ("problema con la solicitud");
+$resul = $conn->query($select) or die ("problema con la solicitud");
 $renglon = mysql_fetch_assoc($resul);
 
 
 for($i=0;$i<2;$i++){
 	$eliminar = 'delete from agenda where id_cita="'.$id.'";';
-	if(!$conn->query($eliminar, $dbh))
+	if(!$conn->query($eliminar))
 		die('Error de consulta: '.mysql_error());
 	$id--;
 }

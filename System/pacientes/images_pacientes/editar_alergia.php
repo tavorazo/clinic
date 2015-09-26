@@ -6,7 +6,7 @@
 		$id = $_GET['id'];
 
 		$select = 'select * from paciente where id_paciente="'.$id.'";';
-		$resul = $conn->query($select, $dbh) or die ("problema con la solicitud");
+		$resul = $conn->query($select) or die ("problema con la solicitud");
 		$renglon = mysql_fetch_assoc($resul);
 	?>
 

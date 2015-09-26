@@ -115,7 +115,7 @@
         if($concepto!=''){
 
         $select = 'select * from tratamiento_dental where id_tratamiento="'.$concepto.'";';
-        $resul = $conn->query($select, $dbh) or die ("problema con la solicitud");
+        $resul = $conn->query($select) or die ("problema con la solicitud");
         $renglon = $resul->fetch_assoc();
 
 

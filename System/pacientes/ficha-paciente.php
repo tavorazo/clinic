@@ -207,7 +207,7 @@ $buscar = $_GET['id'];
           echo "<label >Fecha de avance:</label> ", $row_avance[4],"<br><br>";
           echo "<label >Descripci&oacute;n</label> ", $row_avance[3],"<br><br>";
           $select = 'select * from usuarios where id_usuario="'.$row_avance[2].'";';
-          $resul = $conn->query($select, $dbh) or die ("problema con la solicitud");
+          $resul = $conn->query($select) or die ("problema con la solicitud");
           $renglon = $resul->fetch_assoc();
           echo "<label'> Atendido por: </label>", $renglon['nombres']," ", $renglon['apellido_paterno'], " ", $renglon['apellido_materno'], "<br><br><br>";
         }
@@ -229,7 +229,7 @@ $buscar = $_GET['id'];
         while ($row_receta = $result3->fetch_array()) {
           echo "<label >Fecha de receta:</label> <a href='../php/ver_receta.php?id=",$row_receta[0],"' target='_blank' >", $row_receta[5],"</a><br>";
           $select = 'select * from usuarios where id_usuario="'.$row_receta[1].'";';
-          $resul = $conn->query($select, $dbh) or die ("problema con la solicitud");
+          $resul = $conn->query($select) or die ("problema con la solicitud");
           $renglon = $resul->fetch_assoc();
           echo "<label> Asignada por: </label>", $renglon['nombres']," ", $renglon['apellido_paterno'], " ", $renglon['apellido_materno'], "<br><br>";
         }

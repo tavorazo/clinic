@@ -29,7 +29,7 @@ include('../php/base.php');
 	if(!$conn->query($instruccion))
 		die('Error de consulta: '.mysqli_error($conn));
 	
-	//$resul = $conn->query($sql, $dbh) or die ("problema con la solicitud");
+	//$resul = $conn->query($sql) or die ("problema con la solicitud");
 	//$renglon = mysql_fetch_assoc($resul);
 	$result = $conn->query($sql);
 	$renglon = $result->fetch_assoc(); 

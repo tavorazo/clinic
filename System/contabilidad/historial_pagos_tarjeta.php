@@ -313,7 +313,7 @@ date_default_timezone_set("Mexico/General");
           echo "<td>".$fila_pagos2[5]."</td>";
           $paciente = $fila_pagos2[2];
           $select = 'select * from paciente where id_paciente="'.$paciente.'";';
-          $resul = $conn->query($select, $dbh) or die ("problema con la solicitud");
+          $resul = $conn->query($select) or die ("problema con la solicitud");
           $renglon = mysql_fetch_assoc($resul);
           echo "<td>".$renglon['nombres']." ".$renglon['apellido_paterno']." ".$renglon['apellido_materno']."</td>";
           echo "<td>",($fila_pagos[4]),"</td>";
@@ -342,7 +342,7 @@ date_default_timezone_set("Mexico/General");
           echo "<td>".$fila_pagos2[7]."</td>";
           $paciente = $fila_pagos2[1];
           $select = 'select * from paciente where id_paciente="'.$paciente.'";';
-          $resul = $conn->query($select, $dbh) or die ("problema con la solicitud");
+          $resul = $conn->query($select) or die ("problema con la solicitud");
           $renglon = mysql_fetch_assoc($resul);
           if($renglon['nombres']!='')
             echo "<td>".$renglon['nombres']." ".$renglon['apellido_paterno']." ".$renglon['apellido_materno']."</td>";
@@ -350,7 +350,7 @@ date_default_timezone_set("Mexico/General");
             echo "<td>Comprador</td>";
           $producto = $fila_pagos2[3];
           $select = 'select * from inventario where id_producto="'.$producto.'";';
-          $resul = $conn->query($select, $dbh) or die ("problema con la solicitud");
+          $resul = $conn->query($select) or die ("problema con la solicitud");
           $renglon = mysql_fetch_assoc($resul);
           echo "<td>",$renglon['nombre'],"</td>";
           $total = $total + $fila_pagos2[6];
@@ -372,11 +372,11 @@ date_default_timezone_set("Mexico/General");
             echo "<td>",$fila_pagos[7],"</td>";
             $usuario = $fila_pagos[2];
             $select = 'select * from paciente where id_paciente="'.$usuario.'";';
-            $resul = $conn->query($select, $dbh) or die ("problema con la solicitud");
+            $resul = $conn->query($select) or die ("problema con la solicitud");
             $renglon = mysql_fetch_assoc($resul);
             if($renglon['nombres']==''){
               $select = 'select * from usuarios where id_usuario="'.$usuario.'";';
-              $resul = $conn->query($select, $dbh) or die ("problema con la solicitud");
+              $resul = $conn->query($select) or die ("problema con la solicitud");
               $renglon = mysql_fetch_assoc($resul);
             }
             echo "<td>".$renglon['nombres']." ".$renglon['apellido_paterno']." ".$renglon['apellido_materno']."</td>";
@@ -398,11 +398,11 @@ date_default_timezone_set("Mexico/General");
               echo "<td>",$fila_pagos[7],"</td>";
               $usuario = $fila_pagos[2];
               $select = 'select * from paciente where id_paciente="'.$usuario.'";';
-              $resul = $conn->query($select, $dbh) or die ("problema con la solicitud");
+              $resul = $conn->query($select) or die ("problema con la solicitud");
               $renglon = mysql_fetch_assoc($resul);
               if($renglon['nombres']==''){
                 $select = 'select * from usuarios where id_usuario="'.$usuario.'";';
-                $resul = $conn->query($select, $dbh) or die ("problema con la solicitud");
+                $resul = $conn->query($select) or die ("problema con la solicitud");
                 $renglon = mysql_fetch_assoc($resul);
               }
               echo "<td>".$renglon['nombres']." ".$renglon['apellido_paterno']." ".$renglon['apellido_materno']."</td>";

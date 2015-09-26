@@ -62,7 +62,7 @@
 	$correo = $_GET['correo'];
 
 	$select = 'select * from paciente where id_paciente="'.$id_paciente.'";';
-	$resul = $conn->query($select, $dbh) or die ("problema con la solicitud");
+	$resul = $conn->query($select) or die ("problema con la solicitud");
 	$renglon_paciente = mysql_fetch_assoc($resul);
 
 	$nombres = $renglon_paciente['nombres']." ". $renglon_paciente['apellido_paterno']." ".$renglon_paciente['apellido_materno'];

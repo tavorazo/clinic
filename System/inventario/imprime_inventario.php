@@ -55,14 +55,14 @@ if($_SESSION['rol']!='admin')
 			$u = $row2[1];
 			$p = $row2[2];
 			
-	//$resul = $conn->query($select, $dbh) or die ("problema con la solicitud");
+	//$resul = $conn->query($select) or die ("problema con la solicitud");
 	//$renglon = mysql_fetch_assoc($resul);
 			$select = 'SELECT * from usuarios where id_usuario="'.$u.'";';
 			$resul = $conn->query($select);
 			$renglon = $resul->mysql_fetch_assoc();
 			echo "<td>",$renglon['nombres']," ",$renglon['apellido_paterno']," ",$renglon['apellido_materno'],"</td>";
 			
-	//$resul = $conn->query($select, $dbh) or die ("problema con la solicitud");
+	//$resul = $conn->query($select) or die ("problema con la solicitud");
 	//$renglon = mysql_fetch_assoc($resul);
 			$select = 'SELECT * from inventario where id_producto="'.$p.'";';
 			$resul = $conn->query($select);

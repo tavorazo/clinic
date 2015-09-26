@@ -43,7 +43,7 @@
 		
 		$datos = "select * from agenda where id_cita='$a';";
 		//echo $datos;
-		$resul = $conn->query($datos, $dbh) or die ("problema con la solicitud");
+		$resul = $conn->query($datos) or die ("problema con la solicitud");
           	$renglon = mysql_fetch_assoc($resul);
           	$idpaciente=$renglon['id_paciente'];
 			echo $id_paciente;

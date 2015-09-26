@@ -21,7 +21,7 @@ if(!$conn->query($insertar)){
 $select = 'SELECT * from publicidad where imagen="'.$imagen.'";';
 $result = $conn->query($select);
 $renglon = $result->fetch_assoc();
-//$resul = $conn->query($select, $dbh) or die ("problema con la solicitud");
+//$resul = $conn->query($select) or die ("problema con la solicitud");
 //$renglon = mysql_fetch_assoc($resul);
 $id = $renglon['id_publicidad'];
 rename($imagen, $id);

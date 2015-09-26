@@ -22,7 +22,7 @@ while ($row3 = $result_pagos->fetch_row()){
 	$select = 'SELECT * from usuarios where id_usuario="'.$usuario.'";';
 	$resul 	= $conn->query($select);
 	$renglon = $result->fetch_assoc();
-	//$resul = $conn->query($select, $dbh) or die ("problema con la solicitud");
+	//$resul = $conn->query($select) or die ("problema con la solicitud");
 	//$renglon = mysql_fetch_assoc($resul);
 	echo "<br><br><hr> <i>Pago recibido por: ".$renglon['nombres']." ".$renglon['apellido_paterno']." ".$renglon['apellido_materno']."<br>";
 	echo "Cantidad: ", $row3[4], "<br>";
@@ -31,7 +31,7 @@ while ($row3 = $result_pagos->fetch_row()){
 	$select = 'SELECT * from pagos_tipo where id_tipo="'.$tipo.'";';
 	$resul = $conn->query($select);
 	$renglon = $result->fetch_assoc();
-	//$resul = $conn->query($select, $dbh) or die ("problema con la solicitud");
+	//$resul = $conn->query($select) or die ("problema con la solicitud");
 	//$renglon = mysql_fetch_assoc($resul);
 	echo "Tipo de pago: ", $renglon['descripcion'], "<br>";
 	echo "Descripci&oacute;n del pago: ", $row3[6], "<br>";

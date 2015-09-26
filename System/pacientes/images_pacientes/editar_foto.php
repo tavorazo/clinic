@@ -45,7 +45,7 @@ include('../../php/base3.php');
 if($imagen!=''){
 
 	$select = "select * from paciente where id_paciente='$id_paciente';";
-	$resul = $conn->query($select, $dbh) or die ("problema con la solicitud");
+	$resul = $conn->query($select) or die ("problema con la solicitud");
 	$renglon = mysql_fetch_assoc($resul);
 
 	$imagen_vieja = $renglon['foto_ingreso'];

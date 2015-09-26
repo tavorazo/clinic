@@ -288,7 +288,7 @@ if($S == 1){
 				
 				$usuario = $row2[1];
 				$select = 'select * from usuarios where id_usuario="'.$usuario.'";';
-				$resul = $conn->query($select, $dbh) or die ("problema con la solicitud");
+				$resul = $conn->query($select) or die ("problema con la solicitud");
 				$renglon = mysql_fetch_assoc($resul);
 				//vendido por
 				echo "<td>".$renglon['nombres']." ".$renglon['apellido_paterno']." ".$renglon['apellido_materno']."</td>";

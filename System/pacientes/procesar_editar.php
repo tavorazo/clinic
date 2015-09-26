@@ -36,7 +36,7 @@
 		$select = 'select * from fotografias_clinicas where id_foto="'.$a.'";';
 
 
-		$resul = $conn->query($select, $dbh) or die ("problema con la solicitud");
+		$resul = $conn->query($select) or die ("problema con la solicitud");
 		$renglon = mysql_fetch_assoc($resul);
 		$ficha = $renglon['id_paciente'];
 

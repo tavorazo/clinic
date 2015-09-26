@@ -28,7 +28,7 @@ if($_SESSION['u']=='')
     $select = 'SELECT * from recetas where id_receta="'.$id_receta.'";';
     $result = $conn->query($select);
     $renglon = $result->fetch_assoc();
-    //$resul = $conn->query($select, $dbh) or die ("problema con la solicitud");
+    //$resul = $conn->query($select) or die ("problema con la solicitud");
     //$renglon = mysql_fetch_assoc($resul);
     $doctor = $renglon['id_usuario'];
     $paciente = $renglon['id_paciente'];
@@ -36,13 +36,13 @@ if($_SESSION['u']=='')
     $select_medico = 'SELECT * from usuarios where id_usuario="'.$doctor.'";';
     $result = $conn->query($select_medico);
     $renglon_doc = $result->fetch_assoc();
-    //$resul_doc = $conn->query($select_medico, $dbh) or die ("problema con la solicitud");
+    //$resul_doc = $conn->query($select_medico) or die ("problema con la solicitud");
     //$renglon_doc = mysql_fetch_assoc($resul_doc);
     
     $select_paciente = 'SELECT * from paciente where id_paciente="'.$paciente.'";';
     $result = $conn->query($select);
     $renglon_paciente = $result->fetch_assoc();
-    //$resul_paciente = $conn->query($select_paciente, $dbh) or die ("problema con la solicitud");
+    //$resul_paciente = $conn->query($select_paciente) or die ("problema con la solicitud");
     //$renglon_paciente = mysql_fetch_assoc($resul_paciente);
     
     echo"<div style='margin-left:5%'>";

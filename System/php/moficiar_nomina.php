@@ -22,7 +22,7 @@
 	$select = 'SELECT * from nomina where id_usuario="'.$id_usuario.'";';
 	$resul = $conn->query($select);
 	$renglon = $resul->fetch_assoc();
-	//$resul = $conn->query($select, $dbh) or die ("problema con la solicitud");
+	//$resul = $conn->query($select) or die ("problema con la solicitud");
 	//$renglon = mysql_fetch_assoc($resul);
 	if($renglon['id_usuario']==''){
 		$insertar = "INSERT into nomina (id_usuario, sueldo, vacaciones, aguinaldo) values ('$id_usuario','$sueldo','$vacaciones','$aguinaldo');";

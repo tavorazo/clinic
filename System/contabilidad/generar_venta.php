@@ -31,7 +31,7 @@
 	$select = "SELECT * from inventario where id_producto='".$producto."';";
 	$resul	= $conn->query($select);
 	$renglon = $resul->fetch_assoc();
-	//$resul	= $conn->query($select, $dbh) or die ("problema con la solicitud");
+	//$resul	= $conn->query($select) or die ("problema con la solicitud");
 	//$renglon = mysql_fetch_assoc($resul);
 	
 	$precio = $renglon['precio_venta'];

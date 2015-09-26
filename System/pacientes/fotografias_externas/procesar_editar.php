@@ -32,12 +32,11 @@
 			$imagen="";
 
 		include('../../php/base.php');
-		include('../../php/base3.php');
 		$select = 'select * from fotografias_externas where id_foto="'.$a.'";';
 
 
-		$resul = $conn->query($select, $dbh) or die ("problema con la solicitud");
-		$renglon = mysql_fetch_assoc($resul);
+		$resul = $conn->query($select) or die ("problema con la solicitud");
+		$renglon = $resul->fetch_assoc();
 		$ficha = $renglon['id_paciente'];
 
 

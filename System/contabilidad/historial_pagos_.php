@@ -351,7 +351,7 @@ date_default_timezone_set("Mexico/General");
       echo "<td>",$dato_pagos[0],"</td>";
       $usuario = $dato_pagos[6];
     //$select = 'select * from usuarios where id_usuario="'.$usuario.'"';
-    //$resul = $conn->query($select, $dbh) or die ("problema con la solicitud");
+    //$resul = $conn->query($select) or die ("problema con la solicitud");
     //$renglon = mysql_fetch_assoc($resul);
       
       $sql = 'SELECT * FROM usuarios where id_usuario="'.$usuario.'"';
@@ -361,7 +361,7 @@ date_default_timezone_set("Mexico/General");
         
         $paciente = $dato_pagos[7];
     //$select = 'select * from paciente where id_paciente="'.$paciente.'";';
-    //$resul = $conn->query($select, $dbh) or die ("problema con la solicitud");
+    //$resul = $conn->query($select) or die ("problema con la solicitud");
     //$renglon = mysql_fetch_assoc($resul);
         $sql = 'SELECT * FROM paciente where id_paciente="'.$paciente.'"';
         if ($result = $conn->query($sql)) 
@@ -391,7 +391,7 @@ date_default_timezone_set("Mexico/General");
                  echo "<td>",$id_deuda,"</td>";
                  
                  $usuario = $dato_pagos[6];
-         //$resul = $conn->query($select, $dbh) or die ("problema con la solicitud");
+         //$resul = $conn->query($select) or die ("problema con la solicitud");
          //$renglon = mysql_fetch_assoc($resul);
                  $sql = 'SELECT * from usuarios where id_usuario="'.$usuario.'";';
                  $result = $conn->query($sql);
@@ -399,7 +399,7 @@ date_default_timezone_set("Mexico/General");
                    echo "<td> ".$renglon['nombres']." ".$renglon['apellido_paterno']." ".$renglon['apellido_materno']."</td>";
                  
                  $paciente = $dato_pagos[7];
-         //$resul = $conn->query($select, $dbh) or die ("problema con la solicitud");
+         //$resul = $conn->query($select) or die ("problema con la solicitud");
          //$renglon = mysql_fetch_assoc($resul);
                  $sql = 'SELECT * from paciente where id_paciente="'.$paciente.'";';
                  $result = $conn->query($sql);

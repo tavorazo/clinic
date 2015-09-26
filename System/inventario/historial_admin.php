@@ -291,13 +291,13 @@ while ($row2 = $result->fetch_row()) {
  $p = $row2[2];
  
  
-          //$resul = $conn->query($select, $dbh) or die ("problema con la solicitud");
+          //$resul = $conn->query($select) or die ("problema con la solicitud");
           //$renglon = mysql_fetch_assoc($resul);
  $select = 'SELECT  * from usuarios where id_usuario="'.$u.'"';
  $result = $conn->query($select);
  $renglon = $result->fetch_assoc();
 echo "<td>",$renglon['nombres']," ",$renglon['apellido_paterno']," ",$renglon['apellido_materno'],"</td>";
-          //$resul = $conn->query($select, $dbh) or die ("problema con la solicitud");
+          //$resul = $conn->query($select) or die ("problema con la solicitud");
           //$renglon = mysql_fetch_assoc($resul);
 $select = 'SELECT * from inventario where id_producto="'.$p.'";';
 $result = $conn->query($select);

@@ -85,7 +85,7 @@ while ($row2 = $result2->fetch_row())) {
 	//while ($row_receta = mysql_fetch_array($result, MYSQL_NUM)) {
 	while ($row_receta = $result->fetch_row())) {
 		echo "Fecha de receta: <a href='ver_receta.php?id=",$row_receta[0],"' target='_blank'>", $row_receta[5],"</a><br>";
-		//$resul = $conn->query($select, $dbh) or die ("problema con la solicitud");
+		//$resul = $conn->query($select) or die ("problema con la solicitud");
 		//$renglon = mysql_fetch_assoc($resul);
 		$select = 'SELECT * from Usuarios where id_usuario="'.$row_receta[1].'";';
 		$result = $conn->query($select);

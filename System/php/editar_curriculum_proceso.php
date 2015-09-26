@@ -20,7 +20,7 @@
 		$select = 'SELECT * from curriculum where id_usuario="'.$id.'";';
 		$resul = $conn->query($select);
 		$renglon = $resul->fetch_assoc();
-		//$resul = $conn->query($select, $dbh) or die ("problema con la solicitud");
+		//$resul = $conn->query($select) or die ("problema con la solicitud");
 		//$renglon = mysql_fetch_assoc($resul);
 		if($renglon['id_usuario']!='')
 			$insertar = "UPDATE curriculum set descripcion='$curriculum' where id_usuario='$id'";

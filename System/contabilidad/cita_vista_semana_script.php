@@ -21,7 +21,7 @@ while ($fila_agenda = $agenda->fetch_row()){
 	$select = 'SELECT * from usuarios where id_usuario="'.$id_usuario.'";';
 	$resul = $conn->query($select);
 	$renglon = $result->fetch_assoc();
-	//$resul = $conn->query($select, $dbh) or die ("problema con la solicitud");
+	//$resul = $conn->query($select) or die ("problema con la solicitud");
 	//$renglon = mysql_fetch_assoc($resul);
 	echo "<img src='usuarios/".$renglon['imagen']."' width='200px'><br><br>";
 	echo "Dr. ", $renglon['nombres']," ",$renglon['apellido_paterno']," ",$renglon['apellido_materno'],"<br><br>";
@@ -29,7 +29,7 @@ while ($fila_agenda = $agenda->fetch_row()){
 	$select = 'SELECT * from paciente where id_paciente="'.$id_paciente.'";';
 	$resul = $conn->query($select);
 	$renglon = $result->fetch_assoc();
-	//$resul = $conn->query($select, $dbh) or die ("problema con la solicitud");
+	//$resul = $conn->query($select) or die ("problema con la solicitud");
 	//$renglon = mysql_fetch_assoc($resul);
 	echo "Paciente: ", $renglon['nombres']," ",$renglon['apellido_paterno']," ",$renglon['apellido_materno'],"<br><br>";
 	echo "Observación: ", $fila_agenda[8];

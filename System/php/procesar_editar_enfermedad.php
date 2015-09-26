@@ -21,7 +21,7 @@
 		$select = 'SELECT * from enfermedades where id_enfermedad="'.$a.'";';
 		$result = $conn->query($select);
     	$renglon = $result->fetch_assoc();
-    	//$resul = $conn->query($select, $dbh) or die ("problema con la solicitud");
+    	//$resul = $conn->query($select) or die ("problema con la solicitud");
 		//$renglon = mysql_fetch_assoc($resul);
 		$insertar = "UPDATE enfermedades set nombre_enfermedad='$c', tipo_enfermedad='$d' where id_enfermedad='$a'";
 		//if(!$conn->query($insertar))
