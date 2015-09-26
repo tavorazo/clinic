@@ -71,11 +71,9 @@
 		<td><br>
 		    <?php
 				include("../php/base.php");
-				include("../php/base2.php");
-				include("../php/base3.php");
-				$result2 = mysql_query("select * from inventario where venta='1'");
+				$result2 = $conn->query("select * from inventario where venta='1'");
 				echo "<center><select name='producto' class='campoT'>";
-				while ($row2 = mysql_fetch_array($result2, MYSQL_NUM)){
+				while ($row2 = $result2->fetch_array()){
 						echo "<option value='",$row2[0],"'>",$row2[1]," ",$row2[3],". Precio : " ,$row2[10],"</option>";
 				}
 				echo "</select></center>";

@@ -48,9 +48,9 @@
 
 			$insertar = "update fotografias_externas set nombre_foto='$ultimo' where id_foto='$a'";
 
-		if(!mysql_query($insertar, $conexion))
+		if(!mysql_query($insertar))
 			die('Error de consulta: '.mysql_error());
-		mysql_close($conexion);
+		mysqli_close($conn);
 		
 		$a = '../ficha-paciente.php?id='.$ficha;
 

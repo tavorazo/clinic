@@ -126,7 +126,7 @@ session_start();
 
           echo "<img src='../publicidad/images/".$renglon['imagen']."' width='900px'>";
 
-          mysql_close($conexion);
+          mysqli_close($conn);
 ?>
       </div>
 

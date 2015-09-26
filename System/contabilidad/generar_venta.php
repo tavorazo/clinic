@@ -46,15 +46,15 @@
 		$actualizar = "UPDATE inventario set cantidad='$cantidad_actual', ultimo_abastecimiento = now() where id_producto='$producto'";
 		$cantidad = $cantidad*(-1);
 		$insertar2 = "INSERT into inventario_historial (id_usuario, id_producto, cantidad, fecha) values ('$id_usuario', '$producto', '$cantidad', now())";
-		//if(!mysql_query($actualizar, $conexion))
+		//if(!mysql_query($actualizar))
 		if(!$conn->query($actualizar))
 			die('Error de consulta: '.mysqli_error($conn));
 		
-		//if(!mysql_query($insertar2, $conexion))
+		//if(!mysql_query($insertar2))
 		if(!$conn->query($insertar2))
 			die('Error de consulta: '.mysqli_error($conn));
 		
-		//if(!mysql_query($insertar, $conexion))
+		//if(!mysql_query($insertar))
 		if(!$conn->query($insertar))
 			die('Error de consulta: '.mysqli_error($conn));
 		else{
@@ -77,7 +77,6 @@
 			}
 			
 		}
-		//mysql_close($conexion);
 		$conn->close();
 	}
 	else{

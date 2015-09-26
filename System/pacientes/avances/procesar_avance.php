@@ -28,13 +28,12 @@
 	$avance = $_POST['avance'];
 
 	include('../../php/base.php');
-	include('../../php/base3.php');
 
 	//echo "insert into avance_clinico (id_paciente, id_usuario, avance, fecha) values ('$id_paciente', '$id_usuario', '$avance', now());";
 	
 	$insertar = "insert into avance_clinico (id_paciente, id_usuario, avance, fecha) values ('$id_paciente', '$id_usuario', '$avance', now());";
 
-	if(!mysql_query($insertar, $conexion))
+	if(!$conn->query($insertar))
 				die('Error de consulta: '.mysql_error());
 				
 

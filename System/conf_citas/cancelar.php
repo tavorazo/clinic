@@ -85,7 +85,7 @@
 		}		
 
 		
-	mysql_close($conexion);
+	mysqli_close($conn);
 
 		echo '<br><br><br><center><img src="../images/endoperio2.png" width="100px" alt=""> <br> ';
 		echo "Cita cancelada<br><br><br>";

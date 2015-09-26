@@ -33,11 +33,11 @@
 	include('../../php/base3.php');
 
 		$insertar = "update agenda set confirmacion='1', id_usuario='$b' where id_cita='$a'";
-		if(!mysql_query($insertar, $conexion))
+		if(!mysql_query($insertar))
 			die('Error de consulta 1: '.mysql_error());
 			$id2 = $a-1;
 		$insertar = "update agenda set confirmacion='1', id_usuario='$b' where id_cita='$id2'";
-		if(!mysql_query($insertar, $conexion))
+		if(!mysql_query($insertar))
 			die('Error de consulta 1: '.mysql_error());
 //echo $a;
 		
@@ -100,7 +100,7 @@ if(mail($correo, $titulo , $mensaje, $cabeceras) or die ("No se ha podido enviar
 else
 	echo "no enviado";
 }
-		mysql_close($conexion);
+		mysqli_close($conn);
 
 	echo '<br><br><br><center><img src="../../images/endoperio2.png" width="100px" alt=""> <br> ';
 	echo "Cita confirmada con exito<br><br><br>";

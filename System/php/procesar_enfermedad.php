@@ -18,10 +18,10 @@
   $c = $_POST['id'];
   include('base.php');
   $insertar = "INSERT into enfermedades (id_paciente, tipo_enfermedad, nombre_enfermedad) values ('$c','$b','$a')";
-  //if(!mysql_query($insertar, $conexion))
+  //if(!mysql_query($insertar))
   if(!$conn->query($insertar))
     die('Error de consulta: '.mysqli_error($conn));
-  mysql_close($conexion);
+  mysqli_close($conn);
   $pagina = "../pacientes/ficha-paciente.php?id=".$c;
   echo '<br><br><br><center><img src="../images/endoperio2.png" width="100px" alt=""> <br> ';
   echo "Cita creada con exito<br><br><br>";

@@ -63,9 +63,7 @@
 
     <?php
 		include("../php/base.php");
-		include("../php/base2.php");
-		include("../php/base3.php");
-		$result2 = mysql_query("select * from historial_compras where id_paciente = '$id_paciente'");
+		$result = $conn->query("select * from historial_compras where id_paciente = '$id_paciente'");
 		
 		echo "
 				<table style='margin-top:200px'>";
@@ -81,26 +79,26 @@
 		
 		echo "</tr>";
 		
-		while ($row2 = mysql_fetch_array($result2, MYSQL_NUM)){
+		while ($row = $result->fetch_array()){
 			echo "<tr>";
-				$producto = $row2[3];
+				$producto = $row[3];
 				$select = 'select * from inventario where id_producto="'.$producto.'";';
-				$resul = mysql_query($select, $dbh) or die ("problema con la solicitud");
-				$renglon = mysql_fetch_assoc($resul);
+				$resul = $conn->query($select) or die ("problema con la solicitud");
+				$renglon = $resul->fetch_assoc();
 				
 				echo "<td>".$renglon['nombre']."</td>";
 				echo "<td>".$renglon['descripcion']."</td>";
-				echo "<td>".$row2[4]."</td>";
-				echo "<td>".$row2[5]."</td>";
-				echo "<td>".$row2[6]."</td>";
+				echo "<td>".$row[4]."</td>";
+				echo "<td>".$row[5]."</td>";
+				echo "<td>".$row[6]."</td>";
 				
-				$usuario = $row2[2];
+				$usuario = $row[2];
 				$select = 'select * from usuarios where id_usuario="'.$usuario.'";';
-				$resul = mysql_query($select, $dbh) or die ("problema con la solicitud");
-				$renglon = mysql_fetch_assoc($resul);
+				$resul = $conn->query($select) or die ("problema con la solicitud");
+				$renglon = $resul->fetch_assoc();
 				
 				echo "<td>".$renglon['nombres']." ".$renglon['apellido_paterno']." ".$renglon['apellido_materno']."</td>";
-				echo "<td>".$row2[7]."</td>";
+				echo "<td>".$row[7]."</td>";
 			echo "</tr>";		
 		}
 echo "</table>";

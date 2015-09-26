@@ -24,7 +24,7 @@ if (!$conexion){
 	die('Error de Conexion: ' .mysql_error());
 }
 
-$conexion_base=mysql_select_db('Endoperio', $conexion);
+$conexion_base=mysql_select_db('Endoperio');
 
 if (!$conexion_base) {
 	die('Error de seleccion de base: ' .mysql_error());
@@ -36,7 +36,7 @@ include('../../php/base3.php');
 $insertar = "insert into fotografias_externas (id_paciente, fecha_foto, descripcion) values ('$a', now(),'$b')";
 
 
-if(!mysql_query($insertar, $conexion))
+if(!mysql_query($insertar))
 	die('Error de consulta: '.mysql_error());
 
 /****************************************/
@@ -55,9 +55,9 @@ $ultimo = $a;
 rename($imagen,$ultimo);
 
 $sentencia = "UPDATE fotografias_externas SET nombre_foto='$ultimo' WHERE id_foto='$a';";
-if(!mysql_query($sentencia, $conexion))
+if(!mysql_query($sentencia))
 	die('Error de consulta: '.mysql_error());
-mysql_close($conexion);
+mysqli_close($conn);
 
 /****************************************/
 

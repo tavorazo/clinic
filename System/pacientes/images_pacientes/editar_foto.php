@@ -58,11 +58,11 @@ if($imagen!=''){
 
 	$sentencia = "UPDATE paciente SET foto_ingreso='$id_paciente' WHERE id_paciente='$id_paciente';";
 
-	if(!mysql_query($sentencia, $conexion))
+	if(!mysql_query($sentencia))
 
 		die('Error de consulta: '.mysql_error());
 
-	mysql_close($conexion);
+	mysqli_close($conn);
 
 }
 

@@ -91,7 +91,7 @@ if(mail($correo, $titulo , $mensaje, $cabeceras) or die ("No se ha podido enviar
 else
 	echo "no enviado";
 }
-$conn = null;
+mysqli_close ( $conn );
 
 	echo '<br><br><br><center><img src="../images/endoperio2.png" width="100px" alt=""> <br> ';
 	echo "Cita confirmada con exito<br><br><br>";

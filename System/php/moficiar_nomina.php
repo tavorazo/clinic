@@ -31,11 +31,10 @@
 		$insertar = "UPDATE nomina set sueldo='$sueldo', vacaciones='$vacaciones', aguinaldo='$aguinaldo' where id_usuario='$id_usuario'";
 	}
 //echo $insertar;
-	//if(!mysql_query($insertar, $conexion))
+	//if(!mysql_query($insertar))
 	if(!$conn->query($insertar))
 		die('Error de consulta: '.mysqli_error($conn));
-	$conn->close();
-	//mysql_close($conexion);
+	mysqli_close($conn);
 	echo '<br><br><br><center><img src="../images/endoperio2.png" width="100px" alt=""> <br> ';
 	echo "Nomina modificada con &eacute;xito<br><br><br>";
 	echo '<div style="  padding:9px; border:1px solid #E6E6E6; height:18px; width:120px; margin-top:12px; text-align:center; margin-right:10px ">';

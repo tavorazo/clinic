@@ -42,7 +42,7 @@
 			die('Error de Conexion: ' .mysql_error());
 		}
 
-		$conexion_base=mysql_select_db('Endoperio', $conexion);
+		$conexion_base=mysql_select_db('Endoperio');
 
 		if (!$conexion_base) {
 			die('Error de seleccion de base: ' .mysql_error());
@@ -67,7 +67,7 @@
 
 		if(!$conn->query($insertar))
 			die('Error de consulta: '.mysql_error());
-		$conn=null;
+		mysqli_close ( $conn );
 
 		echo '<br><br><br><center><img src="../images/endoperio2.png" width="100px" alt=""> <br> ';
 		echo "Noticia creada con exito<br><br><br>";

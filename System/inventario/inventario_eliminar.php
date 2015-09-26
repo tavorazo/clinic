@@ -5,7 +5,6 @@ $eliminar = 'DELETE from inventario where id_producto="'.$id.'";';
 //if(!mysql_query($eliminar, $dbh))
 if(!$conn->query($eliminar))
 	die('Error de consulta: '.mysqli_error());
-$conn->close();
-//mysql_close($conexion);
+mysqli_close($conn);
 header ("Location: ../almacen.php");
 ?>

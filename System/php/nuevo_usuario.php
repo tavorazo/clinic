@@ -29,10 +29,10 @@
 $insertar = "INSERT into usuarios (id_usuario, nombres, apellido_paterno, apellido_materno, fecha_nacimiento, rol, correo, tel_emergencia, name_emergencia, fecha_alta, password) 
 	values ('$id_usuario', '$nombre',  '$paterno', '$materno', '$fecha', '$rol', '$correo', '$tel_emergencia', '$name_emergencia', '$fecha_alta', '$contra');";
 
-//if(!mysql_query($insertar, $conexion))
+//if(!mysql_query($insertar))
 if(!$conn->query($insertar))
 	die('Error de consulta: '.mysqli_error($conn));
-mysql_close($conexion);
+mysqli_close($conn);
 }
 ?>
 <META HTTP-EQUIV="Refresh" CONTENT="1; URL=../add-usuario.php">

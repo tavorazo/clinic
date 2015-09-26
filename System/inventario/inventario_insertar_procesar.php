@@ -25,7 +25,7 @@ include('../php/base.php');
 	$instruccion = "INSERT into inventario (nombre,numero_serial,descripcion,cantidad,reabastesible,cantidad_minima,ultimo_abastecimiento, venta, precio_compra, precio_venta,tipo_definicion) values ('$a','$b','$c','$d','$e','$f',now(), '$venta', '$pcompra', '$pventa','$tipo');";
 	$sql = 'SELECT * from inventario where numero_serial="'.$b.'";';
 	//echo $select;
-	//if(!mysql_query($instruccion, $conexion))
+	//if(!mysql_query($instruccion))
 	if(!$conn->query($instruccion))
 		die('Error de consulta: '.mysqli_error($conn));
 	
@@ -37,11 +37,10 @@ include('../php/base.php');
 
 $total = $d * $pcompra;
 $instruccion2 = "INSERT into inventario_historial_entradas (id_producto,cantidad,total_compra,id_usuario,fecha ) values ('$producto', '$d', '$total', '$usuario', now());";
-//if(!mysql_query($instruccion2, $conexion))
+//if(!mysql_query($instruccion2))
 if(!$conn->query($instruccion2))
 	die('Error de consulta: '.mysqli_error($conn));
 
-$conn->close();
-//mysql_close($conexion);
+mysqli_close($conn);
 echo '<meta http-equiv="refresh" content="0; url=../almacen.php" />';
 ?>

@@ -28,9 +28,8 @@ if($aguinaldo_=='1' && $vacaciones_=='1')
 values ('$id_usuario','$sueldo','0','0', '$total', now(),'0','$semana','$y');";
 if(!$conn->query($insertar))
 	die('Error de consulta: '.mysqli_error($conn));
-//if(!mysql_query($insertar, $conexion))
+//if(!mysql_query($insertar))
 //	die('Error de consulta: '.mysql_error());
-//mysql_close($conexion);
-$conn->close();
+mysqli_close($conn);
 echo "Pago realizado con &eacute;xito<br><a href='nomina_personal.php?id=",$id_usuario,"'>Regresar</a>";
 ?>

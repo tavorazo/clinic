@@ -26,11 +26,11 @@
 			$insertar = "UPDATE curriculum set descripcion='$curriculum' where id_usuario='$id'";
 		else
 			$insertar = "INSERT into curriculum (id_usuario, descripcion) values ('$id','$curriculum')";
-		//if(!mysql_query($insertar, $conexion))
+		//if(!mysql_query($insertar))
 		if(!$conn->query($insertar))
 			die('Error de consulta: '.mysqli_error($conn));
-		$conn->close();
-		//mysql_close($conexion);
+		
+		mysqli_close($conn);
 		$a = 'lista_usuarios.php';
 		echo "<center><br><br><br<a href='",$a,"' > Proceso realizado con &eacute;xito </a>";
 		?>

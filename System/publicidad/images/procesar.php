@@ -26,11 +26,11 @@ $renglon = $result->fetch_assoc();
 $id = $renglon['id_publicidad'];
 rename($imagen, $id);
 $editar = "UPDATE publicidad set imagen='$id' where id_publicidad='$id';";
-//if(!mysql_query($editar, $conexion)){
+//if(!mysql_query($editar)){
 if(!$conn->query($editar)){
 	die('error: '.mysqli_error($conn));
 }else{
-	//mysql_close($conexion);
+	//mysqli_close($conn);
 	$conn->close();
 	echo '<META HTTP-EQUIV="Refresh" CONTENT="3; URL=../subir_publicidad.php">
 	Subida con éxito';

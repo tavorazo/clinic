@@ -22,17 +22,16 @@ if(1){
 	$instruccion3 = "INSERT into inventario_historial_entradas (id_producto,cantidad,total_compra,id_usuario,fecha ) values ('$a', '$c', '$cantidad', '$usuario', now());";
 	}
 }
-//if(!mysql_query($insertar, $conexion))
+//if(!mysql_query($insertar))
 if(!$conn->query($insertar))
 	die('Error de consulta: '.mysqli_error());
-//if(!mysql_query($insertar2, $conexion))
+//if(!mysql_query($insertar2))
 if(!$conn->query($insertar2))
 	die('Error de consulta: '.mysqli_error());
 if($c>0)
-	//if(!mysql_query($instruccion3, $conexion))
+	//if(!mysql_query($instruccion3))
 	if(!$conn->query($instruccion3))
 		die('Error de consulta: '.mysqli_error());
-	//mysql_close($conexion);
-	$conn->close();
+	mysqli_close($conn);
 	header ("Location: ../almacen.php");
 ?>

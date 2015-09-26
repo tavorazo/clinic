@@ -27,7 +27,6 @@
 		date_default_timezone_set("Mexico/General");
 		
 		include("../php/base.php");
-		include("../php/base3.php");
 		
 		$id_usuario = $_SESSION['u'];
 		
@@ -40,8 +39,8 @@
 			//$id_paciente= $_GET['id_paciente'];
 			
 			$select  = "select * from inventario where id_producto='".$producto."';";
-			$resul	 = mysql_query($select, $dbh) or die ("problema con la solicitud");
-			$renglon = mysql_fetch_assoc($resul);
+			$resul	 = $conn->query($select) or die ("problema con la solicitud");
+			$renglon = $resul->fetch_assoc();
 			
 			$precio = $renglon['precio_venta'];
 			$total  = $precio * $cantidad;
@@ -57,27 +56,27 @@
 				$cantidad = $cantidad*(-1);
 				$insertar2 = "insert into inventario_historial (id_usuario, id_producto, cantidad, fecha) values ('$id_usuario', '$producto', '$cantidad', now())";
 
-				if(!mysql_query($actualizar, $conexion))
+				if(!$conn->query($actualizar))
 					die('Error de consulta: '.mysql_error());
 					
-				if(!mysql_query($insertar2, $conexion))
+				if(!$conn->query($insertar2))
 					die('Error de consulta: '.mysql_error());
 			
-				if(!mysql_query($insertar, $conexion))
+				if(!$conn->query($insertar))
 					die('Error de consulta: '.mysql_error());
 
 
 
 				$select = 'select * from inventario where id_producto="'.$producto.'";';
-				$resul = mysql_query($select, $dbh) or die ("problema con la solicitud");
-				$renglon = mysql_fetch_assoc($resul);
+				$resul = $conn->query($select) or die ("problema con la solicitud");
+				$renglon = $resul->fetch_assoc();
 				$cantidad = $cantidad * (-1);
 				$nombre_producto = $renglon['nombre'];
 				$recibo = "insert into recibos (cantidad, descripcion, total, fecha, comprador, vendedor) values ('$cantidad','$nombre_producto','$total',now(),'$paciente','$id_usuario')";
 				
-				if(!mysql_query($recibo, $conexion))
+				if(!$conn->query($recibo))
 					die('Error de consulta: '.mysql_error());
-				$id_recibo = mysql_insert_id();
+				$id_recibo = $conn->insert_id;
 
 					echo '<br><br><br><center><img src="../images/endoperio2.png" width="100px" alt=""> <br> ';
 					echo "Compra &eacute;xitosa<br><br><br>";
@@ -88,7 +87,7 @@
 			
 				//echo'<META HTTP-EQUIV="Refresh" CONTENT="1; URL=compra.php?id_paciente=',$paciente,'">';
 
-				mysql_close($conexion);
+				mysqli_close($conn);
 			}
 			else{
 				echo '<br><br><br><center><img src="../images/endoperio2.png" width="100px" alt=""> <br> ';
@@ -97,7 +96,7 @@
 				echo "<a href='compra.php?id_paciente=",$paciente,"' style='color=#fff'>Regresar </a></center></div>";
 
 				echo'<META HTTP-EQUIV="Refresh" CONTENT="4; URL=compra.php?id_paciente=',$paciente,'">';
-				mysql_close($conexion);
+				mysqli_close($conn);
 			}
 	?>
 	</body>

@@ -15,7 +15,7 @@ if($imagen!='')
 	//Header("Location: $index");
 	if(!mysql_query($eliminar, $dbh))
 		die('Error de consulta: '.mysql_error());
-	//mysql_close($conexion);
+	mysqli_close($conn);
 
 ?>
 <html>

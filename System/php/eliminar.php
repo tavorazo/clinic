@@ -60,8 +60,8 @@
 		//if(!mysql_query($eliminar, $dbh))
 		if(!$conn->query($eliminar))
 			die('Error de consulta: '.mysqli_error($conn));
-		//mysql_close($conexion);
-		$conn->close();
+		mysqli_close($conn);
+		
 		echo '<br><br><br><center><img src="../images/endoperio2.png" width="100px" alt=""> <br> ';
 		echo "Eliminado exitosamente<br><br><br>";
 		echo '<div style="  padding:9px; border:1px solid #E6E6E6; height:18px; width:120px; margin-top:12px; text-align:center; margin-right:10px ">';

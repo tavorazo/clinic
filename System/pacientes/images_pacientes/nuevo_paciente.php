@@ -109,7 +109,7 @@ if (!$conexion){
 	die('Error de Conexion 1: ' .mysql_error());
 }
 
-$conexion_base=mysql_select_db('Endoperio', $conexion);
+$conexion_base=mysql_select_db('Endoperio');
 
 if (!$conexion_base) {
 	die('Error de seleccion de base: ' .mysql_error());
@@ -220,9 +220,9 @@ if($imagen!='predeterminado.png'){
 
 	$sentencia = "UPDATE paciente SET foto_ingreso='$ultimo_registro' WHERE id_paciente='$ultimo_registro';";
 	//echo "<br>".$sentencia;
-	if(!mysql_query($sentencia, $conexion))
+	if(!mysql_query($sentencia))
 		die('Error de consulta 4: '.mysql_error());
-	mysql_close($conexion);
+	mysqli_close($conn);
 }
 /****************************************/
 

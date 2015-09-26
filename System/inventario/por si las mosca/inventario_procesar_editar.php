@@ -16,12 +16,12 @@ include('../php/base3.php');
 	$insertar2 = "insert into Inventario_Historial (id_usuario, id_producto, cantidad, fecha) values ('$usuario', '$a', '$c', now())";
 
 
-if(!mysql_query($insertar, $conexion))
+if(!mysql_query($insertar))
 	die('Error de consulta: '.mysql_error());
 	
-if(!mysql_query($insertar2, $conexion))
+if(!mysql_query($insertar2))
 	die('Error de consulta: '.mysql_error());
-mysql_close($conexion);
+mysqli_close($conn);
 
 header ("Location: ../almacen.php");
 

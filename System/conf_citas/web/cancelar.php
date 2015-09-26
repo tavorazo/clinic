@@ -47,7 +47,7 @@ for($i=0;$i<2;$i++){
 	
 	echo'<META HTTP-EQUIV="Refresh" CONTENT="2; URL=../../panel.php">';
 
-	//mysql_close($conexion);
+	mysqli_close($conn);
 
 ?>
 

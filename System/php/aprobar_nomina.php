@@ -18,11 +18,11 @@
 		$semana = $_POST['semana'];
 		$y = $_POST['y'];
 		$insertar = "UPDATE nomina_historial set aprobada='1' where semana='$semana' and y='$y'";
-		//if(!mysql_query($insertar, $conexion))
+		//if(!mysql_query($insertar))
 		if(!$conn->query($insertar))
 			die('Error de consulta: '.mysqli_error($conn));
-		//mysql_close($conexion);
-		$conn->close();
+		mysqli_close($conn);
+		
 		$a = '../contabilidad/nomina.php';
 		echo "<center><br><br><br<a href='",$a,"' > Proceso realizado con &eacute;xito </a>";
 		?>

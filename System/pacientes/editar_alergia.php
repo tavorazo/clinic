@@ -62,8 +62,8 @@
         echo " <h1><a href='ficha-paciente.php?id=",$id,"' style='float:left; margin-right:4px'> < Regresar   |</a>";
 
 		$select = 'select * from paciente where id_paciente="'.$id.'";';
-		$resul = mysql_query($select, $dbh) or die ("problema con la solicitud");
-		$renglon = mysql_fetch_assoc($resul);
+		$resul = $conn->query($select) or die ("problema con la solicitud");
+		$renglon = $resul->fetch_assoc();
 	?>
 
 	 Alergias de paciente <br><hr><br>

@@ -32,7 +32,7 @@ include('../php/base.php');
 
 		if(!$conn->query($eliminar))
 			die('Error de consulta: '.mysql_error());
-		$conn=null;
+		mysqli_close ( $conn );
 
 		echo '<br><br><br><center><img src="../images/endoperio2.png" width="100px" alt=""> <br> ';
 		echo "Proceso realizado con exito<br><br><br>";
