@@ -80,6 +80,8 @@ echo '<a class="nonblock nontext grpelem" id="u552" href="contabilidad.php"> <im
 
       <h9>Consulta citas</h9><br>
       <?php
+      
+error_reporting(E_ALL & ~E_NOTICE);
       $mes = $_GET['mes'];
       $ano = $_GET['ano'];
       $tipo_semana = 1;

@@ -28,12 +28,11 @@
 				$doctor = $_SESSION['u'];
 			
 			include('php/base.php');
-			include('php/base3.php');
 				
-				$select3 = 'select * from usuarios where id_usuario="'.$doctor.'";';
-				$resul3 = $conn->query($select3) or die ("problema con la solicitud 1");
+				$select = 'select * from usuarios where id_usuario="'.$doctor.'";';
+				$result = $conn->query($select) or die ("problema con la solicitud 1");
 
-				$renglon3 = mysql_fetch_assoc($resul3);
+				$renglon3 = $result->fetch_assoc();
 				$rol = $renglon3['rol'];	
 
 			$dia = $_GET['dia'];
@@ -94,7 +93,7 @@
 		  		<form action='?ano=$ano&mes=$mes_n&dia=$dia&n_dia=$n_dia' method='POST'>
 		  		<select name='d' class='campoT'>
 		  		<option value=''>Todos</option>";
-			 	while ($rowlista = mysql_fetch_array($resultd, MYSQL_NUM)){
+			 	while ($rowlista = $resultd->fetch_array()){
 			  		echo "<option value='",$rowlista[0],"'>",$rowlista[1]," ",$rowlista[2],"</option>";
 			  	}
 				echo "	</select>
@@ -105,10 +104,10 @@
 				while($i<13){
 					while($j<5){
 						if($dorevisar!='')
-						$result2 = $conn->query("SELECT * FROM $tabla where ano='$ano' and mes='$mes_n' and dia='$dia' and hora='$hora[$i]' and minuto='$minuto[$j]' and id_usuario='$dorevisar'");
+						$result = $conn->query("SELECT * FROM $tabla where ano='$ano' and mes='$mes_n' and dia='$dia' and hora='$hora[$i]' and minuto='$minuto[$j]' and id_usuario='$dorevisar'");
 						else
-							$result2 = $conn->query("SELECT * FROM $tabla where ano='$ano' and mes='$mes_n' and dia='$dia' and hora='$hora[$i]' and minuto='$minuto[$j]'");
-						$nfilas = mysql_num_rows($result2);
+							$result = $conn->query("SELECT * FROM $tabla where ano='$ano' and mes='$mes_n' and dia='$dia' and hora='$hora[$i]' and minuto='$minuto[$j]'");
+						$nfilas =$result->fetch_row();
 					
 							
 							if($hora[$i]!=14 && $hora[$i]!=15){
@@ -122,13 +121,13 @@
 								echo "";
 							
 					echo "<table style='width:90%'>";
-					   while ($row2 = mysql_fetch_array($result2, MYSQL_NUM)) {
+					   while ($row2 = $result->fetch_array()) {
 					 	  	$select2 = 'select * from usuarios where id_usuario="'.$row2[1].'";';
 							$select = 'select * from paciente where id_paciente="'.$row2[2].'";';
 							$resul = $conn->query($select) or die ("problema con la solicitud 2");
 							$resul2 = $conn->query($select2) or die ("problema con la solicitud 3");
-							$renglon = mysql_fetch_assoc($resul);
-							$renglon2 = mysql_fetch_assoc($resul2);
+							$renglon = $resul->fetch_assoc();
+							$renglon2 = $resul2->fetch_assoc();
 								
 							echo "
 						<tr><td>";
@@ -172,7 +171,7 @@
 		  		</div></center>";
 				while($i<13){
 					while($j<5){
-						$result2 = $conn->query("SELECT * FROM $tabla where id_usuario='$doctor' and ano='$ano' and mes='$mes_n' and dia='$dia' and hora='$hora[$i]' and minuto='$minuto[$j]'");
+						$result = $conn->query("SELECT * FROM $tabla where id_usuario='$doctor' and ano='$ano' and mes='$mes_n' and dia='$dia' and hora='$hora[$i]' and minuto='$minuto[$j]'");
 						
 					echo '<br><br>
 					<div style="width:80%; margin-left:60px; min-height:30px; border: 1px solid #B8CCD8; background:#F4F4F4">
@@ -182,7 +181,7 @@
 							</div>
 							
 						<table style='width:90%'>";
-					   while ($row2 = mysql_fetch_array($result2, MYSQL_NUM)) {
+					   while ($row2 = $result->fetch_array($result, MYSQL_NUM)) {
   						
 						$select = 'select * from paciente where id_paciente="'.$row2[2].'";';
 						$resul = $conn->query($select) or die ("problema con la solicitud 4");
