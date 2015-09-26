@@ -268,7 +268,7 @@ echo "<a href='?mes=",$mes,"'> <div id='botnH' style=' '> Ver historial de este 
     //echo $mes;
 echo "<a href='imprime_inventario.php?fecha=",$fechab,"&ano=",$ano,"&mes=",$mes,"&dia=",$dia2,"' target='_blank'> <div id='botnH' style=' width:160px '> Imprimir </div></a>";
 echo "</div><br>";
-    //$result = mysql_query("SHOW COLUMNS FROM inventario_historial");
+    //$result = $conn->query("SHOW COLUMNS FROM inventario_historial");
 $result = $conn->query("SHOW COLUMNS FROM inventario_historial");
 echo "<table border=1 style='margin-top:160px;'> <tr>";
 
@@ -280,7 +280,7 @@ if (mysqli_num_rows($result)> 0) {
  echo "<td style='color:#58ACFA'>Fecha</td>";
 }
 echo "</tr>";
-  //$result2 = mysql_query("SELECT * FROM inventario_historial where fecha like '%$fechab%' order by fecha desc");
+  //$result2 = $conn->query("SELECT * FROM inventario_historial where fecha like '%$fechab%' order by fecha desc");
   //while ($row2 = mysql_fetch_array($result2, MYSQL_NUM)) {
 $result = $conn->query('SELECT * FROM inventario_historial where fecha = "'.$fechab.'" order by fecha desc');
 while ($row2 = $result->fetch_row()) {
@@ -291,13 +291,13 @@ while ($row2 = $result->fetch_row()) {
  $p = $row2[2];
  
  
-          //$resul = mysql_query($select, $dbh) or die ("problema con la solicitud");
+          //$resul = $conn->query($select, $dbh) or die ("problema con la solicitud");
           //$renglon = mysql_fetch_assoc($resul);
  $select = 'SELECT  * from usuarios where id_usuario="'.$u.'"';
  $result = $conn->query($select);
  $renglon = $result->fetch_assoc();
 echo "<td>",$renglon['nombres']," ",$renglon['apellido_paterno']," ",$renglon['apellido_materno'],"</td>";
-          //$resul = mysql_query($select, $dbh) or die ("problema con la solicitud");
+          //$resul = $conn->query($select, $dbh) or die ("problema con la solicitud");
           //$renglon = mysql_fetch_assoc($resul);
 $select = 'SELECT * from inventario where id_producto="'.$p.'";';
 $result = $conn->query($select);

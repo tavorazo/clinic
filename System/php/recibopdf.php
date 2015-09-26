@@ -115,7 +115,7 @@ require('fpdf/fpdf.php');
 	//$con = new DB;
 	//$pacientes = $con->conectar();	
 	//$strConsulta = "SELECT * from paciente where id_paciente =  '$paciente'";
-	//$pacientes = mysql_query($strConsulta);
+	//$pacientes = $conn->query($strConsulta);
 	
 	//$f1 = mysql_fetch_array($pacientes);
 	$pdf=new PDF('L','mm','Letter');
@@ -125,7 +125,7 @@ require('fpdf/fpdf.php');
 	
 	//$historial = $con->conectar();	
 	//strConsulta = "SELECT * FROM recetas WHERE id_paciente = '$paciente'";
-	//$historial = mysql_query($strConsulta);
+	//$historial = $conn->query($strConsulta);
 	//$numfilas = mysql_num_rows($historial);
 	//$fila = mysql_fetch_array($historial);
 	$pdf->SetFont('Arial','',8);

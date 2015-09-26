@@ -1,7 +1,7 @@
 <?php
 	include("../php/base2.php");
 	
-$result = mysql_query("SHOW COLUMNS FROM paciente");
+$result = $conn->query("SHOW COLUMNS FROM paciente");
 ?>
 <table border=1>
 <tr>
@@ -16,7 +16,7 @@ if (mysql_num_rows($result)> 0) {
 </table>
 <?php
 //ahora consultamos a la base de datos para sacar los registros contenidos
-$result2 = mysql_query("SELECT * FROM paciente");
+$result2 = $conn->query("SELECT * FROM paciente");
 while ($row2 = mysql_fetch_array($result2, MYSQL_NUM)) {
 //echo "<tr>";
     for($i=0; $i<count($row2); $i++){

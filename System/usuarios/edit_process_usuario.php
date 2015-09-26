@@ -33,7 +33,7 @@ if($imagen!=''){
 $insertar = "UPDATE usuarios set nombres = '$nombre', 		apellido_paterno = '$paterno',		apellido_materno = '$materno',
 				fecha_nacimiento = '$fecha',	name_emergencia = '$nom_emergencia',	tel_emergencia = '$tel_emergencia',
 				correo = '$correo', 		password = '$password', imagen = '$imagen'		 where id_usuario = '$id';";
-//if(!mysql_query($insertar))
+//if(!$conn->query($insertar))
 if(!$conn->query($insertar))
 	die('Error de consulta: '.mysqli_error($conn));
 mysqli_close($conn);

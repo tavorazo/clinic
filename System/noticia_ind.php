@@ -15,10 +15,10 @@
                   //mysql_connect($host,$usuario,$contrasena);
                   //mysql_select_db($bdd);
                   //Consultamos a la base de datos para sacar las columnas de la tabla
-                  //$result = mysql_query("SHOW COLUMNS FROM $tabla");
+                  //$result = $conn->query("SHOW COLUMNS FROM $tabla");
           
                   //ahora consultamos a la base de datos para sacar los registros contenidos
-                  $result2 = mysql_query("SELECT * FROM noticias where id_noticia='$n'");
+                  $result2 = $conn->query("SELECT * FROM noticias where id_noticia='$n'");
                 
                   while ($row2 = mysql_fetch_array($result2, MYSQL_NUM)) {
               ?>

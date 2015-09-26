@@ -33,7 +33,7 @@
 	$encabezados .= "From: $remitente\nReply-To: $remitente" ;
 
 if($correo==''){
-	$pacientes = mysql_query("select fecha_nacimiento, nombres, apellido_paterno, apellido_materno, correo from paciente;");
+	$pacientes = $conn->query("select fecha_nacimiento, nombres, apellido_paterno, apellido_materno, correo from paciente;");
 	while ($r_p = mysql_fetch_array($pacientes, MYSQL_NUM)){
 		$destino = $r_p[4];
 		if($destino!=''){
@@ -41,7 +41,7 @@ if($correo==''){
 			echo " Enviado<br>";
 		}
 	}
-	$pacientes = mysql_query("select fecha_nacimiento, nombres, apellido_paterno, apellido_materno, correo from usuarios;");
+	$pacientes = $conn->query("select fecha_nacimiento, nombres, apellido_paterno, apellido_materno, correo from usuarios;");
 	while ($r_p = mysql_fetch_array($pacientes, MYSQL_NUM)){
 		$destino = $r_p[4];
 		if($destino!=''){

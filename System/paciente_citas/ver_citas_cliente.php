@@ -59,13 +59,13 @@
     $encontro_cita = 0;
 
 			$doctor = $row2[0];
-			$result2 = mysql_query("select * from agenda where id_paciente='$id' order by id_cita desc limit 1;");
+			$result2 = $conn->query("select * from agenda where id_paciente='$id' order by id_cita desc limit 1;");
 			//print "select * from agenda where id_paciente='$id' order by id_cita desc limit 1";
 			while ($row3 = mysql_fetch_array($result2, MYSQL_NUM)){
 				$d = $row3[1];
 				$p = $row3[2];
-				$doctor = mysql_query("select * from usuarios where id_usuario='$d';");
-				$paciente = mysql_query("select * from paciente where id_paciente='$p';");
+				$doctor = $conn->query("select * from usuarios where id_usuario='$d';");
+				$paciente = $conn->query("select * from paciente where id_paciente='$p';");
 					while ($row_doctor = mysql_fetch_array($doctor, MYSQL_NUM)){
 						$doctor_nombre = $row_doctor[1];
 						$doctor_apellido = $row_doctor[2];
@@ -125,7 +125,7 @@
   include('../php/base2.php');
 
           $select = 'select * from publicidad where lugar="2";';
-          $resul = mysql_query($select, $dbh) or die ("problema con la solicitud");
+          $resul = $conn->query($select, $dbh) or die ("problema con la solicitud");
           $renglon = mysql_fetch_assoc($resul);
 
           echo "<img src='../publicidad/images/".$renglon['imagen']."' width='900px'>";

@@ -47,19 +47,19 @@
 	include('../php/base3.php');
 
 	$select = 'select * from agenda where id_cita="'.$id.'";';
-	$resul = mysql_query($select, $dbh) or die ("problema con la solicitud");
+	$resul = $conn->query($select, $dbh) or die ("problema con la solicitud");
 	$renglon = mysql_fetch_assoc($resul);
 
 		if($renglon['duracion']=='15'){
 			$eliminar = 'delete from agenda where id_cita="'.$id.'";';
-			if(!mysql_query($eliminar, $dbh))
+			if(!$conn->query($eliminar, $dbh))
 				die('Error de consulta: '.mysql_error());
 		}
 
 		if($renglon['duracion']=='30'){
 			for($i=0;$i<2;$i++){
 				$eliminar = 'delete from agenda where id_cita="'.$id.'";';
-				if(!mysql_query($eliminar, $dbh))
+				if(!$conn->query($eliminar, $dbh))
 					die('Error de consulta: '.mysql_error());
 				$id--;
 			}
@@ -69,7 +69,7 @@
 			for($i=0;$i<3;$i++){
 			//echo $id;
 				$eliminar = 'delete from agenda where id_cita="'.$id.'";';
-				if(!mysql_query($eliminar, $dbh))
+				if(!$conn->query($eliminar, $dbh))
 					die('Error de consulta: '.mysql_error());
 				$id--;
 			}
@@ -78,7 +78,7 @@
 		if($renglon['duracion']=='60'){
 			for($i=0;$i<4;$i++){
 				$eliminar = 'delete from agenda where id_cita="'.$id.'";';
-				if(!mysql_query($eliminar, $dbh))
+				if(!$conn->query($eliminar, $dbh))
 					die('Error de consulta: '.mysql_error());
 				$id--;
 			}

@@ -8,15 +8,15 @@ include('../php/base3.php');
 $contador = 0;
 	
 	$doctor = $row2[0];
-	$result2 = mysql_query("select * from agenda where confirmacion='0';");
-	//$doctores = mysql_query("select * from usuarios where rol='dentista';");
+	$result2 = $conn->query("select * from agenda where confirmacion='0';");
+	//$doctores = $conn->query("select * from usuarios where rol='dentista';");
 	$n=0;
 	$n2=0;
 	while ($row3 = mysql_fetch_array($result2, MYSQL_NUM)){
 		$d = $row3[1];
 		$p = $row3[2];
-		$doctor = mysql_query("select * from usuarios where id_usuario='$d';");
-		$paciente = mysql_query("select * from paciente where id_paciente='$p';");
+		$doctor = $conn->query("select * from usuarios where id_usuario='$d';");
+		$paciente = $conn->query("select * from paciente where id_paciente='$p';");
 		$ano=$row3[3];
 		$dia=$row3[5];
 		$mes=$row3[4];
@@ -36,10 +36,10 @@ $contador = 0;
 		echo "doctor ";
 	
 			echo "<select name='doctor'>";
-			$doctores = mysql_query("select * from usuarios where rol='dentista';");
+			$doctores = $conn->query("select * from usuarios where rol='dentista';");
 			while ($row_doctores = mysql_fetch_array($doctores, MYSQL_NUM)){
 				$disdoc=$row_doctores[0];
-				$dispo= mysql_query("select * from agenda where ano = '$ano' and mes='$mes' and dia='$dia' and minuto='$minuto' and hora='$hora' and id_usuario='$disdoc' and confirmacion='1';");
+				$dispo= $conn->query("select * from agenda where ano = '$ano' and mes='$mes' and dia='$dia' and minuto='$minuto' and hora='$hora' and id_usuario='$disdoc' and confirmacion='1';");
 				//echo "<option>select * from agenda where ano = '$ano' and mes='$mes' and dia='$dia' and minuto='$minuto' and hora='$hora' and id_usuario='$disdoc' and confirmacion='1';</option>";
 				while ($row_dispo = mysql_fetch_array($dispo, MYSQL_NUM)){
 					$dispo = 1;

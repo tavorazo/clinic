@@ -68,7 +68,7 @@
 		$tipo = $_GET['tipo'];
 
 			  $select_p = 'select * from paciente where id_paciente="'.$id_paciente.'";';
-			  $resulp = mysql_query($select_p, $dbh) or die ("problema con la solicitud");
+			  $resulp = $conn->query($select_p, $dbh) or die ("problema con la solicitud");
 			  $renglonp = mysql_fetch_assoc($resulp);
 		$nombre_paciente =$renglonp['nombres'] ." ".$renglonp['apellido_paterno']." ". $renglonp['apellido_materno'];
 
@@ -76,7 +76,7 @@
 /*+++++++++++++++++++++++++++++++AVANCE CLINICO++++++++++++++++++++++*/
 		if($tipo=='1'){
 			echo "<a href='ficha-paciente.php?id=",$id_paciente,"' style='float:left; margin-right:10px;'><< Regresar </a>  <h1>|  Avance completo del paciente: ", $nombre_paciente, "</h1><hr>";
-			$result2 = mysql_query("select * from avance_clinico where id_paciente = '$id_paciente' order by fecha desc");
+			$result2 = $conn->query("select * from avance_clinico where id_paciente = '$id_paciente' order by fecha desc");
 			echo "<table>
 			<tr>
 				<th>Fecha de avance</th>
@@ -86,7 +86,7 @@
 			  echo "<tr><td> ", $row_avance[4],"</td>";
 			  echo "<td>", $row_avance[3],"</td>";
 			  $select = 'select * from usuarios where id_usuario="'.$row_avance[2].'";';
-			  $resul = mysql_query($select, $dbh) or die ("problema con la solicitud");
+			  $resul = $conn->query($select, $dbh) or die ("problema con la solicitud");
 			  $renglon = mysql_fetch_assoc($resul);
 			  echo "<td>", $renglon['nombres']," ", $renglon['apellido_paterno'], " ", $renglon['apellido_materno'], "</td></tr>";
 			}
@@ -97,7 +97,7 @@
 		if($tipo=='2'){
 			echo "<a href='ficha-paciente.php?id=",$id_paciente,"' style='float:left; margin-right:10px;'><< Regresar </a>  <h1>|  Recetas del paciente: ", $nombre_paciente, "</h1><hr>";
 			//echo "Recetas completas del paciente: ", $nombre_paciente;
-			$result3 = mysql_query("select * from recetas where id_paciente='$id_paciente' order by fecha desc;");
+			$result3 = $conn->query("select * from recetas where id_paciente='$id_paciente' order by fecha desc;");
 			echo "<table>
 			<tr>
 				<th>Fecha de receta</th>
@@ -108,7 +108,7 @@
 			 while ($row_receta = mysql_fetch_array($result3, MYSQL_NUM)) {
 				  echo "<tr><td>", $row_receta[5],"</td>";
 				  $select = 'select * from usuarios where id_usuario="'.$row_receta[1].'";';
-				  $resul = mysql_query($select, $dbh) or die ("problema con la solicitud");
+				  $resul = $conn->query($select, $dbh) or die ("problema con la solicitud");
 				  $renglon = mysql_fetch_assoc($resul);
 				  echo "<td>", $renglon['nombres']," ", $renglon['apellido_paterno'], " ", $renglon['apellido_materno'], "</td>";
 				echo "<td>", $row_receta[3],"</td>";
@@ -121,7 +121,7 @@
 
 			echo "<a href='ficha-paciente.php?id=",$id_paciente,"' style='float:left; margin-right:10px;'><< Regresar </a>  <h1>|  Fotografias Cl&iacute;nicas del paciente: ", $nombre_paciente, "</h1><hr>";
 			//echo "Fotografias Cl&iacute;nicas del paciente: ", $nombre_paciente;
-			$result3 = mysql_query("select * from fotografias_clinicas where id_paciente='$id_paciente' order by fecha_foto desc;");
+			$result3 = $conn->query("select * from fotografias_clinicas where id_paciente='$id_paciente' order by fecha_foto desc;");
 			echo "<table>
 			<tr>
 				<th>Imagen</th>
@@ -142,7 +142,7 @@
 
 			echo "<a href='ficha-paciente.php?id=",$id_paciente,"' style='float:left; margin-right:10px;'><< Regresar </a>  <h1>|  Fotografias externas del paciente: ", $nombre_paciente, "</h1><hr>";
 			//echo "Fotografias Externas del paciente: ", $nombre_paciente;
-			$result3 = mysql_query("select * from fotografias_externas where id_paciente='$id_paciente' order by fecha_foto desc;");
+			$result3 = $conn->query("select * from fotografias_externas where id_paciente='$id_paciente' order by fecha_foto desc;");
 			echo "<table>
 			<tr>
 				<th>Imagen</th>
@@ -163,7 +163,7 @@
 
 			echo "<a href='ficha-paciente.php?id=",$id_paciente,"' style='float:left; margin-right:10px;'><< Regresar </a>  <h1>|  Radiograf&iacute;as del paciente: ", $nombre_paciente, "</h1><hr>";
 			//echo "Radiograf&iacute;as del paciente: ", $nombre_paciente;
-			$result3 = mysql_query("select * from radiografias where id_paciente='$id_paciente' order by fecha_foto desc;");
+			$result3 = $conn->query("select * from radiografias where id_paciente='$id_paciente' order by fecha_foto desc;");
 			echo "<table>
 			<tr>
 				<th>Imagen</th>

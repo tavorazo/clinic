@@ -25,7 +25,7 @@ if($_SESSION['rol']!='admin')
 	$MESCOMPLETO[10] = 'Octubre';
 	$MESCOMPLETO[11] = 'Noviembre';
 	$MESCOMPLETO[12] = 'Diciembre';
-	//$result = mysql_query("SHOW COLUMNS FROM inventario_historial");
+	//$result = $conn->query("SHOW COLUMNS FROM inventario_historial");
 	$result = $conn->query("SHOW COLUMNS FROM inventario_historial");
 	?>
 	<table border=1>
@@ -44,7 +44,7 @@ if($_SESSION['rol']!='admin')
 		<h1>Historial de fecha <?php echo $dia," ", $MESCOMPLETO[$mes]," ", $ano;?></h1>
 		<?php
       //ahora consultamos a la base de datos para sacar los registros contenidos
-//$result2 = mysql_query("SELECT * FROM inventario_historial where fecha like '%$fecha%' order by fecha desc");
+//$result2 = $conn->query("SELECT * FROM inventario_historial where fecha like '%$fecha%' order by fecha desc");
 //while ($row2 = mysql_fetch_array($result2, MYSQL_NUM)) {
 		$result2 = $conn->query("SELECT * FROM inventario_historial where fecha like '%$fecha%' order by fecha desc");
 		while ($row2 = $result2->fetch_row()) {
@@ -55,14 +55,14 @@ if($_SESSION['rol']!='admin')
 			$u = $row2[1];
 			$p = $row2[2];
 			
-	//$resul = mysql_query($select, $dbh) or die ("problema con la solicitud");
+	//$resul = $conn->query($select, $dbh) or die ("problema con la solicitud");
 	//$renglon = mysql_fetch_assoc($resul);
 			$select = 'SELECT * from usuarios where id_usuario="'.$u.'";';
 			$resul = $conn->query($select);
 			$renglon = $resul->mysql_fetch_assoc();
 			echo "<td>",$renglon['nombres']," ",$renglon['apellido_paterno']," ",$renglon['apellido_materno'],"</td>";
 			
-	//$resul = mysql_query($select, $dbh) or die ("problema con la solicitud");
+	//$resul = $conn->query($select, $dbh) or die ("problema con la solicitud");
 	//$renglon = mysql_fetch_assoc($resul);
 			$select = 'SELECT * from inventario where id_producto="'.$p.'";';
 			$resul = $conn->query($select);

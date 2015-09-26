@@ -86,12 +86,12 @@
   include('php/base2.php');
 
       //Consultamos a la base de datos para sacar las columnas de la tabla
-      $result = mysql_query("SHOW COLUMNS FROM $tabla");
+      $result = $conn->query("SHOW COLUMNS FROM $tabla");
 
 
                   echo "<div style='margin:auto auto' id='curriculum'>";
       //ahora consultamos a la base de datos para sacar los registros contenidos
-        $result2 = mysql_query("SELECT * FROM $tabla");
+        $result2 = $conn->query("SELECT * FROM $tabla");
         while ($row2 = mysql_fetch_array($result2, MYSQL_NUM)) { 
           if($row2[5] == 'admin' && $row2[1] !=  'webox'){
                   echo"  <div style='width:25%; margin:0 auto; padding:20px; float:left;'>
@@ -106,7 +106,7 @@
                               //echo "<br><label>Fecha de alta: </label>", $row2[9];
                             //  echo "<br><label>Password: </label>", $row2[10];
               $select = 'select * from curriculum where id_usuario="'.$row2[0].'";';
-              $resul = mysql_query($select, $dbh) or die ("problema con la solicitud");
+              $resul = $conn->query($select, $dbh) or die ("problema con la solicitud");
               $renglon = mysql_fetch_assoc($resul);
                    
                     echo "  </h12>
@@ -116,7 +116,7 @@
                       </div>";
           } 
         }
-        $result2 = mysql_query("SELECT * FROM $tabla");
+        $result2 = $conn->query("SELECT * FROM $tabla");
          while ($row2 = mysql_fetch_array($result2, MYSQL_NUM)) { 
           if($row2[5] == 'dentista'){
                   echo "<div style='width:25%; margin:0 auto; padding:20px; float:left;'>
@@ -130,7 +130,7 @@
                               //echo "<br><label>Fecha de alta: </label>", $row2[9];
                             //  echo "<br><label>Password: </label>", $row2[10];
               $select = 'select * from curriculum where id_usuario="'.$row2[0].'";';
-              $resul = mysql_query($select, $dbh) or die ("problema con la solicitud");
+              $resul = $conn->query($select, $dbh) or die ("problema con la solicitud");
               $renglon = mysql_fetch_assoc($resul);
                     echo "  </h12>
                     <br><br>
@@ -139,7 +139,7 @@
                       </div>";;
           } 
         }
-         $result2 = mysql_query("SELECT * FROM $tabla");
+         $result2 = $conn->query("SELECT * FROM $tabla");
          while ($row2 = mysql_fetch_array($result2, MYSQL_NUM)) { 
           if($row2[5] != 'dentista' && $row2[5] != 'admin'){
                   echo " <div style='width:25%; margin:0 auto; padding:20px; float:left;'>
@@ -153,7 +153,7 @@
                               //echo "<br><label>Fecha de alta: </label>", $row2[9];
                             //  echo "<br><label>Password: </label>", $row2[10];
               $select = 'select * from curriculum where id_usuario="'.$row2[0].'";';
-              $resul = mysql_query($select, $dbh) or die ("problema con la solicitud");
+              $resul = $conn->query($select, $dbh) or die ("problema con la solicitud");
               $renglon = mysql_fetch_assoc($resul);
                      echo "  </h12>
                     <br><br>

@@ -107,13 +107,13 @@ for($i=8;$i<20;$i++){
 		for($j=0;$j<4;$j++){
 			echo "<td>".$i.":".$min."</td>";
 				$contador_doctores=0;
-				$result2 = mysql_query("SELECT * FROM usuarios where rol='dentista'");
+				$result2 = $conn->query("SELECT * FROM usuarios where rol='dentista'");
 				while ($row2 = mysql_fetch_array($result2, MYSQL_NUM))
 					$contador_doctores++;
 				$contador_doctores++;//le sumo uno mas por el admin alejandro ya que tiene 2 cuentas
 
 				$contador_lunes = 0;
-				$result2 = mysql_query("SELECT * FROM agenda where ano='$year' and mes='$month' and dia='$lunes' and hora='$i' and minuto='$min'");
+				$result2 = $conn->query("SELECT * FROM agenda where ano='$year' and mes='$month' and dia='$lunes' and hora='$i' and minuto='$min'");
 				//print "SELECT * FROM agenda where ano='$year' and mes='$month' and dia='$lunes' and hora='$hour' and minuto='$minuto'";
 				while ($row2 = mysql_fetch_array($result2, MYSQL_NUM)) {
 					$contador_lunes++;
@@ -131,7 +131,7 @@ for($i=8;$i<20;$i++){
 			
 
 			echo "<a href='cita_vista_semana_script.php?ano=".$year."&mes=".$month."&dia=".$lunes."&hora=".$i."&minuto=".$j."' target='_blank'>Revisar</a><br><br>";
-$agenda = mysql_query("select * from agenda where ano='$year' and mes='$month' and dia='$lunes' and hora='$i' and minuto like '%$j%';");
+$agenda = $conn->query("select * from agenda where ano='$year' and mes='$month' and dia='$lunes' and hora='$i' and minuto like '%$j%';");
 
 
 
@@ -141,7 +141,7 @@ while ($fila_agenda = mysql_fetch_array($agenda, MYSQL_NUM)){
 
 
 				$contador_martes = 0;
-				$result2 = mysql_query("SELECT * FROM agenda where ano='$year' and mes='$month' and dia='$martes' and hora='$i' and minuto='$min'");
+				$result2 = $conn->query("SELECT * FROM agenda where ano='$year' and mes='$month' and dia='$martes' and hora='$i' and minuto='$min'");
 				while ($row2 = mysql_fetch_array($result2, MYSQL_NUM)) {
 					$contador_martes++;
 				}
@@ -152,7 +152,7 @@ while ($fila_agenda = mysql_fetch_array($agenda, MYSQL_NUM)){
 				else
 					echo "<td class='td_menor_50'>";
 			echo "<a href='cita_vista_semana_script.php?ano=".$year."&mes=".$month."&dia=".$martes."&hora=".$i."&minuto=".$j."' target='_blank'>Revisar</a><br><br>";
-$agenda = mysql_query("select * from agenda where ano='$year' and mes='$month' and dia='$martes' and hora='$i' and minuto like '%$j%';");
+$agenda = $conn->query("select * from agenda where ano='$year' and mes='$month' and dia='$martes' and hora='$i' and minuto like '%$j%';");
 
 
 
@@ -160,7 +160,7 @@ while ($fila_agenda = mysql_fetch_array($agenda, MYSQL_NUM)){
 	echo $fila_agenda[2]. ", ";
 	}echo "</td>";
 				$contador_miercoles = 0;
-				$result2 = mysql_query("SELECT * FROM agenda where ano='$year' and mes='$month' and dia='$miercoles' and hora='$i' and minuto='$min'");
+				$result2 = $conn->query("SELECT * FROM agenda where ano='$year' and mes='$month' and dia='$miercoles' and hora='$i' and minuto='$min'");
 				while ($row2 = mysql_fetch_array($result2, MYSQL_NUM)) {
 					$contador_miercoles++;
 				}
@@ -171,7 +171,7 @@ while ($fila_agenda = mysql_fetch_array($agenda, MYSQL_NUM)){
 				else
 					echo "<td class='td_menor_50'>";
 			echo "<a href='cita_vista_semana_script.php?ano=".$year."&mes=".$month."&dia=".$miercoles."&hora=".$i."&minuto=".$j."' target='_blank'>Revisar</a><br><br>";
-$agenda = mysql_query("select * from agenda where ano='$year' and mes='$month' and dia='$miercoles' and hora='$i' and minuto like '%$j%';");
+$agenda = $conn->query("select * from agenda where ano='$year' and mes='$month' and dia='$miercoles' and hora='$i' and minuto like '%$j%';");
 
 
 
@@ -179,7 +179,7 @@ while ($fila_agenda = mysql_fetch_array($agenda, MYSQL_NUM)){
 	echo $fila_agenda[2]. ", ";
 	}echo "</td>";
 				$contador_jueves = 0;
-				$result2 = mysql_query("SELECT * FROM agenda where ano='$year' and mes='$month' and dia='$jueves' and hora='$i' and minuto='$min'");
+				$result2 = $conn->query("SELECT * FROM agenda where ano='$year' and mes='$month' and dia='$jueves' and hora='$i' and minuto='$min'");
 				while ($row2 = mysql_fetch_array($result2, MYSQL_NUM)) {
 					$contador_jueves++;
 				}
@@ -190,7 +190,7 @@ while ($fila_agenda = mysql_fetch_array($agenda, MYSQL_NUM)){
 				else
 					echo "<td class='td_menor_50'>";
 			echo "<a href='cita_vista_semana_script.php?ano=".$year."&mes=".$month."&dia=".$jueves."&hora=".$i."&minuto=".$j."' target='_blank'>Revisar</a><br><br>";
-$agenda = mysql_query("select * from agenda where ano='$year' and mes='$month' and dia='$jueves' and hora='$i' and minuto like '%$j%';");
+$agenda = $conn->query("select * from agenda where ano='$year' and mes='$month' and dia='$jueves' and hora='$i' and minuto like '%$j%';");
 
 
 
@@ -199,7 +199,7 @@ while ($fila_agenda = mysql_fetch_array($agenda, MYSQL_NUM)){
 	}echo "</td>";
 
 				$contador_viernes = 0;
-				$result2 = mysql_query("SELECT * FROM agenda where ano='$year' and mes='$month' and dia='$viernes' and hora='$i' and minuto='$min'");
+				$result2 = $conn->query("SELECT * FROM agenda where ano='$year' and mes='$month' and dia='$viernes' and hora='$i' and minuto='$min'");
 				while ($row2 = mysql_fetch_array($result2, MYSQL_NUM)) {
 					$contador_viernes++;
 				}
@@ -210,7 +210,7 @@ while ($fila_agenda = mysql_fetch_array($agenda, MYSQL_NUM)){
 				else
 					echo "<td class='td_menor_50'>";
 			echo "<a href='cita_vista_semana_script.php?ano=".$year."&mes=".$month."&dia=".$viernes."&hora=".$i."&minuto=".$j."' target='_blank'>Revisar</a><br><br>";
-$agenda = mysql_query("select * from agenda where ano='$year' and mes='$month' and dia='$viernes' and hora='$i' and minuto like '%$j%';");
+$agenda = $conn->query("select * from agenda where ano='$year' and mes='$month' and dia='$viernes' and hora='$i' and minuto like '%$j%';");
 
 
 
@@ -219,7 +219,7 @@ while ($fila_agenda = mysql_fetch_array($agenda, MYSQL_NUM)){
 	}echo "</td>";
 
 				$contador_sabado = 0;
-				$result2 = mysql_query("SELECT * FROM agenda where ano='$year' and mes='$month' and dia='$sabado' and hora='$i' and minuto='$min'");
+				$result2 = $conn->query("SELECT * FROM agenda where ano='$year' and mes='$month' and dia='$sabado' and hora='$i' and minuto='$min'");
 				while ($row2 = mysql_fetch_array($result2, MYSQL_NUM)) {
 					$contador_sabado++;
 				}
@@ -230,7 +230,7 @@ while ($fila_agenda = mysql_fetch_array($agenda, MYSQL_NUM)){
 				else
 					echo "<td class='td_menor_50'>";
 			echo "<a href='cita_vista_semana_script.php?ano=".$year."&mes=".$month."&dia=".$sabado."&hora=".$i."&minuto=".$j."' target='_blank'>Revisar</a><br><br>";
-			$agenda = mysql_query("select * from agenda where ano='$year' and mes='$month' and dia='$sabado' and hora='$i' and minuto like '%$j%';");
+			$agenda = $conn->query("select * from agenda where ano='$year' and mes='$month' and dia='$sabado' and hora='$i' and minuto like '%$j%';");
 
 
 

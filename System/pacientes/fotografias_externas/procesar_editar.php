@@ -36,7 +36,7 @@
 		$select = 'select * from fotografias_externas where id_foto="'.$a.'";';
 
 
-		$resul = mysql_query($select, $dbh) or die ("problema con la solicitud");
+		$resul = $conn->query($select, $dbh) or die ("problema con la solicitud");
 		$renglon = mysql_fetch_assoc($resul);
 		$ficha = $renglon['id_paciente'];
 
@@ -48,7 +48,7 @@
 
 			$insertar = "update fotografias_externas set nombre_foto='$ultimo' where id_foto='$a'";
 
-		if(!mysql_query($insertar))
+		if(!$conn->query($insertar))
 			die('Error de consulta: '.mysql_error());
 		mysqli_close($conn);
 		

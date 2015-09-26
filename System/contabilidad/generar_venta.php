@@ -31,7 +31,7 @@
 	$select = "SELECT * from inventario where id_producto='".$producto."';";
 	$resul	= $conn->query($select);
 	$renglon = $resul->fetch_assoc();
-	//$resul	= mysql_query($select, $dbh) or die ("problema con la solicitud");
+	//$resul	= $conn->query($select, $dbh) or die ("problema con la solicitud");
 	//$renglon = mysql_fetch_assoc($resul);
 	
 	$precio = $renglon['precio_venta'];
@@ -46,15 +46,15 @@
 		$actualizar = "UPDATE inventario set cantidad='$cantidad_actual', ultimo_abastecimiento = now() where id_producto='$producto'";
 		$cantidad = $cantidad*(-1);
 		$insertar2 = "INSERT into inventario_historial (id_usuario, id_producto, cantidad, fecha) values ('$id_usuario', '$producto', '$cantidad', now())";
-		//if(!mysql_query($actualizar))
+		//if(!$conn->query($actualizar))
 		if(!$conn->query($actualizar))
 			die('Error de consulta: '.mysqli_error($conn));
 		
-		//if(!mysql_query($insertar2))
+		//if(!$conn->query($insertar2))
 		if(!$conn->query($insertar2))
 			die('Error de consulta: '.mysqli_error($conn));
 		
-		//if(!mysql_query($insertar))
+		//if(!$conn->query($insertar))
 		if(!$conn->query($insertar))
 			die('Error de consulta: '.mysqli_error($conn));
 		else{

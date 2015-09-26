@@ -54,12 +54,12 @@ $usuario = $_SESSION['u'];
     $select = 'SELECT * from curriculum where id_usuario="'.$id.'";';
     $result = $conn->query($select);
     $renglon = $result->fetch_assoc();
-    //$resul = mysql_query($select, $dbh) or die ("problema con la solicitud");
+    //$resul = $conn->query($select, $dbh) or die ("problema con la solicitud");
     //$renglon = mysql_fetch_assoc($resul);
     $select2 = 'SELECT * from usuarios where id_usuario="'.$id.'";';
     $result2 = $conn->query($select2);
     $renglon2 = $result2->fetch_assoc();
-    //$resul2 = mysql_query($select2, $dbh) or die ("problema con la solicitud");
+    //$resul2 = $conn->query($select2, $dbh) or die ("problema con la solicitud");
     //$renglon2 = mysql_fetch_assoc($resul2);
     ?>
     <a   href="lista_usuarios.php" style="float:left; margin-right:10px"> << Regresar </a> <h3>| 

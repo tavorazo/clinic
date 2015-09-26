@@ -6,17 +6,17 @@ $base = mysql_select_db('Endoperio', $dbh) or die('Error de seleccion de base: '
 include('../php/base.php');
 include('../php/base3.php');
 $select = 'select * from agenda where id_cita="'.$id.'";';
-$resul = mysql_query($select, $dbh) or die ("problema con la solicitud");
+$resul = $conn->query($select, $dbh) or die ("problema con la solicitud");
 $renglon = mysql_fetch_assoc($resul);
 
 
 	$eliminar = 'delete from agenda where id_cita="'.$id.'";';
 	$eliminar2 = 'delete from agenda where id_cita="'.($id-1).'";';
 
-	if(!mysql_query($eliminar, $dbh))
+	if(!$conn->query($eliminar, $dbh))
 		die('Error de consulta: '.mysql_error());
 		
-	if(!mysql_query($eliminar2,$dbh))
+	if(!$conn->query($eliminar2,$dbh))
 		die('Error de consulta: '.mysql_error());
 		
 	mysql_close($dbh);

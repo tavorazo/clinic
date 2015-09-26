@@ -29,7 +29,7 @@ $insertar = "UPDATE usuarios set nombres = '$nombre', 	apellido_paterno = '$pate
 fecha_nacimiento = '$fecha',	name_emergencia = '$nom_emergencia',	tel_emergencia = '$tel_emergencia',
 correo = '$correo', 		password = '$password'	 where id_usuario = '$id';";
 
-//if(!mysql_query($insertar))
+//if(!$conn->query($insertar))
 if(! $conn->query($insertar))
 	die('Error de consulta: '.mysqli_error($conn));
 else

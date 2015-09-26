@@ -33,7 +33,7 @@ $fechaN=$_GET['fn'];
 	$select = 'SELECT * from curriculum where id_usuario="'.$id.'";';
 	$resul = $conn->query($select);
 	$renglon = $resul->fetch_assoc();
-      	//$resul = mysql_query($select, $dbh) or die ("problema con la solicitud");
+      	//$resul = $conn->query($select, $dbh) or die ("problema con la solicitud");
 		//$renglon = mysql_fetch_assoc($resul);
 	echo "<hr><h19><br>",nl2br($renglon['descripcion']),"</h19><br><hr>";
 	?>

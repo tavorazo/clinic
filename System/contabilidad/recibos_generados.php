@@ -381,9 +381,9 @@ if($S == 1){
   </a><br><br><br>";
 }
 if($semana_b=='')
-  $result2 = mysql_query("select * from recibos where fecha like '%$fechab%'");
+  $result2 = $conn->query("select * from recibos where fecha like '%$fechab%'");
 else
-  $result2 = mysql_query("select * from pago_adeudo");
+  $result2 = $conn->query("select * from pago_adeudo");
 echo "<table border=1 style='margin-top:100px; '>
 <tr>
 <td style='color:#58ACFA'>No.       </td>
@@ -401,18 +401,18 @@ while ($row2 = mysql_fetch_array($result2, MYSQL_NUM)){
     echo "<td>",$row2[0],"</td>";
     $usuario = $row2[6];
     $select = 'select * from usuarios where id_usuario="'.$usuario.'";';
-    $resul = mysql_query($select, $dbh) or die ("problema con la solicitud");
+    $resul = $conn->query($select, $dbh) or die ("problema con la solicitud");
     $renglon = mysql_fetch_assoc($resul);
 
     echo "<td> ".$renglon['nombres']." ".$renglon['apellido_paterno']." ".$renglon['apellido_materno']."</td>";
 
     $paciente = $row2[5];
     $select = 'select * from paciente where id_paciente="'.$paciente.'";';
-    $resul = mysql_query($select, $dbh) or die ("problema con la solicitud");
+    $resul = $conn->query($select, $dbh) or die ("problema con la solicitud");
     $renglon = mysql_fetch_assoc($resul);
     if($renglon['nombres']==''){
       $select = 'select * from usuarios where id_usuario="'.$paciente.'";';
-      $resul = mysql_query($select, $dbh) or die ("problema con la solicitud");
+      $resul = $conn->query($select, $dbh) or die ("problema con la solicitud");
       $renglon = mysql_fetch_assoc($resul);
     }
 
@@ -435,13 +435,13 @@ while ($row2 = mysql_fetch_array($result2, MYSQL_NUM)){
 
           $deuda = $row2[0];
           $ano = date(Y);
-      /*$result3 = mysql_query("select * from pagos_historia where semana='semana_b' && id_adeudo='$deuda' && y='$ano' limit 1");
+      /*$result3 = $conn->query("select * from pagos_historia where semana='semana_b' && id_adeudo='$deuda' && y='$ano' limit 1");
       
       print "select * from pagos_historia where semana='$semana_b' && id_adeudo='$deuda' && y='$ano' limit 1";
       while ($row4 = mysql_fetch_array($result3, MYSQL_NUM)){*/
         $select2 = 'select * from pagos_historia where semana="'.$semana_b.'" and id_adeudo="'.$deuda.'" and y="'.$ano.'";';
   //echo $select, "<br>";
-        $resul2 = mysql_query($select2, $dbh) or die ("problema con la solicitud");
+        $resul2 = $conn->query($select2, $dbh) or die ("problema con la solicitud");
         $renglon2 = mysql_fetch_assoc($resul2);     
         if($renglon2['id_historia']!='') {
           echo "<tr>";
@@ -449,14 +449,14 @@ while ($row2 = mysql_fetch_array($result2, MYSQL_NUM)){
 
           $usuario = $row2[6];
           $select = 'select * from usuarios where id_usuario="'.$usuario.'";';
-          $resul = mysql_query($select, $dbh) or die ("problema con la solicitud");
+          $resul = $conn->query($select, $dbh) or die ("problema con la solicitud");
           $renglon = mysql_fetch_assoc($resul);
           
           echo "<td> ".$renglon['nombres']." ".$renglon['apellido_paterno']." ".$renglon['apellido_materno']."</td>";
 
           $paciente = $row2[7];
           $select = 'select * from paciente where id_paciente="'.$paciente.'";';
-          $resul = mysql_query($select, $dbh) or die ("problema con la solicitud");
+          $resul = $conn->query($select, $dbh) or die ("problema con la solicitud");
           $renglon = mysql_fetch_assoc($resul);
           
           $nombre_paciente =$renglon['nombres']." ".$renglon['apellido_paterno']; 

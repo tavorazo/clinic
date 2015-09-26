@@ -36,7 +36,7 @@ $b = date(m);
 $c = date(Y);
 $fecha_cumplea = "-$b-$a";
 
-$pacientes = mysql_query("select fecha_nacimiento, nombres, apellido_paterno, apellido_materno, correo from paciente WHERE fecha_nacimiento like '%$fecha_cumplea%';");
+$pacientes = $conn->query("select fecha_nacimiento, nombres, apellido_paterno, apellido_materno, correo from paciente WHERE fecha_nacimiento like '%$fecha_cumplea%';");
 $i = 0;
 
 		echo '<br><br><br><center><img src="images/endoperio2.png" width="100px" alt=""> <br> ';
@@ -68,7 +68,7 @@ while ($r_p = mysql_fetch_array($pacientes, MYSQL_NUM)){
 	}
 }
 /*usuarios*/
-$pacientes = mysql_query("select fecha_nacimiento, nombres, apellido_paterno, apellido_materno, correo from usuarios WHERE fecha_nacimiento like '%$fecha_cumplea%';");
+$pacientes = $conn->query("select fecha_nacimiento, nombres, apellido_paterno, apellido_materno, correo from usuarios WHERE fecha_nacimiento like '%$fecha_cumplea%';");
 $i = 0;
           
 while ($r_p = mysql_fetch_array($pacientes, MYSQL_NUM)){

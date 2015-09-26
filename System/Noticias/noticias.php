@@ -31,13 +31,13 @@
       mysql_connect($host,$usuario,$contrasena);
       mysql_select_db($bdd);
       //Consultamos a la base de datos para sacar las columnas de la tabla
-      $result = mysql_query("SHOW COLUMNS FROM $tabla");
+      $result = $conn->query("SHOW COLUMNS FROM $tabla");
       ?>
 
       <?php
       $i = 0;
       //ahora consultamos a la base de datos para sacar los registros contenidos
-      $result2 = mysql_query("SELECT * FROM $tabla order by fecha desc limit 4");
+      $result2 = $conn->query("SELECT * FROM $tabla order by fecha desc limit 4");
       while ($row2 = mysql_fetch_array($result2, MYSQL_NUM)) {
 				
 

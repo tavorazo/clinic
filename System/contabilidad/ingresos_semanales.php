@@ -345,7 +345,7 @@ $semana = $primeraSemana;
 $total = 0;
 echo "<tr><td>Pago de pacientes con Efectivo</td>";
 for($i=$primeraSemana;$i<=$ultimaSemana;$i++){
-$result_pagos = mysql_query("select * from pagos_historia where semana='$semana' and y='$ano' && id_tipo='1'");
+$result_pagos = $conn->query("select * from pagos_historia where semana='$semana' and y='$ano' && id_tipo='1'");
 		echo"<td>";
 		while ($fila_pagos = mysql_fetch_array($result_pagos, MYSQL_NUM)){
 			$valor = $valor + $fila_pagos['4'];
@@ -368,7 +368,7 @@ $semana = $primeraSemana;
 $total = 0;
 echo "<tr><td>Pago de pacientes con Cheque</td>";
 for($i=$primeraSemana;$i<=$ultimaSemana;$i++){
-$result_pagos = mysql_query("select * from pagos_historia where semana='$semana' and y='$ano' && id_tipo='2' ");
+$result_pagos = $conn->query("select * from pagos_historia where semana='$semana' and y='$ano' && id_tipo='2' ");
 		echo"<td>";
 		while ($fila_pagos = mysql_fetch_array($result_pagos, MYSQL_NUM)){
 			$valor = $valor + $fila_pagos['4'];
@@ -391,7 +391,7 @@ $semana = $primeraSemana;
 $total = 0;
 echo "<tr><td>Pago de pacientes con Tarjeta</td>";
 for($i=$primeraSemana;$i<=$ultimaSemana;$i++){
-$result_pagos = mysql_query("select * from pagos_historia where semana='$semana' and y='$ano' && id_tipo='3' ");
+$result_pagos = $conn->query("select * from pagos_historia where semana='$semana' and y='$ano' && id_tipo='3' ");
 		echo"<td>";
 		while ($fila_pagos = mysql_fetch_array($result_pagos, MYSQL_NUM)){
 			$valor = $valor + $fila_pagos['4'];
@@ -413,7 +413,7 @@ $semana = $primeraSemana;
 $total = 0;
 echo "<tr><td>Pago de pacientes con Transferencia</td>";
 for($i=$primeraSemana;$i<=$ultimaSemana;$i++){
-$result_pagos = mysql_query("select * from pagos_historia where semana='$semana' and y='$ano' && id_tipo='4' ");
+$result_pagos = $conn->query("select * from pagos_historia where semana='$semana' and y='$ano' && id_tipo='4' ");
 
 		echo"<td>";
 		while ($fila_pagos = mysql_fetch_array($result_pagos, MYSQL_NUM)){
@@ -438,7 +438,7 @@ $semana = $primeraSemana;
 $total = 0;
 echo "<tr><td>Pago Productos Efectivo</td>";
 for($i=$primeraSemana;$i<=$ultimaSemana;$i++){
-$result_pagos = mysql_query("select * from historial_compras where semana='$semana' and y='$ano' && id_tipo='1' ");
+$result_pagos = $conn->query("select * from historial_compras where semana='$semana' and y='$ano' && id_tipo='1' ");
 //print "<br><br>select * from historial_compras where semana='$semana' and y='$ano' && id_tipo='1' && fecha like '%$fecha_semanal%'";
     echo"<td>";
     while ($fila_pagos = mysql_fetch_array($result_pagos, MYSQL_NUM)){
@@ -461,7 +461,7 @@ $semana = $primeraSemana;
 $total = 0;
 echo "<tr><td>Pago Productos Cheque</td>";
 for($i=$primeraSemana;$i<=$ultimaSemana;$i++){
-$result_pagos = mysql_query("select * from historial_compras where semana='$semana' and y='$ano' && id_tipo='2' ");
+$result_pagos = $conn->query("select * from historial_compras where semana='$semana' and y='$ano' && id_tipo='2' ");
 
     echo"<td>";
     while ($fila_pagos = mysql_fetch_array($result_pagos, MYSQL_NUM)){
@@ -484,7 +484,7 @@ $semana = $primeraSemana;
 $total = 0;
 echo "<tr><td>Pago Productos Tarjeta</td>";
 for($i=$primeraSemana;$i<=$ultimaSemana;$i++){
-$result_pagos = mysql_query("select * from historial_compras where semana='$semana' and y='$ano' && id_tipo='3' ");
+$result_pagos = $conn->query("select * from historial_compras where semana='$semana' and y='$ano' && id_tipo='3' ");
 
     echo"<td>";
     while ($fila_pagos = mysql_fetch_array($result_pagos, MYSQL_NUM)){
@@ -507,7 +507,7 @@ $semana = $primeraSemana;
 $total = 0;
 echo "<tr><td>Pago Productos Transferencia</td>";
 for($i=$primeraSemana;$i<=$ultimaSemana;$i++){
-$result_pagos = mysql_query("select * from historial_compras where semana='$semana' and y='$ano' && id_tipo='4' ");
+$result_pagos = $conn->query("select * from historial_compras where semana='$semana' and y='$ano' && id_tipo='4' ");
 
     echo"<td>";
     while ($fila_pagos = mysql_fetch_array($result_pagos, MYSQL_NUM)){
@@ -531,7 +531,7 @@ $semana = $primeraSemana;
 $total = 0;
 echo "<tr><td>Pago Diplomado Efectivo</td>";
 for($i=$primeraSemana;$i<=$ultimaSemana;$i++){
-$result_pagos = mysql_query("select * from historial_diplomados where semana='$semana' and y='$ano' && tipo_pago='1'");
+$result_pagos = $conn->query("select * from historial_diplomados where semana='$semana' and y='$ano' && tipo_pago='1'");
 
     echo"<td>";
     while ($fila_pagos = mysql_fetch_array($result_pagos, MYSQL_NUM)){
@@ -554,7 +554,7 @@ $semana = $primeraSemana;
 $total = 0;
 echo "<tr><td>Pago Diplomado Cheque</td>";
 for($i=$primeraSemana;$i<=$ultimaSemana;$i++){
-$result_pagos = mysql_query("select * from historial_diplomados where semana='$semana' and y='$ano' && tipo_pago='2'");
+$result_pagos = $conn->query("select * from historial_diplomados where semana='$semana' and y='$ano' && tipo_pago='2'");
 
     echo"<td>";
     while ($fila_pagos = mysql_fetch_array($result_pagos, MYSQL_NUM)){
@@ -578,7 +578,7 @@ $semana = $primeraSemana;
 $total = 0;
 echo "<tr><td>Pago Diplomado Cheque</td>";
 for($i=$primeraSemana;$i<=$ultimaSemana;$i++){
-$result_pagos = mysql_query("select * from historial_diplomados where semana='$semana' and y='$ano' && tipo_pago='3' ");
+$result_pagos = $conn->query("select * from historial_diplomados where semana='$semana' and y='$ano' && tipo_pago='3' ");
 
     echo"<td>";
     while ($fila_pagos = mysql_fetch_array($result_pagos, MYSQL_NUM)){
@@ -601,7 +601,7 @@ $semana = $primeraSemana;
 $total = 0;
 echo "<tr><td>Pago Diplomado Cheque</td>";
 for($i=$primeraSemana;$i<=$ultimaSemana;$i++){
-$result_pagos = mysql_query("select * from historial_diplomados where semana='$semana' and y='$ano' && tipo_pago='4' ");
+$result_pagos = $conn->query("select * from historial_diplomados where semana='$semana' and y='$ano' && tipo_pago='4' ");
 
     echo"<td>";
     while ($fila_pagos = mysql_fetch_array($result_pagos, MYSQL_NUM)){
@@ -624,7 +624,7 @@ $semana = $primeraSemana;
 $total = 0;
 echo "<tr><td>Pago Instrumental Efectivo</td>";
 for($i=$primeraSemana;$i<=$ultimaSemana;$i++){
-$result_pagos = mysql_query("select * from historial_instrumental where semana='$semana' and y='$ano' && tipo_pago='1' ");
+$result_pagos = $conn->query("select * from historial_instrumental where semana='$semana' and y='$ano' && tipo_pago='1' ");
 
     echo"<td>";
     while ($fila_pagos = mysql_fetch_array($result_pagos, MYSQL_NUM)){
@@ -647,7 +647,7 @@ $semana = $primeraSemana;
 $total = 0;
 echo "<tr><td>Pago Instrumental Cheque</td>";
 for($i=$primeraSemana;$i<=$ultimaSemana;$i++){
-$result_pagos = mysql_query("select * from historial_instrumental where semana='$semana' and y='$ano' && tipo_pago='2'");
+$result_pagos = $conn->query("select * from historial_instrumental where semana='$semana' and y='$ano' && tipo_pago='2'");
 
     echo"<td>";
     while ($fila_pagos = mysql_fetch_array($result_pagos, MYSQL_NUM)){
@@ -671,7 +671,7 @@ $semana = $primeraSemana;
 $total = 0;
 echo "<tr><td>Pago Instrumental Cheque</td>";
 for($i=$primeraSemana;$i<=$ultimaSemana;$i++){
-$result_pagos = mysql_query("select * from historial_instrumental where semana='$semana' and y='$ano' && tipo_pago='3' ");
+$result_pagos = $conn->query("select * from historial_instrumental where semana='$semana' and y='$ano' && tipo_pago='3' ");
 
     echo"<td>";
     while ($fila_pagos = mysql_fetch_array($result_pagos, MYSQL_NUM)){
@@ -694,7 +694,7 @@ $semana = $primeraSemana;
 $total = 0;
 echo "<tr><td>Pago Instrumental Cheque</td>";
 for($i=$primeraSemana;$i<=$ultimaSemana;$i++){
-$result_pagos = mysql_query("select * from historial_instrumental where semana='$semana' and y='$ano' && tipo_pago='4' ");
+$result_pagos = $conn->query("select * from historial_instrumental where semana='$semana' and y='$ano' && tipo_pago='4' ");
 
     echo"<td>";
     while ($fila_pagos = mysql_fetch_array($result_pagos, MYSQL_NUM)){

@@ -83,7 +83,7 @@ echo '<a class="nonblock nontext grpelem" id="u552" href="contabilidad.php"> <im
     <!-- codigo para almacen -->
     <?php
       include('php/base3.php');
-      $result = mysql_query("SHOW COLUMNS FROM inventario");
+      $result = $conn->query("SHOW COLUMNS FROM inventario");
       
       if($_SESSION['rol']=='admin')
       	
@@ -142,7 +142,7 @@ echo '<a class="nonblock nontext grpelem" id="u552" href="contabilidad.php"> <im
     </tr>
           <?php
           //ahora consultamos a la base de datos para sacar los registros contenidos
-          $result2 = mysql_query("SELECT * FROM inventario");
+          $result2 = $conn->query("SELECT * FROM inventario");
           /*while ($row2 = mysql_fetch_array($result2, MYSQL_NUM)) {
             echo "<tr>";
             for($i=0; $i<count($row2); $i++){
@@ -168,7 +168,7 @@ echo '<a class="nonblock nontext grpelem" id="u552" href="contabilidad.php"> <im
     <?php
 
     $buscar = $_POST['buscar'];
-    $result2 = mysql_query("select * from inventario where nombre like '%$buscar%' or numero_serial like '%$buscar%' or descripcion like '%$buscar%' ;");
+    $result2 = $conn->query("select * from inventario where nombre like '%$buscar%' or numero_serial like '%$buscar%' or descripcion like '%$buscar%' ;");
 //ocultar esto mientra no busque
       echo '<h1>En almacen: ',$buscar,'</h1>';
 

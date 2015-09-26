@@ -55,7 +55,7 @@
 		$base = mysql_select_db('Endoperio', $dbh) or die('Error de seleccion de base: ' . mysql_error() );*/
 		include('../php/base.php');
 		$select = 'select * from inventario where id_producto="'.$id.'";';
-		$resul = mysql_query($select, $dbh) or die ("problema con la solicitud");
+		$resul = $conn->query($select, $dbh) or die ("problema con la solicitud");
 		$renglon = mysql_fetch_assoc($resul);
 
 

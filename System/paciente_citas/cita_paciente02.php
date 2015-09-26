@@ -60,18 +60,18 @@ session_start();
 		$vacio = 1;
 		}
 		else if($a=='' and $b!=''){
-		$result2 = mysql_query("select * from paciente where id_paciente='$b';");
+		$result2 = $conn->query("select * from paciente where id_paciente='$b';");
 		}
 		else if($a!='' and $b==''){
-		$result2 = mysql_query("select * from paciente where n_registro='$a';");
+		$result2 = $conn->query("select * from paciente where n_registro='$a';");
 		}
 		else if($a!='' and $b!=''){
-		$result2 = mysql_query("select * from paciente where n_registro='$a' or id_paciente='$b';");
+		$result2 = $conn->query("select * from paciente where n_registro='$a' or id_paciente='$b';");
 		}
 
 		//print "select * from paciente where n_registro='$b'";
 
-		//$result2 = mysql_query("select * from paciente where nombres like '%$buscar%' or apellido_paterno like '%$buscar%' or apellido_materno like '%$buscar%' or id_paciente like '%$buscar%' or n_registro like '%$buscar%';");
+		//$result2 = $conn->query("select * from paciente where nombres like '%$buscar%' or apellido_paterno like '%$buscar%' or apellido_materno like '%$buscar%' or id_paciente like '%$buscar%' or n_registro like '%$buscar%';");
 
 		//echo '<h1>Resultados para: ',$_POST['b_paciente'],'</h1>';
 

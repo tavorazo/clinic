@@ -21,10 +21,10 @@
 		$select = 'SELECT * from enfermedades where id_enfermedad="'.$a.'";';
 		$result = $conn->query($select);
     	$renglon = $result->fetch_assoc();
-    	//$resul = mysql_query($select, $dbh) or die ("problema con la solicitud");
+    	//$resul = $conn->query($select, $dbh) or die ("problema con la solicitud");
 		//$renglon = mysql_fetch_assoc($resul);
 		$insertar = "UPDATE enfermedades set nombre_enfermedad='$c', tipo_enfermedad='$d' where id_enfermedad='$a'";
-		//if(!mysql_query($insertar))
+		//if(!$conn->query($insertar))
 		if(!$conn->query($insertar))
 			die('Error de consulta: '.mysqli_error($conn));
 		mysqli_close($conn);

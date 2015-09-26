@@ -28,7 +28,7 @@ include('base.php');
 //include('base3.php');
 $insertar = "INSERT into recetas (id_usuario, id_paciente, medicamento, observaciones,fecha) values ('$doc','$c','$a', '$b', now())";
 //echo $insertar;
-//if(!mysql_query($insertar))
+//if(!$conn->query($insertar))
 if(!$conn->query($insertar))
   die('Error de consulta: '.mysqli_error($conn));
 mysqli_close($conn);;

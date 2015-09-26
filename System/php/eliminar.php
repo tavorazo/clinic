@@ -21,7 +21,7 @@
 				$select = 'SELECT * from fotografias_clinicas where id_foto="'.$id.'";';
 				$resul = $conn->query($select);
 				$renglon = $resul->fetch_assoc();
-				//$resul = mysql_query($select, $dbh) or die ("problema con la solicitud");
+				//$resul = $conn->query($select, $dbh) or die ("problema con la solicitud");
 				//$renglon = mysql_fetch_assoc($resul);
 				$imagen = $renglon['nombre_foto'];
 				unlink('../pacientes/fotografias_clinicas/'.$imagen);
@@ -32,7 +32,7 @@
 				$select = 'SELECT * from fotografias_externas where id_foto="'.$id.'";';
 				$resul = $conn->query($select);
 				$renglon = $resul->fetch_assoc();
-				//$resul = mysql_query($select, $dbh) or die ("problema con la solicitud");
+				//$resul = $conn->query($select, $dbh) or die ("problema con la solicitud");
 				//$renglon = mysql_fetch_assoc($resul);
 				$imagen = $renglon['nombre_foto'];
 				unlink('../pacientes/fotografias_externas/'.$imagen);
@@ -43,7 +43,7 @@
 				$select = 'SELECT * from radiografias where id_foto="'.$id.'";';
 				$resul = $conn->query($select);
 				$renglon = $resul->fetch_assoc();
-				//$resul = mysql_query($select, $dbh) or die ("problema con la solicitud");
+				//$resul = $conn->query($select, $dbh) or die ("problema con la solicitud");
 				//$renglon = mysql_fetch_assoc($resul);
 				$imagen = $renglon['nombre_foto'];
 				unlink('../pacientes/radiografias/'.$imagen);
@@ -52,12 +52,12 @@
 			}
 			if($cat == '4'){
 			/*$select = 'select * from enfermedades where id_foto="'.$id.'";';
-			$resul = mysql_query($select, $dbh) or die ("problema con la solicitud 4");
+			$resul = $conn->query($select, $dbh) or die ("problema con la solicitud 4");
 			$renglon = mysql_fetch_assoc($resul);*/
 			$eliminar = 'DELETE from enfermedades where id_enfermedad="'.$id.'";';
 			
 		}
-		//if(!mysql_query($eliminar, $dbh))
+		//if(!$conn->query($eliminar, $dbh))
 		if(!$conn->query($eliminar))
 			die('Error de consulta: '.mysqli_error($conn));
 		mysqli_close($conn);

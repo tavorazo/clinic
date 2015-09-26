@@ -33,7 +33,6 @@ else
 	$imagen="";
 
 include('../../php/base.php');
-include('../../php/base3.php');
 
 $insertar = "insert into fotografias_clinicas (id_paciente, fecha_foto, descripcion) values ('$a', now(),'$b')";
 
@@ -50,7 +49,7 @@ $ultimo = $renglon['id_foto'];
 rename($imagen,$ultimo);
 
 $sentencia = "UPDATE fotografias_clinicas SET nombre_foto='$ultimo' WHERE id_foto='$ultimo';";
-if(!mysql_query($sentencia))
+if(!$conn->query($sentencia))
 	die('Error de consulta: '.mysql_error());
 mysqli_close($conn);
 

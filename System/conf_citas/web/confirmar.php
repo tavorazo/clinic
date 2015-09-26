@@ -33,17 +33,17 @@
 	include('../../php/base3.php');
 
 		$insertar = "update agenda set confirmacion='1', id_usuario='$b' where id_cita='$a'";
-		if(!mysql_query($insertar))
+		if(!$conn->query($insertar))
 			die('Error de consulta 1: '.mysql_error());
 			$id2 = $a-1;
 		$insertar = "update agenda set confirmacion='1', id_usuario='$b' where id_cita='$id2'";
-		if(!mysql_query($insertar))
+		if(!$conn->query($insertar))
 			die('Error de consulta 1: '.mysql_error());
 //echo $a;
 		
 		$datos = "select * from agenda where id_cita='$a';";
 		//echo $datos;
-		$resul = mysql_query($datos, $dbh) or die ("problema con la solicitud");
+		$resul = $conn->query($datos, $dbh) or die ("problema con la solicitud");
           	$renglon = mysql_fetch_assoc($resul);
           	$idpaciente=$renglon['id_paciente'];
 			echo $id_paciente;
@@ -55,7 +55,7 @@
           	
           	$paciente = "select * from paciente where id_paciente='$idpaciente';";
 			//echo $paciente;
-          	$resultado2 = mysql_query($paciente,$dbh);
+          	$resultado2 = $conn->query($paciente,$dbh);
           	$renglonpaciente = mysql_fetch_assoc($resultado2);
           	$nombre = $renglonpaciente['nombres'];
           	$apellido = $renglonpaciente['apellido_paterno'];

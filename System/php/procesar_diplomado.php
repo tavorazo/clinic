@@ -27,12 +27,12 @@
 	$s = date(W);
 	$y = date(Y);
 	$insertar_historial = "INSERT into historial_diplomados (id_usuario, id_comprador, diplomado_descripcion, precio, tipo_pago, descripcion_pago, fecha, semana, y) values ('$id_usuario', '$comprador', '$diplomado', '$precio', '$tipo_pago', '$descripcion_pago', now(),'$s','$y')";
-	//if(!mysql_query($insertar2))
+	//if(!$conn->query($insertar2))
 	//	die('Error de consulta: '.mysql_error());
 	if(!$conn->query($insertar_historial))
 		die('Error de consulta: '.mysqli_error($conn));
 	
-	//if(!mysql_query($recibo))
+	//if(!$conn->query($recibo))
 		//die('Error de consulta: '.mysql_error());
 	$insertar_recibo = "INSERT into recibos (cantidad, descripcion, total, fecha, comprador, vendedor) values ('1','$diplomado','$precio',now(),'$comprador','$id_usuario')";
 	if(!$conn->query($insertar_recibo))

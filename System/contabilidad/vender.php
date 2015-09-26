@@ -105,7 +105,7 @@ if($_SESSION['rol']!='admin'){
       include("../php/base.php");
       //include("../php/base2.php");
       //include("../php/base3.php");
-      //$result2 = mysql_query("SELECT * from inventario where venta='1'");
+      //$result2 = $conn->query("SELECT * from inventario where venta='1'");
       $result2  = $conn->query("SELECT * from inventario where venta='1'");
       echo "<center><select name='producto' class='campoT' style='width:150px; margin:auto auto'>";
       setlocale(LC_MONETARY, 'en_US');
@@ -133,7 +133,7 @@ if($_SESSION['rol']!='admin'){
             <br>
             <input class="campoT" type="text" name="no_cliente" id="no_cliente" style="visibility:hidden; margin:auto auto;" placeholder='Escribe un nombre'>
             <?php
-            //$result2 = mysql_query("SELECT id_paciente, nombres, apellido_paterno, apellido_materno from paciente");
+            //$result2 = $conn->query("SELECT id_paciente, nombres, apellido_paterno, apellido_materno from paciente");
             $result2  = $conn->query("SELECT id_paciente, nombres, apellido_paterno, apellido_materno from paciente");
             echo "<center><select name='id_paciente' class='campoT' style='visibility:hidden; margin:auto auto' id='si_cliente'>";
             echo "<option></option>";

@@ -18,7 +18,7 @@
   $c = $_POST['id'];
   include('base.php');
   $insertar = "INSERT into enfermedades (id_paciente, tipo_enfermedad, nombre_enfermedad) values ('$c','$b','$a')";
-  //if(!mysql_query($insertar))
+  //if(!$conn->query($insertar))
   if(!$conn->query($insertar))
     die('Error de consulta: '.mysqli_error($conn));
   mysqli_close($conn);

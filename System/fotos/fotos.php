@@ -8,7 +8,7 @@
 
 		$pagina = $pagina * 10;
 		$sql = "SELECT * FROM paciente";
-		$result = mysql_query($sql);
+		$result = $conn->query($sql);
 		$numero_de_registros = mysql_num_rows($result);
 
 		$ultima_pagina = floor($numero_de_registros/10);
@@ -87,8 +87,8 @@
 <?php
 
 
-		//$result2 = mysql_query("SELECT * FROM paciente limit $pagina,10");
-		$result2 = mysql_query("SELECT * FROM paciente");
+		//$result2 = $conn->query("SELECT * FROM paciente limit $pagina,10");
+		$result2 = $conn->query("SELECT * FROM paciente");
 		while ($row2 = mysql_fetch_array($result2, MYSQL_NUM)){
 			echo "<tr>";
 				echo "<td><center><img src='../pacientes/images_pacientes/".$row2[21]."' width='100px'></center></td>";

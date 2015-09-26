@@ -109,7 +109,7 @@ if($_SESSION['rol']=='admin')
       ?>
     </tr>
     <?php
-    //$result2 = mysql_query("SELECT * FROM inventario");
+    //$result2 = $conn->query("SELECT * FROM inventario");
     $result2 = $conn->query("SELECT * FROM inventario");
     ?>
   </table>
@@ -123,7 +123,7 @@ if($_SESSION['rol']=='admin')
   else
     $buscar = "";
   
-  //$result2 = mysql_query("select * from inventario where nombre like '%$buscar%' or numero_serial like '%$buscar%' or descripcion like '%$buscar%' order by nombre;");
+  //$result2 = $conn->query("select * from inventario where nombre like '%$buscar%' or numero_serial like '%$buscar%' or descripcion like '%$buscar%' order by nombre;");
   $result2 = $conn->query("SELECT * FROM inventario where nombre like '%$buscar%' or numero_serial like '%$buscar%' or descripcion like '%$buscar%' order by nombre;");
   //ocultar esto mientra no busque
   echo '<h1>En almacen: ',$buscar,'</h1>';

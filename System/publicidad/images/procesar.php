@@ -21,12 +21,12 @@ if(!$conn->query($insertar)){
 $select = 'SELECT * from publicidad where imagen="'.$imagen.'";';
 $result = $conn->query($select);
 $renglon = $result->fetch_assoc();
-//$resul = mysql_query($select, $dbh) or die ("problema con la solicitud");
+//$resul = $conn->query($select, $dbh) or die ("problema con la solicitud");
 //$renglon = mysql_fetch_assoc($resul);
 $id = $renglon['id_publicidad'];
 rename($imagen, $id);
 $editar = "UPDATE publicidad set imagen='$id' where id_publicidad='$id';";
-//if(!mysql_query($editar)){
+//if(!$conn->query($editar)){
 if(!$conn->query($editar)){
 	die('error: '.mysqli_error($conn));
 }else{

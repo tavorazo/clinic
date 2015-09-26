@@ -26,7 +26,7 @@
 
 			$instruccion = "insert into noticias (imagen,texto,Titulo,fecha) values ('$var4', '$var3','$var1',now());";
 
-			if(!mysql_query($instruccion))
+			if(!$conn->query($instruccion))
 				die('Error de consulta: '.mysql_error());
 			mysqli_close($conn);
 

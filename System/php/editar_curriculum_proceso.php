@@ -20,13 +20,13 @@
 		$select = 'SELECT * from curriculum where id_usuario="'.$id.'";';
 		$resul = $conn->query($select);
 		$renglon = $resul->fetch_assoc();
-		//$resul = mysql_query($select, $dbh) or die ("problema con la solicitud");
+		//$resul = $conn->query($select, $dbh) or die ("problema con la solicitud");
 		//$renglon = mysql_fetch_assoc($resul);
 		if($renglon['id_usuario']!='')
 			$insertar = "UPDATE curriculum set descripcion='$curriculum' where id_usuario='$id'";
 		else
 			$insertar = "INSERT into curriculum (id_usuario, descripcion) values ('$id','$curriculum')";
-		//if(!mysql_query($insertar))
+		//if(!$conn->query($insertar))
 		if(!$conn->query($insertar))
 			die('Error de consulta: '.mysqli_error($conn));
 		

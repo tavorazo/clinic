@@ -30,7 +30,7 @@ include('../php/base3.php');
 //print "Producto:$a<br>Serial: $b<br>Descripcion: $c<br>Cantidad: $d<br>Reabastecible: $e<br>Cantidad Mínima: $f<br>Agregado con éxito";
 	$instruccion = "insert into inventario (nombre,numero_serial,descripcion,cantidad,reabastesible,cantidad_minima,ultimo_abastecimiento, venta, precio_compra, precio_venta) values ('$a','$b','$c','$d','$e','$f',now(), '$venta', '$pcompra', '$pventa');";
 
-	if(!mysql_query($instruccion))
+	if(!$conn->query($instruccion))
 		die('Error de consulta: '.mysql_error());
 	mysqli_close($conn);
 

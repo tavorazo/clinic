@@ -56,12 +56,12 @@
 		$mes=date(m);
 		$dia=date(d);
 			$doctor = $row2[0];
-			$result2 = mysql_query("select * from agenda where id_usuario='$usuario' and ano>='$ano' and mes>='$mes' and dia>='$dia';");
+			$result2 = $conn->query("select * from agenda where id_usuario='$usuario' and ano>='$ano' and mes>='$mes' and dia>='$dia';");
 			//echo "select * from agenda where id_usuario='$usuario' and ano>='$ano' and mes>='$mes' and dia>='$dia';";
 			while ($row3 = mysql_fetch_array($result2, MYSQL_NUM)){
 				$p = $row3[2];
-				$doctor = mysql_query("select * from usuarios where id_usuario='$usuario';");
-				$paciente = mysql_query("select * from paciente where id_paciente='$p';");
+				$doctor = $conn->query("select * from usuarios where id_usuario='$usuario';");
+				$paciente = $conn->query("select * from paciente where id_paciente='$p';");
 					while ($row_doctor = mysql_fetch_array($doctor, MYSQL_NUM)){
 						$doctor_nombre = $row_doctor[1];
 						$doctor_apellido = $row_doctor[2];

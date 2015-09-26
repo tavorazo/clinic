@@ -25,7 +25,7 @@ $u= $_SESSION['u'];
 	//include('base3.php');
 	//include('base2.php');
 
-     //$result = mysql_query("SHOW COLUMNS FROM $tabla");
+     //$result = $conn->query("SHOW COLUMNS FROM $tabla");
 	$result = $conn->query("SHOW COLUMNS FROM $tabla");
 
 	echo "<a href='../panel.php'><img src='../images/endoperio-logo.png' width='200px' style='margin-left:120px; margin-top:40px; float:left'></a>
@@ -34,7 +34,7 @@ $u= $_SESSION['u'];
 
       //ahora consultamos a la base de datos para sacar los registros contenidos
 	if($_SESSION['rol']=='admin'){
-	      //$result2 = mysql_query("SELECT * FROM $tabla");
+	      //$result2 = $conn->query("SELECT * FROM $tabla");
 	      //while ($row2 = mysql_fetch_array($result2, MYSQL_NUM)) {
 		$result2 = $conn->query("SELECT * FROM $tabla");
 		while ($row2 = $result2->fetch_row()) {
@@ -54,7 +54,7 @@ $u= $_SESSION['u'];
 			echo "<br><label>Fecha de alta: </label>", $row2[9];
 			echo "<br><label>Diplomados e Instrumental:  </label><a href='diplomados.php?id=", $row2[0],"'>Comprar</a><br>";
 	             		//	echo "<br><label>Password: </label>", $row2[10];
-		//$resul = mysql_query($select, $dbh) or die ("problema con la solicitud");
+		//$resul = $conn->query($select, $dbh) or die ("problema con la solicitud");
 		//$renglon = mysql_fetch_assoc($resul);
 			$select = 'SELECT * from curriculum where id_usuario="'.$row2[0].'";';
 			$result = $conn->query($select);
@@ -77,7 +77,7 @@ $u= $_SESSION['u'];
 		}
 	}else{
 		if($_SESSION['rol']!='secretaria'){
- 	      	//$result2 = mysql_query("SELECT * FROM usuarios where id_usuario='$u'");
+ 	      	//$result2 = $conn->query("SELECT * FROM usuarios where id_usuario='$u'");
  	     	//print "SELECT * FROM usuarios where id_usuario=$usuario";
 	      	//while ($row2 = mysql_fetch_array($result2, MYSQL_NUM)) {
 			$result2 = $conn->query("SELECT * FROM usuarios where id_usuario='$u'");
@@ -95,7 +95,7 @@ $u= $_SESSION['u'];
 				$select = 'SELECT * from curriculum where id_usuario="'.$row2[0].'";';
 				$result = $conn->query($select);
 				$renglon = $result->fetch_assoc();
-		//$resul = mysql_query($select, $dbh) or die ("problema con la solicitud");
+		//$resul = $conn->query($select, $dbh) or die ("problema con la solicitud");
 		//$renglon = mysql_fetch_assoc($resul);
 				echo "	<br><a href='ver_curriculum.php?id=",$row2[0],"&n=",$row2[1],"&a1=",$row2[2],"&a2=",$row2[3],"&fn=",$row2[4],"&c=",$renglon['descripcion'],"' style='margin-top:10px; float:left'>Ver Curriculum >> </a><br>
 				<br><a href='editar_curriculum.php?id=",$row2[0],"' style=''>Editar Curriculum>> </a><br>"; 
@@ -112,7 +112,7 @@ $u= $_SESSION['u'];
 	            echo "</div><br>";
 	        }     
 	    }else{
-	      //$result2 = mysql_query("SELECT * FROM $tabla");
+	      //$result2 = $conn->query("SELECT * FROM $tabla");
 	      //while ($row2 = mysql_fetch_array($result2, MYSQL_NUM)) {
 	        $result2 = $conn->query("SELECT * FROM $tabla");
 	        while ($row2 = $result->fetch_row()){
@@ -135,7 +135,7 @@ $u= $_SESSION['u'];
 	            $select = 'SELECT * from curriculum where id_usuario="'.$row2[0].'";';
 	            $result = $conn->query($select);
 	            $renglon = $result->fetch_assoc();
-				//$resul = mysql_query($select, $dbh) or die ("problema con la solicitud");
+				//$resul = $conn->query($select, $dbh) or die ("problema con la solicitud");
 				//$renglon = mysql_fetch_assoc($resul);
 	            echo "	<br><a href='ver_curriculum.php?id=",$row2[0],"&n=",$row2[1],"&a1=",$row2[2],"&a2=",$row2[3],"&fn=",$row2[4],"' style='margin-top:10px; float:left'>Ver Curriculum >> </a><br>";
 	            echo "<br><a href='editar_curriculum.php?id=",$row2[0],"' >Editar Curriculum>> </a><br>";

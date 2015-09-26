@@ -57,7 +57,7 @@ $insertar = "insert into agenda (id_paciente,ano,mes,dia,hora,minuto, web, confi
 		for($i=0; $i<1; $i++){
 			$minuto2 = $minuto2 + 15;
 $insertar2 = "insert into agenda (id_paciente,ano,mes,dia,hora,minuto, web, confirmacion, observacion, fecha) values ('$paciente', '$ano', '$mes_n', '$dia', '$hora', '$minuto2', '1','1','$observaciones', '$fecha','$paciente',now();";
-			if(!mysql_query($insertar2))
+			if(!$conn->query($insertar2))
 				die('Error de consulta: '.mysql_error());
 		}
 
@@ -67,7 +67,7 @@ $insertar2 = "insert into agenda (id_paciente,ano,mes,dia,hora,minuto, web, conf
 		for($i=0; $i<1; $i++){
 			$minuto2 = $minuto2 + 15;
 $insertar2 = "insert into agenda (id_paciente,ano,mes,dia,hora,minuto, web, confirmacion, observacion, fecha) values ('$paciente', '$ano', '$mes_n', '$dia', '$hora', '$minuto2', '1','1','$observaciones', '$fecha');";
-			if(!mysql_query($insertar2))
+			if(!$conn->query($insertar2))
 				die('Error de consulta: '.mysql_error());
 		}	
 	}
@@ -76,7 +76,7 @@ $insertar2 = "insert into agenda (id_paciente,ano,mes,dia,hora,minuto, web, conf
 		for($i=0; $i<1; $i++){
 			$minuto2 = $minuto2 + 15;
 $insertar2 = "insert into agenda (id_paciente,ano,mes,dia,hora,minuto, web, confirmacion, observacion, fecha) values ('$paciente', '$ano', '$mes_n', '$dia', '$hora', '$minuto2', '1','1','$observaciones', '$fecha');";
-			if(!mysql_query($insertar2))
+			if(!$conn->query($insertar2))
 				die('Error de consulta: '.mysql_error());
 		}	
 	}
@@ -85,12 +85,12 @@ $insertar2 = "insert into agenda (id_paciente,ano,mes,dia,hora,minuto, web, conf
 		for($i=0; $i<1; $i++){
 			$minuto2 = $minuto2 + 15;
 $insertar2 = "insert into agenda (id_paciente,ano,mes,dia,hora,minuto, web, confirmacion, observacion, fecha) values ('$paciente', '$ano', '$mes_n', '$dia', '$hora', '$minuto2', '1','2','$observaciones', '$fecha');";
-			if(!mysql_query($insertar2))
+			if(!$conn->query($insertar2))
 				die('Error de consulta: '.mysql_error());
 		}
 	}
 
-		if(!mysql_query($insertar))
+		if(!$conn->query($insertar))
 			die('Error de consulta: '.mysql_error());
 		mysqli_close($conn);
 

@@ -12,7 +12,7 @@ if($_SESSION['u']=='')
   $id = $_GET['id'];
   
   $select = "SELECT * from usuarios where id_usuario='$id';";
-  //$resul = mysql_query($select, $dbh) or die ("problema con la solicitud");
+  //$resul = $conn->query($select, $dbh) or die ("problema con la solicitud");
   //$renglon = mysql_fetch_assoc($resul);
   $resul = $conn->query($select);
   $renglon = $resul->fetch_assoc();

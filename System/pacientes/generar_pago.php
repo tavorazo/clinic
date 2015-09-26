@@ -74,7 +74,7 @@
 		//echo "<br><br>ultimo registro: ", mysql_insert_id(),"<br><br>";
 		$id_recibo = $conn->insert_id;
 		/*$select = 'select * from recibos order by id_recibo desc;';
-		$resul = mysql_query($select, $dbh) or die ("problema con la solicitud");
+		$resul = $conn->query($select, $dbh) or die ("problema con la solicitud");
 		$renglon = mysql_fetch_assoc($resul);
 		$id_recibo = $renglon['id_recibo'];*/
 		//echo "<br><br>ultimo registro: ", mysql_insert_id(),"<br><br>";
