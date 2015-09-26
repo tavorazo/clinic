@@ -28,7 +28,7 @@
    </head>
  <body>
   <?php
-      include("../php/base2.php");
+      include("../php/base.php");
       
       $id_paciente = $_GET['id_paciente'];
     ?>
@@ -68,7 +68,7 @@
 			
 			<?php
 				$deuda_total = 0;
-				$result = mysql_query("SELECT * FROM pago_adeudo where id_paciente='$id_paciente'");
+				$result = $conn->query("SELECT * FROM pago_adeudo where id_paciente='$id_paciente'");
 				echo "<table >
                 <tr><th> - </th> 
                     <th> Concepto </th> 
@@ -77,7 +77,7 @@
                     <th> Adeudo </th>
                     <th> Saldado </th>
                 <tr>";
-        while ($row2 = mysql_fetch_array($result, MYSQL_NUM)) {
+        while ($row2 = $result->fetch_array()) {
 
           echo" <tr>";
                     if($row2[2] > $row2[3])
@@ -120,13 +120,13 @@
 			<input type="number" min="0"  name="pago" class="campoT" required/><br>
 		    <label>Tipo de pago</label><br>
 			<?php
-				$result = mysql_query("SELECT * FROM pagos_tipo");
+				$result = $conn->query("SELECT * FROM pagos_tipo");
 				
           echo "<table style=''>
                   <tr>";
 				
         $contador = 0;
-        while ($row2 = mysql_fetch_array($result, MYSQL_NUM)) {
+        while ($row2 = $result->fetch_array()) {
           echo "<td style='width:80px'>
                   <input type='radio' name='pagos_tipo'  class='check' value='",$row2['0'],"' style='float:left; margin-left:30px'>
                   <h2>",$row2['1'],"

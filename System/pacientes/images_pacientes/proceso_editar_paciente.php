@@ -136,7 +136,7 @@ $insertar = "update paciente set nombres = '$nombre',
 
 
 
-if(!mysql_query($insertar, $conexion))
+if(!$conn->query($insertar))
 
 	die('Error de consulta: '.mysql_error());
 
@@ -144,14 +144,14 @@ $id_p = $id;
 
 
 $historial = "insert into historial_tabla_pacientes (id_paciente, id_usuario, estado, fecha) values ('$id_p','$id_usuario','Ha editado al paciente',now())";
-if(!mysql_query($historial, $conexion))
+if(!$conn->query($historial))
 	die('Error de consulta 5: '.mysql_error());	
 
 if($imagen!=''){
 
 	$select = "select * from paciente where id_paciente='$id';";
 
-	$resul = mysql_query($select, $dbh) or die ("problema con la solicitud");
+	$resul = $conn->query($select) or die ("problema con la solicitud");
 
 	$renglon = mysql_fetch_assoc($resul);
 
@@ -167,11 +167,11 @@ if($imagen!=''){
 
 	$sentencia = "UPDATE paciente SET foto_ingreso='$ultimo' WHERE id_paciente='$ultimo';";
 
-	if(!mysql_query($sentencia, $conexion))
+	if(!$conn->query($sentencia))
 
 		die('Error de consulta: '.mysql_error());
 
-	mysql_close($conexion);
+	mysqli_close($conn);
 
 }
 

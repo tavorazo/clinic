@@ -24,7 +24,7 @@ if (!$conexion){
 	die('Error de Conexion: ' .mysql_error());
 }
 
-$conexion_base=mysql_select_db('Endoperio', $conexion);
+$conexion_base=mysql_select_db('Endoperio');
 
 if (!$conexion_base) {
 	die('Error de seleccion de base: ' .mysql_error());
@@ -36,15 +36,15 @@ include('../../php/base3.php');
 $insertar = "insert into fotografias_externas (id_paciente, fecha_foto, descripcion) values ('$a', now(),'$b')";
 
 
-if(!mysql_query($insertar, $conexion))
+if(!$conn->query($insertar))
 	die('Error de consulta: '.mysql_error());
 
 /****************************************/
 /*$dbh = mysql_connect('localhost','root','') or die('Error de conexion: ' . mysql_error() );
-$base = mysql_select_db('Endoperio', $dbh) or die('Error de seleccion de base: ' . mysql_error() );*/
+$base = mysql_select_db('Endoperio') or die('Error de seleccion de base: ' . mysql_error() );*/
 $select = 'select * from fotografias_externas order by id_foto desc limit 1;';
-$resul = mysql_query($select, $dbh) or die ("problema con la solicitud");
-$renglon = mysql_fetch_assoc($resul);
+$resul = $conn->query($select) or die ("problema con la solicitud");
+$renglon = $resul->fetch_assoc();
 $ficha = $renglon['id_paciente'];
 
 $a = $renglon['id_foto'];
@@ -55,9 +55,9 @@ $ultimo = $a;
 rename($imagen,$ultimo);
 
 $sentencia = "UPDATE fotografias_externas SET nombre_foto='$ultimo' WHERE id_foto='$a';";
-if(!mysql_query($sentencia, $conexion))
+if(!$conn->query($sentencia))
 	die('Error de consulta: '.mysql_error());
-mysql_close($conexion);
+mysqli_close($conn);
 
 /****************************************/
 

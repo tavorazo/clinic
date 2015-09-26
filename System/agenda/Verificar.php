@@ -84,7 +84,7 @@ include('../php/base.php');
 /*
 include('../php/base3.php');
 include('../php/base2.php');*/
-//$result3 = mysql_query("select * from Usuarios where rol='dentista';");
+//$result3 = $conn->query("select * from Usuarios where rol='dentista';");
 $show = 1;
 ?>
 

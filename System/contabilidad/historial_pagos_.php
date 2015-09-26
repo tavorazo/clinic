@@ -338,9 +338,9 @@ date_default_timezone_set("Mexico/General");
     echo "<a href='?semana_b=",$semana_siguiente,"&ano=",$ano_s,"&S=1'> <div id='botnH' style='border:0px #888 solid; width:140px; border-top-right-radius:30px; border-bottom-right-radius:30px;'> semana siguiente </div> </a><br><br><br>";
   }
   if($semana_b=='') $result2 = $conn->query("SELECT * from pago_adeudo where fecha like '%$fechab%'");
-  //$result2 = mysql_query("select * from pago_adeudo where fecha like '%$fechab%'");
+  //$result2 = $conn->query("select * from pago_adeudo where fecha like '%$fechab%'");
   else              $result2 = $conn->query("SELECT * from pago_adeudo");
-  //$result2 = mysql_query("select * from pago_adeudo");
+  //$result2 = $conn->query("select * from pago_adeudo");
   //
   echo "<table border=1 style='margin-top:100px; '>
   <tr> <td style='color:#58ACFA'>No. </td> <td style='color:#58ACFA'>Generado por  </td> <td style='color:#58ACFA'>Paciente    </td> <td style='color:#58ACFA'>Descripción   </td> <td style='color:#58ACFA'>Costo       </td> <td style='color:#58ACFA'>Pagado      </td> <td style='color:#58ACFA'>Saldo      </td> <td style='color:#58ACFA'>Detalles   </td> </tr>";
@@ -351,7 +351,7 @@ date_default_timezone_set("Mexico/General");
       echo "<td>",$dato_pagos[0],"</td>";
       $usuario = $dato_pagos[6];
     //$select = 'select * from usuarios where id_usuario="'.$usuario.'"';
-    //$resul = mysql_query($select, $dbh) or die ("problema con la solicitud");
+    //$resul = $conn->query($select) or die ("problema con la solicitud");
     //$renglon = mysql_fetch_assoc($resul);
       
       $sql = 'SELECT * FROM usuarios where id_usuario="'.$usuario.'"';
@@ -361,7 +361,7 @@ date_default_timezone_set("Mexico/General");
         
         $paciente = $dato_pagos[7];
     //$select = 'select * from paciente where id_paciente="'.$paciente.'";';
-    //$resul = mysql_query($select, $dbh) or die ("problema con la solicitud");
+    //$resul = $conn->query($select) or die ("problema con la solicitud");
     //$renglon = mysql_fetch_assoc($resul);
         $sql = 'SELECT * FROM paciente where id_paciente="'.$paciente.'"';
         if ($result = $conn->query($sql)) 
@@ -380,7 +380,7 @@ date_default_timezone_set("Mexico/General");
               $id_deuda = $dato_pagos[0];
               $ano = date(Y);
               
-    //$resul2 = mysql_query($sql, $conn) or die ("problema con la solicitud");
+    //$resul2 = $conn->query($sql, $conn) or die ("problema con la solicitud");
     //$renglon2 = mysql_fetch_assoc($resul2);  
               $sql = 'SELECT * from pagos_historia WHERE semana="'.$semana_b.'" AND id_adeudo="'.$id_deuda.'" AND y="'.$ano.'";';
     //echo $sql;
@@ -391,7 +391,7 @@ date_default_timezone_set("Mexico/General");
                  echo "<td>",$id_deuda,"</td>";
                  
                  $usuario = $dato_pagos[6];
-         //$resul = mysql_query($select, $dbh) or die ("problema con la solicitud");
+         //$resul = $conn->query($select) or die ("problema con la solicitud");
          //$renglon = mysql_fetch_assoc($resul);
                  $sql = 'SELECT * from usuarios where id_usuario="'.$usuario.'";';
                  $result = $conn->query($sql);
@@ -399,7 +399,7 @@ date_default_timezone_set("Mexico/General");
                    echo "<td> ".$renglon['nombres']." ".$renglon['apellido_paterno']." ".$renglon['apellido_materno']."</td>";
                  
                  $paciente = $dato_pagos[7];
-         //$resul = mysql_query($select, $dbh) or die ("problema con la solicitud");
+         //$resul = $conn->query($select) or die ("problema con la solicitud");
          //$renglon = mysql_fetch_assoc($resul);
                  $sql = 'SELECT * from paciente where id_paciente="'.$paciente.'";';
                  $result = $conn->query($sql);

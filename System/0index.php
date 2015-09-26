@@ -156,14 +156,14 @@ Cirugía oral" width="151" height="105"/><!-- rasterized frame -->
       //mysql_connect($host,$usuario,$contrasena);
       //mysql_select_db($bdd);
       //Consultamos a la base de datos para sacar las columnas de la tabla
-      //$result = mysql_query("SHOW COLUMNS FROM $tabla");
+      //$result = $conn->query("SHOW COLUMNS FROM $tabla");
       ?>
 
 
       <?php
       $i = 0;
       //ahora consultamos a la base de datos para sacar los registros contenidos
-      $result2 = mysql_query("SELECT * FROM noticias order by fecha desc limit 20");
+      $result2 = $conn->query("SELECT * FROM noticias order by fecha desc limit 20");
 echo '<div class="clearfix grpelem" id="u1194" style="border:none; "><!-- column -->';
 while ($row2 = mysql_fetch_array($result2, MYSQL_NUM)) {
 

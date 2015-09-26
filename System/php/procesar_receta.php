@@ -28,10 +28,10 @@ include('base.php');
 //include('base3.php');
 $insertar = "INSERT into recetas (id_usuario, id_paciente, medicamento, observaciones,fecha) values ('$doc','$c','$a', '$b', now())";
 //echo $insertar;
-//if(!mysql_query($insertar, $conexion))
+//if(!$conn->query($insertar))
 if(!$conn->query($insertar))
   die('Error de consulta: '.mysqli_error($conn));
-mysql_close($conexion);;
+mysqli_close($conn);;
 echo '<br><br><br><center><img src="../images/endoperio2.png" width="100px" alt=""> <br> ';
 echo "Receta Agregada con exito<br><br><br>";
 echo '<div style="  padding:9px; border:1px solid #E6E6E6; height:18px; width:120px; margin-top:12px; text-align:center; margin-right:10px ">';

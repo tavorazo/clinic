@@ -43,7 +43,7 @@ $instruccion = "insert into Noticias (imagen,texto,Titulo,fecha) values ('$nom_a
 
 if(!$conn->query($instruccion)
 	die('Error de consulta: '.mysql_error());
-$conn=null;
+mysqli_close ( $conn );
 //header('location: ../panel/panel_noticias.php');
 
 ?>

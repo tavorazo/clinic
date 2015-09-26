@@ -107,7 +107,7 @@ echo '<a class="nonblock nontext grpelem" id="u552" href="../contabilidad.php"><
 <?php
 include('../php/base.php');
 
-//$result = mysql_query("select * from agenda where dia='$dia' and mes='$mes_n' and ano='$ano' and id_usuario='$doctor';");
+//$result = $conn->query("select * from agenda where dia='$dia' and mes='$mes_n' and ano='$ano' and id_usuario='$doctor';");
 $hour = 8;
 $minute = '00';
 

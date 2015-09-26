@@ -63,12 +63,12 @@ $usuario = $_SESSION['u'];
    $select = 'SELECT * from nomina where id_usuario="'.$id_usuario.'";';
    $resul = $conn->query($select);
    $renglon = $resul->fetch_assoc();
-   //$resul = mysql_query($select, $dbh) or die ("problema con la solicitud");
+   //$resul = $conn->query($select) or die ("problema con la solicitud");
    //$renglon = mysql_fetch_assoc($resul);
    $select2 = 'SELECT * from usuarios where id_usuario="'.$id_usuario.'";';
    $resul = $conn->query($select2);
    $renglon2 = $resul->fetch_assoc();
-   //$resul2 = mysql_query($select2, $dbh) or die ("problema con la solicitud");
+   //$resul2 = $conn->query($select2) or die ("problema con la solicitud");
    //$renglon2 = mysql_fetch_assoc($resul2);
    ?>
    <h1> <a href="lista_usuarios.php" style="float:left; margin-right:10px"> << Regresar </a> </h1>

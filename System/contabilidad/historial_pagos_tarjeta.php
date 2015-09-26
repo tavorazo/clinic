@@ -259,12 +259,12 @@ date_default_timezone_set("Mexico/General");
     $ano_s = $ano+1;
   }
     /*if($semana_b==''){
-     $result2 = mysql_query("select * from pago_adeudo where fecha like '%$fechab%'");
-     $result2 = mysql_query("select * from historial_compras where fecha like '%$fechab%'");
+     $result2 = $conn->query("select * from pago_adeudo where fecha like '%$fechab%'");
+     $result2 = $conn->query("select * from historial_compras where fecha like '%$fechab%'");
     }
     else{
-  $result2 = mysql_query("select * from historial_pagos");
-        $result2 = mysql_query("select * from historial_compras where semana='$semana_b' and y='$ano_s'");
+  $result2 = $conn->query("select * from historial_pagos");
+        $result2 = $conn->query("select * from historial_compras where semana='$semana_b' and y='$ano_s'");
       }*/
       
       function semanasMes($year,$month)
@@ -301,19 +301,19 @@ date_default_timezone_set("Mexico/General");
       $total = 0;
       $fecha = $ano."-".$mes;
 //echo $fecha;
-      $result_pagos = mysql_query("select * from pago_adeudo");
+      $result_pagos = $conn->query("select * from pago_adeudo");
       setlocale(LC_MONETARY, 'en_US');
       
       while ($fila_pagos = mysql_fetch_array($result_pagos, MYSQL_NUM)){
         $id_adeudo = $fila_pagos['0'];
-        $result_pagos2 = mysql_query("select * from pagos_historia where id_tipo='3' and fecha like '%$fecha%' and id_adeudo='$id_adeudo'");
+        $result_pagos2 = $conn->query("select * from pagos_historia where id_tipo='3' and fecha like '%$fecha%' and id_adeudo='$id_adeudo'");
         //print "select * from pagos_historia where id_tipo='3' and fecha like '%$fecha%'";
         while ($fila_pagos2 = mysql_fetch_array($result_pagos2, MYSQL_NUM)){
           echo "<tr>";
           echo "<td>".$fila_pagos2[5]."</td>";
           $paciente = $fila_pagos2[2];
           $select = 'select * from paciente where id_paciente="'.$paciente.'";';
-          $resul = mysql_query($select, $dbh) or die ("problema con la solicitud");
+          $resul = $conn->query($select) or die ("problema con la solicitud");
           $renglon = mysql_fetch_assoc($resul);
           echo "<td>".$renglon['nombres']." ".$renglon['apellido_paterno']." ".$renglon['apellido_materno']."</td>";
           echo "<td>",($fila_pagos[4]),"</td>";
@@ -332,17 +332,17 @@ date_default_timezone_set("Mexico/General");
         $total = 0;
         $fecha = $ano."-".$mes;
 //echo $fecha;
-//$result_pagos = mysql_query("select * from pago_adeudo");
+//$result_pagos = $conn->query("select * from pago_adeudo");
     //while ($fila_pagos = mysql_fetch_array($result_pagos, MYSQL_NUM)){
       //$id_adeudo = $fila_pagos['0'];
-        $result_pagos2 = mysql_query("select * from historial_compras where id_tipo='3' and fecha like '%$fecha%'");
+        $result_pagos2 = $conn->query("select * from historial_compras where id_tipo='3' and fecha like '%$fecha%'");
         //print "select * from historial_compras where id_tipo='3' and fecha like '%$fecha%'";
         while ($fila_pagos2 = mysql_fetch_array($result_pagos2, MYSQL_NUM)){
           echo "<tr>";
           echo "<td>".$fila_pagos2[7]."</td>";
           $paciente = $fila_pagos2[1];
           $select = 'select * from paciente where id_paciente="'.$paciente.'";';
-          $resul = mysql_query($select, $dbh) or die ("problema con la solicitud");
+          $resul = $conn->query($select) or die ("problema con la solicitud");
           $renglon = mysql_fetch_assoc($resul);
           if($renglon['nombres']!='')
             echo "<td>".$renglon['nombres']." ".$renglon['apellido_paterno']." ".$renglon['apellido_materno']."</td>";
@@ -350,7 +350,7 @@ date_default_timezone_set("Mexico/General");
             echo "<td>Comprador</td>";
           $producto = $fila_pagos2[3];
           $select = 'select * from inventario where id_producto="'.$producto.'";';
-          $resul = mysql_query($select, $dbh) or die ("problema con la solicitud");
+          $resul = $conn->query($select) or die ("problema con la solicitud");
           $renglon = mysql_fetch_assoc($resul);
           echo "<td>",$renglon['nombre'],"</td>";
           $total = $total + $fila_pagos2[6];
@@ -366,17 +366,17 @@ date_default_timezone_set("Mexico/General");
           /*+++++++++++++++++++++++ DIPLOMADO TARJETA++++++++++++++++++++++++*/    
           $semana = $primeraSemana;
           $total = 0;
-          $result_pagos = mysql_query("select * from historial_diplomados where fecha like '%$fecha%' && tipo_pago='3'");
+          $result_pagos = $conn->query("select * from historial_diplomados where fecha like '%$fecha%' && tipo_pago='3'");
           while ($fila_pagos = mysql_fetch_array($result_pagos, MYSQL_NUM)){
             echo "<tr>";
             echo "<td>",$fila_pagos[7],"</td>";
             $usuario = $fila_pagos[2];
             $select = 'select * from paciente where id_paciente="'.$usuario.'";';
-            $resul = mysql_query($select, $dbh) or die ("problema con la solicitud");
+            $resul = $conn->query($select) or die ("problema con la solicitud");
             $renglon = mysql_fetch_assoc($resul);
             if($renglon['nombres']==''){
               $select = 'select * from usuarios where id_usuario="'.$usuario.'";';
-              $resul = mysql_query($select, $dbh) or die ("problema con la solicitud");
+              $resul = $conn->query($select) or die ("problema con la solicitud");
               $renglon = mysql_fetch_assoc($resul);
             }
             echo "<td>".$renglon['nombres']." ".$renglon['apellido_paterno']." ".$renglon['apellido_materno']."</td>";
@@ -392,17 +392,17 @@ date_default_timezone_set("Mexico/General");
             /*+++++++++++++++++++++++ INSTRUMENTAL TARJETA++++++++++++++++++++++++*/    
             $semana = $primeraSemana;
             $total = 0;
-            $result_pagos = mysql_query("select * from historial_instrumental where fecha like '%$fecha%' && tipo_pago='3'");
+            $result_pagos = $conn->query("select * from historial_instrumental where fecha like '%$fecha%' && tipo_pago='3'");
             while ($fila_pagos = mysql_fetch_array($result_pagos, MYSQL_NUM)){
               echo "<tr>";
               echo "<td>",$fila_pagos[7],"</td>";
               $usuario = $fila_pagos[2];
               $select = 'select * from paciente where id_paciente="'.$usuario.'";';
-              $resul = mysql_query($select, $dbh) or die ("problema con la solicitud");
+              $resul = $conn->query($select) or die ("problema con la solicitud");
               $renglon = mysql_fetch_assoc($resul);
               if($renglon['nombres']==''){
                 $select = 'select * from usuarios where id_usuario="'.$usuario.'";';
-                $resul = mysql_query($select, $dbh) or die ("problema con la solicitud");
+                $resul = $conn->query($select) or die ("problema con la solicitud");
                 $renglon = mysql_fetch_assoc($resul);
               }
               echo "<td>".$renglon['nombres']." ".$renglon['apellido_paterno']." ".$renglon['apellido_materno']."</td>";

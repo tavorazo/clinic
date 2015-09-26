@@ -18,7 +18,7 @@
       mysql_connect($host,$usuario,$contrasena);
       mysql_select_db($bdd);
       //Consultamos a la base de datos para sacar las columnas de la tabla*/
-      $result = mysql_query("SHOW COLUMNS FROM Inventario_Historial");
+      $result = $conn->query("SHOW COLUMNS FROM Inventario_Historial");
       ?>
 
 <table border=1>
@@ -39,7 +39,7 @@ if (mysql_num_rows($result)> 0) {
 
       <?php
       //ahora consultamos a la base de datos para sacar los registros contenidos
-      $result2 = mysql_query("SELECT * FROM Inventario_Historial order by fecha desc");
+      $result2 = $conn->query("SELECT * FROM Inventario_Historial order by fecha desc");
       while ($row2 = mysql_fetch_array($result2, MYSQL_NUM)) {
       	echo "<tr>";
           //for($i=0; $i<count($row2); $i++){
@@ -51,13 +51,13 @@ if (mysql_num_rows($result)> 0) {
 					
 					$select = 'select * from usuarios where id_usuario="'.$u.'";';
 					
-					$resul = mysql_query($select, $dbh) or die ("problema con la solicitud");
+					$resul = $conn->query($select) or die ("problema con la solicitud");
 					$renglon = mysql_fetch_assoc($resul);
 
 					echo "<td>",$renglon['nombres']," ",$renglon['apellido_paterno']," ",$renglon['apellido_materno'],"</td>";
 
 					$select = 'select * from inventario where id_producto="'.$p.'";';
-					$resul = mysql_query($select, $dbh) or die ("problema con la solicitud");
+					$resul = $conn->query($select) or die ("problema con la solicitud");
 					$renglon = mysql_fetch_assoc($resul);
 
 					echo "<td>",$renglon['nombre'],"</td>";

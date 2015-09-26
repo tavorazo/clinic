@@ -47,7 +47,7 @@ else
 	
 		echo'<META HTTP-EQUIV="Refresh" CONTENT="0; URL=../panel.php">';
 
-			$conn=null;
+			mysqli_close ( $conn );
 	?>
 </body>
 </html>

@@ -50,7 +50,7 @@ $usuario = $_SESSION['u'];
 include('../php/base.php');
 
 $sql = 'SELECT * from inventario where id_producto="'.$id.'";';
-//$resul = mysql_query($sql, $dbh) or die ("problema con la solicitud");
+//$resul = $conn->query($sql) or die ("problema con la solicitud");
 //$renglon = mysql_fetch_assoc($resul);
 $result = $conn->query($sql);
 $renglon = $result->fetch_assoc(); 

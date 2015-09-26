@@ -45,7 +45,7 @@ include('../../php/base3.php');
 if($imagen!=''){
 
 	$select = "select * from paciente where id_paciente='$id_paciente';";
-	$resul = mysql_query($select, $dbh) or die ("problema con la solicitud");
+	$resul = $conn->query($select) or die ("problema con la solicitud");
 	$renglon = mysql_fetch_assoc($resul);
 
 	$imagen_vieja = $renglon['foto_ingreso'];
@@ -58,11 +58,11 @@ if($imagen!=''){
 
 	$sentencia = "UPDATE paciente SET foto_ingreso='$id_paciente' WHERE id_paciente='$id_paciente';";
 
-	if(!mysql_query($sentencia, $conexion))
+	if(!$conn->query($sentencia))
 
 		die('Error de consulta: '.mysql_error());
 
-	mysql_close($conexion);
+	mysqli_close($conn);
 
 }
 

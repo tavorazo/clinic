@@ -33,26 +33,25 @@ else
 	$imagen="";
 
 include('../../php/base.php');
-include('../../php/base3.php');
 
 $insertar = "insert into fotografias_clinicas (id_paciente, fecha_foto, descripcion) values ('$a', now(),'$b')";
 
 
-if(!mysql_query($insertar, $conexion))
+if(!$conn->query($insertar))
 	die('Error de consulta: '.mysql_error());
 
 $select = 'select * from fotografias_clinicas order by fecha_foto desc limit 1;';
-$resul = mysql_query($select, $dbh) or die ("problema con la solicitud");
-$renglon = mysql_fetch_assoc($resul);
+$resul = $conn->query($select) or die ("problema con la solicitud");
+$renglon = $resul->fetch_assoc();
 
 $ultimo = $renglon['id_foto'];
 
 rename($imagen,$ultimo);
 
 $sentencia = "UPDATE fotografias_clinicas SET nombre_foto='$ultimo' WHERE id_foto='$ultimo';";
-if(!mysql_query($sentencia, $conexion))
+if(!$conn->query($sentencia))
 	die('Error de consulta: '.mysql_error());
-mysql_close($conexion);
+mysqli_close($conn);
 
 /****************************************/
 $pagina = '../ficha-paciente.php?id='.$a;

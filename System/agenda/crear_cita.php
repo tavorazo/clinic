@@ -9,7 +9,7 @@ include('../php/base.php');
 $contador = 0;
 
 	$doctor = $row2[0];
-	$result2 = mysql_query("select * from Usuarios where rol='dentista';");
+	$result2 = $conn->query("select * from Usuarios where rol='dentista';");
 
 	while ($row3 = mysql_fetch_array($result2, MYSQL_NUM)){
 		echo "<option value='",$row3[0],"'>", $row3[1]," ",$row3[2]," ",$row3[3],"</option>";

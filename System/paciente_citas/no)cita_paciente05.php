@@ -35,7 +35,7 @@
 		die('Error de Conexion: ' .mysql_error());
 	}
 
-	$conexion_base=mysql_select_db('Endoperio', $conexion);
+	$conexion_base=mysql_select_db('Endoperio');
 
 	if (!$conexion_base) {
 		die('Error de seleccion de base: ' .mysql_error());
@@ -44,9 +44,9 @@
 
 	$insertar = "insert into agenda (id_usuario,id_paciente,ano,mes,dia,hora,minuto, confirmacion, duracion) values ('$doctor','$paciente', '$ano', '$mes_n', '$dia', '$hora', '$minuto', '0', '$duracion');";
 
-	if(!mysql_query($insertar, $conexion))
+	if(!$conn->query($insertar))
 		die('Error de consulta: '.mysql_error());
-	mysql_close($conexion);
+	mysqli_close($conn);
 
 
 

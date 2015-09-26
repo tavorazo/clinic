@@ -23,7 +23,7 @@
 	<?php
 	$id = $_GET['id'];
 
-	/*$base = mysql_select_db('Endoperio', $dbh) or die('Error de seleccion de base: ' . mysql_error() );*/
+	/*$base = mysql_select_db('Endoperio') or die('Error de seleccion de base: ' . mysql_error() );*/
 include('../php/base.php');
 	$select = 'select * from avisos where id_aviso="'.$id.'";';
 	$resul = $conn->query($select) or die ("problema con la solicitud");
@@ -32,7 +32,7 @@ include('../php/base.php');
 
 		if(!$conn->query($eliminar))
 			die('Error de consulta: '.mysql_error());
-		$conn=null;
+		mysqli_close ( $conn );
 
 		echo '<br><br><br><center><img src="../images/endoperio2.png" width="100px" alt=""> <br> ';
 		echo "Proceso realizado con exito<br><br><br>";

@@ -21,16 +21,16 @@ if(!$conn->query($insertar)){
 $select = 'SELECT * from publicidad where imagen="'.$imagen.'";';
 $result = $conn->query($select);
 $renglon = $result->fetch_assoc();
-//$resul = mysql_query($select, $dbh) or die ("problema con la solicitud");
+//$resul = $conn->query($select) or die ("problema con la solicitud");
 //$renglon = mysql_fetch_assoc($resul);
 $id = $renglon['id_publicidad'];
 rename($imagen, $id);
 $editar = "UPDATE publicidad set imagen='$id' where id_publicidad='$id';";
-//if(!mysql_query($editar, $conexion)){
+//if(!$conn->query($editar)){
 if(!$conn->query($editar)){
 	die('error: '.mysqli_error($conn));
 }else{
-	//mysql_close($conexion);
+	//mysqli_close($conn);
 	$conn->close();
 	echo '<META HTTP-EQUIV="Refresh" CONTENT="3; URL=../subir_publicidad.php">
 	Subida con éxito';

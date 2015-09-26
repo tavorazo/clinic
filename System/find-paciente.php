@@ -125,13 +125,7 @@ if($_SESSION['rol']=='admin')
 
   while ($row = $result->fetch_array() ) {
 */
-          if($id == 0)
-        $result2 = $conn->query("SELECT * from paciente where nombres like '%$buscar%' or apellido_paterno like '%$buscar%' or apellido_materno like '%$buscar%' or id_paciente like '%$buscar%' or n_registro like '%$buscar%'  LIMIT 10;");
-        //$result2 = mysql_query("SELECT * from paciente where nombres like '%$buscar%' or apellido_paterno like '%$buscar%' or apellido_materno like '%$buscar%' or id_paciente like '%$buscar%' or n_registro like '%$buscar%'  LIMIT 10;");
-      else
-        $result2 = $conn->query("SELECT * from paciente where  id_paciente like '%$id%'  LIMIT 10;");
-        //$result2 = mysql_query("SELECT * from paciente where  id_paciente like '%$id%'  LIMIT 10;");
-    while ($row2 = $result2->fetch_row()) {
+    
   echo ' <br><br><fieldset><legend style="width:90%; background:#585A5A; padding:6px; padding-left:24px;">
   <h10 style="color:#FFFFFF">Datos Personales</legend></h10>';
 

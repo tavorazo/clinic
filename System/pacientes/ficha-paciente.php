@@ -154,8 +154,8 @@ $buscar = $_GET['id'];
       $recomendados =  $row2[0];
       $select_reco = 'select count(*) from paciente where recomendado_por="'.$recomendados.'";';
       //echo $select_reco;
-      $resul_reco = mysql_query($select_reco, $dbh) or die ("problema con la solicitud");
-      $renglon_reco = mysql_fetch_assoc($resul_reco);
+      $resul_reco = $conn->query($select_reco);
+      $renglon_reco = $resul_reco->fetch_assoc();
       echo $renglon_reco['count(*)'];
       echo "<br>";
       echo "<label style='display: block; width:200px; float:left'>Recomendado por:  </label>";
@@ -163,8 +163,8 @@ $buscar = $_GET['id'];
       $recomendador = $row2[30];
       
       $select_reco = 'select * from paciente where id_paciente="'.$recomendador.'";';
-      $resul_reco = mysql_query($select_reco, $dbh) or die ("problema con la solicitud");
-      $renglon_reco = mysql_fetch_assoc($resul_reco);
+      $resul_reco = $conn->query($select_reco);
+      $renglon_reco = $resul_reco->fetch_assoc();
       //echo $row2[30];
       echo $renglon_reco['nombres'], " ", $renglon_reco['apellido_paterno'], " ", $renglon_reco['apellido_materno'];
       echo " - <a href='cambiar_recomendado.php?id_paciente=",$row2[0],"'>cambiar</a><br>";
@@ -200,15 +200,15 @@ $buscar = $_GET['id'];
       echo "<fieldset><legend>Avances</legend><h2>";
       include("../php/base.php");
 
-        $result3 = mysql_query("select * from avance_clinico where id_paciente='$buscar' order by fecha desc limit 10;");
+        $result3 = $conn->query("select * from avance_clinico where id_paciente='$buscar' order by fecha desc limit 10;");
         echo "<br>Ultimos 10 avances:<br><br>";
 
-        while ($row_avance = mysql_fetch_array($result3, MYSQL_NUM)) {
+        while ($row_avance = $result3->fetch_array()) {
           echo "<label >Fecha de avance:</label> ", $row_avance[4],"<br><br>";
           echo "<label >Descripci&oacute;n</label> ", $row_avance[3],"<br><br>";
           $select = 'select * from usuarios where id_usuario="'.$row_avance[2].'";';
-          $resul = mysql_query($select, $dbh) or die ("problema con la solicitud");
-          $renglon = mysql_fetch_assoc($resul);
+          $resul = $conn->query($select) or die ("problema con la solicitud");
+          $renglon = $resul->fetch_assoc();
           echo "<label'> Atendido por: </label>", $renglon['nombres']," ", $renglon['apellido_paterno'], " ", $renglon['apellido_materno'], "<br><br><br>";
         }
 
@@ -223,14 +223,14 @@ $buscar = $_GET['id'];
       echo "<fieldset><legend>Recetas</legend><h2>";
       include("../php/base.php");
 
-        $result3 = mysql_query("select * from recetas where id_paciente='$buscar' order by fecha desc limit 10;");
+        $result3 = $conn->query("select * from recetas where id_paciente='$buscar' order by fecha desc limit 10;");
         echo "<br>Ultimas 10 recetas:<br><br>";
         /*RECETAS*/
-        while ($row_receta = mysql_fetch_array($result3, MYSQL_NUM)) {
+        while ($row_receta = $result3->fetch_array()) {
           echo "<label >Fecha de receta:</label> <a href='../php/ver_receta.php?id=",$row_receta[0],"' target='_blank' >", $row_receta[5],"</a><br>";
           $select = 'select * from usuarios where id_usuario="'.$row_receta[1].'";';
-          $resul = mysql_query($select, $dbh) or die ("problema con la solicitud");
-          $renglon = mysql_fetch_assoc($resul);
+          $resul = $conn->query($select) or die ("problema con la solicitud");
+          $renglon = $resul->fetch_assoc();
           echo "<label> Asignada por: </label>", $renglon['nombres']," ", $renglon['apellido_paterno'], " ", $renglon['apellido_materno'], "<br><br>";
         }
          /*RECETAS*/
@@ -246,9 +246,9 @@ $buscar = $_GET['id'];
 
       echo "<fieldset><legend>Enfermedades</legend><h2>";
         echo "<br><br>";
-        $result3 = mysql_query("select * from enfermedades where id_paciente='$buscar';");
+        $result3 = $conn->query("select * from enfermedades where id_paciente='$buscar';");
         
-        while ($row3 = mysql_fetch_array($result3, MYSQL_NUM)) {
+        while ($row3 = $result3->fetch_array()) {
           echo "<div id='fieldset1' style='width:60%'>
                 <label >Enfermedad: </label>", $row3[3];
           echo "<br><label style='margin-right:10px; float:left; height:50px'>Observaciones: </label>
@@ -280,14 +280,14 @@ $buscar = $_GET['id'];
 /*ALERGIAS*/
 	echo "<fieldset><legend>Alergias</legend><h2>";
         echo "<br><br>";
-        $result3 = mysql_query("select * from paciente where id_paciente='$buscar';");
+        $result3 = $conn->query("select * from paciente where id_paciente='$buscar';");
         
-        while ($row3 = mysql_fetch_array($result3, MYSQL_NUM)) {
+        while ($row3 = $result3->fetch_array()) {
           echo "<div id='fieldset1' style='width:60%; padding-left:10px'>";
                 //<label style='margin-right:25px;'>Alergias: </label>"
 				echo $row3[27];
           echo "<br>";
-          //esto aunnno esta **************
+          //esto aunnno esta ************** ok entonces que esta aqui que debe de estar?
           echo "</div>";
     
           if($_SESSION['rol']=='admin' || $_SESSION['rol']=='dentista'){
@@ -314,9 +314,9 @@ $buscar = $_GET['id'];
       echo "<fieldset><legend>Fotografias clinicas</legend><h2><br><br>";
       //$directorio_clinicas = $directorio_para_imagenes."&seccion=1";
       //echo "<a href='".$directorio_clinicas."' target='_blank'>Ver Fotografias Clinicas</a><br><br><br><br>";
-        $result3 = mysql_query("select * from fotografias_clinicas where id_paciente='$buscar' order by fecha_foto desc;");
+        $result3 = $conn->query("select * from fotografias_clinicas where id_paciente='$buscar' order by fecha_foto desc;");
         echo "<table width='100%'><br><br>";
-        while ($row_clinica = mysql_fetch_array($result3, MYSQL_NUM)) {
+        while ($row_clinica = $result3->fetch_array()) {
           echo  "<tr>
                   <td width='25%'>
                     <a href='fotografias_clinicas/",$row_clinica[2],"' >
@@ -356,10 +356,10 @@ $buscar = $_GET['id'];
 
       //$directorio_externas = $directorio_para_imagenes."&seccion=2";
       //echo "<a href='".$directorio_externas."' target='_blank'>Ver Fotografias Externas</a><br><br><br><br>";
-        $result3 = mysql_query("select * from fotografias_externas where id_paciente='$buscar' order by fecha_foto desc;;");
+        $result3 = $conn->query("select * from fotografias_externas where id_paciente='$buscar' order by fecha_foto desc;;");
         
         echo "<table width='100%'><br><br>";
-        while ($row_externa = mysql_fetch_array($result3, MYSQL_NUM)) {
+        while ($row_externa = $result3->fetch_array()) {
           echo "<tr>
                   <td width='25%'>
                     <a   href='fotografias_externas/",$row_externa[2],"'    >
@@ -405,10 +405,10 @@ $buscar = $_GET['id'];
       /*llamo los archivos*/
       //listFiles($directorio_radiografias);
       //echo "<a href='".$directorio_radiografias."' target='_blank'>Ver Radiograf&iacute;as</a>";
-        $result3 = mysql_query("select * from radiografias where id_paciente='$buscar' order by fecha_foto desc;;");
+        $result3 = $conn->query("select * from radiografias where id_paciente='$buscar' order by fecha_foto desc;;");
         
         echo "<table width='100%'>";
-        while ($row_radio = mysql_fetch_array($result3, MYSQL_NUM)) {
+        while ($row_radio = $result3->fetch_array()) {
           echo "<tr>
                   <td width='25%'>
                     <a href='radiografias/",$row_radio[2],"'  >

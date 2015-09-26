@@ -316,7 +316,7 @@ $result2 = mysqli_query($conn,"SELECT * from agenda where confirmacion='0' and w
 while ($cita = $result2->fetch_assoc()) {
   $a = $cita["id_paciente"];
   $slc = 'SELECT * from paciente where id_paciente="'.$a.'";';
-  $resul = mysqli_query($conn,$slc, $dbh) or die ("problema con la solicitud");
+  $resul = mysqli_query($conn,$slc) or die ("problema con la solicitud");
   $renglon_paciente = mysql_fetch_assoc($resul);
   echo "<br>Paciente: ",$renglon_paciente['nombres']," ", $renglon_paciente['apellido_paterno']," ", $$renglon_paciente['apellido_materno'];
   echo "<br>Telefono: ",$renglon_paciente['telefono'];
@@ -345,11 +345,11 @@ while ($cita = $result2->fetch_assoc()) {
     $minuto2 = '00';
   $seccion2 = 'SELECT * from agenda where id_usuario="'.$doctor.'" and ano="'.$anio.'" and mes="'.$mes.'" and dia="'.$dia.'" and hora="'.$hora.'" and minuto="'.$minuto2.'";';
   
-  $resul_s = mysqli_query($conn,$seccion1, $dbh) or die ("problema con la solicitud");
+  $resul_s = mysqli_query($conn,$seccion1) or die ("problema con la solicitud");
   $resultado_sec1 = $conn->query($resul_s);
   //$resultado_sec1 = mysql_fetch_assoc($resul_s);
   
-  $resul_s2 = mysqli_query($conn,$seccion2, $dbh) or die ("problema con la solicitud");
+  $resul_s2 = mysqli_query($conn,$seccion2) or die ("problema con la solicitud");
   $resultado_se2 = mysql_fetch_assoc($resul_s2);
   
   //echo "<option>".$resultado_sec1['id_usuario']. $resultado_se2['id_usuario']. "</option>";

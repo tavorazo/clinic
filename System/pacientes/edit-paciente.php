@@ -6,13 +6,13 @@
 ?>
 <?php
 	/*$dbh = mysql_connect('localhost','root','') or die('Error de conexion: ' . mysql_error() );
-	$base = mysql_select_db('Endoperio', $dbh) or die('Error de seleccion de base: ' . mysql_error() );*/
+	$base = mysql_select_db('Endoperio') or die('Error de seleccion de base: ' . mysql_error() );*/
 	include('../php/base.php');
 	$id = $_GET['id'];
   $paciente = $_GET['paciente'];
 	
 	$select = "select * from paciente where id_paciente='$id';";
-	$resul = mysql_query($select, $dbh) or die ("problema con la solicitud");
+	$resul = $conn->query($select) or die ("problema con la solicitud");
 	$renglon = mysql_fetch_assoc($resul);
 ?>
 

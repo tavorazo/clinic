@@ -22,7 +22,7 @@
 	$fecha_egreso = $_POST['fecha_egreso'];
 	$cantidad 	= $_POST['cantidad'];
 	$insertar = "INSERT into egresos_otros (id_usuario, tipo, concepto, cantidad, fecha) values ('$id_usuario', '$tipo','$concepto', '$cantidad', '$fecha_egreso')";
-	//if(!mysql_query($insertar, $conexion))
+	//if(!$conn->query($insertar))
 	if(!$conn->query($insertar))
 		die('Error de consulta: '.mysqli_error($conn));
 	

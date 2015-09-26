@@ -264,9 +264,9 @@ if($S == 1){
 
     //echo $fechab;
     if($semana_b=='')
-	   $result2 = mysql_query("select * from nomina_historial where fecha like '%$fechab%'");
+	   $result2 = $conn->query("select * from nomina_historial where fecha like '%$fechab%'");
     else
-        $result2 = mysql_query("select * from nomina_historial where semana='$semana_b' and y='$ano_s'");
+        $result2 = $conn->query("select * from nomina_historial where semana='$semana_b' and y='$ano_s'");
     
 
 		echo "<table border=1 style='margin-top:100px; '>
@@ -288,7 +288,7 @@ if($S == 1){
 				
 				$usuario = $row2[1];
 				$select = 'select * from usuarios where id_usuario="'.$usuario.'";';
-				$resul = mysql_query($select, $dbh) or die ("problema con la solicitud");
+				$resul = $conn->query($select) or die ("problema con la solicitud");
 				$renglon = mysql_fetch_assoc($resul);
 				//vendido por
 				echo "<td>".$renglon['nombres']." ".$renglon['apellido_paterno']." ".$renglon['apellido_materno']."</td>";

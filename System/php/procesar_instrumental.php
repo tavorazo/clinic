@@ -29,15 +29,15 @@
 	$insertar_historial = "INSERT into historial_instrumental (id_usuario, id_comprador, diplomado_descripcion, precio, tipo_pago, descripcion_pago, fecha, semana, y) values ('$id_usuario', '$comprador', '$diplomado', '$precio', '$tipo_pago', '$descripcion_pago', now(),'$s','$y')";
 	if(!$conn->query($insertar_historial))
 		die('Error de consulta: '.mysqli_error($conn));
-	//if(!mysql_query($insertar2, $conexion))
+	//if(!$conn->query($insertar2))
 		//die('Error de consulta: '.mysql_error());
 	$insertar_recibo = "INSERT into recibos (cantidad, descripcion, total, fecha, comprador, vendedor) values ('1','$diplomado','$precio',now(),'$comprador','$id_usuario')";
 	if(!$conn->query($insertar_recibo))
 		die('Error de consulta: '.mysqli_error($conn));
 	$id_recibo = $conn->insert_id;
-	//if(!mysql_query($recibo, $conexion))
+	//if(!$conn->query($recibo))
 		//die('Error de consulta: '.mysql_error());
-	//$id_recibo = mysql_insert_id();
+	//$id_recibo = $conn->insert_id;
 
 	echo '<br><br><br><center><img src="../images/endoperio2.png" width="100px" alt=""> <br> ';
 	echo "Compra &eacute;xitosa<br><br><br>";
@@ -47,7 +47,7 @@
 	echo '<a href="../php/imprimir_recibo.php?id_recibo=',$id_recibo,'" style="color:white">Imprimir Recibo</a></div></center>';
 	
 				//echo'<META HTTP-EQUIV="Refresh" CONTENT="1; URL=../panel.php">';
-	//mysql_close($conexion);
+	//mysqli_close($conn);
 	$conn->close();
 
 	?>

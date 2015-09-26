@@ -29,7 +29,7 @@ $insertar = "UPDATE usuarios set nombres = '$nombre', 	apellido_paterno = '$pate
 fecha_nacimiento = '$fecha',	name_emergencia = '$nom_emergencia',	tel_emergencia = '$tel_emergencia',
 correo = '$correo', 		password = '$password'	 where id_usuario = '$id';";
 
-//if(!mysql_query($insertar, $conexion))
+//if(!$conn->query($insertar))
 if(! $conn->query($insertar))
 	die('Error de consulta: '.mysqli_error($conn));
 else
@@ -39,7 +39,7 @@ echo "Proceso &eacute;xitoso<br><br><br>";
 echo '<div style="  padding:9px; border:1px solid #E6E6E6; height:18px; width:120px; margin-top:12px; text-align:center; margin-right:10px ">';
 echo "<a href='../panel.php'>Regresar </a></center></div>";
 echo'<META HTTP-EQUIV="Refresh" CONTENT="0; URL=../panel.php">';
-//mysql_close($conexion);	
+//mysqli_close ( $conn );
 $conn->close();
 ?>
 </body>

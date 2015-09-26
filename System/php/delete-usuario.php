@@ -9,10 +9,10 @@ $renglon = $resul->fetch_assoc();
 
 
 	$eliminar = 'DELETE from usuarios where id_usuario="'.$id.'";';
-	//if(!mysql_query($eliminar, $dbh))
+	//if(!$conn->query($eliminar))
 	if(!$conn->query($eliminar))
 		die('Error de consulta: '.mysqli_error($conn));
-	//mysql_close($conexion);
-	$conn->close();
+	mysqli_close($conn);
+	
 header('location:lista_usuarios.php');
 ?>

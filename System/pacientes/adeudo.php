@@ -41,7 +41,7 @@
    </head>
  <body>
   <?php
-      include("../php/base2.php");
+      include("../php/base.php");
       
       $id_paciente = $_GET['id_paciente'];
       $concepto = $_GET['concepto1'];
@@ -96,9 +96,9 @@
       return $id;
     }
 
-		$result2 = mysql_query("select * from tratamiento_dental");
+		$result =$conn->query("select * from tratamiento_dental");
 		echo "<center><select name='concepto1' class='campoT'>";
-		while ($row2 = mysql_fetch_array($result2, MYSQL_NUM)){
+		while ($row2 = $result->fetch_array()){
 				echo "<option value='",$row2[0],"'>",$row2[1],"</option>";
 		}
 		echo "</select></center>";
@@ -115,8 +115,8 @@
         if($concepto!=''){
 
         $select = 'select * from tratamiento_dental where id_tratamiento="'.$concepto.'";';
-        $resul = mysql_query($select, $dbh) or die ("problema con la solicitud");
-        $renglon = mysql_fetch_assoc($resul);
+        $resul = $conn->query($select) or die ("problema con la solicitud");
+        $renglon = $resul->fetch_assoc();
 
 
 

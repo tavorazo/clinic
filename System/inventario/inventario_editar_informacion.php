@@ -9,7 +9,7 @@ $sql = 'SELECT * from inventario where id_producto="'.$id_producto.'";';
 
 $result = $conn->query($sql);
 $renglon = $result->fetch_assoc();
-//$resul = mysql_query($select, $dbh) or die ("problema con la solicitud");
+//$resul = $conn->query($select) or die ("problema con la solicitud");
 //$renglon = mysql_fetch_assoc($resul)
 ?>
 <!DOCTYPE html>

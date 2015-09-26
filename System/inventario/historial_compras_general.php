@@ -280,9 +280,9 @@ if($mes2=='')
 
     //echo $fechab;
     if($semana_b=='')
-	   $result2 = mysql_query("select * from historial_compras where fecha like '%$fechab%'");
+	   $result2 = $conn->query("select * from historial_compras where fecha like '%$fechab%'");
     else
-        $result2 = mysql_query("select * from historial_compras where semana='$semana_b' and y='$ano_s'");
+        $result2 = $conn->query("select * from historial_compras where semana='$semana_b' and y='$ano_s'");
     
 		echo "<table border='1'>";
 		echo "<tr>";
@@ -295,7 +295,7 @@ if($mes2=='')
 			echo "<tr>";
 				$producto = $row2[3];
 				$select = 'select * from inventario where id_producto="'.$producto.'";';
-				$resul = mysql_query($select, $dbh) or die ("problema con la solicitud");
+				$resul = $conn->query($select) or die ("problema con la solicitud");
 				$renglon = mysql_fetch_assoc($resul);
 				
 				echo "<td>".$renglon['nombre']."</td>";
@@ -306,7 +306,7 @@ if($mes2=='')
 				
 				$usuario = $row2[2];
 				$select = 'select * from usuarios where id_usuario="'.$usuario.'";';
-				$resul = mysql_query($select, $dbh) or die ("problema con la solicitud");
+				$resul = $conn->query($select) or die ("problema con la solicitud");
 				$renglon = mysql_fetch_assoc($resul);
 				
 				echo "<td>".$renglon['nombres']." ".$renglon['apellido_paterno']." ".$renglon['apellido_materno']."</td>";
@@ -314,7 +314,7 @@ if($mes2=='')
 				
 				$paciente = $row2[1];
 				$select = 'select * from paciente where id_paciente="'.$paciente.'";';
-				$resul = mysql_query($select, $dbh) or die ("problema con la solicitud");
+				$resul = $conn->query($select) or die ("problema con la solicitud");
 				$renglon = mysql_fetch_assoc($resul);
 				echo "<td>".$renglon['nombres']." ".$renglon['apellido_paterno']." ".$renglon['apellido_materno']."</td>";
 								

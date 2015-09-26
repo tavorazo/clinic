@@ -80,7 +80,7 @@ else if($duracion=='30'){
 
 			$insertar2 = "insert into agenda (id_usuario,id_paciente,ano,mes,dia,hora,minuto, confirmacion, duracion, observacion, fecha,realidada) values ('$doctor','$paciente', '$ano', '$mes_n', '$dia', '$hora', '$minuto2', '1', '$duracion', '$observacion', '$fecha', '$id_creador');";
 
-			if(!mysql_query($insertar2, $conexion))
+			if(!$conn->query($insertar2))
 
 				die('Error de consulta: '.mysql_error());
 
@@ -100,7 +100,7 @@ else if($duracion=='30'){
 
 			$insertar2 = "insert into agenda (id_usuario,id_paciente,ano,mes,dia,hora,minuto, confirmacion, duracion, observacion, fecha,realidada) values ('$doctor','$paciente', '$ano', '$mes_n', '$dia', '$hora', '$minuto2', '1', '$duracion', '$observacion', '$fecha', '$id_creador');";
 
-			if(!mysql_query($insertar2, $conexion))
+			if(!$conn->query($insertar2))
 
 				die('Error de consulta: '.mysql_error());
 
@@ -136,7 +136,7 @@ else if($duracion=='30'){
 
 			$insertar2 = "insert into agenda (id_usuario,id_paciente,ano,mes,dia,hora,minuto, confirmacion, duracion, observacion, fecha,realidada) values ('$doctor','$paciente', '$ano', '$mes_n', '$dia', '$hora', '$minuto2', '1', '$duracion', '$observacion', '$fecha', '$id_creador');";
 
-			if(!mysql_query($insertar2, $conexion))
+			if(!$conn->query($insertar2))
 
 				die('Error de consulta: '.mysql_error());
 
@@ -161,7 +161,7 @@ else if($duracion=='45'){
 			for($i=0; $i<2; $i++){
 				$minuto2 = $minuto2 + 15;
 				$insertar2 = "insert into agenda (id_usuario,id_paciente,ano,mes,dia,hora,minuto, confirmacion, duracion, observacion, fecha,realidada) values ('$doctor','$paciente', '$ano', '$mes_n', '$dia', '$hora', '$minuto2', '1', '$duracion', '$observacion', '$fecha', '$id_creador');";
-				if(!mysql_query($insertar2, $conexion))
+				if(!$conn->query($insertar2))
 					die('Error de consulta: '.mysql_error());
 			}
 		}
@@ -171,7 +171,7 @@ else if($duracion=='45'){
 			for($i=0; $i<2; $i++){
 				$minuto2 = $minuto2 + 15;
 				$insertar2 = "insert into agenda (id_usuario,id_paciente,ano,mes,dia,hora,minuto, confirmacion, duracion, observacion, fecha,realidada) values ('$doctor','$paciente', '$ano', '$mes_n', '$dia', '$hora2', '$minuto2', '1', '$duracion', '$observacion', '$fecha', '$id_creador');";
-				if(!mysql_query($insertar2, $conexion))
+				if(!$conn->query($insertar2))
 					die('Error de consulta: '.mysql_error());
 			}
 		}
@@ -184,7 +184,7 @@ else if($duracion=='45'){
 				if($minuto2==60)
 					$minuto2='00';
 				$insertar2 = "insert into agenda (id_usuario,id_paciente,ano,mes,dia,hora,minuto, confirmacion, duracion, observacion, fecha,realidada) values ('$doctor','$paciente', '$ano', '$mes_n', '$dia', '$hora2', '$minuto2', '1', '$duracion', '$observacion', '$fecha', '$id_creador');";
-				if(!mysql_query($insertar2, $conexion))
+				if(!$conn->query($insertar2))
 					die('Error de consulta: '.mysql_error());
 			}
 		}
@@ -197,7 +197,7 @@ else if($duracion=='45'){
 				if($minuto2==60)
 					$minuto2='00';
 				$insertar2 = "insert into agenda (id_usuario,id_paciente,ano,mes,dia,hora,minuto, confirmacion, duracion, observacion, fecha,realidada) values ('$doctor','$paciente', '$ano', '$mes_n', '$dia', '$hora2', '$minuto2', '1', '$duracion', '$observacion', '$fecha', '$id_creador');";
-				if(!mysql_query($insertar2, $conexion))
+				if(!$conn->query($insertar2))
 					die('Error de consulta: '.mysql_error());
 			}
 		}
@@ -215,18 +215,18 @@ else if($duracion == '60'){
 					$hora2 = $hora + 1;
 				}
 				$insertar2 = "insert into agenda (id_usuario,id_paciente,ano,mes,dia,hora,minuto, confirmacion, duracion, observacion, fecha,realidada) values ('$doctor','$paciente', '$ano', '$mes_n', '$dia', '$hora2', '$minuto2', '1', '$duracion', '$observacion', '$fecha', '$id_creador');";
-				if(!mysql_query($insertar2, $conexion))
+				if(!$conn->query($insertar2))
 					die('Error de consulta: '.mysql_error());
 			}
 }
 
-if(!mysql_query($insertar, $conexion))
+if(!$conn->query($insertar))
 	die('Error de consulta: '.mysql_error());
 /*if($insertar2=''){
-	if(!mysql_query($insertar2, $conexion))
+	if(!$conn->query($insertar2))
 		die('Error de consulta: '.mysql_error());
 }*/
-mysql_close($conexion);
+mysqli_close($conn);
 	
 	echo '<br><br><br><center><img src="../images/endoperio2.png" width="100px" alt=""> <br> ';
 	echo "Cita creada con &eacute;xito<br><br><br>";

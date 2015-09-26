@@ -14,7 +14,7 @@ date_default_timezone_set("Mexico/General");
 </head>
 <body >
   <?php 
-  //$res= mysql_query("SELECT id_paciente, nombres, apellido_paterno, apellido_materno from paciente LIMIT 3000");       
+  //$res= $conn->query("SELECT id_paciente, nombres, apellido_paterno, apellido_materno from paciente LIMIT 3000");       
   $res = $conn->query("SELECT id_paciente, nombres, apellido_paterno, apellido_materno from paciente LIMIT 3000");    
   $Arr;
 

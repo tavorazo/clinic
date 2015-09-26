@@ -21,7 +21,7 @@
 				$select = 'SELECT * from fotografias_clinicas where id_foto="'.$id.'";';
 				$resul = $conn->query($select);
 				$renglon = $resul->fetch_assoc();
-				//$resul = mysql_query($select, $dbh) or die ("problema con la solicitud");
+				//$resul = $conn->query($select) or die ("problema con la solicitud");
 				//$renglon = mysql_fetch_assoc($resul);
 				$imagen = $renglon['nombre_foto'];
 				unlink('../pacientes/fotografias_clinicas/'.$imagen);
@@ -32,7 +32,7 @@
 				$select = 'SELECT * from fotografias_externas where id_foto="'.$id.'";';
 				$resul = $conn->query($select);
 				$renglon = $resul->fetch_assoc();
-				//$resul = mysql_query($select, $dbh) or die ("problema con la solicitud");
+				//$resul = $conn->query($select) or die ("problema con la solicitud");
 				//$renglon = mysql_fetch_assoc($resul);
 				$imagen = $renglon['nombre_foto'];
 				unlink('../pacientes/fotografias_externas/'.$imagen);
@@ -43,7 +43,7 @@
 				$select = 'SELECT * from radiografias where id_foto="'.$id.'";';
 				$resul = $conn->query($select);
 				$renglon = $resul->fetch_assoc();
-				//$resul = mysql_query($select, $dbh) or die ("problema con la solicitud");
+				//$resul = $conn->query($select) or die ("problema con la solicitud");
 				//$renglon = mysql_fetch_assoc($resul);
 				$imagen = $renglon['nombre_foto'];
 				unlink('../pacientes/radiografias/'.$imagen);
@@ -52,16 +52,16 @@
 			}
 			if($cat == '4'){
 			/*$select = 'select * from enfermedades where id_foto="'.$id.'";';
-			$resul = mysql_query($select, $dbh) or die ("problema con la solicitud 4");
+			$resul = $conn->query($select) or die ("problema con la solicitud 4");
 			$renglon = mysql_fetch_assoc($resul);*/
 			$eliminar = 'DELETE from enfermedades where id_enfermedad="'.$id.'";';
 			
 		}
-		//if(!mysql_query($eliminar, $dbh))
+		//if(!$conn->query($eliminar))
 		if(!$conn->query($eliminar))
 			die('Error de consulta: '.mysqli_error($conn));
-		//mysql_close($conexion);
-		$conn->close();
+		mysqli_close($conn);
+		
 		echo '<br><br><br><center><img src="../images/endoperio2.png" width="100px" alt=""> <br> ';
 		echo "Eliminado exitosamente<br><br><br>";
 		echo '<div style="  padding:9px; border:1px solid #E6E6E6; height:18px; width:120px; margin-top:12px; text-align:center; margin-right:10px ">';

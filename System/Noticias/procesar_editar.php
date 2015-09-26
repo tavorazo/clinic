@@ -42,7 +42,7 @@
 			die('Error de Conexion: ' .mysql_error());
 		}
 
-		$conexion_base=mysql_select_db('Endoperio', $conexion);
+		$conexion_base=mysql_select_db('Endoperio');
 
 		if (!$conexion_base) {
 			die('Error de seleccion de base: ' .mysql_error());
@@ -50,7 +50,7 @@
 		}
 
 		$dbh = mysql_connect('localhost','root','') or die('Error de conexion: ' . mysql_error() );
-		$base = mysql_select_db('Endoperio', $dbh) or die('Error de seleccion de base: ' . mysql_error() );*/
+		$base = mysql_select_db('Endoperio') or die('Error de seleccion de base: ' . mysql_error() );*/
 		include('../php/base.php');
 		//include('../php/base3.php');
 		$select = 'select * from noticias where id_noticia="'.$a.'";';
@@ -67,7 +67,7 @@
 
 		if(!$conn->query($insertar))
 			die('Error de consulta: '.mysql_error());
-		$conn=null;
+		mysqli_close ( $conn );
 
 		echo '<br><br><br><center><img src="../images/endoperio2.png" width="100px" alt=""> <br> ';
 		echo "Noticia creada con exito<br><br><br>";

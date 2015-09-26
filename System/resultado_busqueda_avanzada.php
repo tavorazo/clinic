@@ -73,7 +73,7 @@ include('php/base.php');
 
 
     //if($a!='' and $b!='' and $c!='' and $d!='' and $e!='')
-    //  $result2 = mysql_query("select * from paciente where nombres like '%$n%' or apellido_paterno like '%$b%' or apellido_materno like '%$c%' or telefono like '%$d%' or celular like '%$e%' or n_registro like '%$a%';");
+    //  $result2 = $conn->query("select * from paciente where nombres like '%$n%' or apellido_paterno like '%$b%' or apellido_materno like '%$c%' or telefono like '%$d%' or celular like '%$e%' or n_registro like '%$a%';");
 
 
 
@@ -81,73 +81,73 @@ include('php/base.php');
     if($a=='' and $b=='' and $c=='' and $d=='' and $e=='')
     $vacio = 1;
     if($a=='' and $b=='' and $c=='' and $d=='' and $e!='')
-    $result2 = mysql_query("select * from paciente where nombres like '%$e%';");
+    $result2 = $conn->query("select * from paciente where nombres like '%$e%';");
     if($a=='' and $b=='' and $c=='' and $d!='' and $e=='')
-    $result2 = mysql_query("select * from paciente where telefono like '%$d%' or celular like '%$d%'");
+    $result2 = $conn->query("select * from paciente where telefono like '%$d%' or celular like '%$d%'");
     if($a=='' and $b=='' and $c=='' and $d!='' and $e!='')
-    $result2 = mysql_query("select * from paciente where nombres like '%$e%' or apellido_materno like '%$c%';");
+    $result2 = $conn->query("select * from paciente where nombres like '%$e%' or apellido_materno like '%$c%';");
     if($a=='' and $b=='' and $c!='' and $d=='' and $e=='')
-    $result2 = mysql_query("select * from paciente where apellido_materno like '%$c%'");
+    $result2 = $conn->query("select * from paciente where apellido_materno like '%$c%'");
     if($a=='' and $b=='' and $c!='' and $d=='' and $e!='')
-    $result2 = mysql_query("select * from paciente where nombres like '%$e%' or apellido_materno like '%$c%';");
+    $result2 = $conn->query("select * from paciente where nombres like '%$e%' or apellido_materno like '%$c%';");
     if($a=='' and $b=='' and $c!='' and $d!='' and $e=='')
-    $result2 = mysql_query("select * from paciente where apellido_materno like '%$c%' or telefono like '%$d%' or celular like '%$d%';");
+    $result2 = $conn->query("select * from paciente where apellido_materno like '%$c%' or telefono like '%$d%' or celular like '%$d%';");
     if($a=='' and $b=='' and $c!='' and $d!='' and $e!='')
-    $result2 = mysql_query("select * from paciente where nombres like '%$e%' or apellido_materno like '%$c%' or telefono like '%$d%' or celular like '%$d%';");
+    $result2 = $conn->query("select * from paciente where nombres like '%$e%' or apellido_materno like '%$c%' or telefono like '%$d%' or celular like '%$d%';");
     if($a=='' and $b!='' and $c=='' and $d=='' and $e=='')
-    $result2 = mysql_query("select * from paciente where apellido_paterno like '%$b%';");
+    $result2 = $conn->query("select * from paciente where apellido_paterno like '%$b%';");
     if($a=='' and $b!='' and $c=='' and $d=='' and $e!='')
-    $result2 = mysql_query("select * from paciente where nombres like '%$e%' or apellido_paterno like '%$b%';");
+    $result2 = $conn->query("select * from paciente where nombres like '%$e%' or apellido_paterno like '%$b%';");
     if($a=='' and $b!='' and $c=='' and $d!='' and $e=='')
-    $result2 = mysql_query("select * from paciente where apellido_paterno like '%$b%' or telefono like '%$d%' or celular like '%$d%';");
+    $result2 = $conn->query("select * from paciente where apellido_paterno like '%$b%' or telefono like '%$d%' or celular like '%$d%';");
     if($a=='' and $b!='' and $c=='' and $d!='' and $e!='')
-    $result2 = mysql_query("select * from paciente where nombres like '%$e%' or apellido_paterno like '%$b%' or telefono like '%$d%' or celular like '%$d%';");
+    $result2 = $conn->query("select * from paciente where nombres like '%$e%' or apellido_paterno like '%$b%' or telefono like '%$d%' or celular like '%$d%';");
     if($a=='' and $b!='' and $c!='' and $d=='' and $e=='')
-    $result2 = mysql_query("select * from paciente where apellido_paterno like '%$b%' or apellido_materno like '%$c%';");
+    $result2 = $conn->query("select * from paciente where apellido_paterno like '%$b%' or apellido_materno like '%$c%';");
     if($a=='' and $b!='' and $c!='' and $d=='' and $e!='')
-    $result2 = mysql_query("select * from paciente where nombres like '%$e%' or apellido_paterno like '%$b%' or apellido_materno like '%$c%';");
+    $result2 = $conn->query("select * from paciente where nombres like '%$e%' or apellido_paterno like '%$b%' or apellido_materno like '%$c%';");
     if($a=='' and $b!='' and $c!='' and $d!='' and $e=='')
-    $result2 = mysql_query("select * from paciente where or apellido_paterno like '%$b%' or apellido_materno like '%$c%' or telefono like '%$d%' or celular like '%$d%';");
+    $result2 = $conn->query("select * from paciente where or apellido_paterno like '%$b%' or apellido_materno like '%$c%' or telefono like '%$d%' or celular like '%$d%';");
     if($a=='' and $b!='' and $c!='' and $d!='' and $e!='')
-    $result2 = mysql_query("select * from paciente where nombres like '%$e%' or apellido_paterno like '%$b%' or apellido_materno like '%$c%' or telefono like '%$d%' or celular like '%$d%';");
+    $result2 = $conn->query("select * from paciente where nombres like '%$e%' or apellido_paterno like '%$b%' or apellido_materno like '%$c%' or telefono like '%$d%' or celular like '%$d%';");
 
     if($a!='' and $b=='' and $c=='' and $d=='' and $e=='')
-    $result2 = mysql_query("select * from paciente where id_paciente like '%$a%';");
+    $result2 = $conn->query("select * from paciente where id_paciente like '%$a%';");
     if($a!='' and $b=='' and $c=='' and $d=='' and $e!='')
-    $result2 = mysql_query("select * from paciente where nombres like '%$e%' or id_paciente like '%$a%';");
+    $result2 = $conn->query("select * from paciente where nombres like '%$e%' or id_paciente like '%$a%';");
     if($a!='' and $b=='' and $c=='' and $d!='' and $e=='')
-    $result2 = mysql_query("select * from paciente where telefono like '%$d%' or celular like '%$d%' or id_paciente like '%$a%';");
+    $result2 = $conn->query("select * from paciente where telefono like '%$d%' or celular like '%$d%' or id_paciente like '%$a%';");
     if($a!='' and $b=='' and $c=='' and $d!='' and $e!='')
-    $result2 = mysql_query("select * from paciente where nombres like '%$e%' or telefono like '%$d%' or celular like '%$d%' or id_paciente like '%$a%';");
+    $result2 = $conn->query("select * from paciente where nombres like '%$e%' or telefono like '%$d%' or celular like '%$d%' or id_paciente like '%$a%';");
     if($a!='' and $b=='' and $c!='' and $d=='' and $e=='')
-    $result2 = mysql_query("select * from paciente where apellido_materno like '%$c%' or id_paciente like '%$a%';");
+    $result2 = $conn->query("select * from paciente where apellido_materno like '%$c%' or id_paciente like '%$a%';");
     if($a!='' and $b=='' and $c!='' and $d=='' and $e!='')
-    $result2 = mysql_query("select * from paciente where nombres like '%$e%' or apellido_materno like '%$c%' or id_paciente like '%$a%';");
+    $result2 = $conn->query("select * from paciente where nombres like '%$e%' or apellido_materno like '%$c%' or id_paciente like '%$a%';");
     if($a!='' and $b=='' and $c!='' and $d!='' and $e=='')
-    $result2 = mysql_query("select * from paciente where apellido_materno like '%$c%' or telefono like '%$d%' or celular like '%$d%' or id_paciente like '%$a%';");
+    $result2 = $conn->query("select * from paciente where apellido_materno like '%$c%' or telefono like '%$d%' or celular like '%$d%' or id_paciente like '%$a%';");
     if($a!='' and $b=='' and $c!='' and $d!='' and $e!='')
-    $result2 = mysql_query("select * from paciente where nombres like '%$e%' or apellido_materno like '%$c%' or telefono like '%$d%' or celular like '%$d%' or id_paciente like '%$a%';");
+    $result2 = $conn->query("select * from paciente where nombres like '%$e%' or apellido_materno like '%$c%' or telefono like '%$d%' or celular like '%$d%' or id_paciente like '%$a%';");
     if($a!='' and $b!='' and $c=='' and $d=='' and $e=='')
-    $result2 = mysql_query("select * from paciente where nombres like '%$e%' or apellido_paterno like '%$b%' or apellido_materno like '%$c%' or telefono like '%$d%' or celular like '%$d%' or id_paciente like '%$a%';");
+    $result2 = $conn->query("select * from paciente where nombres like '%$e%' or apellido_paterno like '%$b%' or apellido_materno like '%$c%' or telefono like '%$d%' or celular like '%$d%' or id_paciente like '%$a%';");
     if($a!='' and $b!='' and $c=='' and $d=='' and $e!='')
-    $result2 = mysql_query("select * from paciente where nombres like '%$e%' or apellido_paterno like '%$b%' or id_paciente like '%$a%';");
+    $result2 = $conn->query("select * from paciente where nombres like '%$e%' or apellido_paterno like '%$b%' or id_paciente like '%$a%';");
     if($a!='' and $b!='' and $c=='' and $d!='' and $e=='')
-    $result2 = mysql_query("select * from paciente where apellido_paterno like '%$b%' or telefono like '%$d%' or celular like '%$d%' or id_paciente like '%$a%';");
+    $result2 = $conn->query("select * from paciente where apellido_paterno like '%$b%' or telefono like '%$d%' or celular like '%$d%' or id_paciente like '%$a%';");
     if($a!='' and $b!='' and $c=='' and $d!='' and $e!='')
-    $result2 = mysql_query("select * from paciente where nombres like '%$e%' or apellido_paterno like '%$b%' or telefono like '%$d%' or celular like '%$d%' or id_paciente like '%$a%';");
+    $result2 = $conn->query("select * from paciente where nombres like '%$e%' or apellido_paterno like '%$b%' or telefono like '%$d%' or celular like '%$d%' or id_paciente like '%$a%';");
     if($a!='' and $b!='' and $c!='' and $d=='' and $e=='')
-    $result2 = mysql_query("select * from paciente where apellido_paterno like '%$b%' or apellido_materno like '%$c%' or id_paciente like '%$a%';");
+    $result2 = $conn->query("select * from paciente where apellido_paterno like '%$b%' or apellido_materno like '%$c%' or id_paciente like '%$a%';");
     if($a!='' and $b!='' and $c!='' and $d=='' and $e!='')
-    $result2 = mysql_query("select * from paciente where nombres like '%$e%' or apellido_paterno like '%$b%' or apellido_materno like '%$c%' or id_paciente like '%$a%';");
+    $result2 = $conn->query("select * from paciente where nombres like '%$e%' or apellido_paterno like '%$b%' or apellido_materno like '%$c%' or id_paciente like '%$a%';");
     if($a!='' and $b!='' and $c!='' and $d!='' and $e=='')
-    $result2 = mysql_query("select * from paciente where apellido_paterno like '%$b%' or apellido_materno like '%$c%' or telefono like '%$d%' or celular like '%$d%' or id_paciente like '%$a%';");
+    $result2 = $conn->query("select * from paciente where apellido_paterno like '%$b%' or apellido_materno like '%$c%' or telefono like '%$d%' or celular like '%$d%' or id_paciente like '%$a%';");
     if($a!='' and $b!='' and $c!='' and $d!='' and $e!='')
-    $result2 = mysql_query("select * from paciente where nombres like '%$e%' or apellido_paterno like '%$b%' or apellido_materno like '%$c%' or telefono like '%$d%' or celular like '%$d%' or id_paciente like '%$a%';");
+    $result2 = $conn->query("select * from paciente where nombres like '%$e%' or apellido_paterno like '%$b%' or apellido_materno like '%$c%' or telefono like '%$d%' or celular like '%$d%' or id_paciente like '%$a%';");
 
     echo'<hr><h3>Resultados para: ',$a,' ',$e,' ',$b,' ',$c,' ',$d,'<hr></h3>';
     //}
 
-    //$result2 = mysql_query("select * from paciente where nombres like '%$buscar%' or apellido_paterno like '%$buscar%' or apellido_materno like '%$buscar%' or id_paciente like '%$buscar%' or n_registro like '%$buscar%';");
+    //$result2 = $conn->query("select * from paciente where nombres like '%$buscar%' or apellido_paterno like '%$buscar%' or apellido_materno like '%$buscar%' or id_paciente like '%$buscar%' or n_registro like '%$buscar%';");
 
     //echo '<h1>Resultados para: ',$_POST['b_paciente'],'</h1>';
 

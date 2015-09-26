@@ -48,7 +48,7 @@
 		
 		$insertar = "INSERT into usuarios (id_usuario,nombres,apellido_paterno,apellido_materno,fecha_nacimiento,rol,correo,tel_emergencia,name_emergencia,fecha_alta,password,imagen) 
 values ('$id_usuario', '$nombre',  '$paterno', '$materno', '$fecha', '$rol', '$correo', '$tel_emergencia', '$name_emergencia', '$fecha_alta', '$contra', '$imagen');";
-//if(!mysql_query($insertar, $conn)){	
+//if(!$conn->query($insertar, $conn)){	
 if(!$conn->query($insertar)){	
 	echo "<br>Tal vez el nickname ya esté en uso, intenta con otro o rellena algún campo faltante<br>";
 	echo "<br><a href='../add-usuario.php'>Regresar</a><br><br>";
