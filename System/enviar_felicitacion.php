@@ -28,7 +28,7 @@
 /*$link = mysql_connect('localhost', 'root', '')
     or die('No se pudo conectar: ' . mysql_error());
 mysql_select_db('Endoperio') or die('No se pudo seleccionar la base de datos');*/
-include('php/base3.php');
+
 include('php/base.php');
 
 $a = date(d);
@@ -44,7 +44,7 @@ $i = 0;
 		echo '<div style="  padding:9px; border:1px solid #E6E6E6; height:18px; width:120px; margin-top:12px; text-align:center; margin-right:10px ">';
 		echo "<a href='panel.php' > <font color='white'>Regresar </a></center></div>";
           
-while ($r_p = mysql_fetch_array($pacientes, MYSQL_NUM)){
+while ($r_p = $pacientes->fetch_array()){
 	print "$r_p[1] $r_p[2], $r_p[4]";
 	$remitente = 'endoperio@endoperio.com';
 	$destino = $r_p[4];
@@ -71,7 +71,7 @@ while ($r_p = mysql_fetch_array($pacientes, MYSQL_NUM)){
 $pacientes = $conn->query("select fecha_nacimiento, nombres, apellido_paterno, apellido_materno, correo from usuarios WHERE fecha_nacimiento like '%$fecha_cumplea%';");
 $i = 0;
           
-while ($r_p = mysql_fetch_array($pacientes, MYSQL_NUM)){
+while ($r_p = $pacientes->fetch_array()){
 	print "$r_p[1] $r_p[2], $r_p[4]";
 	$remitente = 'endoperio@endoperio.com';
 	$destino = $r_p[4];

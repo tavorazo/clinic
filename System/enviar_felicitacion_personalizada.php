@@ -1,5 +1,5 @@
 <?php
-	
+	include("php/base.php");
 	$asunto = $_POST['asunto'];
 	$contenido = $_POST['contenido'];
 	$correo = $_POST['correo'];
@@ -34,7 +34,7 @@
 
 if($correo==''){
 	$pacientes = $conn->query("select fecha_nacimiento, nombres, apellido_paterno, apellido_materno, correo from paciente;");
-	while ($r_p = mysql_fetch_array($pacientes, MYSQL_NUM)){
+	while ($r_p = $pacientes->fetch_array()){
 		$destino = $r_p[4];
 		if($destino!=''){
 			mail($destino, $asunto, $mensaje, $encabezados) or die ("No se ha podido enviar tu mensaje. Ha ocurrido un error") ;
@@ -42,7 +42,7 @@ if($correo==''){
 		}
 	}
 	$pacientes = $conn->query("select fecha_nacimiento, nombres, apellido_paterno, apellido_materno, correo from usuarios;");
-	while ($r_p = mysql_fetch_array($pacientes, MYSQL_NUM)){
+	while ($r_p = $paciantes->fetch_array($pacientes)){
 		$destino = $r_p[4];
 		if($destino!=''){
 			mail($destino, $asunto, $mensaje, $encabezados) or die ("No se ha podido enviar tu mensaje. Ha ocurrido un error") ;

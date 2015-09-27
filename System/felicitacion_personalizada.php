@@ -63,7 +63,7 @@
 
 	$select = 'select * from paciente where id_paciente="'.$id_paciente.'";';
 	$resul = $conn->query($select) or die ("problema con la solicitud");
-	$renglon_paciente = mysql_fetch_assoc($resul);
+	$renglon_paciente = $resul->fetch_assoc();
 
 	$nombres = $renglon_paciente['nombres']." ". $renglon_paciente['apellido_paterno']." ".$renglon_paciente['apellido_materno'];
 ?>
@@ -92,10 +92,6 @@
 		<input class="campoT" type="hidden" name="nombre" value="<?php echo $nombres; ?>">
 		<input  type="submit" value="Enviar correo">
 	</form>
-
-
-
-
 
 
 </div>
