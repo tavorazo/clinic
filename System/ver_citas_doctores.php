@@ -58,16 +58,19 @@
 			$doctor = $row2[0];
 			$result2 = $conn->query("select * from agenda where id_usuario='$usuario' and ano>='$ano' and mes>='$mes' and dia>='$dia';");
 			//echo "select * from agenda where id_usuario='$usuario' and ano>='$ano' and mes>='$mes' and dia>='$dia';";
-			while ($row3 = mysql_fetch_array($result2, MYSQL_NUM)){
+		    while ($row3 = $result2->fetch_row()) {
+			//while ($row3 = mysql_fetch_array($result2, MYSQL_NUM)){
 				$p = $row3[2];
 				$doctor = $conn->query("select * from usuarios where id_usuario='$usuario';");
 				$paciente = $conn->query("select * from paciente where id_paciente='$p';");
-					while ($row_doctor = mysql_fetch_array($doctor, MYSQL_NUM)){
+                  	while ($row_doctor = $doctor->fetch_row()) {
+					//while ($row_doctor = mysql_fetch_array($doctor, MYSQL_NUM)){
 						$doctor_nombre = $row_doctor[1];
 						$doctor_apellido = $row_doctor[2];
 						$doctor_apellido2 = $row_doctor[3];
 					}
-					while ($row_paciente = mysql_fetch_array($paciente, MYSQL_NUM)){
+                  	while ($row_paciente = $paciente->fetch_row()) {
+					//while ($row_paciente = mysql_fetch_array($paciente, MYSQL_NUM)){
 						$paciente_nombre = $row_paciente[1];
 						$paciente_apellido = $row_paciente[2];
 						$paciente_apellido2 = $row_paciente[3];

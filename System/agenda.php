@@ -10,8 +10,8 @@ if($_SESSION['rol']!='recepcionista')
    ?>
    <!DOCTYPE html>
    <html class="html">
-   <head><meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    
+   <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="generator" content="7.0.314.244"/>
     <title>Agenda</title>
     <link rel="shortcut icon" type="x-icon" href="images/icon.png" /><!--para logo en barra-->

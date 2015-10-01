@@ -84,6 +84,8 @@ $doctor = $_GET['doctor'];
 $paciente = $_GET['paciente'];
 //echo $mes_n;
 
+
+
 ?>
 
 <form action="creacion_exitosa.php" method="POST" >
@@ -110,7 +112,6 @@ $paciente = $_GET['paciente'];
   <input type="hidden" name="paciente" value="<?php echo $paciente; ?>">
 <input type="submit" value="Crear cita"> 
 </form>
-
 
   <div id="botn2" style="margin-top:-50px; margin-left:146px; height:15px"> <a href="../panel.php">Cancelar</a></div> <br><br>
 </div>

@@ -172,7 +172,7 @@ echo ' </div>';
     $c = date("Y");
     $fecha_cumplea = "-$b-$a";
 
-    $pacientes = mysqli_query($conn,"SELECT * FROM paciente WHERE fecha_nacimiento like '%$fecha_cumplea%' ORDER BY id_paciente DESC limit 10;");
+    $pacientes = $conn->query("SELECT * FROM paciente WHERE fecha_nacimiento like '%$fecha_cumplea%' ORDER BY id_paciente DESC limit 10;");
     echo "<br> <h3> Pacientes </h3><br>";
     $count = 0;
     //while ($r_p = mysqli_fetch_array($pacientes, MYSQL_NUM)){
@@ -183,7 +183,7 @@ echo ' </div>';
         echo $r_p["nombres"]." ".$r_p["apellido_paterno"] .", ";
     }
     echo '<a href="cumpleaneros.php">...</a>';
-    $trabajadores = mysqli_query($conn,"SELECT fecha_nacimiento, nombres, apellido_paterno, apellido_materno from usuarios;");
+    $trabajadores = $conn->query("SELECT fecha_nacimiento, nombres, apellido_paterno, apellido_materno from usuarios;");
     echo "<br><br><hr> <h3> Trabajadores </h3><br>";
     $count = 0;
     //while ($r_t = mysqli_fetch_array($trabajadores, MYSQL_NUM)){
@@ -225,7 +225,13 @@ if($_SESSION['rol']=='admin' || $_SESSION['rol']=='publicista'){
 }
 ?>
 </div>
+
+
+
+
+
 <!--div confirmar citas-->
+
 <?php
 if($_SESSION['rol']=='admin' || $_SESSION['rol']=='secretaria' || $_SESSION['rol']=='recepcionista'){
   echo ' <br><br><br><div style="background: #FFFFFF; width:96%; min-height: 90px; margin-bottom:70px; float:left; postition:relative; margin-top:20px" id="txt2">';
@@ -239,11 +245,17 @@ if($_SESSION['rol']=='admin' || $_SESSION['rol']=='secretaria' || $_SESSION['rol
 <form action="confirmar_cita.php" method="POST">
   <?php
   $contador = 0;
-  $n_mes = date("m");
-  $hoy = date("d");
-  $consulta_anio =  date("Y");
-  $consulta_hora = date("H");
-  $doctor = $row2[0]; //este row no se de donde coños sale
+  $n_mes = date(m);
+  $hoy = date(d);
+  $consulta_anio =  date(y);
+  $consulta_hora = date(h);
+  $doctor = $row2["id_usuario"]; //este row no se de donde coños sale // es por esto que nunca encontrara un match para los select... :/
+  
+  echo "---".$n_mes."<br>"; 
+  echo "- aaaa".$hoy."<br>"; 
+  echo" -bbb ". $consulta_anio."<br>"; 
+  echo " -ccc "- $consulta_hora."<br>";
+  echo "-ddd ". $doctor."<br>";
   if (isset($_GET['buscar_paciente'])){
    $buscar_paciente = $_GET['buscar_paciente'];
  }
@@ -251,14 +263,16 @@ if($_SESSION['rol']=='admin' || $_SESSION['rol']=='secretaria' || $_SESSION['rol
    $buscar_paciente = 0; 
  }
  $desde = $hoy - 1; $hasta = $hoy + 5;
- if($buscar_paciente=='')
   //$result2 = mysqli_query($conn,"select * from agenda where confirmacion='0' and mes='$n_mes' and ano='$consulta_anio' and web='0' and dia>='$hoy' order by hora, fecha, minuto; ");
-  $result2 = mysqli_query($conn,"SELECT * from agenda where confirmacion='0' and mes='$n_mes' and ano='$consulta_anio' and web='0' and dia>'$desde' and dia<'$hasta' order by ano, mes, dia, hora, minuto");
+if($buscar_paciente==0)
+  $result2 = $conn->query("SELECT * from agenda where confirmacion='0' and mes='$n_mes' and ano='$consulta_anio' and web='0' and dia>'$desde' and dia<'$hasta' order by ano, mes, dia, hora, minuto") or die ("problema con la solicitud");
 else 
- $result2 = mysqli_query($conn,"SELECT * from agenda where confirmacion='0' and mes='$n_mes' and ano='$consulta_anio' and web='0' and dia>='$hoy' and id_paciente='$buscar_paciente' order by hora, fecha, minuto; ");
+  $result2 = $conn->query("SELECT * from agenda where confirmacion='0' and mes='$n_mes' and ano='$consulta_anio' and web='0' and dia>='$hoy' and id_paciente='$buscar_paciente' order by hora, fecha, minuto; ");
+
 if($_SESSION['rol']=='admin' || $_SESSION['rol']=='secretaria' || $_SESSION['rol']=='recepcionista'){
-  //while ($row3 = mysqli_fetch_array($result2, MYSQL_NUM)){
-  while ($queryCita1 = $result2->fetch_assoc()) {
+  //while ($row3 = mysqli_fetch_array($result2, MYSQL_NUM)){  
+  while ($queryCita1 = $result2->fetch_array()) {
+    print_r($queryCita1);
     $d = $queryCita1["id_usuario"];
     $p = $queryCita1["id_paciente"];
     $doctor = mysqli_query($conn,"SELECT * from usuarios where id_usuario='$d'; ");
@@ -316,7 +330,7 @@ $result2 = mysqli_query($conn,"SELECT * from agenda where confirmacion='0' and w
 while ($cita = $result2->fetch_assoc()) {
   $a = $cita["id_paciente"];
   $slc = 'SELECT * from paciente where id_paciente="'.$a.'";';
-  $resul = mysqli_query($conn,$slc) or die ("problema con la solicitud");
+  $resul = mysqli_query($conn,$slc, $dbh) or die ("problema con la solicitud");
   $renglon_paciente = mysql_fetch_assoc($resul);
   echo "<br>Paciente: ",$renglon_paciente['nombres']," ", $renglon_paciente['apellido_paterno']," ", $$renglon_paciente['apellido_materno'];
   echo "<br>Telefono: ",$renglon_paciente['telefono'];
@@ -345,11 +359,11 @@ while ($cita = $result2->fetch_assoc()) {
     $minuto2 = '00';
   $seccion2 = 'SELECT * from agenda where id_usuario="'.$doctor.'" and ano="'.$anio.'" and mes="'.$mes.'" and dia="'.$dia.'" and hora="'.$hora.'" and minuto="'.$minuto2.'";';
   
-  $resul_s = mysqli_query($conn,$seccion1) or die ("problema con la solicitud");
+  $resul_s = mysqli_query($conn,$seccion1, $dbh) or die ("problema con la solicitud");
   $resultado_sec1 = $conn->query($resul_s);
   //$resultado_sec1 = mysql_fetch_assoc($resul_s);
   
-  $resul_s2 = mysqli_query($conn,$seccion2) or die ("problema con la solicitud");
+  $resul_s2 = mysqli_query($conn,$seccion2, $dbh) or die ("problema con la solicitud");
   $resultado_se2 = mysql_fetch_assoc($resul_s2);
   
   //echo "<option>".$resultado_sec1['id_usuario']. $resultado_se2['id_usuario']. "</option>";
@@ -372,6 +386,11 @@ echo "</form>
 ";
 }
 ?>
+
+
+
+
+
 </div>
 <a class="nonblock nontext clip_frame colelem" id="u405" href="http://www.webox.org.mx"><!-- image --><img class="block" id="u405_img" src="images/completo7.png" alt="" width="62" height="19"/></a>
 </div>

@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <?php
   include('php/base.php');
-  include('php/base3.php');
-  include('php/base2.php');
+  //include('php/base3.php');
+  //include('php/base2.php');
 ?>
 <html class="html">
  <head>
@@ -70,7 +70,7 @@
         <?php
           $select = 'select * from publicidad where lugar="1";';
           $resul = $conn->query($select) or die ("problema con la solicitud");
-          $renglon = mysql_fetch_assoc($resul);
+          $renglon = $resul->fetch_row();
 
           echo "<img src='publicidad/images/".$renglon['imagen']."' width='460px'>";
         ?>
@@ -118,7 +118,8 @@
         <?php
           $select = 'select * from publicidad where lugar="2";';
           $resul = $conn->query($select) or die ("problema con la solicitud");
-          $renglon = mysql_fetch_assoc($resul);
+          //$renglon = mysql_fetch_assoc($resul);
+          $renglon = $resul->fetch_row();
 
           echo "<img src='publicidad/images/".$renglon['imagen']."' width='900px'>";
 

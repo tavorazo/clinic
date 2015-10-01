@@ -9,7 +9,6 @@
 	$usuario = $_SESSION['u'];
 include("php/base.php");
 
-include('php/base.php');
 
 ?>
 
@@ -153,7 +152,8 @@ include('php/base.php');
 
     if($vacio!=1){
         $a = 0;
-        while ($row2 = mysql_fetch_array($result2, MYSQL_NUM)) {
+        while ($row2 = $result2->fetch_row()) {
+       // while ($row2 = mysql_fetch_array($result2, MYSQL_NUM)) {
           
             $a = 1;
 

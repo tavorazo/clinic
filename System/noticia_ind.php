@@ -20,7 +20,8 @@
                   //ahora consultamos a la base de datos para sacar los registros contenidos
                   $result2 = $conn->query("SELECT * FROM noticias where id_noticia='$n'");
                 
-                  while ($row2 = mysql_fetch_array($result2, MYSQL_NUM)) {
+                  while ($row2 = $result2->fetch_row()) {
+                 // while ($row2 = mysql_fetch_array($result2, MYSQL_NUM)) {
               ?>
   <!--meta http-equiv="Content-type" content="text/html;charset=UTF-8"/-->
   <meta name="generator" content="7.0.314.244"/>

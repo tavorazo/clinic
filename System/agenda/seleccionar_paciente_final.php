@@ -163,7 +163,7 @@ echo '<a class="nonblock nontext grpelem" id="u552" href="../contabilidad.php"><
   if($a!='' and $b!='' and $c!='' and $d!='' and $e!='')    
   $result = $conn->query("select * from paciente where nombres like '%$e%' or apellido_paterno like '%$b%' or apellido_materno like '%$c%' or telefono like '%$d%' or celular like '%$d%' or id_paciente like '%$a%';");
 
-  echo '<form action="seleccionar_paciente.php" method="POST" >
+  echo '<form action="duracion.php" method="POST" >
               <input type="hidden" value="',$dia,'" name="dia">
               <input type="hidden" value="',$n_dia,'" name="n_dia">
               <input type="hidden" value="',$mes_n,'" name="mes">
@@ -179,7 +179,7 @@ echo '<a class="nonblock nontext grpelem" id="u552" href="../contabilidad.php"><
 
   if($vacio!=1){
       $a = 0;
-      while ($row2 = $result->fetch_assoc()) {
+      while ($row2 = $result->fetch_row()) {
           $a = 1;
 echo ' <br><br><fieldset><legend style="width:90%; background:#585A5A; padding:6px; padding-left:24px;">
               <h10 style="color:#F9FAE9">Datos Personales</legend></h10>';

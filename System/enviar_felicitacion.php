@@ -25,18 +25,13 @@
 
 <?php
 
-/*$link = mysql_connect('localhost', 'root', '')
-    or die('No se pudo conectar: ' . mysql_error());
-mysql_select_db('Endoperio') or die('No se pudo seleccionar la base de datos');*/
 
 include('php/base.php');
+date_default_timezone_set('America/Mexico_City');
+$a = date("d-m");
 
-$a = date(d);
-$b = date(m);
-$c = date(Y);
-$fecha_cumplea = "-$b-$a";
-
-$pacientes = $conn->query("select fecha_nacimiento, nombres, apellido_paterno, apellido_materno, correo from paciente WHERE fecha_nacimiento like '%$fecha_cumplea%';");
+$fecha_cumplea = "-".$a;
+$pacientes = $conn->query("SELECT fecha_nacimiento, nombres, apellido_paterno, apellido_materno, correo FROM paciente WHERE DAY(  `fecha_nacimiento` ) = DAY( NOW( ) )  AND MONTH(  `fecha_nacimiento` ) = MONTH( NOW( ) ) ");
 $i = 0;
 
 		echo '<br><br><br><center><img src="images/endoperio2.png" width="100px" alt=""> <br> ';
@@ -44,9 +39,11 @@ $i = 0;
 		echo '<div style="  padding:9px; border:1px solid #E6E6E6; height:18px; width:120px; margin-top:12px; text-align:center; margin-right:10px ">';
 		echo "<a href='panel.php' > <font color='white'>Regresar </a></center></div>";
           
-while ($r_p = $pacientes->fetch_array()){
-	print "$r_p[1] $r_p[2], $r_p[4]";
-	$remitente = 'endoperio@endoperio.com';
+while ($r_p = $pacientes->fetch_row()){
+	echo  $r_p[1]." - ".$r_p[2]." - ".$r_p[3];
+	echo " . . .";
+
+	$remitente = 'endoperio@endoperio.com.mx';
 	$destino = $r_p[4];
 	$asunto = "Feliz cumpleanos te desea Endoperio";
 	$mensaje = '
@@ -62,17 +59,21 @@ while ($r_p = $pacientes->fetch_array()){
 	$encabezados = 'MIME-Version: 1.0' . "\r\n";
 	$encabezados .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
 	$encabezados .= "From: $remitente\nReply-To: $remitente" ;
+	
 	if($destino!=''){
-		mail($destino, $asunto, $mensaje, $encabezados) or die ("No se ha podido enviar tu mensaje. Ha ocurrido un error") ;
+		//mail($destino, $asunto, $mensaje, $encabezados) or die ("No se ha podido enviar tu mensaje. Ha ocurrido un error") ;
+		mail($destino, $asunto, $mensaje, $encabezados);
 		echo " Enviado<br>";
 	}
 }
 /*usuarios*/
-$pacientes = $conn->query("select fecha_nacimiento, nombres, apellido_paterno, apellido_materno, correo from usuarios WHERE fecha_nacimiento like '%$fecha_cumplea%';");
+$usuarios = $conn->query("SELECT fecha_nacimiento, nombres, apellido_paterno, apellido_materno, correo FROM usuarios WHERE DAY(  `fecha_nacimiento` ) = DAY( NOW( ) )  AND MONTH(  `fecha_nacimiento` ) = MONTH( NOW( ) ) ");
 $i = 0;
           
-while ($r_p = $pacientes->fetch_array()){
-	print "$r_p[1] $r_p[2], $r_p[4]";
+while ($r_p = $usuarios->fetch_array()){
+	echo  $r_p[1]." - ".$r_p[2]." - ".$r_p[3];
+	echo " . . .";
+
 	$remitente = 'endoperio@endoperio.com';
 	$destino = $r_p[4];
 	$asunto = "Feliz cumpleanios te desea Endoperio";
@@ -96,5 +97,5 @@ while ($r_p = $pacientes->fetch_array()){
 	}
 }
 
-echo '<meta http-equiv="Refresh" content="1;url=panel.php">';
+echo '<meta http-equiv="Refresh" content="3;url=panel.php">';
 ?>
