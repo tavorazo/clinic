@@ -13,8 +13,6 @@
 		}
 	mysqli_close ( $conn );
 
-
-
 ?>
 
 <META HTTP-EQUIV="Refresh" CONTENT="0; URL=ficha-paciente.php?id=<?php echo $id_paciente; ?>">

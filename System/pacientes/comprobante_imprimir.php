@@ -1,7 +1,7 @@
 <?php
    date_default_timezone_set("Mexico/General");
 
-/*Aqui meter script*/
+
 	include('../php/base.php');
 			$deuda= $_GET['id_adeudo'];
 			$nombre_paciente = $_GET['nombre_paciente'];

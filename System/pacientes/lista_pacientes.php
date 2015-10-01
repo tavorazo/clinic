@@ -1,32 +1,37 @@
 <?php
-	include("../php/base2.php");
+	include("../php/base.php");
 	
 $result = $conn->query("SHOW COLUMNS FROM paciente");
 ?>
-<table border=1>
-<tr>
+<style>
+      tr:nth-child(even){background: #f2f2f2; }
+</style>
+
+<table>
+<tr><td>
 <?php
-if (mysql_num_rows($result)> 0) {
-   while ($row = mysql_fetch_assoc($result)) {
-       echo "<td>",$row['Field'],"</td>";
+if (mysqli_num_rows($result)> 0) {
+   //while ($row = mysql_fetch_assoc($result)) {
+   while ($row = $result->fetch_assoc()) {
+       echo " | ",$row['Field']. "";
    }
 }
 ?>
-</tr>
-</table>
+<br><br><br></td></tr>
 <?php
-//ahora consultamos a la base de datos para sacar los registros contenidos
 $result2 = $conn->query("SELECT * FROM paciente");
-while ($row2 = mysql_fetch_array($result2, MYSQL_NUM)) {
-//echo "<tr>";
-    for($i=0; $i<count($row2); $i++){
-    		
-        echo " ",$row2[$i]," ";
-        if($i=='0')
-        	echo "/";
-        
-    }
-     echo "<br><br><hr>";
-//echo "</tr>";
-}
-?>
+  while ($row2 = $result2->fetch_row()) {
+echo "<tr><td>";
+      for($i=0; $i<count($row2); $i++){
+          echo " ",$row2[$i]," ";
+          if($i=='0')
+          	echo "/";
+      }
+       echo "<br><br><hr>";
+  echo "</td></tr>";
+  }
+  ?>
+</table>
+
+
+

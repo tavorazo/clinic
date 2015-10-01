@@ -34,7 +34,7 @@
 	$insertar = "insert into avance_clinico (id_paciente, id_usuario, avance, fecha) values ('$id_paciente', '$id_usuario', '$avance', now());";
 
 	if(!$conn->query($insertar))
-				die('Error de consulta: '.mysql_error());
+				die('Error de consulta: '.mysqli_error($conn));
 				
 
 	echo '<br><br><br><center><img src="../../images/endoperio2.png" width="100px" alt=""> <br> ';

@@ -38,7 +38,7 @@ $insertar = "insert into fotografias_clinicas (id_paciente, fecha_foto, descripc
 
 
 if(!$conn->query($insertar))
-	die('Error de consulta: '.mysql_error());
+	die('Error de consulta: '.mysqli_error($conn));
 
 $select = 'select * from fotografias_clinicas order by fecha_foto desc limit 1;';
 $resul = $conn->query($select) or die ("problema con la solicitud");
@@ -50,7 +50,7 @@ rename($imagen,$ultimo);
 
 $sentencia = "UPDATE fotografias_clinicas SET nombre_foto='$ultimo' WHERE id_foto='$ultimo';";
 if(!$conn->query($sentencia))
-	die('Error de consulta: '.mysql_error());
+	die('Error de consulta: '.mysqli_error($conn));
 mysqli_close($conn);
 
 /****************************************/

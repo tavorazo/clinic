@@ -49,7 +49,7 @@
 			$insertar = "update fotografias_clinicas set nombre_foto='$ultimo' where id_foto='$a'";
 
 		if(!$conn->query($insertar))
-			die('Error de consulta: '.mysql_error());
+			die('Error de consulta: '.mysqli_error($conn));
 		mysqli_close($conn);
 		$a = '../ficha-paciente.php?id='.$ficha;
 		//header('location: ../ficha-paciente.php?id='.$ficha);

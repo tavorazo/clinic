@@ -3,10 +3,14 @@ include("../php/base.php");
 //Consultamos a la base de datos para sacar las columnas de la tabla
 $result = $conn->query("SHOW COLUMNS FROM paciente");
 ?>
-<table border=1>
+<style>
+      tr:nth-child(even){background: #f2f2f2; }
+</style>
+
+<table >
 <tr>
 <?php
-if ($result->fetchColumn() > 0) {
+if ($result->fetch_row() > 0) {
    while ($row = $result->fetch_assoc()) {
    	if($row['Field']!='apellido_paterno' && $row['Field']!='apellido_materno')
        echo "<td>",$row['Field'],"</td>";
@@ -17,7 +21,7 @@ if ($result->fetchColumn() > 0) {
 <?php
 //ahora consultamos a la base de datos para sacar los registros contenidos
 $result2 = $conn->query("SELECT * FROM paciente");
-while ($row2 = $result->fetch_assoc()) {
+while ($row2 = $result2->fetch_row()) {
 echo "<tr>";
     for($i=0; $i<count($row2); $i++){
     	if($i==1){

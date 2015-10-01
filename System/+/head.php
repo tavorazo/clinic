@@ -27,11 +27,12 @@
   <link rel="stylesheet" type="text/css" href="../css/agendatabla.css" />
   <link rel="stylesheet" type="text/css" href="../css/texto.css" />
   <link rel="stylesheet" type="text/css" href="../css/s1.css"/>
+ 
 
   <!-- Other scripts -->
   <script type="text/javascript">
    document.documentElement.className += ' js';
-</script>
+  </script>
    </head>
  <body >
 
