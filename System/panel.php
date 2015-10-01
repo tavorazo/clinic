@@ -262,7 +262,6 @@ $desde = $hoy - 1;
 $hasta = $hoy + 5;
 
 $semana = strftime("%V", strtotime(date("m.d.y")));
-echo "------".$buscar_paciente;
 
   //$result2 = mysqli_query($conn,"select * from agenda where confirmacion='0' and mes='$n_mes' and ano='$consulta_anio' and web='0' and dia>='$hoy' order by hora, fecha, minuto; ");
 if($buscar_paciente==0)
