@@ -251,28 +251,28 @@ if($_SESSION['rol']=='admin' || $_SESSION['rol']=='secretaria' || $_SESSION['rol
   $consulta_hora = date(h);
   $doctor = $row2["id_usuario"]; //este row no se de donde coños sale // es por esto que nunca encontrara un match para los select... :/
   
-  echo "---".$n_mes."<br>"; 
-  echo "- aaaa".$hoy."<br>"; 
-  echo" -bbb ". $consulta_anio."<br>"; 
-  echo " -ccc "- $consulta_hora."<br>";
-  echo "-ddd ". $doctor."<br>";
-  if (isset($_GET['buscar_paciente'])){
+
+if (isset($_GET['buscar_paciente'])){
    $buscar_paciente = $_GET['buscar_paciente'];
- }
- else{
+}else{
    $buscar_paciente = 0; 
- }
- $desde = $hoy - 1; $hasta = $hoy + 5;
+}
+ 
+$desde = $hoy - 1;
+$hasta = $hoy + 5;
+
+$semana = strftime("%V", strtotime(date("m.d.y")));
+echo "------".$buscar_paciente;
+
   //$result2 = mysqli_query($conn,"select * from agenda where confirmacion='0' and mes='$n_mes' and ano='$consulta_anio' and web='0' and dia>='$hoy' order by hora, fecha, minuto; ");
 if($buscar_paciente==0)
-  $result2 = $conn->query("SELECT * from agenda where confirmacion='0' and mes='$n_mes' and ano='$consulta_anio' and web='0' and dia>'$desde' and dia<'$hasta' order by ano, mes, dia, hora, minuto") or die ("problema con la solicitud");
+  $result2 = $conn->query("SELECT * from agenda where confirmacion='0' and n_semana ='$semana' order by ano, mes, dia, hora, minuto");
 else 
-  $result2 = $conn->query("SELECT * from agenda where confirmacion='0' and mes='$n_mes' and ano='$consulta_anio' and web='0' and dia>='$hoy' and id_paciente='$buscar_paciente' order by hora, fecha, minuto; ");
+  $result2 = $conn->query("SELECT * from agenda where confirmacion='0' and n_semana = '$semana' and id_paciente='$buscar_paciente' order by hora, fecha, minuto; ");
 
 if($_SESSION['rol']=='admin' || $_SESSION['rol']=='secretaria' || $_SESSION['rol']=='recepcionista'){
   //while ($row3 = mysqli_fetch_array($result2, MYSQL_NUM)){  
   while ($queryCita1 = $result2->fetch_array()) {
-    print_r($queryCita1);
     $d = $queryCita1["id_usuario"];
     $p = $queryCita1["id_paciente"];
     $doctor = mysqli_query($conn,"SELECT * from usuarios where id_usuario='$d'; ");

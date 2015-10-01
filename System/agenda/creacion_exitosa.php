@@ -24,6 +24,9 @@ $duracion = $_POST['duracion'];
 $observacion = $_POST['observacion'];
 include('../php/base.php');
 $fecha = $ano."/".$mes_n."/".$dia;
+$semana = strftime("%V", strtotime($fecha));
+//echo "semana". $semana;
+
 	//echo $fecha;
 $verifica = 'select * from agenda where hora="'.$hour.'" and minuto="'.$minute.'" and dia="'.$dia.'" and mes="'.$mes_n.'" and ano="'.$ano.'" and id_usuario="'.$doctor.'";';
 try {
@@ -35,17 +38,16 @@ $r = $resultadoverifica->fetch_assoc();
 if($r['id_usuario']==''){
 	/********************DURACION 15 MIN*****************************/
 	if($duracion=='15'){
-		$insertar = "insert into agenda (id_usuario,id_paciente,ano,mes,dia,hora,minuto, confirmacion, duracion, observacion, fecha,realidada ) values ('$doctor','$paciente', '$ano', '$mes_n', '$dia', '$hora', '$minuto', '0', '$duracion', '$observacion', '$fecha', '$id_creador');";
+		$insertar = "insert into agenda (id_usuario,id_paciente,ano,mes,dia,hora,minuto,n_semana, confirmacion, duracion, observacion, fecha,realidada ) values ('$doctor','$paciente', '$ano', '$mes_n', '$dia', '$hora', '$minuto', '$semana', '0', '$duracion', '$observacion', '$fecha', '$id_creador');";
 	}
 	/*********************DURACION 30 MIN**************************/
 	else if($duracion=='30'){
-		$insertar = "insert into agenda (id_usuario,id_paciente,ano,mes,dia,hora,minuto, confirmacion, duracion, observacion, fecha,realidada) values ('$doctor','$paciente', '$ano', '$mes_n', '$dia', '$hora', '$minuto', '0', '$duracion', '$observacion', '$fecha', '$id_creador');";
+		$insertar = "insert into agenda (id_usuario,id_paciente,ano,mes,dia,hora,minuto,n_semana, confirmacion, duracion, observacion, fecha,realidada) values ('$doctor','$paciente', '$ano', '$mes_n', '$dia', '$hora', '$minuto', '$semana', '0', '$duracion', '$observacion', '$fecha', '$id_creador');";
 		if($minuto=='00' || $minuto=='0'){
 			$minuto2=0;
 			for($i=0; $i<1; $i++){
 				$minuto2 = $minuto2 + 15;
-				$insertar2 = "INSERT into agenda (id_usuario,id_paciente,ano,mes,dia,hora,minuto, confirmacion, duracion, observacion, fecha,realidada) values ('$doctor','$paciente', '$ano', '$mes_n', '$dia', '$hora', '$minuto2', '1', '$duracion', '$observacion', '$fecha', '$id_creador');";
-				print($insertar2);
+				$insertar2 = "INSERT into agenda (id_usuario,id_paciente,ano,mes,dia,hora,minuto,n_semana, confirmacion, duracion, observacion, fecha,realidada) values ('$doctor','$paciente', '$ano', '$mes_n', '$dia', '$hora', '$minuto2', '$semana', '1', '$duracion', '$observacion', '$fecha', '$id_creador');";
 				if(!$conn->query($insertar2))
 					die('Error de consulta1: '.mysqli_error($conn));
 			}
@@ -54,7 +56,7 @@ if($r['id_usuario']==''){
 			$minuto2=15;
 			for($i=0; $i<1; $i++){
 				$minuto2 = $minuto2 + 15;
-				$insertar2 = "insert into agenda (id_usuario,id_paciente,ano,mes,dia,hora,minuto, confirmacion, duracion, observacion, fecha,realidada) values ('$doctor','$paciente', '$ano', '$mes_n', '$dia', '$hora', '$minuto2', '1', '$duracion', '$observacion', '$fecha', '$id_creador');";
+				$insertar2 = "insert into agenda (id_usuario,id_paciente,ano,mes,dia,hora,minuto,n_semana, confirmacion, duracion, observacion, fecha,realidada) values ('$doctor','$paciente', '$ano', '$mes_n', '$dia', '$hora', '$minuto2', '$semana', '1', '$duracion', '$observacion', '$fecha', '$id_creador');";
 				if(!$conn->query($insertar2))
 					die('Error de consulta2: '.mysqli_error($conn));
 			}	
@@ -63,7 +65,7 @@ if($r['id_usuario']==''){
 			$minuto2=30;
 			for($i=0; $i<1; $i++){
 				$minuto2 = $minuto2 + 15;
-				$insertar2 = "insert into agenda (id_usuario,id_paciente,ano,mes,dia,hora,minuto, confirmacion, duracion, observacion, fecha,realidada) values ('$doctor','$paciente', '$ano', '$mes_n', '$dia', '$hora', '$minuto2', '1', '$duracion', '$observacion', '$fecha', '$id_creador');";
+				$insertar2 = "insert into agenda (id_usuario,id_paciente,ano,mes,dia,hora,minuto,n_semana, confirmacion, duracion, observacion, fecha,realidada) values ('$doctor','$paciente', '$ano', '$mes_n', '$dia', '$hora', '$minuto2', '$semana', '1', '$duracion', '$observacion', '$fecha', '$id_creador');";
 				if(!$conn->query($insertar2))
 					die('Error de consulta3: '.mysqli_error($conn));
 			}	
@@ -72,7 +74,7 @@ if($r['id_usuario']==''){
 			$minuto2=45;
 			for($i=0; $i<1; $i++){
 				$minuto2 = $minuto2 + 15;
-				$insertar2 = "insert into agenda (id_usuario,id_paciente,ano,mes,dia,hora,minuto, confirmacion, duracion, observacion, fecha,realidada) values ('$doctor','$paciente', '$ano', '$mes_n', '$dia', '$hora', '$minuto2', '1', '$duracion', '$observacion', '$fecha', '$id_creador');";
+				$insertar2 = "insert into agenda (id_usuario,id_paciente,ano,mes,dia,hora, minuto, n_semana, confirmacion, duracion, observacion, fecha,realidada) values ('$doctor','$paciente', '$ano', '$mes_n', '$dia', '$hora', '$minuto2', '$semana', '1', '$duracion', '$observacion', '$fecha', '$id_creador');";
 				if(!$conn->query($insertar2))
 					die('Error de consulta4: '.mysqli_error($conn));
 			}
@@ -80,12 +82,12 @@ if($r['id_usuario']==''){
 	}
 	/************************DURACION 45 MIN**********************/
 	else if($duracion=='45'){
-		$insertar = "insert into agenda (id_usuario,id_paciente,ano,mes,dia,hora,minuto, confirmacion, duracion, observacion, fecha,realidada) values ('$doctor','$paciente', '$ano', '$mes_n', '$dia', '$hora', '$minuto', '0', '$duracion', '$observacion', '$fecha', '$id_creador');";
+		$insertar = "insert into agenda (id_usuario,id_paciente,ano,mes,dia,hora,minuto,n_semana, confirmacion, duracion, observacion, fecha,realidada) values ('$doctor','$paciente', '$ano', '$mes_n', '$dia', '$hora', '$minuto', '$semana', '0', '$duracion', '$observacion', '$fecha', '$id_creador');";
 		if($minuto=='00' || $minuto=='0'){
 			$minuto2=0;
 			for($i=0; $i<2; $i++){
 				$minuto2 = $minuto2 + 15;
-				$insertar2 = "insert into agenda (id_usuario,id_paciente,ano,mes,dia,hora,minuto, confirmacion, duracion, observacion, fecha,realidada) values ('$doctor','$paciente', '$ano', '$mes_n', '$dia', '$hora', '$minuto2', '1', '$duracion', '$observacion', '$fecha', '$id_creador');";
+				$insertar2 = "insert into agenda (id_usuario,id_paciente,ano,mes,dia,hora,minuto,n_semana, confirmacion, duracion, observacion, fecha,realidada) values ('$doctor','$paciente', '$ano', '$mes_n', '$dia', '$hora', '$minuto2', '$semana', '1', '$duracion', '$observacion', '$fecha', '$id_creador');";
 				if(!$conn->query($insertar2))
 					die('Error de consulta5: '.mysqli_error($conn));
 			}
@@ -95,7 +97,7 @@ if($r['id_usuario']==''){
 			$minuto2=15;
 			for($i=0; $i<2; $i++){
 				$minuto2 = $minuto2 + 15;
-				$insertar2 = "insert into agenda (id_usuario,id_paciente,ano,mes,dia,hora,minuto, confirmacion, duracion, observacion, fecha,realidada) values ('$doctor','$paciente', '$ano', '$mes_n', '$dia', '$hora2', '$minuto2', '1', '$duracion', '$observacion', '$fecha', '$id_creador');";
+				$insertar2 = "insert into agenda (id_usuario,id_paciente,ano,mes,dia,hora,minuto,n_semana, confirmacion, duracion, observacion, fecha,realidada) values ('$doctor','$paciente', '$ano', '$mes_n', '$dia', '$hora2', '$minuto2', '$semana', '1', '$duracion', '$observacion', '$fecha', '$id_creador');";
 				if(!$conn->query($insertar2))
 					die('Error de consulta6: '.mysqli_error($conn));
 			}
@@ -107,7 +109,7 @@ if($r['id_usuario']==''){
 				$minuto2 = $minuto2 + 15;
 				if($minuto2==60)
 					$minuto2='00';
-				$insertar2 = "insert into agenda (id_usuario,id_paciente,ano,mes,dia,hora,minuto, confirmacion, duracion, observacion, fecha,realidada) values ('$doctor','$paciente', '$ano', '$mes_n', '$dia', '$hora2', '$minuto2', '1', '$duracion', '$observacion', '$fecha', '$id_creador');";
+				$insertar2 = "insert into agenda (id_usuario,id_paciente,ano,mes,dia,hora,minuto,n_semana, confirmacion, duracion, observacion, fecha,realidada) values ('$doctor','$paciente', '$ano', '$mes_n', '$dia', '$hora2', '$minuto2', '$semana', '1', '$duracion', '$observacion', '$fecha', '$id_creador');";
 				if(!$conn->query($insertar2))
 					die('Error de consulta7: '.mysqli_error($conn));
 			}
@@ -119,7 +121,7 @@ if($r['id_usuario']==''){
 				$minuto2 = $minuto2 + 15;
 				if($minuto2==60)
 					$minuto2='00';
-				$insertar2 = "insert into agenda (id_usuario,id_paciente,ano,mes,dia,hora,minuto, confirmacion, duracion, observacion, fecha,realidada) values ('$doctor','$paciente', '$ano', '$mes_n', '$dia', '$hora2', '$minuto2', '1', '$duracion', '$observacion', '$fecha', '$id_creador');";
+				$insertar2 = "insert into agenda (id_usuario,id_paciente,ano,mes,dia,hora,minuto,n_semana, confirmacion, duracion, observacion, fecha,realidada) values ('$doctor','$paciente', '$ano', '$mes_n', '$dia', '$hora2', '$minuto2', '$semana', '1', '$duracion', '$observacion', '$fecha', '$id_creador');";
 				if(!$conn->query($insertar2))
 					die('Error de consulta8: '.mysqli_error($conn));
 			}
@@ -127,7 +129,7 @@ if($r['id_usuario']==''){
 	}
 	/**************************DURACION 1 HORA ************************/
 	else if($duracion == '60'){
-		$insertar = "insert into agenda (id_usuario,id_paciente,ano,mes,dia,hora,minuto, confirmacion, duracion, observacion, fecha,realidada) values ('$doctor','$paciente', '$ano', '$mes_n', '$dia', '$hora', '$minuto', '0', '$duracion', '$observacion', '$fecha', '$id_creador');";
+		$insertar = "insert into agenda (id_usuario,id_paciente,ano,mes,dia,hora,minuto,n_semana, confirmacion, duracion, observacion, fecha,realidada) values ('$doctor','$paciente', '$ano', '$mes_n', '$dia', '$hora', '$minuto', '$semana', '0', '$duracion', '$observacion', '$fecha', '$id_creador');";
 		$hora2= $hora;
 		$minuto2=$minuto;
 		for($i=0; $i<3; $i++){
@@ -136,7 +138,7 @@ if($r['id_usuario']==''){
 				$minuto2='00';
 				$hora2 = $hora + 1;
 			}
-			$insertar2 = "insert into agenda (id_usuario,id_paciente,ano,mes,dia,hora,minuto, confirmacion, duracion, observacion, fecha,realidada) values ('$doctor','$paciente', '$ano', '$mes_n', '$dia', '$hora2', '$minuto2', '1', '$duracion', '$observacion', '$fecha', '$id_creador');";
+			$insertar2 = "insert into agenda (id_usuario,id_paciente,ano,mes,dia,hora,minuto,n_semana, confirmacion, duracion, observacion, fecha,realidada) values ('$doctor','$paciente', '$ano', '$mes_n', '$dia', '$hora2', '$minuto2', '$semana', '1', '$duracion', '$observacion', '$fecha', '$id_creador');";
 			if(!$conn->query($insertar2))
 				die('Error de consulta9: '.mysqli_error($conn));
 		}
