@@ -63,14 +63,14 @@
 			<input class="campoT"type="file" name="imagen"><br><br><br><br>
 			
 		<input type="submit" value="Enviar">
-		<!--div style=" float:left; padding:9px; margin-right:10px; border:1px solid #6FCCE3; height:18px; width:90px; margin-top:12px; text-align:center ">
+		<!--div style=" float:left; padding:9px; margin-right:10px; border:1px solid #2d455f; height:18px; width:90px; margin-top:12px; text-align:center ">
 			<a href="../panel.php">Cancelar</a></div><br><br-->
 
 </form>
 			
 	<?php
 	if($_SESSION['rol']=='admin'){
-			echo '<div style=" padding:9px; margin-left:auto;  margin-right:auto; border:1px solid #6FCCE3; height:16px; width:250px; margin-top:12px; text-align:center ">';
+			echo '<div style=" padding:9px; margin-left:auto;  margin-right:auto; border:1px solid #2d455f; height:16px; width:250px; margin-top:12px; text-align:center ">';
 				echo '<a href="lista_noticias.php" target="_new">Ver Noticias Modo admin</a>';
 			echo '</div>';
 			}

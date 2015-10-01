@@ -37,7 +37,7 @@ include("php/base.php");
     <div class="clearfix colelem" id="pu366"><!-- group -->
      <div class="browser_width grpelem" id="u366"><!-- group -->
       <div class="clearfix" id="u366_align_to_page">
-       <a class="nonblock nontext clip_frame grpelem" id="u513" href="index.php"><!-- image --><img class="block" id="u513_img" src="images/logo-endoperio-dental-center.jpg" alt="" width="134" height="38"/></a>
+       <a class="nonblock nontext clip_frame grpelem" id="u513" ><!-- image --><img class="block" id="u513_img" src="images/logo-endoperio-dental-center.jpg" alt="" width="134" height="38"/></a>
        <div class="grpelem" id="u516"><!-- simple frame --></div>
        <div class="clearfix grpelem" id="u518-5"><!-- content -->
  <p><?php echo $_SESSION['nombres'];?>&nbsp; | <span id="u518-2"> <a href="php/logout.php"><h12> cerrar sesion</h12></a></span></p>
@@ -192,7 +192,7 @@ include("php/base.php");
 
 
 
-    <a class="nonblock nontext clip_frame colelem" id="u405" href="http://www.webox.org.mx"><!-- image --><img class="block" id="u405_img" src="images/completo7.png" alt="" width="62" height="19"/></a>
+    <a class="nonblock nontext clip_frame colelem" id="u405" href="http://tavorazo.github.io"><!-- image --><img class="block" id="u405_img" src="https://cdn4.iconfinder.com/data/icons/iconsimple-logotypes/512/github-32.png"alt="Octavio Razo" /></a>
    </div>
   </div>
   <div class="preload_images">

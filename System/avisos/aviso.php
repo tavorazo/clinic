@@ -71,7 +71,7 @@
 			<input type="submit" value="enviar" style="float:left">
 			<br><br>
       <br><br><br>
-      <div style=" padding:9px; margin-left:auto;  margin-right:auto; border:1px solid #6FCCE3; height:16px; width:250px; margin-top:12px; text-align:center ">
+      <div style=" padding:9px; margin-left:auto;  margin-right:auto; border:1px solid #2d455f; height:16px; width:250px; margin-top:12px; text-align:center ">
         <a href="lista_avisos.php" target='_blank'>Ver Avisos Modo admin</a>
       </div>
 

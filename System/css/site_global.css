@@ -89,7 +89,7 @@ a:link
 
 a:visited
 {
-	color: steelblue;
+	color: #2d455f;
 	text-decoration: none;
 }
 
@@ -101,7 +101,7 @@ a:hover
 
 a:active
 {
-	color: steelblue;
+	color: #2d455f;
 	text-decoration: none;
 }
 

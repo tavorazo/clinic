@@ -6,7 +6,7 @@
 	<title>Listo</title>
 	<link rel="stylesheet" type="text/css" href="../css/texto.css"/>
 	<style type="text/css" media="screen">
-		body{ background: steelblue; color: #E6E6E6; }
+		body{ background: #2d455f; color: #E6E6E6; }
 		a, a:hover{ color: #E6E6E6; text-decoration: none; }
 	</style>
 </head>

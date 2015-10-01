@@ -26,7 +26,7 @@ h13{
 }
 h12{
 	font-size: 14px;
-	color: #363C67;
+	color: #CEE3F6;
 	font-weight: 1;
 }
 h14{
@@ -54,7 +54,7 @@ h17{
 	font-weight: 3;
 }
 #botn{
-	background: #39a0cd;
+	background: #2d455f;
 	width: 100px;
 	text-align: center; 
 	margin-left:25%; 
@@ -71,7 +71,7 @@ h17{
 }
 #botn3{
 	padding:9px; 
-	border:1px solid steelblue; 
+	border:1px solid #2d455f; 
 	height:18px; 
 	width:190px; 
 	margin-top:12px; 
@@ -105,7 +105,7 @@ h17{
 }
 
 #botn5{
-	background: #0080FF;
+	background: #2d455f;
 	color: white;
 	width: 100px;
 	text-align: center; 
@@ -132,11 +132,11 @@ h17{
 
 #botn3 a, #botn4 a {
 	font-size: 16px;
-	color: steelblue;
+	color: #2d455f;
 	text-decoration: none;
 }	
 #botn3 a:hover{
-	color: steelblue;
+	color: #2d455f;
 }
 #botn a, #botn2 a{
 	font-size: 16px;
@@ -195,7 +195,7 @@ a:link
 
 a:visited
 {
-	color: steelblue;
+	color: #2d455f;
 	text-decoration: none;
 }
 
@@ -207,7 +207,7 @@ a:hover
 
 a:active
 {
-	color: steelblue;
+	color: #2d455f;
 	text-decoration: none;
 }
 

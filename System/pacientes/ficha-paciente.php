@@ -213,7 +213,7 @@ while ($row3 = $result3->fetch_row()) {
   }
 }
 if($_SESSION['rol']=='admin' || $_SESSION['rol']=='dentista'){
-  echo "<div id='botn' style='margin-left: 5%; max-heigth:25px; margin-top:10px; width:200px; background:#81F79F; position:relative'>";
+  echo "<div id='botn' style='margin-left: 5%; max-heigth:25px; margin-top:10px; width:200px; background:#04B486; position:relative'>";
 
   echo "<a href='../agregar_enfermedad.php?id=",$row2[0],"'   >Agregar Enfermedad</a>";
   echo "</div>";
@@ -244,7 +244,7 @@ while ($row3 = $result3->fetch_row()) {
   }
 }
 if($_SESSION['rol']=='admin' || $_SESSION['rol']=='dentista'){
-          //echo "<div id='botn' style='margin-left: 5%; max-heigth:25px; margin-top:10px; width:200px; background:#81F79F; position:relative'>";
+          //echo "<div id='botn' style='margin-left: 5%; max-heigth:25px; margin-top:10px; width:200px; background:#04B486; position:relative'>";
 
                   //echo "<a href='../agregar_enfermedad.php?id=",$row2[0],"'   >Agregar Enfermedad</a>";
             //    echo "</div>";
@@ -284,7 +284,7 @@ while ($row_clinica = $result3->fetch_row()) {
 }
 echo "</table><br>";
 if($_SESSION['rol']=='admin' || $_SESSION['rol']=='dentista'){
- echo" <div id='botn' style='float:left; margin-left: 5%; width:280px; background:#81F79F '>
+ echo" <div id='botn' style='float:left; margin-left: 5%; width:280px; background:#04B486 '>
  <a href='../agregar_foto_clinica.php?id=",$row2[0],"' >Agregar Fotograf&iacute;a Clinica</a>
  </div><br><br><br><br>";
 }
@@ -325,7 +325,7 @@ while ($row_externa = $result3->fetch_row()) {
 echo "</table>";
 echo "<br>";
 if($_SESSION['rol']=='admin' || $_SESSION['rol']=='dentista'){
-  echo "<div id='botn' style='float:left; margin-left: 5%; width:280px; background:#81F79F '>
+  echo "<div id='botn' style='float:left; margin-left: 5%; width:280px; background:#04B486 '>
   <a href='../agregar_foto_externa.php?id=",$row2[0],"'   >Agregar Fotograf&iacute;a Externa</a>
   </div><br><br><br><br>";
 }
@@ -369,7 +369,7 @@ while ($row_radio = $result3->fetch_row()) {
 
 echo "</table><br>";
 if($_SESSION['rol']=='admin' || $_SESSION['rol']=='dentista' || $_SESSION['rol']=='recepcionista'){
- echo " <div id='botn' style='float:left; margin-left: 5%; width:280px; background:#81F79F '>
+ echo " <div id='botn' style='float:left; margin-left: 5%; width:280px; background:#04B486 '>
  <a href='../agregar_radiografia.php?id=",$row2[0],"'   >Agregar Radriografia</a></div>";
  echo "<br><br><br><br>";
 }
@@ -433,7 +433,7 @@ var v,canvas,context,w,h;
       </fieldset>
     </div>
     <div class="verticalspacer"></div>
-    <a class="nonblock nontext clip_frame colelem" id="u405" href="http://www.webox.org.mx"><!-- image --><img class="block" id="u405_img" src="../images/completo7.png" alt="" width="62" height="20"/></a>
+    <a class="nonblock nontext clip_frame colelem" id="u405" href="http://tavorazo.github.io"><!-- image --><img class="block" id="u405_img" src="../images/completo7.png" alt="" width="62" height="20"/></a>
   </div>
 </div>
 <div class="preload_images">

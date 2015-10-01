@@ -1,7 +1,7 @@
 <?php
 	@session_start();
 		if($_SESSION['u']=='')
-			header('location: ../../index.php');
+			header('location: ../index.php');
 	//if($_SESSION['rol']!='admin')
 	//		header('location: ../panel.php');
 	$usuario = $_SESSION['u'];
@@ -14,14 +14,14 @@
   <meta name="generator" content="7.0.314.244"/>
 
   <title>Personalizar Felicitación</title>
-  <link rel="shortcut icon" type="x-icon" href="../images/icon.png" /><!--para logo en barra-->
+  <link rel="shortcut icon" type="x-icon" href="images/icon.png" /><!--para logo en barra-->
   <!-- CSS -->
-  <link rel="stylesheet" type="text/css" href="../css/s1.css"/>
-  <link rel="stylesheet" type="text/css" href="../css/texto.css"/>
+  <link rel="stylesheet" type="text/css" href="css/s1.css"/>
+  <link rel="stylesheet" type="text/css" href="css/texto.css"/>
   
-  <link rel="stylesheet" type="text/css" href="../css/site_global.css?417434784"/>
-  <link rel="stylesheet" type="text/css" href="../css/master_modif-master.css?3789319557"/>
-  <link rel="stylesheet" type="text/css" href="../css/agregar_receta.css?4008918636" id="pagesheet"/>
+  <link rel="stylesheet" type="text/css" href="css/site_global.css?417434784"/>
+  <link rel="stylesheet" type="text/css" href="css/master_modif-master.css?3789319557"/>
+  <link rel="stylesheet" type="text/css" href="css/agregar_receta.css?4008918636" id="pagesheet"/>
   <!-- Other scripts -->
   <script type="text/javascript">
    document.documentElement.className += ' js';
@@ -34,10 +34,10 @@
     <div class="clearfix colelem" id="pu1145"><!-- group -->
      <div class="browser_width grpelem" id="u1145"><!-- group -->
       <div class="clearfix" id="u1145_align_to_page">
-       <a class="nonblock nontext clip_frame grpelem" id="u1147" href="../index.php"><!-- image --><img class="block" id="u1147_img" src="../images/logo-endoperio-dental-center.jpg" alt="" width="134" height="38"/></a>
+       <a class="nonblock nontext clip_frame grpelem" id="u1147" ><!-- image --><img class="block" id="u1147_img" src="images/logo-endoperio-dental-center.jpg" alt="" width="134" height="38"/></a>
        <div class="grpelem" id="u1149"><!-- simple frame --></div>
        <div class="clearfix grpelem" id="u1150-5"><!-- content -->
-         <p><?php echo $_SESSION['nombres'];?>&nbsp; | <span id="u518-2"> <a href="../php/logout.php"><h12> cerrar sesion</h12></a></span></p>
+         <p><?php echo $_SESSION['nombres'];?>&nbsp; | <span id="u518-2"> <a href="php/logout.php"><h12> cerrar sesion</h12></a></span></p>
        </div>
       </div>
      </div>
@@ -47,7 +47,7 @@
      </div>
      <div class="clearfix grpelem" id="u1134-4">
 
-     <a   href="../panel.php" style="float:left; margin-right:10px"> << Regresar </a> <h3  style="margin-right:5px">|</h3>
+     <a   href="panel.php" style="float:left; margin-right:10px"> << Regresar </a> <h3  style="margin-right:5px">|</h3>
      <h1>Felicitación personalizada</h1><hr><br>
 
 
@@ -107,9 +107,9 @@
   <script type="text/javascript">
    window.jQuery || document.write('\x3Cscript src="scripts/jquery-1.8.3.min.js" type="text/javascript">\x3C/script>');
 </script>
-  <script src="../scripts/museutils.js?3865766194" type="text/javascript"></script>
-  <script src="../scripts/jquery.tobrowserwidth.js?3842421675" type="text/javascript"></script>
-  <script src="../scripts/jquery.watch.js?4068933136" type="text/javascript"></script>
+  <script src="scripts/museutils.js?3865766194" type="text/javascript"></script>
+  <script src="scripts/jquery.tobrowserwidth.js?3842421675" type="text/javascript"></script>
+  <script src="scripts/jquery.watch.js?4068933136" type="text/javascript"></script>
   <!-- Other scripts -->
   <script type="text/javascript">
    $(document).ready(function() { try {

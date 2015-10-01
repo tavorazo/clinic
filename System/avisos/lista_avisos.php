@@ -56,11 +56,11 @@ include('../php/base.php');
                         echo "<td style='width: 25%; padding:10px; color:#4457AA ' >",$row2[4],"<br><br><br></td>";
                
          			echo "<td>
-                        <div style=' float:left; padding:9px;  margin-right:10px; border:1px solid #6FCCE3; height:18px; width:90px; margin-top:12px; text-align:center '>
+                        <div style=' float:left; padding:9px;  margin-right:10px; border:1px solid #2d455f; height:18px; width:90px; margin-top:12px; text-align:center '>
                            <a href='editar.php?id=",$row2[0],"'>Editar</a></div>
                         </td>
                         <td>
-                        <div style=' float:left; padding:9px; margin-right:10px; border:1px solid #6FCCE3; height:18px; width:90px; margin-top:12px; text-align:center '>
+                        <div style=' float:left; padding:9px; margin-right:10px; border:1px solid #2d455f; height:18px; width:90px; margin-top:12px; text-align:center '>
                            <a href='eliminar_aviso.php?id=",$row2[0],"'>Eliminar</a></div>
                         </td>";
                	echo "</tr>";

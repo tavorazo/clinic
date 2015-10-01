@@ -137,7 +137,7 @@ CIRUJANO DENTISTA ENDOPERIODONCISTA
      </div>
     </div>
     <a class="nonblock nontext clip_frame colelem" id="u1103" href="http://www.webox.org.mx"><
-      !-- image --<img class="block" id="u1103_img" src="images/completo7.png" alt="" width="89" height="28"/></a>
+      !-- image --<img class="block" id="u1103_img" src="https://cdn4.iconfinder.com/data/icons/iconsimple-logotypes/512/github-32.png"alt="" width="89" height="28"/></a>
    </div>
   </div>
   <div class="preload_images">

@@ -38,7 +38,7 @@ $u= $_SESSION['u'];
 	      //while ($row2 = mysql_fetch_array($result2, MYSQL_NUM)) {
 		$result2 = $conn->query("SELECT * FROM $tabla");
 		while ($row2 = $result2->fetch_row()) {
-			echo "<div style='width:80%; margin:10px auto; padding:20px; border: #2E2EFE 1px solid;'
+			echo "<div style='width:80%; margin:10px auto; padding:20px; border: #2d455f 1px solid;'
 			<br>
 			<div style='padding:10px; width:190px; min-height:300px; float:left; padding-right:40px'>
 			<img src='../usuarios/",$row2[11],"' style='float:left; margin-right:30px; margin-top:20px; width:100%'>
@@ -63,13 +63,13 @@ $u= $_SESSION['u'];
 			echo "<br><a href='editar_curriculum.php?id=",$row2[0],"' >Editar Curriculum>> </a><br>";
 
 			echo "<br><br>
-			<div style='padding:9px; float:right;  position:absulute;  margin-top:-100px; border:1px solid #6FCCE3; height:16px; width:250px; text-align:center '>
+			<div style='padding:9px; float:right;  position:absulute;  margin-top:-100px; border:1px solid #2d455f; height:16px; width:250px; text-align:center '>
 			<a href='nomina_personal.php?id=",$row2[0],"'>Revisar Nomina</a>  
 			</div><br><br><br>
-			<div style='padding:9px; float:right;  position:absulute;  margin-top:-100px; border:1px solid #6FCCE3; height:16px; width:250px; text-align:center '>
+			<div style='padding:9px; float:right;  position:absulute;  margin-top:-100px; border:1px solid #2d455f; height:16px; width:250px; text-align:center '>
 			<a href='edit-usuario.php?id=",$row2[0],"'>Editar</a>  
 			</div>
-			<div style='padding:9px;  float:right; border:1px solid #6FCCE3; margin-top:-50px; height:16px; width:250px; text-align:center '>
+			<div style='padding:9px;  float:right; border:1px solid #2d455f; margin-top:-50px; height:16px; width:250px; text-align:center '>
 			<a href='delete-usuario.php?id=",$row2[0],"'>Eliminar</a> ';
 			</div>
 
@@ -82,7 +82,7 @@ $u= $_SESSION['u'];
 	      	//while ($row2 = mysql_fetch_array($result2, MYSQL_NUM)) {
 			$result2 = $conn->query("SELECT * FROM usuarios where id_usuario='$u'");
 			while ($row2 = $result->fetch_row()){
-				echo "<div style='width:80%; margin:10px auto; padding:20px; border: #2E2EFE 1px solid;'>
+				echo "<div style='width:80%; margin:10px auto; padding:20px; border: #2d455f 1px solid;'>
 				<label>Id: </label>", $row2[0];
 				echo "<br><label>Nombre: </label>", $row2[1]," ",$row2[2]," ", $row2[3];
 				echo "<br><label>Fecha de Nacimiento: </label>", $row2[4];
@@ -100,13 +100,13 @@ $u= $_SESSION['u'];
 				echo "	<br><a href='ver_curriculum.php?id=",$row2[0],"&n=",$row2[1],"&a1=",$row2[2],"&a2=",$row2[3],"&fn=",$row2[4],"&c=",$renglon['descripcion'],"' style='margin-top:10px; float:left'>Ver Curriculum >> </a><br>
 				<br><a href='editar_curriculum.php?id=",$row2[0],"' style=''>Editar Curriculum>> </a><br>"; 
 				echo "<br><br>
-				<div style='padding:9px; float:right;  position:absulute;  margin-top:-100px; border:1px solid #6FCCE3; height:16px; width:250px; text-align:center '>
+				<div style='padding:9px; float:right;  position:absulute;  margin-top:-100px; border:1px solid #2d455f; height:16px; width:250px; text-align:center '>
 				<a href='nomina_personal.php?id=",$row2[0],"'>Revisar Nomina</a>  
 				</div><br><br><br>
-				<div style='padding:9px; float:right;  position:absulute;  margin-top:-100px; border:1px solid #6FCCE3; height:16px; width:250px; text-align:center '>
+				<div style='padding:9px; float:right;  position:absulute;  margin-top:-100px; border:1px solid #2d455f; height:16px; width:250px; text-align:center '>
 				<a href='edit-usuario.php?id=",$row2[0],"'>Editar</a>  
 				</div>";
-	            /*<div style='padding:9px;  float:right; border:1px solid #6FCCE3; margin-top:-50px; height:16px; width:250px; text-align:center '>
+	            /*<div style='padding:9px;  float:right; border:1px solid #2d455f; margin-top:-50px; height:16px; width:250px; text-align:center '>
 	            <a href='delete-usuario.php?id=",$row2[0],"'>Eliminar</a>
 	            </div>*/
 	            echo "</div><br>";
@@ -116,7 +116,7 @@ $u= $_SESSION['u'];
 	      //while ($row2 = mysql_fetch_array($result2, MYSQL_NUM)) {
 	        $result2 = $conn->query("SELECT * FROM $tabla");
 	        while ($row2 = $result->fetch_row()){
-	            echo "<div style='width:80%; margin:10px auto; padding:20px; border: #2E2EFE 1px solid;'
+	            echo "<div style='width:80%; margin:10px auto; padding:20px; border: #2d455f 1px solid;'
 	            <br>
 	            <div style='padding:10px; width:190px; min-height:300px; float:left; padding-right:40px'>
 	            <img src='../usuarios/",$row2[11],"' style='float:left; margin-right:30px; margin-top:20px; width:100%'>
@@ -141,16 +141,16 @@ $u= $_SESSION['u'];
 	            echo "<br><a href='editar_curriculum.php?id=",$row2[0],"' >Editar Curriculum>> </a><br>";
 
 	            echo "<br><br>
-	            <div style='padding:9px; float:right;  position:absulute;  margin-top:-100px; border:1px solid #6FCCE3; height:16px; width:250px; text-align:center '>
+	            <div style='padding:9px; float:right;  position:absulute;  margin-top:-100px; border:1px solid #2d455f; height:16px; width:250px; text-align:center '>
 	            <a href='nomina_personal.php?id=",$row2[0],"'>Revisar Nomina</a>  ";
 	                                  		/*</div><br><br><br>*/
 
 	            if($row2[0]==$_SESSION['u']){
-	                echo "<div style='padding:9px; float:right;  position:absulute;  margin-top:-100px; border:1px solid #6FCCE3; height:16px; width:250px; text-align:center '>
+	                echo "<div style='padding:9px; float:right;  position:absulute;  margin-top:-100px; border:1px solid #2d455f; height:16px; width:250px; text-align:center '>
 	                <a href='edit-usuario.php?id=",$row2[0],"'>Editar</a>  
 	                </div>";
 	            }
-	                /*<div style='padding:9px;  float:right; border:1px solid #6FCCE3; margin-top:-50px; height:16px; width:250px; text-align:center '>
+	                /*<div style='padding:9px;  float:right; border:1px solid #2d455f; margin-top:-50px; height:16px; width:250px; text-align:center '>
 	                <a href='delete-usuario.php?id=",$row2[0],"'>Eliminar</a> 
 	                </div>*/
 	                echo "</div><br><br><br></div><br>";

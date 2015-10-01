@@ -19,7 +19,7 @@ $day=$_GET['dia'];
 	td{ 	width: 14%; min-width: 100px; border:none; padding-top:10px; padding-bottom: 10px; text-align: center;}
 	a{text-decoration: none; color:#999;}
 	a:hover, a:active, a:focus{text-decoration: none; color: #999; cursor: pointer;}
-	h1{ font-weight: 100; text-align: center; font-size: 30px; margin-top: 70px; color: #0080FF}
+	h1{ font-weight: 100; text-align: center; font-size: 30px; margin-top: 70px; color: #2d455f}
 	#label{border: none; position: absolute; top:80px; left: 20px; cursor: pointer;}
 	label{color: #000}
 

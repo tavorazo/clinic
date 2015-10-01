@@ -160,7 +160,7 @@
 	width: 170px;
 	min-height: 29px;
 	line-height: 24px;
-	color: #1295C8;
+	color: #2d455f;
 	font-size: 20px;
 	margin-left: 53px;
 	margin-top: 38px;
@@ -216,7 +216,7 @@
 	height: 182px;
 	border-width: 1px;
 	border-style: solid;
-	border-color: #1295C8;
+	border-color: #2d455f;
 	background-color: transparent;
 	-moz-border-radius: 96px;
 	-webkit-border-radius: 96px;
@@ -283,7 +283,7 @@
 
 #u540:hover
 {
-	background-color: #1295C8;
+	background-color: #2d455f;
 	margin: 0px -10000px 0px 0px;
 }
 

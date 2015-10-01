@@ -143,7 +143,7 @@ $usuario = $_SESSION['u'];
 						</td><td>";
 
 						echo "<br><a href='pacientes/ficha-paciente.php?id=",$renglon['id_paciente'],"' style='text-decoration:none; color:black'>
-						<div style='margin-left:10px; padding:8px;  border:1px solid #6FCCE3; height:16px; width:170px; margin-top:10px; text-align:center'>
+						<div style='margin-left:10px; padding:8px;  border:1px solid #2d455f; height:16px; width:170px; margin-top:10px; text-align:center'>
 						Ver Ficha
 						</div></a> 
 						<a href='pacientes/ficha-paciente.php?id=",$renglon['id_paciente'],"' style='text-decoration:none; color:black'>
@@ -202,7 +202,7 @@ $usuario = $_SESSION['u'];
 						</td><td style='background:none'>
 
 						<a href='pacientes/ficha-paciente.php?id=",$renglon['id_paciente'],"' style='text-decoration:none; color:black'>			
-						<div style='margin-left:10px; padding:9px; border:1px solid #6FCCE3; height:16px; width:170px; margin-top:25px; text-align:center'>
+						<div style='margin-left:10px; padding:9px; border:1px solid #2d455f; height:16px; width:170px; margin-top:25px; text-align:center'>
 						Ver Ficha
 						</div>
 						</a> <br>

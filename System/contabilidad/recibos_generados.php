@@ -112,7 +112,7 @@ date_default_timezone_set("Mexico/General");
     <div class="clearfix colelem" id="pu366"><!-- group -->
      <div class="browser_width grpelem" id="u366"><!-- group -->
       <div class="clearfix" id="u366_align_to_page">
-       <a class="nonblock nontext clip_frame grpelem" id="u513" href="../index.php"><!-- image --><img class="block" id="u513_img" src="../images/logo-endoperio-dental-center.jpg" alt="" width="134" height="38"/></a>
+       <a class="nonblock nontext clip_frame grpelem" id="u513" ><!-- image --><img class="block" id="u513_img" src="../images/logo-endoperio-dental-center.jpg" alt="" width="134" height="38"/></a>
        <div class="grpelem" id="u516"><!-- simple frame --></div>
        <div class="clearfix grpelem" id="u518-5"><!-- content -->
         <p><?php echo $_SESSION['nombres'];?>&nbsp; | <span id="u518-2"> <a href="../php/logout.php"><h12> cerrar sesion</h12></a></span></p>

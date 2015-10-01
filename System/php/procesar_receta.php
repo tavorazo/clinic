@@ -9,7 +9,7 @@ date_default_timezone_set("Mexico/General");
   <title>Listo</title>
   <link rel="stylesheet" type="text/css" href="../css/texto.css"/>
   <style type="text/css" media="screen">
-    body{ background: steelblue; color: #1C1C1C; }
+    body{ background: #2d455f; color: #1C1C1C; }
     a, a:hover{ color: white; text-decoration: none; }
   </style>
 </head>

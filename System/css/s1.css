@@ -82,7 +82,7 @@ input[type="submit"], input[type="reset"] {
 	border:none;
 	margin: 10px 0;
 	font-size: 18px;
-	background: #1295C8;
+	background: #2d455f;
 	font-weight: 1px;
 	color: #FFF;
 	font-family: Arial;
@@ -96,7 +96,7 @@ input[type="submit"], input[type="reset"] {
 }
 
 input[type="submit"]:hover, input[type="reset"]:hover {
-	background:#39a0cd;
+	background:#2d455f;
 }
 
 input[type="submit"]:active, input[type="reset"]:active {
