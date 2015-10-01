@@ -89,8 +89,6 @@
     		<td>
     <?php
 		include("../php/base.php");
-		include("../php/base2.php");
-		include("../php/base3.php");
     $varibale_chingona = 0;
     function id($id){
       return $id;

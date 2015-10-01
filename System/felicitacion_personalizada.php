@@ -1,7 +1,7 @@
 <?php
 	@session_start();
 		if($_SESSION['u']=='')
-			header('location: ../index.php');
+			header('location: ../../index.php');
 	//if($_SESSION['rol']!='admin')
 	//		header('location: ../panel.php');
 	$usuario = $_SESSION['u'];
@@ -54,8 +54,6 @@
 
 <?php
 	@session_start();
-	include('php/base3.php');
-	include('php/base2.php');
 	include('php/base.php');
 
 	$id_paciente = $_GET['id_paciente'];

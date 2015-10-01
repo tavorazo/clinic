@@ -4,7 +4,7 @@
     or die('No se pudo conectar: ' . mysql_error());
 mysql_select_db('Endoperio') or die('No se pudo seleccionar la base de datos');*/
 
-include('../php/base3.php');
+include('../php/base.php');
 $contador = 0;
 	
 	$doctor = $row2[0];
@@ -12,7 +12,8 @@ $contador = 0;
 	//$doctores = $conn->query("select * from usuarios where rol='dentista';");
 	$n=0;
 	$n2=0;
-	while ($row3 = mysql_fetch_array($result2, MYSQL_NUM)){
+	//while ($row3 = mysql_fetch_array($result2, MYSQL_NUM)){
+	while ($row3 = $result2->fetch_row()){
 		$d = $row3[1];
 		$p = $row3[2];
 		$doctor = $conn->query("select * from usuarios where id_usuario='$d';");
@@ -22,10 +23,10 @@ $contador = 0;
 		$mes=$row3[4];
 		$hora=$row3[6];
 		$minuto=$row3[7];
-			while ($row_doctor = mysql_fetch_array($doctor, MYSQL_NUM)){
+			while ($row_doctor = $doctor->fetch_row()){
 				$docid=$row_doctor[0];
 			}
-			while ($row_paciente = mysql_fetch_array($paciente, MYSQL_NUM)){
+			while ($row_paciente = $paciente->fetch_row()){
 				$paciente_nombre = $row_paciente[1];
 				$paciente_apellido = $row_paciente[2];
 				$paciente_apellido2 = $row_paciente[3];
@@ -37,11 +38,13 @@ $contador = 0;
 	
 			echo "<select name='doctor'>";
 			$doctores = $conn->query("select * from usuarios where rol='dentista';");
-			while ($row_doctores = mysql_fetch_array($doctores, MYSQL_NUM)){
+			//while ($row_doctores = mysql_fetch_array($doctores, MYSQL_NUM)){
+			while ($row_doctores = $doctores->fetch_row()){
 				$disdoc=$row_doctores[0];
 				$dispo= $conn->query("select * from agenda where ano = '$ano' and mes='$mes' and dia='$dia' and minuto='$minuto' and hora='$hora' and id_usuario='$disdoc' and confirmacion='1';");
 				//echo "<option>select * from agenda where ano = '$ano' and mes='$mes' and dia='$dia' and minuto='$minuto' and hora='$hora' and id_usuario='$disdoc' and confirmacion='1';</option>";
-				while ($row_dispo = mysql_fetch_array($dispo, MYSQL_NUM)){
+				//while ($row_dispo = mysql_fetch_array($dispo, MYSQL_NUM)){
+				while ($row_dispo = $dispo->fetch_row()){
 					$dispo = 1;
 					//echo "<option>asdfdfsadf</option>";
 				}

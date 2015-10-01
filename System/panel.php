@@ -252,11 +252,11 @@ if($_SESSION['rol']=='admin' || $_SESSION['rol']=='secretaria' || $_SESSION['rol
   $doctor = $row2["id_usuario"]; //este row no se de donde coños sale // es por esto que nunca encontrara un match para los select... :/
   
 
-if (isset($_GET['buscar_paciente'])){
+if (isset($_GET['buscar_paciente']))
    $buscar_paciente = $_GET['buscar_paciente'];
-}else{
+else
    $buscar_paciente = 0; 
-}
+
  
 $desde = $hoy - 1;
 $hasta = $hoy + 5;
