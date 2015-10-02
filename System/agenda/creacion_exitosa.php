@@ -26,13 +26,12 @@ include('../php/base.php');
 $fecha = $ano."/".$mes_n."/".$dia;
 $semana = strftime("%V", strtotime($fecha));
 //echo "semana". $semana;
-
 	//echo $fecha;
 $verifica = 'select * from agenda where hora="'.$hour.'" and minuto="'.$minute.'" and dia="'.$dia.'" and mes="'.$mes_n.'" and ano="'.$ano.'" and id_usuario="'.$doctor.'";';
 try {
-	$resultadoverifica = $conn->query($verifica);	
+	$resultadoverifica = $conn->query($verifica);
 }catch(\Exception $e){
-	printf('Error: %s', $e->getMessage());  
+	printf('Error: %s', $e->getMessage());
 }
 $r = $resultadoverifica->fetch_assoc();
 if($r['id_usuario']==''){
@@ -59,7 +58,7 @@ if($r['id_usuario']==''){
 				$insertar2 = "insert into agenda (id_usuario,id_paciente,ano,mes,dia,hora,minuto,n_semana, confirmacion, duracion, observacion, fecha,realidada) values ('$doctor','$paciente', '$ano', '$mes_n', '$dia', '$hora', '$minuto2', '$semana', '1', '$duracion', '$observacion', '$fecha', '$id_creador');";
 				if(!$conn->query($insertar2))
 					die('Error de consulta2: '.mysqli_error($conn));
-			}	
+			}
 		}
 		else if($minuto=='30'){
 			$minuto2=30;
@@ -68,7 +67,7 @@ if($r['id_usuario']==''){
 				$insertar2 = "insert into agenda (id_usuario,id_paciente,ano,mes,dia,hora,minuto,n_semana, confirmacion, duracion, observacion, fecha,realidada) values ('$doctor','$paciente', '$ano', '$mes_n', '$dia', '$hora', '$minuto2', '$semana', '1', '$duracion', '$observacion', '$fecha', '$id_creador');";
 				if(!$conn->query($insertar2))
 					die('Error de consulta3: '.mysqli_error($conn));
-			}	
+			}
 		}
 		else if($minuto=='45'){
 			$minuto2=45;

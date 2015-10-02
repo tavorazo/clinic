@@ -30,7 +30,6 @@ $usuario = $_SESSION['u'];
   }
   #canvas {
     width: 260px;
-    
     background-color: #F2F2F2;
   }
   .buttom{
@@ -57,7 +56,7 @@ $usuario = $_SESSION['u'];
           <div class="clearfix" id="u366_align_to_page">
             <a class="nonblock nontext clip_frame grpelem" id="u513" ><!-- image --><img class="block" id="u513_img" src="images/logo-endoperio-dental-center.jpg" alt="" width="134" height="38"/></a>
             <div class="grpelem" id="u516"><!-- simple frame --></div>
-            <div class="clearfix grpelem" id="u518-5"><!-- content --> 
+            <div class="clearfix grpelem" id="u518-5"><!-- content -->
               <p><?php echo $_SESSION['nombres'];?>&nbsp; | <span id="u518-2"> <a href="php/logout.php"><h12> cerrar sesión</h12></a></span></p>
             </div>
           </div>
@@ -90,7 +89,7 @@ $usuario = $_SESSION['u'];
     </div>
   </div>
   <div class="colelem" id="u464" ><!-- simple frame --></div>
-  <div class="verticalspacer" ></div> 
+  <div class="verticalspacer" ></div>
   <form action="pacientes/images_pacientes/nuevo_paciente.php" method="POST" enctype="multipart/form-data"  style="margin-top:-100px; z-index:300; background:#FFFFFF; padding:20px; width:90%; padding-top:70px" >
     <!--a href="menu.php">Regresar</a--><br>
     <label style="float:left; width:150px; margin-right:15%">Nombre(s):</label> <input type="text" name="nombre"  class="campoT" required><br>
@@ -98,7 +97,7 @@ $usuario = $_SESSION['u'];
     <label style="float:left; width:150px; margin-right:15%">Apellido Materno:</label><input type="text" name="a_mat" class="campoT" required><br>
     <!--la fecha cambiarla a un solo campo con atributo date html5-->
     <label style="float:left; margin-right:13%">Fecha de nacimiento: </label>
-    <!--label style="float:left">dd </label--> 
+    <!--label style="float:left">dd </label-->
     <input type="date" name="fechaNacimiento" class="campoT"  required style="width:200px; float:left;">
         <!--label style="float:left;">mm </label> <input type="number" name="mes" class="campoT"  required style="width:100px; float:left">
         <label style="float:left;">aa </label> <input type="number" name="ano" class="campoT"  required style="width:100px;"--><br>
@@ -111,7 +110,6 @@ $usuario = $_SESSION['u'];
         </select><br>
         <label style="float:left; width:150px; margin-right:15%">Estado: </label >
           <!--input type="text" name="estado" class="campoT" required></br-->
-          
           <select name="estado" required class="campoT">
             <option value="NULL" >selecciona estado</option>
             <option value="Aguascalientes">Aguascalientes</option>
@@ -150,7 +148,7 @@ $usuario = $_SESSION['u'];
           <label style="float:left; width:150px; margin-right:15%">Ciudad: </label>
           <input type="text" name="ciudad" class="campoT" placeholder="ejemplo:Morelia"  required></br>
           <label style="float:left; width:150px; margin-right:15%">Calle: </label>
-          <input type="text" name="calle" class="campoT" required style=" width:200px; float:left;margin-right:1%"> 
+          <input type="text" name="calle" class="campoT" required style=" width:200px; float:left;margin-right:1%">
           <label style="float:left; width:150px; ">Numero: </label>
           <input type="number" name="numero" class="campoT" required style=" width:50px;">
           <label style="float:left; width:150px; margin-right:15%">Colonia: </label>
@@ -182,27 +180,23 @@ $usuario = $_SESSION['u'];
         <textarea rows="4" cols="50" name="observaciones"  required>
         </textarea>
         <!--input type="textarea" name="observaciones" class="campoT" required--></br>
-        
         <label style="float:left; width:150px; margin-right:15%">N. seguro: </label>
         <input type="number" name="Num_seguro" class="campoT" required></br>
         <br><br>
         <div id="container" style="float:left; margin-left:15px; margin-right:15px;">
           <video autoplay id="videoElement" >
-           
           </video>
         </div>
         <canvas id="canvas" width="500" height="375"  ></canvas>
         <input type="button" value="Capturar" id="save" class="buttom" />
-        <br><br>    
+        <br><br>
         <label style="float:left; width:150px; margin-right:15%">Foto de ingreso</label>
         <input type="file" name="imagen" class="campoT" style="float:left"><br>
         <br><br><br>
         <input type="checkbox" name="validar" value="aceptados" required/> <a href="privacidad.php" target="_blank">Acepto los terminos</a><br><br>
         <input type="submit" value="Guardar" style="margin-left:0%; float:bottom; ">
         <input type="reset" value="Resetear">
-        
       </form>
-      
       <a class="nonblock nontext clip_frame colelem" id="u405" href="http://tavorazo.github.io"><!-- image --><img class="block" id="u405_img" src="https://cdn4.iconfinder.com/data/icons/iconsimple-logotypes/512/github-32.png"alt="Octavio Razo" /></a>
     </div>
   </div>
@@ -225,7 +219,7 @@ $usuario = $_SESSION['u'];
  <script>
  var video = document.querySelector("#videoElement");
  navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia || navigator.oGetUserMedia;
- if (navigator.getUserMedia) {       
+ if (navigator.getUserMedia) {
   navigator.getUserMedia({video: true}, handleVideo, videoError);
 }
 function handleVideo(stream) {
@@ -244,7 +238,7 @@ var v,canvas,context,w,h;
   },false);
   function draw(v,c,w,h) {
     if(v.paused || v.ended) return false; // if no video, exit here
-    context.drawImage(v,0,0,w,h); // draw video feed to canvas      
+    context.drawImage(v,0,0,w,h); // draw video feed to canvas
     var uri = canvas.toDataURL("image/png"); // convert canvas to data URI
   }
   document.getElementById('save').addEventListener('click',function(e){
