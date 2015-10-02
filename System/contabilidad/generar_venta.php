@@ -22,11 +22,15 @@
 	$producto 	= $_POST['producto'];
 	$cantidad 	= $_POST['cantidad'];
 	$paciente 	= $_POST['id_paciente'];
+	if ($paciente == '' ) 
+		$paciente = $_POST['id_paciente2'];
+
+
 	$id_tipo = $_POST['id_tipo'];
 	$descripcion = $_POST['descripcion'];
 	$no_cliente 	= $_POST['no_cliente'];
 	if($no_cliente!='')
-		$paciente = '0';
+		$paciente = $no_cliente;
 	
 	$select = "SELECT * from inventario where id_producto='".$producto."';";
 	$resul	= $conn->query($select);
@@ -40,7 +44,7 @@
 	$s = date(W);
 	$y = date(Y);
 	if($cantidad_actual >= $cantidad){
-		
+
 		$insertar = "INSERT into historial_compras (id_paciente, id_usuario, id_producto, cantidad, precio_unitario, total, fecha,semana,y,id_tipo, descripcion) values ('$paciente', '$id_usuario', '$producto','$cantidad', '$precio', '$total', now(),'$s','$y','$id_tipo','$descripcion')";
 		$cantidad_actual = $cantidad_actual-$cantidad;
 		$actualizar = "UPDATE inventario set cantidad='$cantidad_actual', ultimo_abastecimiento = now() where id_producto='$producto'";
@@ -66,8 +70,10 @@
 				echo '<div style="  padding:9px; border:1px solid #E6E6E6; height:18px; width:120px; margin-top:12px; text-align:center; margin-right:10px ">';
 						//echo "<a href='vender.php'>Regresar </a></center></div>";
 						//echo'<META HTTP-EQUIV="Refresh" CONTENT="1; URL=vender.php">';
-				echo "<a href='../pacientes/ficha-paciente.php?id_paciente=",$paciente,"'>Regresar </a></center></div>";
-				echo'<META HTTP-EQUIV="Refresh" CONTENT="1; URL=../pacientes/ficha-paciente.php?id_paciente='.$paciente.'">';
+				//echo "<a href='../pacientes/ficha-paciente.php?id=",$paciente,"'>Regresar </a></center></div>";
+				//echo'<META HTTP-EQUIV="Refresh" CONTENT="1; URL=../pacientes/ficha-paciente.php?id_paciente='.$paciente.'">';
+				echo "<a href='vender.php'>Regresar </a></center></div>";
+				echo'<META HTTP-EQUIV="Refresh" CONTENT="1; URL=vender.php">';
 			}else{
 				echo '<br><br><br><center><img src="../images/endoperio2.png" width="100px" alt=""> <br> ';
 				echo "Compra &eacute;xitosa<br><br><br>";
@@ -84,7 +90,7 @@
 		echo "No se pudo realizar la compra, la cantidad en existencia es de ", ($cantidad_actual), " unidades";	
 		echo '<div style="  padding:9px; border:1px solid #E6E6E6; height:18px; width:120px; margin-top:12px; text-align:center; margin-right:10px ">';
 		echo "<a href='vender.php' style='color=#fff'>Regresar </a></center></div>";
-		echo'<META HTTP-EQUIV="Refresh" CONTENT="4; URL=vender.php">';
+		echo'<META HTTP-EQUIV="Refresh" CONTENT="1; URL=vender.php">';
 	}
 	?>
 </body>

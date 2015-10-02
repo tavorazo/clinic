@@ -57,38 +57,41 @@ $usuario = $_SESSION['u'];
      <h1>Agregar producto a almacen</h1><hr><br><br>
      <form action="inventario_insertar_procesar.php" method="POST" >
       <label >Nombre de Producto</label>
-      <input class="campoT" type="text" name="nombre"><br>
+      <input class="campoT" type="text" name="nombre" required><br>
       <label >Número de Serial</label>
-      <input class="campoT" type="text" name="serial"><br>
-      <label>Descripción</label><textarea name="descripcion"></textarea><br>
+      <input class="campoT" type="text" name="serial" required><br>
+      <label>Descripción</label><textarea name="descripcion" required></textarea><br>
       <label style="float:left; margin-right:99px; ">Cantidad a agregar</label>
-      <input class="campoT" type="number" style="width:150px" name="cantidad"><br>
+      <input class="campoT" type="number" style="width:150px" name="cantidad" required><br>
       <label style="float:left; margin-right:102px;width:150px">Es Reabastecible</label>
-      <select class="campoT" style="width:90px" name="abastecer">
+      <select class="campoT" style="width:90px" name="abastecer" required>
         <option value="1">Si</option>
         <option value="0">No</option>
       </select><br>
       <label style="float:left; margin-right:108px; ">Precio de compra</label>
-      <input class="campoT" type="number" style="width:150px" name="pcompra"><br>
+      <input class="campoT" type="number" style="width:150px" name="pcompra" required><br>
 
       <label style="float:left; margin-right:141px">Es para venta</label>
-      <select class="campoT" id="options"  onchange="optionCheck()" style="width:90px" name="venta"   >
+      <select class="campoT" id="options"  onchange="optionCheck()" style="width:90px" name="venta"   required>
         <option value="0"  >No</option>
         <option value="1"  >Si</option>
       </select><br>
+     
+      <div id="precio" style="visibility:hidden">
+        <label style="float:left; margin-right:126px">Precio de venta</label>
+        <input class="campoT" type="number" style="width:150px; " name="pventa" ><br>
+      </div>
+
       <label style="float:left; margin-right:141px">Tipo: </label>
-      <select class="campoT" id="options"  onchange="optionCheck()" style="width:90px" name="tipo_definicion"   >
+      <select class="campoT" id="options"  onchange="optionCheck()" style="width:90px" name="tipo_definicion" required  >
         <option value="Material">Material</option>
         <option value="Equipo">Equipo</option>
         <option value="Instrumental">Instrumental</option>
       </select>
-      <div id="precio" style="visibility:hidden">
-        <label style="float:left; margin-right:126px">Precio de venta</label>
-        <input class="campoT" type="number" style="width:150px; " name="pventa"><br>
-      </div>
+
 
       <label style="float:left; margin-right:15px">Cantidad Mínima que debe existir</label>
-      <input class="campoT" type="number" style="width:50px" name="minima"><br>
+      <input class="campoT" type="number" style="width:50px" name="minima" required><br>
       <input type="submit" value="Enviar" style="float:left;">
           <!--div id="botn3" style="margin-left:150px; width:70px">
               <a  href="../almacen.php">Cancelar</a>

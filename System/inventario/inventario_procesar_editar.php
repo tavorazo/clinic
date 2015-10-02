@@ -33,5 +33,5 @@ if($c>0)
 	if(!$conn->query($instruccion3))
 		die('Error de consulta: '.mysqli_error());
 	mysqli_close($conn);
-	header ("Location: ../almacen.php");
+	header ("Location: ../panel.php");
 ?>

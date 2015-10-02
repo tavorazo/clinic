@@ -40,10 +40,12 @@ if($_SESSION['rol']!='admin'){
       var option = document.getElementById("options").value;
       if(option == "1"){
         document.getElementById("si_cliente").style.visibility = "visible";
+        document.getElementById("b_cliente").style.visibility = "visible";
         document.getElementById("no_cliente").style.visibility = "hidden";
       }
       if(option == "0"){
         document.getElementById("no_cliente").style.visibility = "visible";
+        document.getElementById("b_cliente").style.visibility = "hidden";
         document.getElementById("si_cliente").style.visibility = "hidden";
       }
     }
@@ -107,9 +109,10 @@ if($_SESSION['rol']!='admin'){
       //include("../php/base3.php");
       //$result2 = $conn->query("SELECT * from inventario where venta='1'");
       $result2  = $conn->query("SELECT * from inventario where venta='1'");
-      echo "<center><select name='producto' class='campoT' style='width:150px; margin:auto auto'>";
+      echo "<center><select name='producto' class='campoT' style='width:150px; margin:auto auto' required>";
       setlocale(LC_MONETARY, 'en_US');
       //while ($row2 = mysql_fetch_array($result2, MYSQL_NUM)){
+      echo "<option value=''></option>";
       while ($row2 = $result2->fetch_row()){
         echo "<option value='",$row2[0],"'>",$row2[1]," ",$row2[3],". Precio : " ,money_format('%(#10n',$row2[10]),"</option>";
       }
@@ -117,31 +120,31 @@ if($_SESSION['rol']!='admin'){
       ?>
     </td><td>
     <center>
-      <input type="number" name="cantidad" min="0" class="campoT"  style="width:90px; margin:auto auto">
+      <input type="number" name="cantidad" min="0" class="campoT"  style="width:90px; margin:auto auto" required>
     </center>
   </td><td>
   <br>
-  <select name="tipo" class="campoT" style="width:190px; margin:auto auto; " id="options"  onchange="optionCheck()">
+  <select name="tipo" class="campoT" required style="width:190px; margin:auto auto; " id="options"  onchange="optionCheck()">
     <option value=""></option>
     <option value="1">Si es paciente</option>
     <option value="0">No es paciente</option>
   </select>
-            <!--
-              //si NO es cliente, id= no:cliente, name= no_cliente
-              //si SI es cliente id_ si_cliente, name= id_paciente value= $id_paciente 
-            -->
+            <!--//si NO es cliente, id= no:cliente, name= no_cliente
+                //si SI es cliente id_ si_cliente, name= id_paciente value= $id_paciente -->
+            
             <br>
             <input class="campoT" type="text" name="no_cliente" id="no_cliente" style="visibility:hidden; margin:auto auto;" placeholder='Escribe un nombre'>
             <?php
-            //$result2 = $conn->query("SELECT id_paciente, nombres, apellido_paterno, apellido_materno from paciente");
-            $result2  = $conn->query("SELECT id_paciente, nombres, apellido_paterno, apellido_materno from paciente");
-            echo "<center><select name='id_paciente' class='campoT' style='visibility:hidden; margin:auto auto' id='si_cliente'>";
-            echo "<option></option>";
-            //while ($row2 = mysql_fetch_array($result2, MYSQL_NUM)){
-            while ($row2 = $result2->fetch_row()){
-              echo "<option value='",$row2[0],"'>" ,$row2[0],"-",$row2[1]," ",$row2[2],"</option>";
-            }
-            echo "</select></center>";
+              echo '<input class="campoT" type="number" name="id_paciente2"  id="b_cliente" style="visibility:hidden; margin:auto auto;" placeholder="Escribe el id"><br>';
+              //$result2 = $conn->query("SELECT id_paciente, nombres, apellido_paterno, apellido_materno from paciente");
+              $result2  = $conn->query("SELECT id_paciente, nombres, apellido_paterno, apellido_materno from paciente");
+              echo "<center><select name='id_paciente' class='campoT' style='visibility:hidden; margin:auto auto' id='si_cliente'>";
+              echo "<option></option>";
+              //while ($row2 = mysql_fetch_array($result2, MYSQL_NUM)){
+              while ($row2 = $result2->fetch_row()){
+                echo "<option value='",$row2[0],"'>" ,$row2[0],"-",$row2[1]," ",$row2[2],"</option>";
+              }
+              echo "</select></center>";
             ?>
             <br>
             
@@ -151,7 +154,7 @@ if($_SESSION['rol']!='admin'){
               <option value="3">Tarjeta</option>
               <option value="4">Transferencia</option>
             </select><br><br><br><br>
-            <textarea name="descripcion" style="width:90%; background:#fafafa; height:100px; margin:auto" placeholder="Descripci&oacute;n de pago"></textarea><br><br>
+            <textarea name="descripcion" required style="width:90%; background:#fafafa; height:100px; margin:auto" placeholder="Descripci&oacute;n de pago"></textarea><br><br>
           </td><td>
           <input type="submit" value="Generar">
         </td>

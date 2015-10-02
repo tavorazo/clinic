@@ -71,7 +71,7 @@ $renglon = $result->fetch_assoc();
         $cant_ant = $renglon['cantidad'];     ?></td>
         <td><center />
           <?php echo '<input type="hidden" name="cantidad" value="',$cant_ant,'">'; ?>
-          <input class="campoT" type="number" style="width:50px; margin-left:10px" name="nueva_cantidad"></td>
+          <input class="campoT" type="number" style="width:50px; margin-left:10px" name="nueva_cantidad" required></td>
         </tr>
       </tbody>
     </table>

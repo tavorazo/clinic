@@ -130,7 +130,7 @@ print " </td>";
 print "</tr>";
 print "<tr>";
 foreach($ARRDIASSEMANA AS $key){
-print "<td bgcolor=#ccccff><b>$key</b></td>";
+print "<td bgcolor=#D8D8D8><b>$key</b></td>";
 }
 print "</tr>";
 

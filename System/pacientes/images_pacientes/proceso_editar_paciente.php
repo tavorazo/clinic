@@ -103,7 +103,7 @@
 			mysqli_close($conn);
 		}
 //header('location: ../../buscar-paciente.php');
-		echo '<META HTTP-EQUIV="Refresh" CONTENT="3; URL=../ficha-paciente.php?id=',$paciente,'">';
+		echo '<META HTTP-EQUIV="Refresh" CONTENT="1; URL=../ficha-paciente.php?id=',$paciente,'">';
 		?>
 	</body>
 	</html>

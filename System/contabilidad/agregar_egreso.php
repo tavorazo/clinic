@@ -74,7 +74,8 @@ if($_SESSION['rol']=='admin')
 <!--frame de vender (contabilidad)-->
 <form action="generar_egreso.php" method="POST" style="padding:20px; background:#fff; width:900px; margin-left:40px">
   <label>Categoría</label><br>
-  <select name="tipo" class="campoT" style="height:18px">
+  <select name="tipo" class="campoT" style="height:18px" required>
+    <option value=""> / categorias /</option>
     <option value="Proveedores">Proveedores</option>
     <option value="Gastos Administrativos">Gastos Administrativos</option>
     <option value="Nomina">Nomina</option>
@@ -89,11 +90,11 @@ if($_SESSION['rol']=='admin')
     <option value="Rentas">Rentas</option>
   </select><br><br>
   <label>Concepto:</label><br>
-  <textarea name="concepto" style="height:50px" placeholder="Escribe Aqu&iacute;"></textarea><br><br>
+  <textarea name="concepto" style="height:50px" placeholder="Escribe Aqu&iacute;" required></textarea><br><br>
   <label>Valor pagado: $</label><br>
-  <input type="float" name="cantidad" min="1" class="campoT" style="height:15px" placeholder="Ej. 100.00"><br><br>
+  <input type="float" name="cantidad" min="1" class="campoT" style="height:15px" placeholder="Ej. 100.00" required><br><br>
   <label for="date">Fecha</label>
-  <input type="date" name="fecha_egreso"><br><br>
+  <input class="CampoT" type="date" name="fecha_egreso" required><br><br>
   <input type="submit" value="Generar Egreso" style="height:35px">
 </form>
 <!--  ..............   -->

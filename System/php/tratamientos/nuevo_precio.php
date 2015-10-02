@@ -53,11 +53,11 @@
 
 			<form action="procesar_nuevo.php" method="POST" >
 
-			<label style="float:left; margin-right:20px">Nombre de tratamiento</label> <input type="text" name="nombre" class="campoT"><br><br>
-			<label style="float:left; margin-left:110px; margin-right:20px">Precio 1: </label><input type="number" name="p1" min="0" class="campoT"><br><br>
-			<label style="float:left; margin-left:110px; margin-right:20px">Precio 2: </label><input type="number" name="p2" min="0" class="campoT"><br><br>
-			<label style="float:left; margin-left:110px; margin-right:20px">Precio 3: </label><input type="number" name="p3" min="0" class="campoT"><br><br>
-      <label style="float:left; margin-left:110px; margin-right:20px">Precio 4: </label><input type="number" name="p4" min="0" class="campoT"><br><br>
+			<label style="float:left; margin-right:20px">Nombre de tratamiento</label> <input type="text" name="nombre" class="campoT" required><br><br>
+			<label style="float:left; margin-left:110px; margin-right:20px">Precio 1: </label><input type="number" name="p1" min="0" class="campoT" required><br><br>
+			<label style="float:left; margin-left:110px; margin-right:20px">Precio 2: </label><input type="number" name="p2" min="0" class="campoT" required><br><br>
+			<label style="float:left; margin-left:110px; margin-right:20px">Precio 3: </label><input type="number" name="p3" min="0" class="campoT" required><br><br>
+      <label style="float:left; margin-left:110px; margin-right:20px">Precio 4: </label><input type="number" name="p4" min="0" class="campoT" required><br><br>
       <label style="float:left; margin-left:110px; margin-right:20px">Precio 5: </label><input type="number" name="p5" min="0" class="campoT"><br><br>
 			<input type="submit" value="Guardar"><input type="reset" value="Resetear">
 			 

@@ -84,7 +84,7 @@ if($_SESSION['rol']=='admin')
     <form action="almacen.php" method="POST" >
      
       <br><label style="float:left; ">Buscar producto</label>
-      <input type="text" class="campoT" name="buscar" style="float:left; margin-left:10px; ">
+      <input type="text" class="campoT" name="buscar" style="float:left; margin-left:10px; " required>
       <input type="Submit" value="buscar" style="margin-top:-10px; margin-left:10px"><br><br>
     </form>
     <div style="  width:90%; margin-left:auto; margin-right:auto"><br><br>
@@ -144,7 +144,7 @@ if($_SESSION['rol']=='admin')
       <form action="inventario/inventario_procesar_editar.php" method="POST">
       <input type="hidden" name="id" value="',$row2[0],'">
       <input type="hidden" name="cantidad" value="',$row2[4],'">
-      <input class="campoT" type="number" style="width:50px; height:35px; margin-top:10px" name="nueva_cantidad"> 
+      <input class="campoT" type="number" style="width:50px; height:35px; margin-top:10px" name="nueva_cantidad" required> 
       </td><td>
       <input type="submit" value="Ajustar" style="width:80px;">
       </td>
