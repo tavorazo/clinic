@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
 <head><meta http-equiv="Content-Type" content="text/html; charset=gb18030">
-	
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>Listo</title>
 	<link rel="stylesheet" type="text/css" href="../css/texto.css"/>
@@ -22,7 +21,6 @@
 		if(!$conn->query($insertar))
 			die('Error de consulta: '.mysqli_error($conn));
 		mysqli_close($conn);
-		
 		$a = '../contabilidad/nomina.php';
 		echo "<center><br><br><br<a href='",$a,"' > Proceso realizado con &eacute;xito </a>";
 		?>
