@@ -89,6 +89,9 @@ while ($row2 = $result2->fetch_row()) {
   echo "<label style='display: block; width:150px; float:left'>Fecha de nacimiento: </label>", $row2[4],"<br>
   <label style='display: block; width:150px; float:left'>Sexo: </label>", $row2[23],"<br>
   <label style='display: block; width:150px; float:left'>Referencia: </label>", $row2[16],"<br>
+  <label style='display: block; width:150px; float:left'>
+                        <a href='https://twitter.com/search?f=users&vertical=default&q=",$row2[31],"' target='_blank'> Twitter</a>/
+                        <a href='https://www.facebook.com/search/results/?init=quick&q=",$row2[31],"' target='_blank'> Facebook</a>: </label>", $row2[31],"<br>
   </div></fieldset><br>
   <fieldset><legend>Direcci&oacute;n</legend><br><h2>
   <label style='display: block; width:200px; float:left'>Estado:  </label>", $row2[6],"<br>
@@ -377,60 +380,7 @@ echo "<a href='historial_completo.php?id_paciente=",$row2[0],"&tipo=5' style='co
 echo "</fieldset><br>";
 }
 ?>
-<fieldset><legend>Camara</legend>
- <script>
- var video = document.querySelector("#videoElement");
- navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia || navigator.oGetUserMedia;
 
- if (navigator.getUserMedia) {       
-  navigator.getUserMedia({video: true}, handleVideo, videoError);
-}
-
-function handleVideo(stream) {
-  video.src = window.URL.createObjectURL(stream);
-}
-
-function videoError(e) {
-}
-var v,canvas,context,w,h;
-        var sel = document.getElementById('fileselect'); // get reference to file SELECT input element
-        document.addEventListener('DOMContentLoaded', function(){
-          v = document.getElementById('videoElement');
-          canvas = document.getElementById('canvas');
-          context = canvas.getContext('2d');
-          w = canvas.width;
-          h = canvas.height;
-        },false);
-        function draw(v,c,w,h) {
-            if(v.paused || v.ended) return false; // if no video, exit here
-            context.drawImage(v,0,0,w,h); // draw video feed to canvas      
-           var uri = canvas.toDataURL("image/png"); // convert canvas to data URI
-         }
-         document.getElementById('save').addEventListener('click',function(e){
-
-            draw(v,context,w,h); // when save button is clicked, draw video feed to canvas
-            
-          });
-         var fr;
-         sel.addEventListener('change',function(e){
-            var f = sel.files[0]; // get selected file (camera capture)
-            
-            fr = new FileReader();
-            fr.onload = receivedData; // add onload event
-            fr.readAsDataURL(f); // get captured image as data URI
-          })
-         </script>
-         <div id="container" style="float:left; margin-left:15px; margin-right:15px;">
-          <video autoplay id="videoElement" >
-
-          </video>
-        </div>
-        <canvas id="canvas" width="500" height="375"  ></canvas>
-        <input type="button" value="Capturar" id="save" class="buttom" />
-        <br><br><a href="http://192.168.1.70/subir/subir.php?id_paciente=<?php echo $buscar; ?>">IR A SUBIR FOTO</a><br><br>
-        <a href="http://192.168.1.70/subir/listar.php?id_paciente=<?php echo $buscar; ?>">VER FOTOS</a><br><br>
-        <br><br>     
-      </fieldset>
     </div>
     <div class="verticalspacer"></div>
     <a class="nonblock nontext clip_frame colelem" id="u405" href="http://tavorazo.github.io"><!-- image --><img class="block" id="u405_img" src="../images/completo7.png" alt="" width="62" height="20"/></a>

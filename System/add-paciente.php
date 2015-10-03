@@ -164,6 +164,8 @@ $usuario = $_SESSION['u'];
           <input type="tel" name="celular" class="campoT" required></br>
           <label style="float:left; width:150px; margin-right:15%">Correo: </label>
           <input type="mail" name="correo" class="campoT" required></br>
+          <label style="float:left; width:150px; margin-right:15%">Facebook o Twitter: </label>
+          <input type="mail" name="red_social" class="campoT" required></br>
           <!--emergencia-->
           <label style="float:left; width:150px; margin-right:15%">Llamar en emergencia: </label>
           <input type="tel" name="name_emergencia" class="campoT" required></br>

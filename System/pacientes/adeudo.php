@@ -19,6 +19,10 @@ $usuario = $_SESSION['u'];
   <link rel="stylesheet" type="text/css" href="../css/site_global.css?417434784"/>
   <link rel="stylesheet" type="text/css" href="../css/master_panel-master.css?4050405232"/>
   <link rel="stylesheet" type="text/css" href="css/ficha-paciente.css?3891735787" id="pagesheet"/>
+  <style>
+
+      input[type=radio]{float:left; margin-left:30px;}
+  </style>
   <!-- Other scripts -->
   <script type="text/javascript">
   document.documentElement.className += ' js';
@@ -82,7 +86,7 @@ $usuario = $_SESSION['u'];
       return $id;
     }
     $result =$conn->query("select * from tratamiento_dental");
-    echo "<center><select name='concepto1' class='campoT'>";
+    echo "<br><br><br><center><select name='concepto1' class='campoT'>";
     while ($row2 = $result->fetch_array()){
       echo "<option value='",$row2[0],"'>",$row2[1],"</option>";
     }
@@ -92,20 +96,33 @@ $usuario = $_SESSION['u'];
     <input type="submit" value="Revisar precio">
   </form></td><td>
   <form action="generar_adeudo.php" method="post" >
-    <center>
       <?php
       if($concepto!=''){
         $select = 'select * from tratamiento_dental where id_tratamiento="'.$concepto.'";';
         $resul = $conn->query($select) or die ("problema con la solicitud");
         $renglon = $resul->fetch_assoc();
-        echo '<select id="options"  onchange="optionCheck()" name="precio" class="campoT"  >';
-        echo '  <option value="p1">Precio 1 - '.$renglon['precio_1'].'</option>';
-        echo '    <option value="p2">Precio 2 - '.$renglon['precio_2'].'</option>';
-        echo '    <option value="p3">Precio 3 - '.$renglon['precio_3'].'</option>';
-        echo '    <option value="p4">Precio 4 - '.$renglon['precio_4'].'</option>';
-        echo '    <option value="p5">Precio 5 - '.$renglon['precio_5'].'</option>';
-        //echo '    <option value="otro">Otro</option>';
-        echo '</select>';
+       
+        echo ' <input type="radio" name="precio" value="p1" class="check">Precio 1 - $ '.$renglon[precio_1].'.00<br><br>';
+        echo ' <input type="radio" name="precio" value="p2" class="check">Precio 2 - $ '.$renglon[precio_2].'.00<br><br>';
+        echo ' <input type="radio" name="precio" value="p3" class="check">Precio 3 - $ '.$renglon[precio_3].'.00<br><br>';
+        echo ' <input type="radio" name="precio" value="p4" class="check">Precio 4 - $ '.$renglon[precio_4].'.00<br><br>';
+        echo ' <input type="radio" name="precio" value="p5" class="check"><input type="number" name="precio2" placeholder="ingrese precio" style="background:#f2f2f2; padding:5px"><br><br>';
+        //echo "  <input type='radio' name='precio'  class='check' value='p1' >Precio 1 - ".$renglon['precio_1']."<br>";
+        //echo "  <input type='radio' name='precio'  class='check' value='p2' style='float:left; margin-left:30px'>Precio 2 - ".$renglon['precio_2']."<br>";
+        //echo "  <input type='radio' name='precio'  class='check' value='p3' style='float:left; margin-left:30px'>Precio 3 - ".$renglon['precio_3']."<br>";
+        //echo "  <input type='radio' name='precio'  class='check' value='p4' style='float:left; margin-left:30px'>Precio 4 - ".$renglon['precio_4']."<br>";
+        //echo "  <input type='radio' name='precio'  class='check' value='p5' style='float:left; margin-left:30px'><br>";
+
+        //echo '<select id="options"  onchange="optionCheck()" name="precio" class="campoT"  >';
+        //echo '  <option value="p1">Precio 1 - '.$renglon['precio_1'].'</option>';
+        //echo '  <option value="p2">Precio 2 - '.$renglon['precio_2'].'</option>';
+        //echo '  <option value="p3">Precio 3 - '.$renglon['precio_3'].'</option>';
+        //echo '  <option value="p4">Precio 4 - '.$renglon['precio_4'].'</option>';
+        //echo '  <option value="p5">Precio 5 - '.$renglon['precio_5'].'</option>';
+        //echo '  <option value="otro">Otro</option>';
+        //echo '</select>';
+        
+        
         echo '<input type="hidden" name="concepto" value="'.$concepto.' ";';
         echo '<div id="o" style="visibility:hidden" >';
         //echo '  <input type="number" name="precio2" value="otro" class="campoT" >';

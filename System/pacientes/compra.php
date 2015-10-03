@@ -8,7 +8,7 @@ $usuario = $_SESSION['u'];
 <!DOCTYPE html>
 <html class="html">
 <head>
-  <!--meta http-equiv="Content-type" content="text/html;charset=UTF-8"/-->
+  <meta http-equiv="Content-type" content="text/html;charset=UTF-8"/>
   <meta name="generator" content="7.0.314.244"/>
   <title>Compras paciente</title>
   <link rel="shortcut icon" type="x-icon" href="../images/icon.png" /><!--para logo en barra-->
@@ -76,6 +76,7 @@ $usuario = $_SESSION['u'];
       ?>
     </td><td>
     <center>
+      <br><br>
       <input type="number" name="cantidad" min="0" class="campoT" />
     </center><br><br>
     <select name="id_tipo">
@@ -84,8 +85,8 @@ $usuario = $_SESSION['u'];
       <option value="3">Tarjeta</option>
       <option value="4">Transferencia</option>
     </select><br><br>
-    <label>Descripci&oacute;n de pago</label><br><br>
-    <textarea name="descripcion"></textarea>
+    <!--label>Descripci&oacute;n de pago</label><br--><br>
+    <textarea name="descripcion"  placeholder="Escribe la descripción de la compra"></textarea>
   </td><td>
   <input type="hidden" value="<?php echo $id_paciente; ?>" name="id_paciente">
   <input type="submit" value="Generar">

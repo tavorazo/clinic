@@ -24,6 +24,8 @@
 	$concepto = $_POST['concepto'];
 	$precio = $_POST['precio'];
 	$precio2 = $_POST['precio2'];
+
+	echo $precio2. "- y -". $precio;
 			//echo $precio, " ", $precio2;
 
 
@@ -42,8 +44,6 @@
 			$valor = $renglon['precio_3'];
 		if($precio == 'p4')
 			$valor = $renglon['precio_4'];
-		if($precio == 'p5')
-			$valor = $renglon['precio_5'];
 	}else
 	$valor = $precio2;
 	$insertar = "insert into pago_adeudo (adeudo, descripcion, fecha, id_usuario, id_paciente, fecha_adeudo) values ('$valor', '$concepto2', now(),'$id_usuario', '$id_paciente',now())";
@@ -55,9 +55,9 @@
 		echo '<br><br><br><center><img src="../images/endoperio2.png" width="100px" alt=""> <br> ';
 		echo "Proceso &eacute;xitoso<br><br><br>";
 		echo '<div style="  padding:9px; border:1px solid #E6E6E6; height:18px; width:120px; margin-top:12px; text-align:center; margin-right:10px ">';
-		echo "<a href='adeudo.php?id=",$id_paciente,"'>Regresar </a></center></div>";
+		echo "<a href='adeudo.php?id_paciente=",$id_paciente,"'>Regresar </a></center></div>";
 	}
-	echo'<META HTTP-EQUIV="Refresh" CONTENT="0; URL=adeudo.php?id_paciente=',$id_paciente,'">';
+	echo'<META HTTP-EQUIV="Refresh" CONTENT="2; URL=adeudo.php?id_paciente=',$id_paciente,'">';
 	mysqli_close ( $conn );
 	?>
 </body>

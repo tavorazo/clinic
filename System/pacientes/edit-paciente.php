@@ -124,6 +124,8 @@
       <input type="tel" name="celular" class="campoT" required value="<?php echo $renglon['celular']?>"></br>
     <label style="float:left; width:150px; margin-right:15%">Correo: </label>
       <input type="mail" name="correo" class="campoT" required value="<?php echo $renglon['correo']?>"></br>
+    <label style="float:left; width:150px; margin-right:15%">Redes sociales: </label>
+      <input type="mail" name="redes_sociales" class="campoT" required value="<?php echo $renglon['redes_sociales']?>"></br>
 <!--emergencia-->
     <label style="float:left; width:150px; margin-right:15%">Llamar en emergencia: </label>
       <input type="tel" name="name_emergencia" class="campoT" required value="<?php echo $renglon['name_emergencia']?>"></br>

@@ -53,6 +53,7 @@
 		$telefono = $_POST['telefono'];
 		$celular = $_POST['celular'];
 		$correo = $_POST['correo'];
+		$redes_sociales = $_POST['redes_sociales'];
 		$nom_emergencia = $_POST['name_emergencia'];
 		$tel_emergencia = $_POST['tel_emergencia'];
 		$referencia = $_POST['referencia'];
@@ -84,7 +85,9 @@
 		CP = '$CP',
 		sexo = '$sexo',
 		n_registro = '$expediente',
-		Num_seguro = '$Num_seguro' where id_paciente = '$id'";
+		Num_seguro = '$Num_seguro',
+		redes_sociales = '$redes_sociales'
+		 where id_paciente = '$id'";
 		if(!$conn->query($insertar))
 			die('Error de consulta: '.mysqli_error($conn));
 		$id_p = $id;

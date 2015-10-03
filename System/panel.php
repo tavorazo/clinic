@@ -1,7 +1,7 @@
 <?php
 @session_start();
 if($_SESSION['u']=='')
-  header('location: ../log.php');
+  header('location: ../index.php');
 date_default_timezone_set("Mexico/General");
 //echo'<META HTTP-EQUIV="Refresh" CONTENT="0; URL=index.php">';
 $usuario = $_SESSION['u'];
@@ -73,7 +73,7 @@ if($_SESSION['rol']=='admin' || $_SESSION['rol']=='secretaria')
 <?php
 /*if($_SESSION['rol']=='admin' || $_SESSION['rol']=='secretaria' || $_SESSION['rol']=='recepcionista' || $_SESSION['rol']=='almacen'){*/
 if($_SESSION['rol']=='admin' || $_SESSION['rol']=='almacen'){
-    echo '<div style="background: #FFFFFF; width:96%; min-height: 90px; margin-bottom:3%; " id="txt2">
+    echo '<div style="background: #FFFFFF; width:96%; min-height: 90px; margin-bottom:70px; " id="txt2">
     <img src="images/alert.png" width="20px" alt="" style="float:left; margin-right:10px">
     <p>Inventario:</p> ';
     
@@ -98,6 +98,7 @@ else
 echo ' </div>';
 }
 ?>
+
 <div>
   <div style=" background: #FFFFFF; width:50%; min-height: 480px; float:left;" id="txt">
     <img src="images/avisos.png" width="20px"  style="float:left; margin-right:10px; "/>
@@ -127,9 +128,9 @@ echo ' </div>';
     }
     echo "<h13>Administrativo<hr></h13>";
     //$result1 = mysqli_query($conn,"SELECT * FROM avisos where id_persona='ad' order by fecha desc limit 10");
+    //while ($row1 = mysqli_fetch_array($result1, MYSQL_NUM)) {
     $sql = "SELECT * FROM avisos where id_persona='ad' order by fecha desc limit 10";
     $result1 = $conn->query($sql);
-    //while ($row1 = mysqli_fetch_array($result1, MYSQL_NUM)) {
     while ($row1 = $result1->fetch_assoc()) {
       echo "<h3>", $row1["titulo"], "</h3><br><br><h13>";
       echo "", $row1["contenido"];
@@ -206,7 +207,7 @@ echo ' </div>';
  <br><br>
 </div>
 <!--div noticias | avisos-->
-<div style="margin-left:53%; margin-top:360px;   width:40%; height: 170px; float:top">
+<div style="margin-left:53%; margin-top:400px;   width:40%; height: 170px; float:top">
   <?php
   if($_SESSION['rol']=='admin' || $_SESSION['rol']=='dentista' || $_SESSION['rol']=='recepcionista' || $_SESSION['rol']=='secretaria'){
    echo "<div id='botn' style='margin-left: 100px; width:220px; background:#FA5858; margin-top:30px; color:white; position:relative'>";
@@ -226,19 +227,89 @@ if($_SESSION['rol']=='admin' || $_SESSION['rol']=='publicista'){
 ?>
 </div>
 
+<?php 
+if($_SESSION['rol']=='admin' || $_SESSION['rol']=='secretaria' || $_SESSION['rol']=='recepcionista'){ 
+  $sql = "SELECT id_paciente, nombres, apellido_paterno, apellido_materno FROM paciente WHERE etiqueta_laboratorio = '1' ";
+  $result1 = $conn->query($sql);
+?>
+    <div style=" background: #FFFFFF; width:96%; min-height:80px; float:left; margin-top:80px" id="txt">
+        <img src="https://cdn0.iconfinder.com/data/icons/entypo/100/user3-20.png" width="20px"  style="float:left; margin-right:10px; "/>
+        <p>Lista de pacientes con trabajos de laboratorio</p><br> <br>
+        <form action="php/trabajos_laboratorio.php" method="GET" style="float:left; max-width:50%">
+        Lista de pacientes con trabajo actualmente en laboratorio
+           <select name='id_paciente' class='campoT' style='float:left; margin:15px 5px 10px 0'>
+           <option></option>
+        <?php 
+            while ($row2 = $result1->fetch_array()){
+              echo "<option value='",$row2[0],"'>",$row2[1]," ",$row2[2]," ",$row2[3],"</option>";
+            }
+        ?>
+          </select>
+          <input type="submit" name="action" value="Quitar de lista" style="font-size:14px; margin-top:12px; height:28px">
+        </form>
+        
+        <form action="php/trabajos_laboratorio.php" method="GET" style="float:left; max-width:50%">
+          Agregar ID de paciente para trabajo en laboratorio
+          <input type="number" value="id_paciente" name="id_paciente" min="0" placeholder="ID paciente" class="campoT" style="float:left; margin:15px 5px 10px 0; height:20px ">
+          <input type="submit" name="action" value="Agregar a lista" style="font-size:14px; margin-top:12px; height:28px">
+        </form>
+    </div>
+<?php } ?>
 
+<!--Radiografias acceso directo-->
+<?php 
+if($_SESSION['rol']=='admin' || $_SESSION['rol']=='secretaria' || $_SESSION['rol']=='recepcionista'){ 
+?>
+    <div style=" background: #FFFFFF; width:96%; min-height:80px; float:left; margin:20px 0" id="txt">
+        <img src="https://cdn4.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/clipboard_past.png" width="20px"  style="float:left; margin-right:10px; "/>
+        <p>Agregar radiografía externa a paciente</p><br>
+        <form action="agregar_radiografia.php" method="GET" TARGET = "_blank">
+          <input type="number" value="id" name="id"  min="0" class="campoT" placeholder="ID paciente" style="float:left; margin:15px; height:20px ">
+          <input type="submit" style="font-size:14px; height:30px">
+        </form>
 
+    </div>
+<?php } ?>
 
+<!--Control de asistencias-->
+<?php 
+if($_SESSION['rol']=='admin' || $_SESSION['rol']=='secretaria' || $_SESSION['rol']=='recepcionista'){ 
+    $sql = "SELECT id_paciente FROM paciente WHERE inasistencia = 1";
+    $sql2 = "SELECT id_paciente FROM paciente WHERE inasistencia = 2";
+    $sql3 = "SELECT id_paciente FROM paciente WHERE inasistencia >= 3";
+    $falta_1 = mysqli_num_rows($conn->query($sql));
+    $falta_2 = mysqli_num_rows($conn->query($sql2));
+    $falta_3 = mysqli_num_rows($conn->query($sql3));
+    $sql4 = "SELECT id_paciente FROM pago_adeudo WHERE adeudo > pagado  ";
+    $resul = $conn->query($sql);
+    $row = $resul->fetch_row();
+      $tmp = $row[0]; 
+      $n_adeudos = 0;
+    while ($row = $resul->fetch_row()) 
+      if ($row[0] != $tmp) 
+        $n_adeudos = $n_adeudos + 1; 
+?>
+    <div style=" background: #FFFFFF; width:96%; min-height:80px; float:left; margin:0px 0 60px 0" id="txt">
+        <img src="https://cdn4.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/checkmark.png" width="20px"  style="float:left; margin-right:10px; "/>
+        <p>Control de asistencias de pacientes</p><br><br>
+        <h5 style="float:left; margin:0 10px; font-size:14px"><img src="https://cdn3.iconfinder.com/data/icons/social-messaging-ui-color-shapes-2/128/face-happy-yellow-20.png" style="margin:0 10px; "> <?php echo $falta_1; ?> pacientes faltaron 1 vez </h5>
+        <h5 style="float:left; margin:0 10px; font-size:14px"><img src="https://cdn3.iconfinder.com/data/icons/social-messaging-ui-color-shapes-2/128/face-sad-blue-20.png" style="margin:0 10px; "> <?php echo $falta_2; ?> faltaron 2 veces </h5>
+        <h5 style="float:left; margin:0 10px; font-size:14px"><img src="https://cdn3.iconfinder.com/data/icons/social-messaging-ui-color-shapes-2/128/face-sad-red-20.png" style="margin:0 10px; "> <?php echo $falta_3; ?> faltaron más de 3 veces </h5>
+        <h5 style="float:left; margin:0 10px; font-size:14px"><img src="https://cdn1.iconfinder.com/data/icons/social-messaging-ui-color-shapes-2/128/death2-circle-red-20.png" style="margin:0 10px; "> <?php echo $n_adeudos; ?> pacientes tienen adeudos </h5>
+        <br><br><br><br> <center><a href="php/control_asistencias_pacientes.php"><label>Click aqui para ver la lista con nombres</label></a></center>  
+    </div>
+<?php } ?>
 
-<!--div confirmar citas-->
+<?php 
+if($_SESSION['rol']=='admin' || $_SESSION['rol']=='secretaria' || $_SESSION['rol']=='recepcionista'){ 
 
-<?php
-if($_SESSION['rol']=='admin' || $_SESSION['rol']=='secretaria' || $_SESSION['rol']=='recepcionista'){
-  echo ' <br><br><br><div style="background: #FFFFFF; width:96%; min-height: 90px; margin-bottom:70px; float:left; postition:relative; margin-top:20px" id="txt2">';
+  echo ' <br><br><br>
+      <div style="background: #FFFFFF; width:96%; min-height: 90px; margin:30px 0 20px 0; float:left; postition:relative; margin-top:20px" id="txt2">';
   echo '<img src="images/citas.png" width="20px" alt="" style="float:left; margin-right:10px">';
   echo '<p> Citas a confirmar en la semana: (personal)</p><hr>';
 }
 ?>
+<!--div confirmar citas-->
 <form action="" method="get">
  <label>Busca por ID</label> <input type="number" placeholder="clic aquí para escribir ID" name="buscar_paciente" style="border:1px solid #C3C5C5; width:250px; padding:4px" min="0"><br><br>
 </form>
@@ -267,7 +338,7 @@ $semana = strftime("%V", strtotime(date("m.d.y")));
 if($buscar_paciente==0)
   $result2 = $conn->query("SELECT * from agenda where confirmacion='0' and n_semana ='$semana' order by ano, mes, dia, hora, minuto");
 else 
-  $result2 = $conn->query("SELECT * from agenda where confirmacion='0' and n_semana = '$semana' and id_paciente='$buscar_paciente' order by hora, fecha, minuto; ");
+  $result2 = $conn->query("SELECT * from agenda where confirmacion='0'  and id_paciente='$buscar_paciente' order by hora, fecha, minuto; ");
 
 if($_SESSION['rol']=='admin' || $_SESSION['rol']=='secretaria' || $_SESSION['rol']=='recepcionista'){
   //while ($row3 = mysqli_fetch_array($result2, MYSQL_NUM)){  
@@ -307,7 +378,7 @@ if($_SESSION['rol']=='admin' || $_SESSION['rol']=='secretaria' || $_SESSION['rol
     <a href='conf_citas/confirmar.php?id=",$queryCita1["id_cita"],"'>Confirmar cita</a>
    </div>
    <div id='botn5' style='background: #FE2E2E' position: absolute'>
-    <a href='conf_citas/cancelar.php?id=",$queryCita1["id_cita"],"'>Cancelar cita</a>
+    <a href='conf_citas/cancelar.php?id=",$queryCita1["id_cita"],"&paciente=",$paciente_ficha,"'>Cancelar cita</a>
    </div>
    <br><br><br><br><br><hr>";
  }
@@ -378,7 +449,7 @@ if($contador_doctores>0){
 echo "<br>No hay doctores disponibles, contactar al paciente o esperar a que se cancele 1 cita que coincida en la hora<br>";
 echo "<br>
 <div id='botn5' style='background: #FE2E2E; margin-top:-6px; height:20px'>
-<a href='conf_citas/web/cancelar.php?id=",$cita["id_cita"],"'>Cancelar cita</a>
+<a href='conf_citas/web/cancelar.php?id=",$cita["id_cita"],"&paciente=",$a,"'>Cancelar cita</a>
 </div><br><br><br>";
 echo "<hr>";
 echo "</form>

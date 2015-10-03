@@ -87,7 +87,7 @@
 	echo "<a href='../panel.php' > <font color='white'>Regresar </a></center></div>";
 	?>
 	<!--Cita confirmada <a href='ver_citas.php'>Regresar</a-->
-	<META HTTP-EQUIV="Refresh" CONTENT="2; URL=../panel.php">
+	<META HTTP-EQUIV="Refresh" CONTENT="0; URL=../panel.php">
 		
 	</body>
 	</html>
