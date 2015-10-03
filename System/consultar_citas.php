@@ -179,11 +179,12 @@ $usuario = $_SESSION['u'];
 					</div>
 
 					<table style='width:90%'>";
-					while ($row2 = $result->fetch_array($result, MYSQL_NUM)) {
+					while ($row2 = $result->fetch_row()) {
 
 						$select = 'select * from paciente where id_paciente="'.$row2[2].'";';
 						$resul = $conn->query($select) or die ("problema con la solicitud 4");
-						$renglon = mysql_fetch_assoc($resul);
+						$renglon = $resul->fetch_assoc();
+						//$renglon = mysql_fetch_assoc($resul);
 
 						echo "<tr><td>";
 						//echo "<div  style='width:25%; margin-left:20px; float:left'>";

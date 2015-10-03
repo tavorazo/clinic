@@ -24,16 +24,14 @@ $usuario = $_SESSION['u'];
   document.documentElement.className += ' js';
   </script>
   <style type="text/css">
-    label{ display: block; width:200px; float:left }
+    body { background-color: #F2F2F2; }
+    label{ display: block; width:200px; float:left; }
     #container { margin: 0px auto; width: 250px; border: 4px #00BFFF solid; }
-    #videoElement { width: 250px; background-color: #666; }
-    #canvas { width: 260px;
-    background-color: #F2F2F2; }
     .buttom{ background: #A4A4A4; opacity:  0.8; padding: 5px; margin-top: -350px; margin-left: 40px; color: white; width: 120px; height: 30px; }
   </style>
 </head>
 <body>
-  <div class="clearfix" id="page"><!-- column -->
+  <div class="clearfix" id="page" style="background-color: #F2F2F2;"><!-- column -->
    <div class="position_content" id="page_position_content">
     <div class="clearfix colelem" id="pu366"><!-- group -->
      <div class="browser_width grpelem" id="u366"><!-- group -->
@@ -56,7 +54,7 @@ $usuario = $_SESSION['u'];
    <a href="../buscar-paciente.php"><p style="color:white; margin-left: 15%;  size-text:`10px"> << REGRESAR</p><!-- state-based BG images --></a>
  </div>
 </div>
-<div class="clearfix colelem" id="u553-4"><!-- content -->
+<div class="clearfix colelem" id="u553-4" ><!-- content -->
   <!--p>nombre del paciente</p-->
 </div>
 <!--frame de ficha paciente-->
@@ -68,7 +66,7 @@ $buscar = $_GET['id'];
 <!--a href="menu.php">Regresar</a-->
 <?php
 $result2 = $conn->query("SELECT * from paciente where id_paciente='$buscar';");
-echo " <div class='colelem' style='max-width:800px; width:700px'>";
+echo " <div class='colelem' style=' width:950px; '>";
 while ($row2 = $result2->fetch_row()) {
   echo "<h1>Ficha de Paciente <font color='black'> [",$row2[1]," ", $row2[2]," ",$row2[3]," ]</font></h1>";
   if($_SESSION['rol']=='admin' || $_SESSION['rol']=='recepcionista')
@@ -138,8 +136,8 @@ while ($row2 = $result2->fetch_row()) {
   echo "<label >Historial de compras:  </label><a href='historial_compras.php?id_paciente=", $row2[0],"'>Revisar</a><br>";
   echo "<label >Diplomados e Instrumental:  </label><a href='../php/diplomados.php?id=", $row2[0],"'>Comprar</a><br>";
   echo "<br><br></fieldset><br>";
-  echo "<fieldset><legend></legend><br><h2>";
-  echo "<label >Observaciones:  </label><br><br><p style='padding:25px'>", htmlentities($row2[20]), "</p><br>";
+  echo "<fieldset><legend>Observaciones:</legend><br><h2>";
+  echo "<label >  </label><br><br><p style='padding:25px'>", htmlentities($row2[20]), "</p><br>";
   echo "<br><br></fieldset><br>";
 
   echo "<fieldset><legend>Asegurado</legend><br><h2>";
@@ -210,13 +208,13 @@ while ($row3 = $result3->fetch_row()) {
     </div>
     <div style='margin-left:735px; margin-top:0px; position:absolute; width:40px; margin-bottom:100px'  >
     <a href='../php/eliminar.php?cat=4&id=",$row3[0],"&id_p=",$row2[0],"'  >
-    <img src='../images/eliminar.png' style='width:50px; margin-left:30px; margin-top:7px' id='a1'>
+    <img src='../images/eliminar.png' style='width:50px; margin-left:0px; margin-top:7px' id='a1'>
     </a>
     </div><br><br><br><br><br>";
   }
 }
 if($_SESSION['rol']=='admin' || $_SESSION['rol']=='dentista'){
-  echo "<div id='botn' style='margin-left: 5%; max-heigth:25px; margin-top:10px; width:200px; background:#04B486; position:relative'>";
+  echo "<div id='botn' style='margin-left: 5%; max-heigth:25px; margin-top:10px; width:200px; background:#333; position:relative'>";
 
   echo "<a href='../agregar_enfermedad.php?id=",$row2[0],"'   >Agregar Enfermedad</a>";
   echo "</div>";
@@ -246,14 +244,23 @@ while ($row3 = $result3->fetch_row()) {
     echo "</div><br><br><br><br><br>";
   }
 }
-if($_SESSION['rol']=='admin' || $_SESSION['rol']=='dentista'){
-          //echo "<div id='botn' style='margin-left: 5%; max-heigth:25px; margin-top:10px; width:200px; background:#04B486; position:relative'>";
+          //echo "<div id='botn' style='margin-left: 5%; max-heigth:25px; margin-top:10px; width:200px; background:#333; position:relative'>";
 
                   //echo "<a href='../agregar_enfermedad.php?id=",$row2[0],"'   >Agregar Enfermedad</a>";
             //    echo "</div>";
-}
 echo "<br></fieldset><br>";
 /*TERMNA ALERGIAS*/ 
+
+
+//foto intra link
+if($_SESSION['rol']=='admin' || $_SESSION['rol']=='dentista'){
+echo "<fieldset><legend>Foto intra</legend><br>
+<div id='botn' style='float:left; width:90%; margin:30px'>
+  <a href='../php/camara_intra.php?id=",$row2[0],"'' target='_blank'> Tomar foto</a>
+</div>
+<br></fieldset><br>";
+}
+
 
 echo "<fieldset><legend>Fotografias clinicas</legend><h2><br><br>";
       //$directorio_clinicas = $directorio_para_imagenes."&seccion=1";
@@ -287,7 +294,7 @@ while ($row_clinica = $result3->fetch_row()) {
 }
 echo "</table><br>";
 if($_SESSION['rol']=='admin' || $_SESSION['rol']=='dentista'){
- echo" <div id='botn' style='float:left; margin-left: 5%; width:280px; background:#04B486 '>
+ echo" <div id='botn' style='float:left; margin-left: 5%; width:280px; background:#333 '>
  <a href='../agregar_foto_clinica.php?id=",$row2[0],"' >Agregar Fotograf&iacute;a Clinica</a>
  </div><br><br><br><br>";
 }
@@ -328,7 +335,7 @@ while ($row_externa = $result3->fetch_row()) {
 echo "</table>";
 echo "<br>";
 if($_SESSION['rol']=='admin' || $_SESSION['rol']=='dentista'){
-  echo "<div id='botn' style='float:left; margin-left: 5%; width:280px; background:#04B486 '>
+  echo "<div id='botn' style='float:left; margin-left: 5%; width:280px; background:#333 '>
   <a href='../agregar_foto_externa.php?id=",$row2[0],"'   >Agregar Fotograf&iacute;a Externa</a>
   </div><br><br><br><br>";
 }
@@ -372,7 +379,7 @@ while ($row_radio = $result3->fetch_row()) {
 
 echo "</table><br>";
 if($_SESSION['rol']=='admin' || $_SESSION['rol']=='dentista' || $_SESSION['rol']=='recepcionista'){
- echo " <div id='botn' style='float:left; margin-left: 5%; width:280px; background:#04B486 '>
+ echo " <div id='botn' style='float:left; margin-left: 5%; width:280px; background:#333 '>
  <a href='../agregar_radiografia.php?id=",$row2[0],"'   >Agregar Radriografia</a></div>";
  echo "<br><br><br><br>";
 }
@@ -383,7 +390,7 @@ echo "</fieldset><br>";
 
     </div>
     <div class="verticalspacer"></div>
-    <a class="nonblock nontext clip_frame colelem" id="u405" href="http://tavorazo.github.io"><!-- image --><img class="block" id="u405_img" src="../images/completo7.png" alt="" width="62" height="20"/></a>
+    <a class="nonblock nontext clip_frame colelem" id="u405" href="http://tavorazo.github.io"><!-- image --><img class="block" id="u405_img" src="https://cdn4.iconfinder.com/data/icons/iconsimple-logotypes/512/github-24.png" alt="" /></a>
   </div>
 </div>
 <div class="preload_images">

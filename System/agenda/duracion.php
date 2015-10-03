@@ -116,7 +116,7 @@ $paciente = $_GET['paciente'];
   <div id="botn2" style="margin-top:-50px; margin-left:146px; height:15px"> <a href="../panel.php">Cancelar</a></div> <br><br>
 </div>
 
-    <a class="nonblock nontext clip_frame colelem" id="u405" href="http://tavorazo.github.io"><!-- image --><img class="block" id="u405_img" src="../images/completo7.png" alt="Octavio Razo" /></a>
+    <a class="nonblock nontext clip_frame colelem" id="u405" href="http://tavorazo.github.io"><!-- image --><img class="block" id="u405_img" src="https://cdn4.iconfinder.com/data/icons/iconsimple-logotypes/512/github-24.png" alt="Octavio Razo" /></a>
    </div>
   </div>
   <div class="preload_images">

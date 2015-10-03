@@ -96,7 +96,7 @@ if($_SESSION['u']=='')
       <input type="submit" value="Editar" style="margin-left:10px">
       <input type="reset" value="Resetear">
     </form>
-    <a class="nonblock nontext clip_frame colelem" id="u405" href="http://tavorazo.github.io"><!-- image --><img class="block" id="u405_img" src="../images/completo7.png" alt="Octavio Razo" /></a>
+    <a class="nonblock nontext clip_frame colelem" id="u405" href="http://tavorazo.github.io"><!-- image --><img class="block" id="u405_img" src="https://cdn4.iconfinder.com/data/icons/iconsimple-logotypes/512/github-24.png" alt="Octavio Razo" /></a>
   </div>
 </div>
 <div class="preload_images">

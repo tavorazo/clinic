@@ -26,6 +26,11 @@ $usuario = $_SESSION['u'];
 	<script type="text/javascript">
 	document.documentElement.className += ' js';
 	</script>
+	<style>
+      tr:nth-child(even){background: #f2f2f2;}
+      table{border: none; text-align: left; }
+      td{ padding:5px;}
+  	</style>
 </head>
 <body>
 	<div class="clearfix" id="page"><!-- column -->

@@ -11,7 +11,7 @@ h1{
 
 h2{
 	font-size: 17px;
-	color: #1C81A8;	
+	color: #2d455f;	
 }
 
 label{
@@ -20,8 +20,10 @@ label{
 fieldset{
 	font-size: 16px;
 	color: green;
-	border: 1px solid #A4A4A4;
-	width: 140%;
+	border-left: 9px solid #585A5A;
+	width: 98%;
+	background: #fff;
+	padding: 6px 1% 5px 1%;
 }
 
 fieldset a{
@@ -30,8 +32,15 @@ fieldset a{
 }
 
 legend{
-	color: #151515;
-	font-size: 20px;
+	border-left: 32px solid #B40404	;
+	background: #fff;
+	width: 890px;
+	color: #333;
+	font-size: 21px;
+	font-family: Arial;
+	font-weight: 100px;
+	margin-left: -18px;
+	padding: 5px 2%;
 	text-align: 20%;
 }
 #fieldset1{

@@ -3,16 +3,15 @@
 	if($_SESSION['u']=='')
 		header('location: index.php');
 	$usuario = $_SESSION['u'];
+$id = $_GET["id"];
+$enlace = "../pacientes/ficha-paciente.php?id=".$id."";
+$titulo ="Camara intra";
+
+include ("../+/head2.php");
+
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>Document</title>
-</head>
-<body>
-	
+    <h3>Camara intra. </h3>
 	<div id="container" style="float:left; margin-left:15px; margin-right:15px;">
         <video autoplay id="videoElement" >
          
@@ -25,7 +24,6 @@
     <br><br>    
     <label style="float:left; width:150px; margin-right:15%">Foto de ingreso</label>
     <input type="file" name="imagen" class="campoT" style="float:left; witdh:200px"><br>
-	<a href="#" class="button" id="btn-download">Download</a>
 
    <script>
         var video = document.querySelector("#videoElement");
@@ -80,7 +78,8 @@
 		button.addEventListener('click', function (e) {
     		var dataURL = canvas.toDataURL('image/png');
     			button.href = dataURL;
-		});
+		
+        });
     </script>
-</body>
-</html>
+
+<?php  include ("../+/footer.php"); ?>

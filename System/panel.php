@@ -256,6 +256,21 @@ if($_SESSION['rol']=='admin' || $_SESSION['rol']=='secretaria' || $_SESSION['rol
     </div>
 <?php } ?>
 
+<!--Acceso directo a citas de dentista-->
+<?php 
+if($_SESSION['rol']=='dentista' ){ 
+?>
+    <div style=" background: #FFFFFF; width:96%; min-height:80px; float:left; margin:20px 0" id="txt">
+        <img src="https://cdn4.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/clipboard_past.png" width="20px"  style="float:left; margin-right:10px; "/>
+        <p>Ver y/o cancelar  citas para hoy</p><br>
+        <form action="ver_citas_doctores.php" method="GET" TARGET = "_blank">
+          <input type="submit" style="font-size:14px; height:30px; width:80%; margin:2% 10%" value="Ver citas">
+        </form>
+
+    </div>
+<?php } ?>
+
+
 <!--Radiografias acceso directo-->
 <?php 
 if($_SESSION['rol']=='admin' || $_SESSION['rol']=='secretaria' || $_SESSION['rol']=='recepcionista'){ 
@@ -307,14 +322,18 @@ if($_SESSION['rol']=='admin' || $_SESSION['rol']=='secretaria' || $_SESSION['rol
       <div style="background: #FFFFFF; width:96%; min-height: 90px; margin:30px 0 20px 0; float:left; postition:relative; margin-top:20px" id="txt2">';
   echo '<img src="images/citas.png" width="20px" alt="" style="float:left; margin-right:10px">';
   echo '<p> Citas a confirmar en la semana: (personal)</p><hr>';
-}
+
 ?>
 <!--div confirmar citas-->
-<form action="" method="get">
+<?php
+echo '<form action="" method="get">
  <label>Busca por ID</label> <input type="number" placeholder="clic aquí para escribir ID" name="buscar_paciente" style="border:1px solid #C3C5C5; width:250px; padding:4px" min="0"><br><br>
 </form>
-<form action="confirmar_cita.php" method="POST">
-  <?php
+<form action="confirmar_cita.php" method="POST">';
+}
+ 
+
+
   $contador = 0;
   $n_mes = date(m);
   $hoy = date(d);

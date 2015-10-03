@@ -23,6 +23,10 @@ $usuario = $_SESSION['u'];
   <script type="text/javascript">
   document.documentElement.className += ' js';
   </script>
+  <style>
+      tr:nth-child(even){background: #f2f2f2;}
+      table{border: none;}
+  </style>
 </head>
 <body>
   <?php
@@ -50,35 +54,31 @@ $usuario = $_SESSION['u'];
 <div class="clearfix colelem" id="pu375"><!-- group -->
  <div class="browser_width grpelem" id="u375"><!-- simple frame --><br>
   <?php
-  echo' <a href="ficha-paciente.php?id=',$id_paciente,'"><p style="color:white; margin-left: 15%;  size-text:`10px"> << REGRESAR</p><!-- state-based BG images --></a>'
+  echo' <a href="ficha-paciente.php?id=',$id_paciente,'"><p style="color:white; margin-left: 15%;  size-text:`10px; float: left;"> << REGRESAR </p></a>';
+  include("../php/base.php");
+  $result = $conn->query("SELECT nombres, apellido_paterno, apellido_paterno from paciente where id_paciente = ".$id_paciente);
+  $p = $result->fetch_row();
+  echo "<h3 style=' margin:0 10px auto; font-size:14px; color:#fff'> | Historial de compras del paciente ".$p[0]." ".$p[1]." ".$p[2]."</h3>";
+
   ?>
 </div>
 </div>
 <div class="clearfix colelem" id="u553-4"><!-- content -->
 </div>
+
 <!--frame de historial de compras paciente-->
 <?php
-include("../php/base.php");
-$result = $conn->query("SELECT * from historial_compras where id_paciente = '$id_paciente'");
 
-echo "
-<table style='margin-top:200px'>";
+echo "<table style='margin-top:200px'>";
 echo "<tr>";
-
-echo "  <th>Producto    </th>   
-<th>Descripci&oacute;n    </th> 
-<th>Cantidad    </th>   
-<th>Precio Unitario </th>   
-<th>Total     </th>   
-<th>Vendido por   </th>   
-<th>Fecha y Hora  </th>";
-
+echo "  <th>Producto    </th>  <th>Descripci&oacute;n    </th><th>Cantidad    </th>  <th>Precio Unitario </th>  <th>Total     </th>  <th>Vendido por   </th>  <th>Fecha y Hora  </th>";
 echo "</tr>";
 
+$result = $conn->query("SELECT * from historial_compras where id_paciente =".$id_paciente);
 while ($row = $result->fetch_row()){
   echo "<tr>";
   $producto = $row[3];
-  $SELECT = 'SELECT * from inventario where id_producto="'.$producto.'";';
+  $select = 'SELECT * from inventario where id_producto="'.$producto.'";';
   $resul = $conn->query($select) or die ("problema con la solicitud");
   $renglon = $resul->fetch_assoc();
 
@@ -89,7 +89,7 @@ while ($row = $result->fetch_row()){
   echo "<td>".$row[6]."</td>";
 
   $usuario = $row[2];
-  $SELECT = 'SELECT * from usuarios where id_usuario="'.$usuario.'";';
+  $select = 'SELECT * from usuarios where id_usuario="'.$usuario.'";';
   $resul = $conn->query($select) or die ("problema con la solicitud");
   $renglon = $resul->fetch_assoc();
 
@@ -102,7 +102,7 @@ echo "</table>";
 <!--  ..............   -->
 </div>
 <div class="verticalspacer"></div>
-<a class="nonblock nontext clip_frame colelem" id="u405" href="http://tavorazo.github.io"><!-- image --><img class="block" id="u405_img" src="../images/completo7.png" alt="" width="62" height="20"/></a>
+<a class="nonblock nontext clip_frame colelem" id="u405" href="http://tavorazo.github.io"><!-- image --><img class="block" id="u405_img" src="https://cdn4.iconfinder.com/data/icons/iconsimple-logotypes/512/github-24.png" alt="" /></a>
 </div>
 </div>
 <div class="preload_images">
