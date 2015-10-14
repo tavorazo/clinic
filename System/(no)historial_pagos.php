@@ -18,8 +18,10 @@
 
 <?php
 echo '<a href="menu.php">Regresar</a>';
-$mes = $_GET['mes'];
-$ano = $_GET['ano'];
+if (isset($_GET("ano"))) 
+	$ano = $_GET['ano'];
+if (isset($_GET("mes"))) 
+	$mes = $_GET['mes'];
 $tipo_semana = 1;
 $tipo_mes = 1;
 

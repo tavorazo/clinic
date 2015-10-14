@@ -5,9 +5,6 @@ if($_SESSION['rol']!='admin'){
     header('location: ../panel.php');
 }
 $usuario = $_SESSION['u'];
-include('../php/base.php');
-  //include('../php/base2.php');
-  //include('../php/base3.php');
 date_default_timezone_set("Mexico/General");
 ?>
 <!DOCTYPE html>
@@ -28,6 +25,11 @@ date_default_timezone_set("Mexico/General");
   <script type="text/javascript">
   document.documentElement.className += ' js';
   </script>
+  <style>
+    h2{ font-size: 19px; color:#333; margin-bottom: 10px;}
+    h5{ font-size: 13px; color:#333; margin:auto 0 10px 0;}
+    h5 strong{ color:#FA5858; font-weight:300;}
+  </style>
 </head>
 <body >
   <div class="clearfix" id="page"><!-- column -->
@@ -71,244 +73,41 @@ date_default_timezone_set("Mexico/General");
     <!--p>*Esto es un ejemplo</p-->
   </div>
 </div>
-<div class="verticalspacer"></div>
 <br><br><br>
-<div style="margin-left:10%; background:#FFFDFD; padding:18px; width:98% " >
-  <h3>Elije la fecha</h3>
-  <?php 
-  $mes = $mes2 = $dia2 = $ano = $dia = 0;
+<div style="margin:200px 10%; background:#FFFDFD; padding:20px; min-width:800px; min-height:100px " >
+  <h2 style="margin-left:0px">Elije la fecha respecto a lo que se requiera buscar</h2><br><br>
 
-  if (isset($_GET["mes"])){
-    $mes = $_GET['mes'];
-    $mes2 = $_GET['mes'];
-  }
-  if (isset($_GET["dia"]))
-    $dia2 = $_GET['dia'];
-  if (isset($_GET["dia"]))
-    $ano = $_GET['ano'];
 
-  $tipo_semana = 1;
-  $tipo_mes = 1;
-  if (isset($_POST["doctor"]))
-    $doctor = $_POST['doctor'];
-  $MESCOMPLETO[1] = 'Enero';
-  $MESCOMPLETO[2] = 'Febrero';
-  $MESCOMPLETO[3] = 'Marzo';
-  $MESCOMPLETO[4] = 'Abril';
-  $MESCOMPLETO[5] = 'Mayo';
-  $MESCOMPLETO[6] = 'Junio';
-  $MESCOMPLETO[7] = 'Julio';
-  $MESCOMPLETO[8] = 'Agosto';
-  $MESCOMPLETO[9] = 'Septiembre';
-  $MESCOMPLETO[10] = 'Octubre';
-  $MESCOMPLETO[11] = 'Noviembre';
-  $MESCOMPLETO[12] = 'Diciembre';
-  $MESABREVIADO[1] = 'Ene';
-  $MESABREVIADO[2] = 'Feb';
-  $MESABREVIADO[3] = 'Mar';
-  $MESABREVIADO[4] = 'Abr';
-  $MESABREVIADO[5] = 'May';
-  $MESABREVIADO[6] = 'Jun';
-  $MESABREVIADO[7] = 'Jul';
-  $MESABREVIADO[8] = 'Ago';
-  $MESABREVIADO[9] = 'Sep';
-  $MESABREVIADO[10] = 'Oct';
-  $MESABREVIADO[11] = 'Nov';
-  $MESABREVIADO[12] = 'Dic';
-  $SEMANACOMPLETA[0] = 'Domingo';
-  $SEMANACOMPLETA[1] = 'Lunes';
-  $SEMANACOMPLETA[2] = 'Martes';
-  $SEMANACOMPLETA[3] = 'Miércoles';
-  $SEMANACOMPLETA[4] = 'Jueves';
-  $SEMANACOMPLETA[5] = 'Viernes';
-  $SEMANACOMPLETA[6] = 'Sábado';
-  $SEMANAABREVIADA[0] = 'Dom';
-  $SEMANAABREVIADA[1] = 'Lun';
-  $SEMANAABREVIADA[2] = 'Mar';
-  $SEMANAABREVIADA[3] = 'Mie';
-  $SEMANAABREVIADA[4] = 'Jue';
-  $SEMANAABREVIADA[5] = 'Vie';
-  $SEMANAABREVIADA[6] = 'Sáb';
-////////////////////////////////////
-  if($tipo_semana == 1){
-    $ARRDIASSEMANA = $SEMANACOMPLETA;
-  }elseif($tipo_semana == 0){
-    $ARRDIASSEMANA = $SEMANAABREVIADA;
-  }
-  if($tipo_mes == 0){
-    $ARRMES = $MESCOMPLETO;
-  }elseif($tipo_mes == 1){
-    $ARRMES = $MESABREVIADO;
-  }
-  if(!$dia) $dia = date(D);
-  if(!$mes) $mes = date(N);
-  if(!$ano) $ano = date(Y);
+  <form action="historial_admin.php" method="GET" style="padding:30px 0;">
+    <label for="date">Igresa la fecha que requieras buscar</label><input class="campoT" name="date" type="date" /><br>
+    <label for="month">O Ingresa el mes que requieras buscar</label><input class="campoT" name="month" type="month" /><br>
+    <label for="week">O ingresa la semana que requieras buscar</label><input class="campoT" name="week" type="week" />
+    <br><br><br><br><input type="submit" value="Ver">
+  </form>
 
-  $TotalDiasMes = date(t,mktime(0,0,0,$mes,$dia,$ano));
-  $DiaSemanaEmpiezaMes = date(w,mktime(0,0,0,$mes,1,$ano));
-  $DiaSemanaTerminaMes = date(w,mktime(0,0,0,$mes,$TotalDiasMes,$ano));
-  $EmpiezaMesCalOffset = $DiaSemanaEmpiezaMes;
-  $TerminaMesCalOffset = 6 - $DiaSemanaTerminaMes;
-  $TotalDeCeldas = $TotalDiasMes + $DiaSemanaEmpiezaMes + $TerminaMesCalOffset;
-  if($mes == 1){
-    $MesAnterior = 12;
-    $MesSiguiente = $mes + 1;
-    $AnoAnterior = $ano - 1;
-    $AnoSiguiente = $ano;
-  }elseif($mes == 12){
-    $MesAnterior = $mes - 1;
-    $MesSiguiente = 1;
-    $AnoAnterior = $ano;
-    $AnoSiguiente = $ano + 1;
-  }else{
-    $MesAnterior = $mes - 1;
-    $MesSiguiente = $mes + 1;
-    $AnoAnterior = $ano;
-    $AnoSiguiente = $ano;
-    $AnoAnteriorAno = $ano - 1;
-    $AnoSiguienteAno = $ano + 1;
-  }
-  print " <table float>";
-  print " <tr id='t'>";
-  print " <td ><a href=\"$PHP_SELF?mes=$mes&ano=$AnoAnteriorAno\">año anterior</a></td>";
-  print " <td ><a href=\"$PHP_SELF?mes=$MesAnterior&ano=$AnoAnterior\">Mes anterior</a></td>";
-  print " <td  colspan=\"1\" align=\"center\" nowrap><b>".$ARRMES[$mes]." - $ano</b></td>";
-  print " <td ><a href=\"$PHP_SELF?mes=$MesSiguiente&ano=$AnoSiguiente\">Mes siguiente</a></td>";
-  print " <td ><a href=\"$PHP_SELF?mes=$mes&ano=$AnoSiguienteAno\">año siguiente</a></td>";
-  print " </tr>";
-  print " </table>";
-  print "<table style='border:none'>";
-  foreach($ARRDIASSEMANA AS $key){
-    print "<th >$key</th>";
-  }
-  $contador_dia=0;
-  for($a=1;$a <= $TotalDeCeldas;$a++){ 
-    if(!$b) $b = 0;
-    if($b == 7) $b = 0;
-    if($b == 0) print '<tr>';
-    if(!$c) $c = 1;
-    if($a > $EmpiezaMesCalOffset AND $c <= $TotalDiasMes){
-      
-    if($c == date(d) && $mes == date(m) && $ano == date(Y)){
-      print "<td bgcolor=\"#FA5858\"><a href='$PHP_SELF?ano=$ano&mes=$mes&dia=$c&n_dia=$SEMANACOMPLETA[$contador_dia]'>$c</a><br></td>";
-    }else if($c < date(d) && $mes == date(m) && $ano == date(Y) ||
-      $mes < date(m) && $ano == date(Y) ||
-      $ano < date(Y)){
-      print "<td bgcolor=\"#A9F5BC\"><a href='$PHP_SELF?ano=$ano&mes=$mes&dia=$c&n_dia=$SEMANACOMPLETA[$contador_dia]'>$c</a><br></td>";
-    }elseif($b == 6){
-      print "<td bgcolor=#fff><a href='$PHP_SELF?ano=$ano&mes=$mes&dia=$c&n_dia=$SEMANACOMPLETA[$contador_dia]'>$c</a></td>";
-    }elseif($b == 0){
-      print "<td bgcolor=#D6E2F7>$c</td>";
-    }else{
-      print "<td bgcolor=\"#fff\"><a href='$PHP_SELF?ano=$ano&mes=$mes&dia=$c&n_dia=$SEMANACOMPLETA[$contador_dia]'>$c</a></td>";
-    }
-    $c++;
-  }else{
-    print "<td> </td>";
-  }
-  if($b == 6) print '</tr>';
-  $b++;
-  $contador_dia++;
-  if($contador_dia==7)  $contador_dia=0;
-    //print $SEMANAABREVIADA[$contador_dia];
-}
-print "<tr><td align=center colspan=10></a></td></tr>";
-print "</table>";
-$dia_seleccionable = $_GET['dia'];
-    //print "$dia_seleccionable $mes $ano";
-if($dia_seleccionable==1)
- $dia_seleccionable='01';
-if($dia_seleccionable==2)
- $dia_seleccionable='02';
-if($dia_seleccionable==3)
- $dia_seleccionable='03';     
-if($dia_seleccionable==4)
- $dia_seleccionable='04';   
-if($dia_seleccionable==5)
- $dia_seleccionable='05';   
-if($dia_seleccionable==6)
- $dia_seleccionable='06';                     
-if($dia_seleccionable==7)
- $dia_seleccionable='07';   
-if($dia_seleccionable==8)
- $dia_seleccionable='08';   
-if($dia_seleccionable==9)
- $dia_seleccionable='09';  
-if($mes2==1)
- $mes2='01';
-if($mes2==2)
- $mes2='02';
-if($mes2==3)
- $mes2='03';      
-if($mes2==4)
- $mes2='04';   
-if($mes2==5)
- $mes2='05';   
-if($mes2==6)
- $mes2='06';                    
-if($mes2==7)
- $mes2='07';   
-if($mes2==8)
- $mes2='08';   
-if($mes2==9)
- $mes2='09';      
-$fechab = $ano."-".$mes2."-".$dia_seleccionable;
-if($mes2=='')
- $fechab = $ano;
-    //echo date('l jS \of F Y h:i:s A');
-echo "<div style='width:730px; background: #F2F2F2; min-height:130px; margin-left:-20px; position: absolute; padding:20px; margin-bottom:40px'> <center> <label>";
 
-if($mes2!='')    
-  echo " Historial de  ", $dia_seleccionable," de ",$MESCOMPLETO[$mes]," del ",$ano ,"</label><br><br>";
+<?php 
+include('funciones_historial.php'); 
+  
+if(isset($_GET["date"])) 
+  $date = $_GET['date'];
 else
- echo "Historial del año: ",$ano ," </label><br><br>";
-
-echo "<br> <a href='?ano=",$ano,"'> <div id='botnH' style=''> Ver historial de este año </div> </a>";
-echo "<a href='?mes=",$mes,"'> <div id='botnH' style=' '> Ver historial de este mes </div> </a>";
-    //echo $mes;
-echo "<a href='imprime_inventario.php?fecha=",$fechab,"&ano=",$ano,"&mes=",$mes,"&dia=",$dia2,"' target='_blank'> <div id='botnH' style=' width:160px '> Imprimir </div></a>";
-echo "</div><br>";
-    //$result = $conn->query("SHOW COLUMNS FROM inventario_historial");
-$result = $conn->query("SHOW COLUMNS FROM inventario_historial");
-echo "<table border=1 style='margin-top:160px;'> <tr>";
-
-if (mysqli_num_rows($result)> 0) {
- echo "<td style='color:#58ACFA'>No.</td>";
- echo "<td style='color:#58ACFA'>Responsable de Movimiento</td>";
- echo "<td style='color:#58ACFA'>Producto</td>";
- echo "<td style='color:#58ACFA'>Cantidad</td>";
- echo "<td style='color:#58ACFA'>Fecha</td>";
-}
-echo "</tr>";
-  //$result2 = $conn->query("SELECT * FROM inventario_historial where fecha like '%$fechab%' order by fecha desc");
-  //while ($row2 = mysql_fetch_array($result2, MYSQL_NUM)) {
-$result = $conn->query('SELECT * FROM inventario_historial where fecha = "'.$fechab.'" order by fecha desc');
-while ($row2 = $result->fetch_row()) {
- echo "<tr>";
- echo "<td>",$row2[0],"</td>";
- 
- $u = $row2[1];
- $p = $row2[2];
- 
- 
-          //$resul = $conn->query($select) or die ("problema con la solicitud");
-          //$renglon = mysql_fetch_assoc($resul);
- $select = 'SELECT  * from usuarios where id_usuario="'.$u.'"';
- $result = $conn->query($select);
- $renglon = $result->fetch_assoc();
-echo "<td>",$renglon['nombres']," ",$renglon['apellido_paterno']," ",$renglon['apellido_materno'],"</td>";
-          //$resul = $conn->query($select) or die ("problema con la solicitud");
-          //$renglon = mysql_fetch_assoc($resul);
-$select = 'SELECT * from inventario where id_producto="'.$p.'";';
-$result = $conn->query($select);
-$renglon = $result->fetch_assoc();
-echo "<td>",$renglon['nombre'],"</td>";
-echo "<td>",$row2[3],"</td>";
-echo "<td>",$row2[4],"</td>";
-echo "</tr></div>";
-}
+  $date = '';
+if(isset($_GET["month"])) 
+  $month = $_GET['month'];
+else
+  $month = '';
+if(isset($_GET["week"])) 
+  $week = $_GET['week'];
+else
+  $week = '';
+echo "<hr>";
+listar_historial($date, $month, $week);
+  
+echo '<br><br><hr><h2 style="margin-left:0px">Reporte de productos de la semana</h2><br><br>';
+inventario();
 ?>
-<br><br>
+    
 </div>
 </div>
 <div class="preload_images">

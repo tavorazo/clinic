@@ -11,8 +11,10 @@
 
 	$select = 'SELECT * from usuarios where correo="'.$a.'" and password="'.$b.'";';
 
-	$resul = mysqli_query($conn, $select);
-	$renglon = mysqli_fetch_assoc($resul);
+	//$resul = mysqli_query($conn, $select);
+	$resul = $conn->query($select);
+	//$renglon = mysqli_fetch_assoc($resul);
+	$renglon = $resul->fetch_assoc();
 
 	echo "Verificando. . .";
   	?>

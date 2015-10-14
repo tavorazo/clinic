@@ -286,7 +286,6 @@ date_default_timezone_set("Mexico/General");
   }
   print "<tr><td align=center colspan=10></a></td></tr>";
   print "</table>";
-  include("php/base.php");
 //include("php/base2.php");
 //include("php/base3.php");
   $dia_seleccionable = $_GET['dia'];
@@ -354,10 +353,10 @@ date_default_timezone_set("Mexico/General");
     //$resul = $conn->query($select) or die ("problema con la solicitud");
     //$renglon = mysql_fetch_assoc($resul);
       
-      $sql = 'SELECT * FROM usuarios where id_usuario="'.$usuario.'"';
-      if ($result = $conn->query($sql)) 
-        while ($user = $result->fetch_row()) 
-          echo "<td> ".$user[1]." ".$user[2]." ".$user[3]."</td>";
+      $sql = 'SELECT * FROM usuarios where id_usuario="'.$usuario;
+      $result = $conn->query($sql);
+      $u = $result->fetch_row();
+          echo "<td> USER".$u[1]." ".$u[2]." ".$u[3]."</td>";
         
         $paciente = $dato_pagos[7];
     //$select = 'select * from paciente where id_paciente="'.$paciente.'";';
@@ -370,7 +369,7 @@ date_default_timezone_set("Mexico/General");
           
           echo "<td>".$nombre_paciente."</td>";
           echo "<td>", htmlentities($dato_pagos[4]),"</td>";
-          echo "<td>", money_format('%(#10n',$dato_pagos[2]),"</td>"; 
+          echo "<td>",$dato_pagos[2],"</td>"; 
             echo " <td>", htmlentities($dato_pagos[3]),"</td>
             <td>",money_format('%(#10n',$dato_pagos[2]-$dato_pagos[3])," </td>";
               $deuda = $dato_pagos[0];
