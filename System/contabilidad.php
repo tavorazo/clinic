@@ -67,13 +67,15 @@ if($_SESSION['rol']=='admin' || $_SESSION['rol']=='secretaria')
   <div style="width:400px; height:200px; background:#FFF; margin-top:50px; padding:10px; float:left; ">
     <h3>Historiales</h3><br><hr>
     <br>
-    <a href="contabilidad/historial_pagos_.php"> Historial ingresos pagos de clientes</a><br>
-    <a href="contabilidad/historial_ventas_.php"> Historial ingresos ventas</a><br>
-    <a href="contabilidad/ingresos_semanales.php"> Historial ingresos por semana</a><br>
-    <a href="contabilidad/historial_pagos_tarjeta.php"> Historial pagos con tarjetas</a><br>
+    <a href="contabilidad/historial_pagos_.php"> Historial de ingresos por pagos de clientes</a><br>
+    <a href="contabilidad/historial_pagos_tarjeta.php"> Historial ingresos de pagos con tarjetas</a><br>
+    <a href="contabilidad/historial_ventas_.php"> Historial de ingresos por ventas</a><br>
+    <a href="contabilidad/ingresos_semanales.php"> Historial de ingresos de cada semana</a><br>
     <br><hr><br>
     <a href="contabilidad/egresos.php"> Historial egresos de gastos en la clinica</a><br>
     <a href="contabilidad/nomina.php"> Historial egresos en nomina</a>
+    <br><br>
+    <a href="contabilidad/recibos_generados.php"> Lista completa de recibos generados</a>
     
   </div>
   <div style="width:400px; height:200px; background:#FFF; margin-top:50px; padding:10px; float:left; margin-left:30px">

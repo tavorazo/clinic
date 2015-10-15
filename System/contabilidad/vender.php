@@ -148,7 +148,7 @@ if($_SESSION['rol']!='admin'){
             ?>
             <br>
             
-            <select name="id_tipo">
+            <select name="id_tipo" required>
               <option value="1">Efectivo</option>
               <option value="2">Cheque</option>
               <option value="3">Tarjeta</option>

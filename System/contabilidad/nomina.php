@@ -151,9 +151,7 @@ for($a=1;$a <= $TotalDeCeldas;$a++){
 	print "<tr><td align=center colspan=10></a></td></tr>";
 	print "</table>";
 
-		include("php/base.php");
-		include("php/base2.php");
-		include("php/base3.php");
+		include("../php/base.php");
 		
     $dia_seleccionable = $_GET['dia'];
     //print "$dia_seleccionable $mes $ano";
@@ -264,9 +262,9 @@ if($S == 1){
 
     //echo $fechab;
     if($semana_b=='')
-	   $result2 = $conn->query("select * from nomina_historial where fecha like '%$fechab%'");
+	   $result2 = $conn->query("SELECT * from nomina_historial where fecha like '%$fechab%'");
     else
-        $result2 = $conn->query("select * from nomina_historial where semana='$semana_b' and y='$ano_s'");
+        $result2 = $conn->query("SELECT * from nomina_historial where semana='$semana_b' and y='$ano_s'");
     
 
 		echo "<table border=1 style='margin-top:100px; '>
@@ -282,14 +280,16 @@ if($S == 1){
 
     </tr>";
     $total_semanal = 0;
-	while ($row2 = mysql_fetch_array($result2, MYSQL_NUM)){
+  //while ($row2 = mysql_fetch_array($result2, MYSQL_NUM)){
+	while ($row2 = $result2->fetch_row()){
 			echo "<tr>";
             echo "<td>",$row2[0],"</td>";
 				
 				$usuario = $row2[1];
-				$select = 'select * from usuarios where id_usuario="'.$usuario.'";';
+				$select = 'SELECT * from usuarios where id_usuario="'.$usuario.'";';
 				$resul = $conn->query($select) or die ("problema con la solicitud");
-				$renglon = mysql_fetch_assoc($resul);
+        //$renglon = mysql_fetch_assoc($resul);
+				$renglon = $resul->fetch_assoc();
 				//vendido por
 				echo "<td>".$renglon['nombres']." ".$renglon['apellido_paterno']." ".$renglon['apellido_materno']."</td>";
                 echo "<td>".money_format('%(#10n',$row2[2])."</td>";//sueldo
@@ -309,7 +309,7 @@ if($S == 1){
 		}
 echo "</table>";
 
-    if($_SESSION['u']=='admin' && $S=='1'){
+    if($_SESSION['rol']=='admin' && $S=='1'){
     	$a_y = date(Y);
     	echo "<label>Total: ".$total_semanal."</label>";
     	echo "<form action='../php/aprobar_nomina.php' method='POST'>";
@@ -320,11 +320,6 @@ echo "</table>";
     }
 
 ?>
-
-
-
-
-
 
 
    </div>

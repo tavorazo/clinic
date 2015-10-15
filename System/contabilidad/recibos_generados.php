@@ -3,8 +3,6 @@
 error_reporting(0);
 
 include('../php/base.php');
-include('../php/base2.php');
-include('../php/base3.php');
 date_default_timezone_set("Mexico/General");
 
 ?>
@@ -282,9 +280,6 @@ date_default_timezone_set("Mexico/General");
 }
 print "<tr><td align=center colspan=10></a></td></tr>";
 print "</table>";
-include("php/base.php");
-include("php/base2.php");
-include("php/base3.php");
 
 $dia_seleccionable = $_GET['dia'];
     //print "$dia_seleccionable $mes $ano";
@@ -381,9 +376,9 @@ if($S == 1){
   </a><br><br><br>";
 }
 if($semana_b=='')
-  $result2 = $conn->query("select * from recibos where fecha like '%$fechab%'");
+  $result2 = $conn->query("SELECT * from recibos where fecha like '%$fechab%'");
 else
-  $result2 = $conn->query("select * from pago_adeudo");
+  $result2 = $conn->query("SELECT * from pago_adeudo");
 echo "<table border=1 style='margin-top:100px; '>
 <tr>
 <td style='color:#58ACFA'>No.       </td>
@@ -394,26 +389,29 @@ echo "<table border=1 style='margin-top:100px; '>
 <td style='color:#58ACFA'>Total Pagado      </td>
 <td style='color:#58ACFA'>Imprimir      </td>
 </tr>";
-while ($row2 = mysql_fetch_array($result2, MYSQL_NUM)){
-
+//while ($row2 = mysql_fetch_array($result2, MYSQL_NUM)){
+while ($row2 = $result2->fetch_row()){
   if($semana_b==''){
     echo "<tr>";
     echo "<td>",$row2[0],"</td>";
     $usuario = $row2[6];
-    $select = 'select * from usuarios where id_usuario="'.$usuario.'";';
+    $select = 'SELECT * from usuarios where id_usuario="'.$usuario.'";';
     $resul = $conn->query($select) or die ("problema con la solicitud");
-    $renglon = mysql_fetch_assoc($resul);
+    $renglon = $resul->fetch_assoc();
+    //$renglon = mysql_fetch_assoc($resul);
 
     echo "<td> ".$renglon['nombres']." ".$renglon['apellido_paterno']." ".$renglon['apellido_materno']."</td>";
 
     $paciente = $row2[5];
-    $select = 'select * from paciente where id_paciente="'.$paciente.'";';
+    $select = 'SELECT * from paciente where id_paciente="'.$paciente.'";';
     $resul = $conn->query($select) or die ("problema con la solicitud");
-    $renglon = mysql_fetch_assoc($resul);
+    $renglon = $resul->fetch_assoc();
+    //$renglon = mysql_fetch_assoc($resul);
     if($renglon['nombres']==''){
-      $select = 'select * from usuarios where id_usuario="'.$paciente.'";';
+      $select = 'SELECT * from usuarios where id_usuario="'.$paciente.'";';
       $resul = $conn->query($select) or die ("problema con la solicitud");
-      $renglon = mysql_fetch_assoc($resul);
+      $renglon = $resul->fetch_assoc();
+      //$renglon = mysql_fetch_assoc($resul);
     }
 
     $nombre_paciente =$renglon['nombres']." ".$renglon['apellido_paterno']; 
@@ -428,36 +426,36 @@ while ($row2 = mysql_fetch_array($result2, MYSQL_NUM)){
           echo '<td><a href="../php/imprimir_recibo.php?id_recibo=',$deuda,'" >Imprimir</a></td></tr>';
         } 
 
-
-
-
         else{
 
           $deuda = $row2[0];
           $ano = date(Y);
-      /*$result3 = $conn->query("select * from pagos_historia where semana='semana_b' && id_adeudo='$deuda' && y='$ano' limit 1");
+      /*$result3 = $conn->query("SELECT * from pagos_historia where semana='semana_b' && id_adeudo='$deuda' && y='$ano' limit 1");
       
-      print "select * from pagos_historia where semana='$semana_b' && id_adeudo='$deuda' && y='$ano' limit 1";
+      print "SELECT * from pagos_historia where semana='$semana_b' && id_adeudo='$deuda' && y='$ano' limit 1";
       while ($row4 = mysql_fetch_array($result3, MYSQL_NUM)){*/
-        $select2 = 'select * from pagos_historia where semana="'.$semana_b.'" and id_adeudo="'.$deuda.'" and y="'.$ano.'";';
+        $select2 = 'SELECT * from pagos_historia where semana="'.$semana_b.'" and id_adeudo="'.$deuda.'" and y="'.$ano.'";';
   //echo $select, "<br>";
         $resul2 = $conn->query($select2) or die ("problema con la solicitud");
-        $renglon2 = mysql_fetch_assoc($resul2);     
+        //$renglon2 = mysql_fetch_assoc($resul2);     
+        $renglon2 = $resul2->fetch_assoc();     
         if($renglon2['id_historia']!='') {
           echo "<tr>";
           echo "<td>",$row2[0],"</td>";
 
           $usuario = $row2[6];
-          $select = 'select * from usuarios where id_usuario="'.$usuario.'";';
+          $select = 'SELECT * from usuarios where id_usuario="'.$usuario.'";';
           $resul = $conn->query($select) or die ("problema con la solicitud");
-          $renglon = mysql_fetch_assoc($resul);
+          //$renglon = mysql_fetch_assoc($resul);
+          $renglon = $resul->fetch_assoc();
           
           echo "<td> ".$renglon['nombres']." ".$renglon['apellido_paterno']." ".$renglon['apellido_materno']."</td>";
 
           $paciente = $row2[7];
-          $select = 'select * from paciente where id_paciente="'.$paciente.'";';
+          $select = 'SELECT * from paciente where id_paciente="'.$paciente.'";';
           $resul = $conn->query($select) or die ("problema con la solicitud");
-          $renglon = mysql_fetch_assoc($resul);
+          //$renglon = mysql_fetch_assoc($resul);
+          $renglon = $resul->fetch_assoc();
           
           $nombre_paciente =$renglon['nombres']." ".$renglon['apellido_paterno']; 
           echo "<td> ".$renglon['nombres']." ".$renglon['apellido_paterno']." ".$renglon['apellido_materno']."</td>";

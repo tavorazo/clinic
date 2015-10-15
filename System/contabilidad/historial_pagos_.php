@@ -349,19 +349,12 @@ date_default_timezone_set("Mexico/General");
       echo "<tr>";
       echo "<td>",$dato_pagos[0],"</td>";
       $usuario = $dato_pagos[6];
-    //$select = 'select * from usuarios where id_usuario="'.$usuario.'"';
-    //$resul = $conn->query($select) or die ("problema con la solicitud");
-    //$renglon = mysql_fetch_assoc($resul);
-      
-      $sql = 'SELECT * FROM usuarios where id_usuario="'.$usuario;
+      $sql = 'SELECT nombres, apellido_paterno, apellido_materno FROM usuarios WHERE id_usuario = "'.$usuario.'"';
       $result = $conn->query($sql);
-      $u = $result->fetch_row();
-          echo "<td> USER".$u[1]." ".$u[2]." ".$u[3]."</td>";
-        
+      $user = $result->fetch_assoc();
+        echo "<td> ".$user["nombres"]." ".$user["apellido_paterno"]." ".$user["apellido_materno"]."</td>";
+
         $paciente = $dato_pagos[7];
-    //$select = 'select * from paciente where id_paciente="'.$paciente.'";';
-    //$resul = $conn->query($select) or die ("problema con la solicitud");
-    //$renglon = mysql_fetch_assoc($resul);
         $sql = 'SELECT * FROM paciente where id_paciente="'.$paciente.'"';
         if ($result = $conn->query($sql)) 
           while ($pacient = $result->fetch_assoc())
