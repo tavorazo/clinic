@@ -1,0 +1,89 @@
+
+	main{  min-height: 1100px;}
+/*********************************************************************************/
+/* Articulo Blog                                                                       */
+/*********************************************************************************/
+	.articulo-blog{
+		float: left;
+		margin-bottom: 10px;
+	}
+
+	.articulo-blog span, .title span{
+		color:#BDBDBD;
+		letter-spacing: 2px;
+		float: none;
+		font-size: 10px;
+	}
+/*********************************************************************************/
+/* Content                                                                       */
+/*********************************************************************************/
+	#content h2{ text-align: left;}
+	#content
+	{
+		float: left;
+		width: 55%;
+		padding: 10px 2.5%;
+		min-height: 500px;
+		position: static;		
+	}
+	#content .title{ margin-bottom: 40px; text-align: left;}
+	#content li{ text-align: left; font-weight:100; font-size: 14px; padding-bottom: 10px; margin-left: 20px;}
+/*********************************************************************************/
+/* Sidebar                                                                       */
+/*********************************************************************************/
+
+	#sidebar
+	{
+		float: right;
+		display: block;
+	}
+
+	#stwo-col
+	{
+		margin-top: 2em;
+	}
+
+	#stwo-col h2
+	{
+		display: block;
+		text-align: center;
+		padding-bottom: 1.5em;
+		letter-spacing: 0.10em;
+		text-transform: uppercase;
+		font-size: 1.2em;
+		font-weight: 600;
+		color: #454445;
+	}
+
+	#stwo-col .sbox1
+	{
+		float: left;
+		width: 48%;
+		padding-left: 2%;
+	}
+
+	#stwo-col .sbox2
+	{
+		float: left;
+		width: 78%;
+		margin-left: 2%;
+	}
+
+	#sidebar ol, ul { list-style: none; width: 100%; text-align: -webkit-center; padding: 0;}
+	#sidebar li{ background: #f2f2f2; margin-bottom: 7px; padding: 5px; font-size: 14px;  color:#999;}
+
+/*********************************************************************************/
+/* servicios                                                                     */
+/*********************************************************************************/
+	.service{ width: 90%; min-height: 100px;}
+	.service img{ margin-left: -200px;}
+	.service #text{ }
+
+
+
+
+@media only screen and (max-width: 700px) {
+	#sidebar{display: none;}
+	#content{ width: 80%; margin:10px 10%;}
+}
+	

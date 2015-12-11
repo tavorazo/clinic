@@ -1,55 +1,61 @@
 
 
-body{ background: #fafafa; width:100%; min-width:1228px; margin: 0; padding: 0; text-align: center;}
+body{ background: #fafafa; width:100%; margin: 0; padding: 0; text-align: center;}
 h1{ color: #424242; font-size: 30px; font-family: 'lato', tahoma; font-weight: 100;}
 h2{ color: #23adfc; font-size: 22px; font-family: 'lato', tahoma; font-weight: 100;}
 h3{ color: #424242; font-size: 18px; font-family: 'lato', tahoma; font-weight: 100;}
 p{ font-size: 12px; font-family: 'lato', tahoma; font-weight: 100;}
 hr{width: 80px; height:2px; background: #23adfc; margin-bottom: 80px}
+a{ text-decoration: none; color:#000;}
 
-header{ background:#424242;  min-height: 140px; width: 100%; top: 0px; min-width:1228px; }
-header #left{position: absolute; width: 50%; height: 100%; left: 0; text-align: left;}
-header #right{position: absolute; width: 50%; height: 100%; left:50%; text-align: right;}
+header{ background:#424242;  min-height: 140px; width: 100%; top: 0px;  }
+header #left{position: absolute; width: 50%; height:auto; left: 0; text-align: left;}
+header #right{position: absolute; width: 50%; height:auto; left:50%; text-align: right;}
 header p {  color:#999;  padding-left: 10px; padding-right: 10px; }
 header p span{color:#E6E6E6;}
+.wrapper{ width:900px; margin: auto; }
 
-header .menu{ clear:both; background:#f2f2f2; height:100px; width: 100%; min-width:1228px; top:40px; position: absolute;}
+header .menu{ clear:both; background:#f2f2f2; height:100px; width: 100%;  top:40px; position: absolute;}
 .menu img {  padding-left:20px; padding-top: 40px; width: 180px; height: 40px; float: left; cursor: pointer; -webkit-transition: all 0.3s ease; -moz-transition: all 0.3s ease; -ms-transition: all 0.3s ease; -o-transition: all 0.3s ease; transition: all 0.3s ease;}
 .menu img:hover{opacity: 0.8}
-.menu nav{position: absolute; float: right; right: 20px; height: 100%;  }
-.menu nav ul{ position: relative; width: 120px; height:50px; padding:0; padding-top:10%; margin:0;  text-align: center; float: left; cursor: pointer; font-family: 'lato', tahoma; font-weight: 100; font-size: 14px; color: #424242; -webkit-transition: all .3s ease; -moz-transition: all .3s ease; -ms-transition: all .3s ease; transition: all .3s ease;} 
+.menu nav{position: relative; float: right; right: 20px; height: 100%;  }
+.menu nav ul{ position: relative; width: 100px; height:50px; padding:0; padding-top:10%; margin:0;  text-align: center; float: left; cursor: pointer; font-family: 'lato', tahoma; font-weight: 100; font-size: 14px; color: #424242; -webkit-transition: all .3s ease; -moz-transition: all .3s ease; -ms-transition: all .3s ease; transition: all .3s ease;} 
 .menu nav ul:hover{border-bottom: 4px solid #23adfc  }
+	.nav-toggle { display: none;}
 
 
-section{ min-height:400px; width: 100%; height: auto;  padding-bottom: 50px}
-.portada{  background: url(http://www.dentaluna.com/wp-content/uploads/2015/01/di%C5%9F-beyazlatma-i%C5%9F.jpg); background-repeat: no-repeat; background-size:1450px; background-attachment:static;  background-position:center; height:700px; width: 100%; min-width:1228px; }
-.portada #slogan{position: absolute; width:982.4px; top:300px;  left:614px; margin-left: -491.2px; }
+section{ min-height:400px; width: 100%; height: auto;  }
+#portada{  background: url(http://www.dentaluna.com/wp-content/uploads/2015/01/di%C5%9F-beyazlatma-i%C5%9F.jpg); background-repeat: no-repeat;  background-attachment:static;  background-position:center; height:700px; width: 100%;  position: relative; margin-top: -25px;}
+#portada #slogan{position: relative; top: 150px;  margin:auto; }
 	#slogan p{  color: #424242; font-size: 20px; }
 	#slogan h1{ font-size: 42px} #slogan h2{ font-size: 32px;}
-.portada #boton{ width: 200px; position: absolute; top:600px; left:50%; left:614px; margin-left:-100px; padding:15px 0px; background:#23adfc; border:1px solid #23adfc;  font-family: 'lato'; color: #fafafa; text-align: center; cursor: pointer; -webkit-transition: all .3s ease; -moz-transition: all .3s ease; -ms-transition: all .3s ease; transition: all .3s ease;}
-.portada #boton:hover{ color: #fafafa; background: none; border:1px solid #fafafa  }
+#portada #boton{ position: relative; margin: auto; width: 200px; top: 200px; padding: 15px 0px; background: #23adfc; border: 1px solid #23adfc; font-family: 'lato'; color: #fafafa; text-align: center; cursor: pointer;
+	-webkit-transition: all .3s ease; -moz-transition: all .3s ease; -ms-transition: all .3s ease; transition: all .3s ease; }
+#portada #boton:hover{ color: #fafafa; background: none; border:1px solid #fafafa  }
+#portada #link{position: absolute; bottom: 0;}
 
-#link{ width:100%; min-width:1228px; height:100px; background:#2d455f;  padding-top:20px;  }
-	#link p{ float: left; color: #D8D8D8; font-size:24px; padding-left:90px; font-weight: 100}
+#link{ width:100%;  min-height:100px; background:#2d455f;  padding-top:20px;  }
+	#link p{ float: left; color: #D8D8D8; font-size:24px; font-weight: 100}
 	#link p span{ color: #fafafa}
-	#link #botonl{ width: 150px; position: absolute; left: 1050px; margin-top:15px;  padding:15px 0px; background:none; border:1px solid #23adfc;  font-family: 'lato'; color: #23adfc; text-align: center; cursor: pointer; -webkit-transition: all .3s ease; -moz-transition: all .3s ease; -ms-transition: all .3s ease; transition: all .3s ease;}
+	#link #botonl{ float:right; width: 150px; position: relative; right: 10px; margin-top:15px;  padding:15px 0px; background:none; border:1px solid #23adfc;  font-family: 'lato'; color: #23adfc; text-align: center; cursor: pointer; -webkit-transition: all .3s ease; -moz-transition: all .3s ease; -ms-transition: all .3s ease; transition: all .3s ease;}
 	#link #botonl:hover{  background:none; border:1px solid #D8D8D8; color: #D8D8D8;}
 
-.section1{ 	height: 400px; padding-top: 50px}
-.section1 #div{width: 33%; min-height: 350px; float: left; }
-		#div p{ padding: 0 60px; font-size: 14px; text-align: justify; margin-top: -10px;}
-.section1 #point{width: 5px; height: 5px; background:#23adfc; float: left; margin-right: 10px; margin-left: 70px}
-.section1 table{  border: none; margin: auto}
-.section1 td{width: 50%; padding: 10px;  }
+#section1{ 	height: 400px; padding-top: 50px}
+#section1 #div{width: 33%; min-height: 350px; float: left; }
+		#div p{ padding: 0 15px; font-size: 14px; text-align: justify; margin-top: -10px;}
+		#div hr{ margin-bottom: 50px; }
+#section1 #point{width: 5px; height: 5px; background:#23adfc; float: left; margin-right: 10px; margin-left: 70px}
+#section1 table{  border: none; margin: auto}
+#section1 td{width: 50%; padding: 10px;  }
 		 #span{background: #E6E6E6; border-left:2px solid #23adfc}
 		 #span p{padding: 0}
 		 #span:hover{opacity: 0.8; border-left:2px solid #424242}
-		 #nospan p{padding: 0}
+		 #nospan p{padding: 0; font-size: 12px;}
 
 
-.section2{min-height: 760px;}
-.service{width:30%; min-width:300px; min-height:130px; float: left; padding: 20px; margin-top:10px; }
-.service img{position: absolute; margin-left:-195px;  margin-top: 20px; border-right: 1px solid #23adfc; padding: 5px; width:40px; height: 40px; padding-right: 10px;}
+#section2{min-height: 760px;}
+.service{    width: 32%; min-height: 190px; float: left; margin-top: 10px; margin-left: 1%;}
+.service img{position: absolute; margin-left:-145px;  margin-top: 10px; border-right: 1px solid #23adfc; padding: 5px; width:40px; height: 40px; padding-right: 10px;}
 .service #text{float: right; width: 79%; }
 	#text h2, #text p {text-align: justify; margin:3px}
 
@@ -57,16 +63,16 @@ section{ min-height:400px; width: 100%; height: auto;  padding-bottom: 50px}
 
 
 /*carrusel*/
-.section3{ min-height: 600px; }
-#divCarousel{ border: none; width: 100%;   position: absolute; margin-top: 60px; min-width:1228px;  }
-#divCarousel #divIzquierda{ opacity:0.3; width: 45px; height: 70px; margin-left:20px; margin-top:130px; float: left; cursor: pointer; background: url(https://cdn0.iconfinder.com/data/icons/slim-square-icons-basics/100/basics-05-64.png) center no-repeat; -webkit-transition: all .3s ease; -moz-transition: all .3s ease; -ms-transition: all .3s ease; transition: all .3s ease;}
+#section3{ min-height: 600px; }
+#divCarousel{ border: none; width: 100%;   position: relative; margin-top: 60px; }
+#divCarousel #divIzquierda{ opacity:0.3; width: 45px; height: 70px; margin-left:0px; margin-top:130px; float: left; cursor: pointer; background: url(https://cdn0.iconfinder.com/data/icons/slim-square-icons-basics/100/basics-05-64.png) center no-repeat; -webkit-transition: all .3s ease; -moz-transition: all .3s ease; -ms-transition: all .3s ease; transition: all .3s ease;}
 	#divCarousel #divIzquierda:hover{border:none; background: url(https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-ios7-arrow-back-64.png) center no-repeat;}
 	#divCarousel #divDerecha{ opacity:0.3; width: 45px; height: 70px; margin-top:130px; float: left; cursor: pointer; background: url(https://cdn0.iconfinder.com/data/icons/slim-square-icons-basics/100/basics-06-64.png) center no-repeat; -webkit-transition: all .3s ease; -moz-transition: all .3s ease; -ms-transition: all .3s ease; transition: all .3s ease; }
 	#divCarousel #divDerecha:hover{ border:none; background: url(https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-ios7-arrow-forward-64.png) center no-repeat; }
 	#divCarousel #divCentro{ width: 90%; float: left; /*el overflow es quien hace gran parte de la magia*/ overflow: hidden; height: 260px;}
 		#divCarousel #divCentro ul{list-style-type: none;padding: 0;margin: 0; }
-			#divCarousel #divCentro ul li{ display: inline-block; margin: 15px 20px; cursor: pointer; background: #F2F2F2; border-bottom:2px solid #2d455f;  padding:2px; text-align: center; -webkit-transition: all 0.3s ease; -moz-transition: all 0.3s ease; -ms-transition: all 0.3s ease; -o-transition: all 0.3s ease; transition: all 0.3s ease;}
-				#divCarousel #divCentro ul li img{ padding: 0 0px; width: 260px; height:140px; margin-top: 5px; -webkit-transition: all 0.3s ease; -moz-transition: all 0.3s ease; -ms-transition: all 0.3s ease; -o-transition: all 0.3s ease; transition: all 0.3s ease;}
+			#divCarousel #divCentro ul li{ display: inline-block; margin: 15px 10px; cursor: pointer; background: #F2F2F2; border-bottom:2px solid #2d455f;  padding:2px; text-align: center; -webkit-transition: all 0.3s ease; -moz-transition: all 0.3s ease; -ms-transition: all 0.3s ease; -o-transition: all 0.3s ease; transition: all 0.3s ease;}
+				#divCarousel #divCentro ul li img{ padding: 0 0px; width: 225px; height:140px; margin-top: 5px; -webkit-transition: all 0.3s ease; -moz-transition: all 0.3s ease; -ms-transition: all 0.3s ease; -o-transition: all 0.3s ease; transition: all 0.3s ease;}
 		#divCarousel #divCentro ul li:hover{ border-bottom:2px solid #23adfc; }
 	#divCarousel h2{ font-size: 18px}
 
@@ -75,24 +81,160 @@ section{ min-height:400px; width: 100%; height: auto;  padding-bottom: 50px}
 }
 
 
-.section4{ min-height: 700px; width: 100%; min-width:1228px; padding-bottom: 100px}
-.section4 #blog{ float: left; width: 30%; margin: 10%; margin-top: 0; height:400px; background: none; cursor: pointer;}
-.section4 #blog img{ width: 100%; height: auto;}
-		.section4 #blog #etiqueta{ width:80px; height: 80px; position: absolute; margin-left:0; margin-top:-280px; background:#23adfc; border-bottom:15px solid #2d455f; padding-top:8px; -webkit-transition: all 0.3s ease; -moz-transition: all 0.3s ease; -ms-transition: all 0.3s ease; -o-transition: all 0.3s ease; transition: all 0.3s ease;}
-		.section4 #blog:hover #etiqueta{height: 100px; border-bottom: 30px solid #2d455f; padding-top:30px }
-.section4 #blog h1, .section4 #blog h2{color:#fafafa; margin: 0px}
-.section4 #blog p{font-size: 16px; color: #424242; text-align:justify; }
-.section4 #blog span{ color:#000; text-align:left; font-weight: bold;}
-.section4 #blog a, .section4 #blog a:hover {color: #23adfc; text-decoration: none; float: right; font-family: 'lato'; }
-.section4 #link{width: 100%; height: 100px; background:#23adfc; position: absolute; margin-top:540px  }
-.section4 #link #botonl{ width: 150px; position: absolute; left: 1050px; margin-top:15px;  padding:15px 0px; background:none; font-weight:lighter; border:1px solid #fff;  font-family: 'lato'; color: #fff; text-align: center; cursor: pointer; -webkit-transition: all .3s ease; -moz-transition: all .3s ease; -ms-transition: all .3s ease; transition: all .3s ease;}
-.section4 #link #botonl:hover{  background:none; border:1px solid #D8D8D8; color: #D8D8D8;}
+#section4{ min-height: 700px; width: 100%;  padding-bottom: 100px}
+#section4 #blog{ float: left; width: 45%; margin: 2.5%; margin-top: 0; height:400px; background: none; cursor: pointer;}
+#section4 #blog img{ width: 100%; height: auto;}
+		#section4 #blog #etiqueta{ width:80px; height: 80px; position: absolute; margin-left:0; margin-top:-280px; background:#23adfc; border-bottom:15px solid #2d455f; padding-top:8px; -webkit-transition: all 0.3s ease; -moz-transition: all 0.3s ease; -ms-transition: all 0.3s ease; -o-transition: all 0.3s ease; transition: all 0.3s ease;}
+		#section4 #blog:hover #etiqueta{height: 100px; border-bottom: 30px solid #2d455f; padding-top:30px }
+#section4 #blog h1, #section4 #blog h2{color:#fafafa; margin: 0px}
+#section4 #blog p{font-size: 16px; color: #424242; text-align:justify; min-height: 100px; }
+#section4 #blog span{ color:#000; text-align:left; font-weight: bold;}
+#section4 #blog a, #section4 #blog a:hover {color: #23adfc; text-decoration: none; float: right; font-family: 'lato'; }
+#section4 #link{width: 100%; min-height: 100px; background:#23adfc; position: absolute; margin-top:540px  }
+#section4 #link #botonl{ width: 150px; position: relative; right: 10px; margin-top:15px;  padding:15px 0px; background:none; font-weight:lighter; border:1px solid #fff;  font-family: 'lato'; color: #fff; text-align: center; cursor: pointer; -webkit-transition: all .3s ease; -moz-transition: all .3s ease; -ms-transition: all .3s ease; transition: all .3s ease;}
+#section4 #link #botonl:hover{  background:none; border:1px solid #D8D8D8; color: #D8D8D8;}
 
 footer{ background:#2d455f; min-height:400px;  width: 100%; bottom:0px;}
 
-@media only screen and (min-width: 1228px) {
-	.portada #slogan{width:60%; left:50%; margin-left: -30%; }
-	.portada #boton{  left:50%; margin-left:-100px;}
+@media only screen and (max-width: 900px) {
+	.wrapper{ width: 100%;}
+	/*header*/
+	header .menu{ position: static;}
+	header #left, header #right{ width: 100%; float: left; position: relative; left: 0; text-align: center;}
+	#portada #slogan{ top:100px; padding: 0 30px;}
+	#portada #boton { top:130px; }
+	/*section1*/
+	#section1 #div{ width: 80%; margin-left: 10%;}
+	#section1 #div {min-height: 230px; }
+	.last-div{ margin-bottom: 100px;}
+	#link p{     width: 100%; font-size: 18px;}
+	#link #botonl{   float: left; margin-left: -75px; margin-bottom: 20px; position: relative; left: 50%; }
+	/*section2*/
+	.service{ width: 45%; margin: 0 2.5%;}
+	.service img{ margin-left: -22.5%;}
+	/*equipo*/
+	#divCarousel { margin-bottom: 90px;}
+	#divCarousel #divIzquierda, #divCarousel #divDerecha{ width: 5%; }
+	#divCarousel #divCentro{width: 90%;}
+	/*section3*/
+	#section4 #blog { margin-top: 80px; }
+	#section4 #blog p{height: 130px; }
+	
 
 }
-/*https://www.iconfinder.com/iconsets/dental-3*/
+
+@media only screen and (max-width: 700px) {
+	.menu nav {  float: none;  right: 0px;  height: auto; z-index:10; top:100px;}
+	.menu nav  ul{  background: #f2f2f2; position: static; border-bottom: 2px; height: auto; width: 100% }
+
+
+	/*section2*/
+	.service{ width: 90%; margin: 0 8% 0 2%;}
+	.service img{ margin-left: -35.5%;}
+	/*equipo*/
+	/*section3*/
+	#section4 #blog { width: 70%; margin: 60px 15%; float: none; }
+	#section4 #blog #etiqueta{ margin-top: -230px; zoom: 70%;}
+	#section4 #link{ margin-top:0; }
+
+
+	/* ------------------------------------------
+	  NAV TOGGLE STYLES
+	--------------------------------------------- */
+
+	@font-face {
+	  font-family: "responsivenav";
+	  src:url("../icons/responsivenav.eot");
+	  src:url("../icons/responsivenav.eot?#iefix") format("embedded-opentype"),
+	    url("../icons/responsivenav.ttf") format("truetype"),
+	    url("../icons/responsivenav.woff") format("woff"),
+	    url("../icons/responsivenav.svg#responsivenav") format("svg");
+	  font-weight: normal;
+	  font-style: normal;
+	}
+
+	.nav-toggle {
+	  display: inline;
+	  -webkit-font-smoothing: antialiased;
+	  -moz-osx-font-smoothing: grayscale;
+	  -webkit-touch-callout: none;
+	  -webkit-user-select: none;
+	  -moz-user-select: none;
+	  -ms-user-select: none;
+	  user-select: none;
+	  text-decoration: none;
+	  text-indent: -999px;
+	  overflow: hidden;
+	  width: 70px;
+	  height: 55px;
+	  float: right;
+
+	}
+
+	.nav-toggle:before {
+	  color: #2d455f; /* Edit this to change the icon color */
+	  font-family: "responsivenav", sans-serif;
+	  font-style: normal;
+	  font-weight: normal;
+	  font-variant: normal;
+	  font-size: 100px;
+	  text-transform: none;
+	  position: absolute;
+	  content: "≡";
+	  text-indent: 0;
+	  text-align: center;
+	  line-height: 55px;
+	  speak: none;
+	  right: 10px;
+	  top:95px;
+	}
+
+	.nav-toggle.active::before {
+	  font-size: 50px;
+	  content:"x";
+	  height: 40px;
+	  top:95px;
+	  right: 10px;
+	}
+
+	/*! responsive-nav.js 1.0.39 by @viljamis */
+
+	.nav-collapse ul {
+	  margin: 0 !important;
+	  padding: 15px 0  !important;
+	  display: block !important;
+	  list-style: none !important;
+	}
+
+	.nav-collapse li {
+	  width: 100%;
+	  display: block;
+	}
+
+	.js .nav-collapse {
+	  clip: rect(0 0 0 0);
+	  max-height: 0;
+	  position: absolute;
+	  display: block;
+	  overflow: hidden;
+	  zoom: 1;
+	}
+
+	.nav-collapse.opened {
+	  max-height: 9999px;
+	}
+
+	.nav-toggle {
+	  -webkit-tap-highlight-color: rgba(0,0,0,0);
+	  -webkit-touch-callout: none;
+	  -webkit-user-select: none;
+	  -moz-user-select: none;
+	  -ms-user-select: none;
+	  -o-user-select: none;
+	  user-select: none;
+	}
+
+
+}
+
+	/*https://www.iconfinder.com/iconsets/dental-3*/
