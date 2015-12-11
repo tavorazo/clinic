@@ -28,7 +28,10 @@
 		$_SESSION['rol']=$renglon['rol'];
 		$_SESSION['nombres'] = $renglon['nombres'];
 		echo "<br>Correcto. . .";
-		echo '<META HTTP-EQUIV="Refresh" CONTENT="5; URL=../panel.php">';
+		if ($renglon['rol'] == 'merca') 
+			echo '<META HTTP-EQUIV="Refresh" CONTENT="5; URL=../merca/">';
+		else
+			echo '<META HTTP-EQUIV="Refresh" CONTENT="5; URL=../panel.php">';
 	}
 	else{
 		echo '<br><h2>Tu inicio de sesi&oacute;n ha sido incorrecto <br> vuelve a intentar  <META HTTP-EQUIV="Refresh" CONTENT="5; URL=../../log.php">';
