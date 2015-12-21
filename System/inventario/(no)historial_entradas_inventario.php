@@ -7,8 +7,6 @@
 		//echo'<META HTTP-EQUIV="Refresh" CONTENT="0; URL=index.php">';
 	$usuario = $_SESSION['u'];
 	include('../php/base.php');
-	include('../php/base2.php');
-	include('../php/base3.php');
    date_default_timezone_set("Mexico/General");
    
    #variable con la hora con formato am, pm

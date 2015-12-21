@@ -57,22 +57,22 @@ $usuario = $_SESSION['u'];
    <!-- formulario editar en nominas -->  
    <?php
    include("base.php");
-   //include("base2.php");
-   //include("base3.php");
    $id_usuario = $_GET['id'];
    $select = 'SELECT * from nomina where id_usuario="'.$id_usuario.'";';
    $resul = $conn->query($select);
    $renglon = $resul->fetch_assoc();
-   //$resul = $conn->query($select) or die ("problema con la solicitud");
-   //$renglon = mysql_fetch_assoc($resul);
+
    $select2 = 'SELECT * from usuarios where id_usuario="'.$id_usuario.'";';
    $resul = $conn->query($select2);
    $renglon2 = $resul->fetch_assoc();
-   //$resul2 = $conn->query($select2) or die ("problema con la solicitud");
-   //$renglon2 = mysql_fetch_assoc($resul2);
    ?>
    <h1> <a href="lista_usuarios.php" style="float:left; margin-right:10px"> << Regresar </a> </h1>
    <h1>Nomina de <?php echo $renglon2['nombres'], " ", $renglon2['apellido_paterno']," ", $renglon2['apellido_materno']; ?></h1><hr><br>
+  
+
+<?php
+if($_SESSION['rol']=='admin' || $_SESSION['rol']=='secretaria'){
+?>
    <form action="pagar_empleado.php" method="POST">
      <input type="hidden" name="sueldo" value="<?php echo $renglon['sueldo']; ?>" >
      <input type="hidden" name="vacaciones" value="<?php echo $renglon['vacaciones']; ?>" >
@@ -83,24 +83,22 @@ $usuario = $_SESSION['u'];
       <td>
         <label style="margin-right:10px; float:left">Activar Vacaciones: </label>
       </td><td>
-      <select name="vacaciones_" class="campoT" style="width:120px" style="margin-right:10px; float:right">
-       <option value="1">No</option>
-       <option value="2">Si</option>
-     </select>
-   </td><td>
-   <label style="margin-right:20px; float:left">Activar Aguinaldo: </label>
- </td><td>
- <select name="aguinaldo_" class="campoT" style="width:120px" style="margin-right:19px; float:left">
-  <option value="1">No</option>
-  <option value="2">Si</option>
-</select>
-</td><td>
-<?php
-if($_SESSION['rol']=='admin' || $_SESSION['rol']=='secretaria')
-  echo '<input type="submit" value="Pagar" style="margin-right:10px; float:left">';
-?>
-</td>
-</table>
+        <select name="vacaciones_" class="campoT" style="width:120px" style="margin-right:10px; float:right">
+         <option value="1">No</option>
+         <option value="2">Si</option>
+       </select>
+      </td><td>
+        <label style="margin-right:20px; float:left">Activar Aguinaldo: </label>
+      </td><td>
+        <select name="aguinaldo_" class="campoT" style="width:120px" style="margin-right:19px; float:left">
+          <option value="1">No</option>
+          <option value="2">Si</option>
+        </select>
+      </td><td>
+        <input type="submit" value="Pagar" style="margin-right:10px; float:left">
+      </td>
+    </table>
+
 </form>
 <a href="#" onclick="ver();" id="uno">Modificar nomina</a>
 <form action="moficiar_nomina.php" method="POST" style="display:none; margin-right:30px" id="dos" >
@@ -111,12 +109,39 @@ if($_SESSION['rol']=='admin' || $_SESSION['rol']=='secretaria')
   <label style="margin-right:10px; float:left; margin-top:3px ">Aguinaldo: </label>
   <input type="text" name="aguinaldo" class='campoT' style="width:120px; margin-right:10px; float:left"   value="<?php echo $renglon['aguinaldo']; ?>">
   <input type="hidden" value="<?php echo $id_usuario; ?>" name="id_usuario">
-  <?php
-  if($_SESSION['rol']=='admin' || $_SESSION['rol']=='secretaria')
-    echo '<input type="submit" value="Modificar" style="width:90px; height:30px; margin-top:-1px">';
-  ?>
-  
+  <input type="submit" value="Modificar" style="width:90px; height:30px; margin-top:-1px">
+
 </form>
+<?php } else {
+  $sql= "SELECT *  FROM nomina_historial WHERE  id_usuario = '$usuario'";
+  $resul = $conn->query($sql);
+  echo "<table>
+      <thead>
+        <tr>
+          <th>Sueldo</th>
+          <th>Vacaciones</th>
+          <th>Aguinaldo</th>
+          <th>Total</th>
+          <th>Fecha</th>
+          <th>aprovada</th>
+        </tr>
+      </thead>
+      <tbody>";
+  while ($datos_nomina = $resul->fetch_row()){
+    echo "
+        <tr>
+          <td>".$datos_nomina[2]."</td>
+          <td>".$datos_nomina[3]."</td>
+          <td>".$datos_nomina[4]."</td>
+          <td>".$datos_nomina[5]."</td>
+          <td>".$datos_nomina[6]."</td>
+          <td>".$datos_nomina[7]."</td>
+        </tr>";
+  }
+  echo "</tbody>
+    </table>";
+}
+?>
 <br><br>
 <!--br><br>
   <a href="lista_usuarios.php">Regresar</a-->

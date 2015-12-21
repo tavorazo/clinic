@@ -2,7 +2,7 @@ $(document).ready(function() {
   
   $('#form').click(function(event) {
    $(".ajax").submit(function(){
-      var data = {action: "test"};        
+      var data = {action: "get"};        
       data = $(this).serialize() + "&" + $.param(data);
       $.ajax({
         type: "POST",
@@ -22,6 +22,7 @@ $(document).ready(function() {
                         + data_parse[i].edad + "</td><td> "
                         + data_parse[i].correo + "</td></tr> ");
             }
+            i = parseInt(i) + 1;
             $('.return').html( "<h2> Filtro de " +i+ " pacientes </h2> <br><table><th><td>Nombre</td><td>Apellidos</td><td>Sexo</td><td>Fecha_nacimiento</td><td>Edad</td><td>Correo</td></th>" + arr + "</table>");
         }
       });

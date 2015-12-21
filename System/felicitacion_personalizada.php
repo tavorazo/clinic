@@ -52,16 +52,23 @@ $usuario = $_SESSION['u'];
      include('php/base.php');
      $id_paciente = $_GET['id_paciente'];
      $correo = $_GET['correo'];
-     $select = 'select * from paciente where id_paciente="'.$id_paciente.'";';
+     
+     //si es general
+     if ($id_paciente == NULL) {
+       $id_paciente = 0;
+     }
+
+     $select = 'SELECT * from paciente where id_paciente="'.$id_paciente.'";';
      $resul = $conn->query($select) or die ("problema con la solicitud");
      $renglon_paciente = $resul->fetch_assoc();
      $nombres = $renglon_paciente['nombres']." ". $renglon_paciente['apellido_paterno']." ".$renglon_paciente['apellido_materno'];
+
 
      if($correo1=''){
       echo '<h1>Felicitación personalizada para: '.$renglon_paciente['nombres'].' '.$renglon_paciente['apellido_paterno'].' '.$renglon_paciente['apellido_materno'].' </h1>';
       echo '<br>Correo: '.$correo.'<br><br><br>';
     }else{
-      print "Envir felicitación a_<br><br>";
+      echo "Enviar felicitación a todos<br><br>";
     }
     ?>
     <form method="POST" action="enviar_felicitacion_personalizada.php" enctype="multipart/form-data">

@@ -5,7 +5,7 @@ if($_SESSION['u']=='')
 	//if($_SESSION['rol']!='admin')
 	//		header('location: ../panel.php');
 $u= $_SESSION['u'];
-	//echo $u;
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -56,7 +56,7 @@ $u= $_SESSION['u'];
 	             		//	echo "<br><label>Password: </label>", $row2[10];
 		//$resul = $conn->query($select) or die ("problema con la solicitud");
 		//$renglon = mysql_fetch_assoc($resul);
-			$select = 'SELECT * from curriculum where id_usuario="'.$row2[0].'";';
+			$select = "SELECT * from curriculum where id_usuario= '$row2[0]'";
 			$result = $conn->query($select);
 			$renglon = $result->fetch_assoc();
 			echo "	<br><a href='ver_curriculum.php?id=",$row2[0],"&n=",$row2[1],"&a1=",$row2[2],"&a2=",$row2[3],"&fn=",$row2[4],"' style='margin-top:10px; float:left'>Ver Curriculum >> </a><br>";
@@ -81,7 +81,7 @@ $u= $_SESSION['u'];
  	     	//print "SELECT * FROM usuarios where id_usuario=$usuario";
 	      	//while ($row2 = mysql_fetch_array($result2, MYSQL_NUM)) {
 			$result2 = $conn->query("SELECT * FROM usuarios where id_usuario='$u'");
-			while ($row2 = $result->fetch_row()){
+			while ($row2 = $result2->fetch_row()){
 				echo "<div style='width:80%; margin:10px auto; padding:20px; border: #2d455f 1px solid;'>
 				<label>Id: </label>", $row2[0];
 				echo "<br><label>Nombre: </label>", $row2[1]," ",$row2[2]," ", $row2[3];
@@ -142,7 +142,7 @@ $u= $_SESSION['u'];
 
 	            echo "<br><br>
 	            <div style='padding:9px; float:right;  position:absulute;  margin-top:-100px; border:1px solid #2d455f; height:16px; width:250px; text-align:center '>
-	            <a href='nomina_personal.php?id=",$row2[0],"'>Revisar Nomina</a>  ";
+	            	<a href='nomina_personal.php?id=",$row2[0],"'>Revisar Nomina</a>  ";
 	                                  		/*</div><br><br><br>*/
 
 	            if($row2[0]==$_SESSION['u']){

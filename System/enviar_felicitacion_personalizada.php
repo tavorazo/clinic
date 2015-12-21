@@ -10,10 +10,10 @@
 		copy($_FILES['imagen']['tmp_name'],$_FILES['imagen']['name']);
 		$imagen=$_FILES['imagen']['name'];
 		$imagen=htmlspecialchars($imagen);
-		$imagen = "http://wbx.technology/Endoperio/images/".$imagen;
+		$imagen = "images/".$imagen;
 	}
 	else
-		$imagen="http://wbx.technology/Endoperio/images/feliz.png";
+		$imagen="images/feliz.png";
 
 	$remitente = 'endoperio@endoperio.com';
 	$mensaje = '	<!doctype html>

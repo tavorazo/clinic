@@ -3,7 +3,7 @@ if (is_ajax()) {
   if (isset($_POST["action"]) && !empty($_POST["action"])) { //Checks if action value exists
     $action = $_POST["action"];
     switch($action) { //Switch case for value of action
-      case "test": test_function(); break;
+      case "get": get_pacientes(); break;
     }
   }
 }
@@ -14,14 +14,17 @@ function is_ajax() {
 }
 
 
-function test_function(){
+function get_pacientes(){
   $valores = $_POST;
   $by = $valores['by'];
   $size = $valores['size'];
 
   include('../php/base.php');
 
-    $result = $conn->query("SELECT  nombres, apellido_paterno, apellido_paterno, sexo, fecha_nacimiento, edad,  correo FROM  paciente ORDER BY $by ASC LIMIT $size ");
+    //if ($size == NULL) 
+      //$result = $conn->query("SELECT  nombres, apellido_paterno, apellido_paterno, sexo, fecha_nacimiento, edad,  correo FROM  paciente ORDER BY $by ASC ");
+    //else
+      $result = $conn->query("SELECT  nombres, apellido_paterno, apellido_paterno, sexo, fecha_nacimiento, edad,  correo FROM  paciente ORDER BY $by ASC LIMIT $size ");
 
     $return = array();
     $i = 0;
@@ -29,7 +32,8 @@ function test_function(){
         $return[$i] = $pacientes;
         $i++;
     }
-  
+
+  $conn -> close();
   $return = json_encode($return);
   echo json_encode($return);
 }

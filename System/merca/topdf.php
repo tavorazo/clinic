@@ -8,8 +8,8 @@
     $size = $_POST["size"];
 	
 require_once("dompdf/dompdf_config.inc.php");
-include('../../php/base.php');
-  $result = $conn->query("SELECT  nombres, apellido_paterno, apellido_paterno  FROM  paciente ORDER BY $by DESC LIMIT $size ");
+include('../php/base.php');
+  $result = $conn->query("SELECT  nombres, apellido_paterno, apellido_paterno, sexo, fecha_nacimiento, edad,  correo FROM  paciente ORDER BY $by ASC LIMIT $size ");
   $return = array();
   $n_pacientes = 0;
 
@@ -28,10 +28,11 @@ HTML;
     $n_pacientes++;
   }
 
-  $html .= '<h2>Lista de '.$size.' pacientes filtrados por' .$by.' </h2>';  
+  $html .= '<h2>Lista de '.$size.' pacientes filtrados por ' .$by.' </h2>';  
     for ($i=0; $i < $n_pacientes; $i++) {
-      for ($j=0; $j< 3; $j++) {
-        $html .= $i.' '.$return[$i][$j]. ' '; 
+      $html .= $i.' ';
+      for ($j=0; $j< 7; $j++) {
+        $html .= $return[$i][$j]. ' '; 
     }$html .='<br>';  
   }
 $html .= '</body></html>';

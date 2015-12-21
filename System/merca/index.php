@@ -7,7 +7,7 @@
 
 <p>Buscar lista de pacientes </p>
 <form action="filtros.php" class="ajax" method="post" accept-charset="utf-8" >
-  <input type="number" class="campoT" name="size" value="" placeholder="Cuantos pacientes quieres buscar?" required min="1" />
+  <input type="number" class="campoT" name="size" value="" placeholder="Cuantos pacientes quieres buscar?"  min="1" />
   <select name="by"class="campoT" >
     <option >Selecciona el filtro...</option>
     <option value="apellido_paterno">Nombre</option>
@@ -20,7 +20,7 @@
 
 
 <form action="topdf.php"  method="POST" accept-charset="utf-8" style="margin-left:450px">
-  <input type="number"  class="campoT" name="size" value="" placeholder="Cuantos pacientes quieres buscar?" required min="1" />
+  <input type="number"  class="campoT" name="size" value="" placeholder="Cuantos pacientes quieres buscar?"  min="1" />
   <select name="by" class="campoT" >
     <option >Selecciona el filtro...</option>
     <option value="apellido_paterno">Nombre</option>
