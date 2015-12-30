@@ -142,7 +142,7 @@
     <label style="float:left; width:150px; margin-right:15%">RFC: </label>
       <input type="text" name="RFC" class="campoT" required value="<?php echo $renglon['RFC']?>"></br>
     <label style="float:left; width:150px; margin-right:15%">Observaciones: </label>
-      <textarea rows="4" cols="50" name="observaciones"  required ><?php echo $renglon['calle']?>
+      <textarea rows="4" cols="50" name="observaciones"  required ><?php echo $renglon['observaciones']?>
       </textarea>
       <!--input type="textarea" name="observaciones" class="campoT" required--></br>
    

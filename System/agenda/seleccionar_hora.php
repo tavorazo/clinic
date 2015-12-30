@@ -117,7 +117,7 @@ $j=0;
 for($i=0;$i<12;$i++){
 	
 	for($j=0; $j<4;$j++){
-		$select = 'select * from agenda where hora="'.$hour.'" and minuto="'.$minute.'" and dia="'.$dia.'" and mes="'.$mes_n.'" and ano="'.$ano.'" and id_usuario="'.$doctor.'";';
+		$select = 'SELECT * from agenda where hora="'.$hour.'" and minuto="'.$minute.'" and dia="'.$dia.'" and mes="'.$mes_n.'" and ano="'.$ano.'" and id_usuario="'.$doctor.'";';
 		$resul = $conn->query($select) or die ("problema con la solicitud");
 		$renglon = $resul->fetch_assoc();
 		

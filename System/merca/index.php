@@ -20,7 +20,7 @@
 
 
 <form action="topdf.php"  method="POST" accept-charset="utf-8" style="margin-left:450px">
-  <input type="number"  class="campoT" name="size" value="" placeholder="Cuantos pacientes quieres buscar?"  min="1" />
+  <input type="number"  class="campoT" name="size" value="0" placeholder="Cuantos pacientes quieres buscar?"   />
   <select name="by" class="campoT" >
     <option >Selecciona el filtro...</option>
     <option value="apellido_paterno">Nombre</option>

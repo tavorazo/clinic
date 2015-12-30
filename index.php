@@ -2,6 +2,7 @@
 <head>
 	<title>Endoperio Dental Center</title>
 	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<link rel="stylesheet" type="text/css" href="View/CSS/master.css">
 	<link href="http://fonts.googleapis.com/css?family=Lato:300,400" rel="stylesheet" type="text/css">
 	<link rel="shortcut icon" type="x-icon" href="View/IMG/icon.png">

@@ -71,7 +71,7 @@ $usuario = $_SESSION['u'];
 
 
 	$tabla="agenda";
-	include('php/base2.php');
+	include('php/base.php');
 
 	$arraymes = $mes[$mes_n];
 
@@ -83,7 +83,7 @@ $usuario = $_SESSION['u'];
 	$j=1;
 
 	if($rol!='dentista'){
-		$resultd = $conn->query("select * from usuarios where rol='dentista';");
+		$resultd = $conn->query("SELECT * from usuarios where rol='dentista'")or die ("problema con la solicitud a usuarios");
 
 		echo " <center>
 		<div style='background: #F4F4F4; padding:20px; width:450px'>
@@ -91,22 +91,30 @@ $usuario = $_SESSION['u'];
 		<form action='?ano=$ano&mes=$mes_n&dia=$dia&n_dia=$n_dia' method='POST'>
 		<select name='d' class='campoT'>
 		<option value=''>Todos</option>";
-		while ($rowlista = $resultd->fetch_array()){
+		while ($rowlista = $resultd->fetch_row()){
 			echo "<option value='",$rowlista[0],"'>",$rowlista[1]," ",$rowlista[2],"</option>";
 		}
 		echo "	</select>
 		<input type='submit' value='Revisar'>
 		</form></center>
 		</div><br><br>";
-		$dorevisar = $_POST['d'];
+		
+		$dorevisar = '';
+  		if (isset($_POST["d"])) 
+			$dorevisar = $_POST['d'];
+
 		while($i<13){
 			while($j<5){
-				if($dorevisar!='')
-					$result = $conn->query("SELECT * FROM $tabla where ano='$ano' and mes='$mes_n' and dia='$dia' and hora='$hora[$i]' and minuto='$minuto[$j]' and id_usuario='$dorevisar'");
-				else
-					$result = $conn->query("SELECT * FROM $tabla where ano='$ano' and mes='$mes_n' and dia='$dia' and hora='$hora[$i]' and minuto='$minuto[$j]'");
-				$nfilas =$result->fetch_row();
-
+				if($dorevisar!=''){
+					$sql = 'SELECT * FROM agenda where ano='.$ano.' and mes='.$mes_n.' and dia='.$dia.' and hora='.$hora[$i].' and minuto='.$minuto[$j].' and id_usuario="'.$dorevisar.'"';
+					$result = $conn->query($sql);
+				}
+				else{
+					$sql = 'SELECT * FROM agenda where ano='.$ano.' and mes='.$mes_n.' and dia='.$dia.' and hora='.$hora[$i].' and minuto='.$minuto[$j];
+					$result = $conn->query($sql) or die ('problema con la solicitud 3');
+				}
+				
+				//$nfilas =$result->fetch_row();
 
 				if($hora[$i]!=14 && $hora[$i]!=15){
 					echo '
@@ -120,8 +128,8 @@ $usuario = $_SESSION['u'];
 
 					echo "<table style='width:90%'>";
 					while ($row2 = $result->fetch_row()) {
-						$select2 = 'select * from usuarios where id_usuario="'.$row2[1].'";';
-						$select = 'select * from paciente where id_paciente="'.$row2[2].'";';
+						$select2 = 'SELECT * from usuarios where id_usuario="'.$row2[1].'";';
+						$select = 'SELECT * from paciente where id_paciente="'.$row2[2].'";';
 						$resul = $conn->query($select) or die ("problema con la solicitud 2");
 						$resul2 = $conn->query($select2) or die ("problema con la solicitud 3");
 						$renglon = $resul->fetch_assoc();
