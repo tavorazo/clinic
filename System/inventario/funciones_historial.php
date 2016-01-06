@@ -30,6 +30,7 @@ function listar_historial($date, $month, $week){
   if ($date == '' && $month == '' && $week == '') {
     $date =date('Y-m-d');
     echo "<h2> Historial del dia de hoy ( ".$date." )<br><br> </h2>";
+	echo "<a href='impresion_inventario.php'>Ver en pdf</a>";
     $result = $conn->query('SELECT * FROM inventario_historial WHERE CAST( fecha AS DATE ) =  "'.$date.'" order by fecha desc');
     while ($xdia = $result->fetch_row()) {
       paint(get_producto($xdia[2]), get_user($xdia[1]),$xdia[3] , $xdia[4] );
@@ -38,6 +39,7 @@ function listar_historial($date, $month, $week){
   //buscar dia especifico
   else if ($date != '' && $month == '' && $week == '') {
     echo "<h2> Usted eligió listar historial del dia ( ".$date." )<br><br> </h2>";
+	echo "<a href='impresion_inventario.php?date=".$date."&month=&week='>Ver en pdf</a>";
     $result = $conn->query('SELECT * FROM inventario_historial WHERE CAST( fecha AS DATE ) =  "'.$date.'" order by fecha desc');
     while ($xdia = $result->fetch_row()) {
       paint(get_producto($xdia[2]), get_user($xdia[1]),$xdia[3] , $xdia[4] );
@@ -46,12 +48,14 @@ function listar_historial($date, $month, $week){
   //buscar por mes especifico
   else if ($date == '' && $month != '' && $week == '') {
     echo "<h2> Usted eligió listar historial del mes de ( ".strftime("%B", strtotime($month))." )<br><br> </h2>";
+	echo "<a href='impresion_inventario.php?date=&month=".$month."&week='>Ver en pdf</a>";
     $year = strftime("%Y", strtotime($month)); //sacar año
     $month = strftime("%m", strtotime($month)); //sacar mes
     $result = $conn->query('SELECT * FROM inventario_historial WHERE YEAR(fecha) = "'.$year.'" AND MONTH(fecha) = "'.$month.'" order by fecha desc');
     while ($xmonth = $result->fetch_row()) {
       paint(get_producto($xmonth[2]), get_user($xmonth[1]),$xmonth[3] , $xmonth[4] );
     }
+	echo $pdf;
   }
 
   //buscar por semana especifica
@@ -59,11 +63,13 @@ function listar_historial($date, $month, $week){
     $n_week = explode("W", $week);
     $date = date("Y-m-d", strtotime($week)); //rescatar fecha de semana
     echo "<h2> Usted eligió listar historial de la semana ( ".$n_week[1]." )<br><br> </h2>";
+	echo "<a href='impresion_inventario.php?date=&month=&week=".$week."'>Ver en pdf</a>";
     $n_week = strftime("%m", strtotime($week)); //sacar mes
     $result = $conn->query('SELECT * FROM `inventario_historial` WHERE  WEEK(fecha) = WEEK("'.$date.'") order by fecha desc');
     while ($xweek = $result->fetch_row()) {
       paint(get_producto($xweek[2]), get_user($xweek[1]),$xweek[3] , $xweek[4] );
-    } 
+    }
+	
   }
   else
     echo "Error - revisa que solo marcas una casilla para la busqueda, si no es así avisalo a tu administrador de sistema";
