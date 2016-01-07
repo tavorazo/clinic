@@ -82,7 +82,7 @@
 				values ('$ultimo_registro','$nombre','$paterno','$materno','$fecha','$edad','$estado','$ciudad','$colonia','$calle','$numero','$telefono','$celular', '$correo', '$nom_emergencia', '$tel_emergencia', '$referencia', '$empresa', now(), '$RFC', '$observaciones', '$imagen','$CP','$sexo','$expediente', '$Num_seguro','0','$terminos','$redes_sociales');";
 	
 	//$insertar = "insert into paciente (nombres,apellido_paterno, apellido_materno, fecha_nacimiento, edad, estado, ciudad, colonia, calle, numero, telefono, celular, referencia, CP, sexo, n_registro) values ('$a','$b','$c','$fecha_nac','$edad','$d','$e','$f','$g','$h', '$i', '$j', '$k', '$cp', '$sexo', '$exp')";
-	$conn->query($insertar);
+	$insertChk = $conn->query($insertar);
 	$id_p = $conn->insert_id;
 	$historial = "INSERT into historial_tabla_pacientes (id_paciente, id_usuario, estado, fecha) values ('$ultimo_registro','$id_usuario','Ha agregado al paciente',now())";
 	$resul = $conn->query($historial);
@@ -96,19 +96,27 @@
 		//echo "<br>".$sentencia;
 		if(!$conn->query($sentencia))
 			die('Error de consulta 4: '.mysqli_error($conn));
-		mysqli_close($conn);
+		
 	}
 	/****************************************/
 	//header('location: ../agregar_paciente.php');
-	?>
-	<?php
-		//echo $ultimo_registro;
-	echo '<br><br><br><center><img src="../../images/endoperio2.png" width="100px" alt=""> <br> ';
-	echo "Creaci&oacute;n con &eacute;xito<br><br><br>";
-	echo '<div style="  padding:9px; border:1px solid #E6E6E6; height:18px; width:120px; margin-top:12px; text-align:center; margin-right:10px ">';
-	echo "<a href='../ficha-paciente.php?id=".$ultimo_registro."'>Ir a ficha</a>";
+
+	if($insertChk){
+		mysqli_close($conn);
+		echo '<br><br><br><center><img src="../../images/endoperio2.png" width="100px" alt=""> <br> ';
+		echo "Creaci&oacute;n con &eacute;xito<br><br><br>";
+		echo '<div style="  padding:9px; border:1px solid #E6E6E6; height:18px; width:120px; margin-top:12px; text-align:center; margin-right:10px ">';
+		echo "<a href='../ficha-paciente.php?id=".$ultimo_registro."'>Ir a ficha</a>";
 		//echo "<a href='../add-usuario.php' > <font color='white'>Regresar </a></center></div>";
-	echo '<META HTTP-EQUIV="Refresh" CONTENT="1; URL=../ficha-paciente.php?id='.$ultimo_registro.'">';
+		echo '<META HTTP-EQUIV="Refresh" CONTENT="1; URL=../ficha-paciente.php?id='.$ultimo_registro.'">';
+		
+	}
+	else{
+		echo '<br><br><br><center><img src="../../images/alert.png" width="100px" alt="" style="background-color:lightblue;"> <br> ';
+		echo "<p style='color:RED'><strong>Error:</strong></p> No se ha creado el paciente, por favor revise los datos<br><br><br>";
+		//echo $ultimo_registro;
+		mysqli_close($conn);
+	}
 ?>
 </body>
 </html>

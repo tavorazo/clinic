@@ -161,7 +161,7 @@ $usuario = $_SESSION['u'];
           <label style="float:left; width:150px; margin-right:15%">Telefono: </label>
           <input type="tel" name="telefono" class="campoT" required>
           <label style="float:left; width:150px; margin-right:15%" value="ej:3342098712">Celular: </label>
-          <input type="tel" name="celular" class="campoT" required></br>
+          <input type="tel" name="celular" class="campoT" required></br> 
           <label style="float:left; width:150px; margin-right:15%">Correo: </label>
           <input type="mail" name="correo" class="campoT" required></br>
           <label style="float:left; width:150px; margin-right:15%">Facebook o Twitter: </label>
@@ -170,7 +170,7 @@ $usuario = $_SESSION['u'];
           <label style="float:left; width:150px; margin-right:15%">Llamar en emergencia: </label>
           <input type="tel" name="name_emergencia" class="campoT" required></br>
           <label style="float:left; width:150px; margin-right:15%">Tel de emergencia: </label>
-          <input type="tel" name="tel_emergencia" class="campoT" required></br>
+          <input type="number" name="tel_emergencia" class="campoT" required></br> <!-- Fuerza a que sea type number ya que en la BD el campo es del tipo int-->
           <!--referencia y empresa-->
           <label style="float:left; width:150px; margin-right:15%">Referencia: </label>
           <input type="text" name="referencia" class="campoT" required></br>
