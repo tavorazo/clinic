@@ -108,4 +108,8 @@
     'italic' => DOMPDF_FONT_DIR . 'DejaVuSerifCondensed-Italic',
     'normal' => DOMPDF_FONT_DIR . 'DejaVuSerifCondensed',
   ),
+  'aguafina script' => 
+  array (
+    'normal' => DOMPDF_FONT_DIR . '68cd23c04cdcb5fd0d5a9bfbf75758a7',
+  ),
 ) ?>

@@ -236,7 +236,7 @@ while ($row3 = $result3->fetch_row()) {
   if($_SESSION['rol']=='admin' || $_SESSION['rol']=='dentista'){
     echo "
     <div id='botn' style='float:left; margin-bottom:30px'>
-    <a href=' editar_alergia.php?id=",$row3[0],"' >  
+    <a href=' editar_alergia.php?id=",$buscar,"' >  
     Modificar</a>
     </div>
     <div style='margin-left:735px; margin-top:0px; position:absolute; width:40px; margin-bottom:100px'  >

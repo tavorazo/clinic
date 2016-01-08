@@ -177,9 +177,11 @@ $usuario = $_SESSION['u'];
           <label style="float:left; width:150px; margin-right:15%">Empresa: </label>
           <input type="text" name="empresa" class="campoT" required></br>
       <!--label style="float:left; width:150px; margin-right:15%">Fecha de alta: </label>
-        <input type="date" name="fecha_alta" class="campoT" required></br--!>
+        <input type="date" name="fecha_alta" class="campoT" required></br-->
       <label style="float:left; width:150px; margin-right:15%">RFC: </label>
         <input type="text" name="RFC" class="campoT" required></br>
+	  <label style="float:left; width:150px; margin-right:15%">Alergias: </label>
+		<input type="text" name="alergias" class="campoT" required></br>
       <label style="float:left; width:150px; margin-right:15%">Observaciones: </label>
         <textarea rows="4" cols="50" name="observaciones"  required>
         </textarea>

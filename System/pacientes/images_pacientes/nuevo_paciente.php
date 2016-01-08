@@ -65,6 +65,7 @@
 	$RFC = $_POST['RFC'];
 	$observaciones = $_POST['observaciones'];
 	$observaciones = htmlspecialchars($observaciones);
+	$alergias = $_POST['alergias'];
 	$Num_seguro = $_POST['Num_seguro'];
 	$terminos = $_POST['validar'];
 
@@ -78,8 +79,8 @@
 	$renglon = $result->fetch_assoc();
 	$ultimo_registro = $renglon['id_paciente'];
 	$ultimo_registro = $ultimo_registro+1;
-	$insertar = "INSERT into paciente (id_paciente, nombres,  apellido_paterno, apellido_materno, fecha_nacimiento, edad, estado, ciudad, colonia, calle, numero, telefono, celular, correo, name_emergencia, tel_emergencia, referencia, empresa, fecha_alta, RFC, observaciones, foto_ingreso, CP, sexo, n_registro, Num_seguro, n_recomendados,terminos_condiciones, redes_sociales) 
-				values ('$ultimo_registro','$nombre','$paterno','$materno','$fecha','$edad','$estado','$ciudad','$colonia','$calle','$numero','$telefono','$celular', '$correo', '$nom_emergencia', '$tel_emergencia', '$referencia', '$empresa', now(), '$RFC', '$observaciones', '$imagen','$CP','$sexo','$expediente', '$Num_seguro','0','$terminos','$redes_sociales');";
+	$insertar = "INSERT into paciente (id_paciente, nombres,  apellido_paterno, apellido_materno, fecha_nacimiento, edad, estado, ciudad, colonia, calle, numero, telefono, celular, correo, name_emergencia, tel_emergencia, referencia, empresa, fecha_alta, RFC, observaciones, foto_ingreso, CP, sexo, n_registro, Num_seguro, n_recomendados,terminos_condiciones, redes_sociales, alergias) 
+				values ('$ultimo_registro','$nombre','$paterno','$materno','$fecha','$edad','$estado','$ciudad','$colonia','$calle','$numero','$telefono','$celular', '$correo', '$nom_emergencia', '$tel_emergencia', '$referencia', '$empresa', now(), '$RFC', '$observaciones', '$imagen','$CP','$sexo','$expediente', '$Num_seguro','0','$terminos','$redes_sociales', '$alergias');";
 	
 	//$insertar = "insert into paciente (nombres,apellido_paterno, apellido_materno, fecha_nacimiento, edad, estado, ciudad, colonia, calle, numero, telefono, celular, referencia, CP, sexo, n_registro) values ('$a','$b','$c','$fecha_nac','$edad','$d','$e','$f','$g','$h', '$i', '$j', '$k', '$cp', '$sexo', '$exp')";
 	$insertChk = $conn->query($insertar);
