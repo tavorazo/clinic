@@ -58,10 +58,10 @@ $html .= "<br><table style='width:99%'><tr><td><h3><label> Paciente:</label> "
 $html .= "<td style='text-align:right;'><h3><label>Fecha:</label> ".$renglon['fecha']."</h3></td></tr></table>";
 $medicament = nl2br($renglon['medicamento']);
 $observac   = nl2br($renglon['observaciones']);
-$html .= "  <div style='border:1px solid #A9E2F3; height:45%'>
+$html .= "  <div style='border:1px solid #A9E2F3; height:20%'>
       <br><h3>".$medicament."</h3><br><br>";
 $html .= "  </div><br>
-      <div style='border:1px solid #A9E2F3; height:20%'>
+      <div style='border:1px solid #A9E2F3; height:10%'>
       <h3>".$observac."</h3><br>";
 $html .= "  </div>";
 $html .= "  <div style='width:99%; margin-top:10px; background:#D4F2F8; padding:5px; text-align:right; '>
