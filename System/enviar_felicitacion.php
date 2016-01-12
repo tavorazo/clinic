@@ -74,7 +74,7 @@ while ($r_p = $usuarios->fetch_array()){
 	echo  $r_p[1]." - ".$r_p[2]." - ".$r_p[3];
 	echo " . . .";
 
-	$remitente = 'endoperio@endoperio.com';
+	$remitente = 'endoperio@endoperio.com.mx';
 	$destino = $r_p[4];
 	$asunto = "Feliz cumpleanios te desea Endoperio";
 	$mensaje = '

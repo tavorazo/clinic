@@ -15,7 +15,7 @@
 	else
 		$imagen="images/feliz.png";
 
-	$remitente = 'endoperio@endoperio.com';
+	$remitente = 'endoperio@endoperio.com.mx';
 	$mensaje = '	<!doctype html>
 	<head><meta charset="utf-8">
 		<title>Felicidades</title>
