@@ -1,5 +1,8 @@
 <?php
 	include("php/base.php");
+	require 'phpmailer/PHPMailerAutoload.php';
+	$mail = new PHPMailer; 												//Inicio de la framework phpMailer
+
 	$asunto = $_POST['asunto'];
 	$contenido = $_POST['contenido'];
 	$correo = $_POST['correo'];
@@ -15,6 +18,7 @@
 	else
 		$imagen="images/feliz.png";
 
+
 	$remitente = 'endoperio@endoperio.com.mx';
 	$mensaje = '	<!doctype html>
 	<head><meta charset="utf-8">
@@ -27,34 +31,46 @@
 	</body>
 	</html>';
 
+	$mail->setFrom($remitente, 'Endoperio'); 		// Desde 
+	$mail->addReplyTo($remitente, 'Endoperio'); 		// Reply
+	$mail->Subject = $asunto;						// Asunto
+	$mail->msgHTML($mensaje);
 
-	$encabezados = 'MIME-Version: 1.0' . "\r\n";
-	$encabezados .= 'Content-type: text/html; charset=uft-8' . "\r\n";
-	$encabezados .= "From: $remitente\nReply-To: $remitente" ;
 
 if($correo==''){
 	$pacientes = $conn->query("select fecha_nacimiento, nombres, apellido_paterno, apellido_materno, correo from paciente;");
 	while ($r_p = $pacientes->fetch_array()){
 		$destino = $r_p[4];
+		$mail->addAddress($destino, $r_p[1].' '. $r_p[2].' '.$r_p[3]);
 		if($destino!=''){
-			mail($destino, $asunto, $mensaje, $encabezados) or die ("No se ha podido enviar tu mensaje. Ha ocurrido un error") ;
-			echo " Enviado<br>";
+			if (!$mail->send()) {
+				echo "Mailer Error: " . $mail->ErrorInfo;
+			} else {
+				echo "Enviado<br>";
+			}
 		}
 	}
 	$pacientes = $conn->query("select fecha_nacimiento, nombres, apellido_paterno, apellido_materno, correo from usuarios;");
 	while ($r_p = $paciantes->fetch_array($pacientes)){
 		$destino = $r_p[4];
 		if($destino!=''){
-			mail($destino, $asunto, $mensaje, $encabezados) or die ("No se ha podido enviar tu mensaje. Ha ocurrido un error") ;
-			echo " Enviado<br>";
+			if (!$mail->send()) {
+				echo "Mailer Error: " . $mail->ErrorInfo;
+			} else {
+				echo "Enviado<br>";
+			}
 		}
 	}
 
 }else{
 
 	if($correo!=''){
-		mail($correo, $asunto, $mensaje, $encabezados) or die ("No se ha podido enviar tu mensaje. Ha ocurrido un error") ;
-		echo " Enviado<br>";
+		$mail->addAddress($destino, $r_p[1].' '. $r_p[2].' '.$r_p[3]);
+		if (!$mail->send()) {
+			echo "Mailer Error: " . $mail->ErrorInfo;
+		} else {
+			echo "Enviado<br>";
+		}
 	}
 }
 //header('Location: /panel.php');

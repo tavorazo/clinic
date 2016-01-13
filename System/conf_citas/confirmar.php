@@ -23,6 +23,10 @@
 	
 	$a = $_GET['id'];
 	include('../php/base.php');
+	
+	require '../phpmailer/PHPMailerAutoload.php';
+	$mail = new PHPMailer;							// Inicia phpMailer
+
 	$insertar = "update agenda set confirmacion='1' where id_cita='$a'";
 	if(!$conn->query($insertar))
 		die('Error de consulta 1: '.mysql_error());
@@ -44,10 +48,15 @@
 	$apellido = $renglonpaciente['apellido_paterno'];
 	$apellido2 = $renglonpaciente['apellido_materno'];
 	$correo = $renglonpaciente['correo'];
+	
+	$mail->setFrom('endoperio@endoperio.com.mx', 'Endoperio');		// Desde
+	$mail->addReplyTo('endoperio@endoperio.com.mx', 'Endoperio');	// Respuesta
+	$mail->addAddress($correo, $nombre.' '.$apellido.' '.$apellido2); // Para
 //$para == $correo;
 	
 // Asunto
 	$titulo = 'Tu cita ha sido confirmada';
+	$mail->Subject = $titulo;     									// Asunto
 	
 // Cuerpo o mensaje
 	$mensaje = '
@@ -67,21 +76,16 @@
 	</body>
 	</html>
 	';
+	$mail->msgHTML($mensaje);
 //echo $mensaje;
 	
-// Cabecera que especifica que es un HMTL
-	$remitente = 'endoperio@endoperio.com.mx';
-	$cabeceras  = 'MIME-Version: 1.0' . "\r\n";
-	$cabeceras .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
-	$cabeceras .= "From: $remitente\nReply-To: $remitente" ;
-	
 // enviamos el correo!
-	if($correo!=''){
-		if(mail($correo, $titulo , $mensaje, $cabeceras) or die ("No se ha podido enviar tu mensaje. Ha ocurrido un error"))
-			echo "enviado"; 
-		else
-			echo "no enviado";
+	if (!$mail->send()) {
+		echo "Mailer Error: " . $mail->ErrorInfo;
+	} else {
+		echo "Enviado!";
 	}
+	
 	mysqli_close ( $conn );
 	echo '<br><br><br><center><img src="../images/endoperio2.png" width="100px" alt=""> <br> ';
 	echo "Cita confirmada con exito<br><br><br>";
