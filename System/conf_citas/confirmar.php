@@ -64,36 +64,38 @@
 	<head>
 	<title>Confirmaci&oacute;n de cita Endoperio, Clinica Dental</title>
 	</head>
-	<body>
-	Hola '.$nombre.' '.$apellido.' '.$apellido2.'<br><br>
+	<body style="font-family: Arial, Helvetica, sans-serif; background: #E6E6E6;">
+	Hola <strong>'.$nombre.' '.$apellido.' '.$apellido2.'</strong><br><br>
 	Tu cita ha sido confirmada para la fecha:<br>
-	El dia: '.$dia.' del mes: '.$mes.' del a&ntilde;o en curso <br>
-	Alas :  '.$hora.':'.$min.'<br>
+	El dia: <strong>'.$dia.'</strong> del mes: <strong>'.$mes.'</strong> del a&ntilde;o en curso <br>
+	A las :  <strong>'.$hora.':'.$min.'</strong><br>
 	<br>
 	Te esperamos 15 minutos antes<br><br>
 	<hr>
-	Endoperio
+	<img src="../images/endoperio-logo.png" width="50%">
 	</body>
 	</html>
 	';
 	$mail->msgHTML($mensaje);
+	$mail->IsHTML(true);
+	$mail->CharSet = 'UTF-8';
 //echo $mensaje;
 	
 // enviamos el correo!
+	mysqli_close ( $conn );
+	echo '<br><br><br><center><img src="../images/endoperio2.png" width="100px" alt=""> <br> ';
 	if (!$mail->send()) {
 		echo "Mailer Error: " . $mail->ErrorInfo;
 	} else {
-		echo "Enviado!";
+		echo "Cita confirmada con exito<br><br><br>";
+		echo '<div style="  padding:9px; border:1px solid #E6E6E6; height:18px; width:120px; margin-top:12px; text-align:center; margin-right:10px ">';
+		echo "<a href='../panel.php' > <font color='white'>Regresar </a></center></div>";
+		echo '<META HTTP-EQUIV="Refresh" CONTENT="1; URL=../panel.php">';
 	}
 	
-	mysqli_close ( $conn );
-	echo '<br><br><br><center><img src="../images/endoperio2.png" width="100px" alt=""> <br> ';
-	echo "Cita confirmada con exito<br><br><br>";
-	echo '<div style="  padding:9px; border:1px solid #E6E6E6; height:18px; width:120px; margin-top:12px; text-align:center; margin-right:10px ">';
-	echo "<a href='../panel.php' > <font color='white'>Regresar </a></center></div>";
 	?>
 	<!--Cita confirmada <a href='ver_citas.php'>Regresar</a-->
-	<META HTTP-EQUIV="Refresh" CONTENT="0; URL=../panel.php">
+	
 		
 	</body>
 	</html>

@@ -55,7 +55,7 @@ while ($r_p = $pacientes->fetch_row()){
 		<title>Felicidades</title>
 	</head>
 	<body>
-		<img src="http://www.webox.org.mx/Proyectos/endoperio/images/feliz.png">
+		<img src="images/feliz.png" width="100%">
 	</body>
 	</html>
 	';
@@ -67,6 +67,8 @@ while ($r_p = $pacientes->fetch_row()){
 	$mail->addReplyTo($remitente, 'Endoperio'); 		// Reply
 	$mail->Subject = $asunto;						// Asunto
 	$mail->msgHTML($mensaje);
+	$mail->IsHTML(true);
+	$mail->CharSet = 'UTF-8';
 
 	
 	if($destino!=''){
@@ -97,7 +99,7 @@ while ($r_p = $usuarios->fetch_array()){
 		<title>Felicidades</title>
 	</head>
 	<body>
-		<img src="http://www.webox.org.mx/Proyectos/endoperio/images/feliz.png">
+		<img src="images/feliz.png" width="100%">
 	</body>
 	</html>
 	';
@@ -106,6 +108,8 @@ while ($r_p = $usuarios->fetch_array()){
 	$mail->addReplyTo($remitente, 'Endoperio'); 		// Reply
 	$mail->Subject = $asunto;						// Asunto
 	$mail->msgHTML($mensaje);
+	$mail->IsHTML(true);
+	$mail->CharSet = 'UTF-8';
 
 	
 	if($destino!=''){
