@@ -163,10 +163,9 @@ echo ' </div>';
 <div id="txt2" style=" margin-right:20px;  width:42%; min-height: 200px; float:right; background: #FFFFFF;">
   <img src="images/HppyBD.png" width="20px" alt="" style="float:left; margin-right:10px">
   <p> Hoy es cumpleaños de:</p><hr> 
-  <?php if($_SESSION['rol']=='admin' || $_SESSION['rol']=='secretaria' || $_SESSION['rol']=='recepcionista') {
-    echo '<a href="felicitacion_personalizada.php"  alt="personalizar" style="float:right; position:relative; font-size:12px; color:#2d455f;">  . Dias especiales | </a> ' ;
-    echo '<a href="enviar_felicitacion_editar.php" alt="personalizar" style="float:right; position:relative; font-size:12px; color:#2d455f;"> | Personalizar felicitación .| </a>';
-  }?>
+  <?php if($_SESSION['rol']=='admin' || $_SESSION['rol']=='secretaria' || $_SESSION['rol']=='recepcionista') 
+  echo '<a href="felicitacion_personalizada.php" alt="personalizar" style="float:right; position:relative; font-size:12px; color:#2d455f;"> Personalizar felicitación</a>';
+  ?>
   <div> 
     <?php
     $a = date("d");
