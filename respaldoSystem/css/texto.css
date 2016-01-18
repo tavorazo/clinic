@@ -1,0 +1,224 @@
+h1{
+	font-size: 20px;
+	font-weight: 600;
+}
+h9{
+	font-size: 26px;
+	color: #6BA3BE;	
+	text-align: center;
+}
+h8{
+	font-size: 20px;
+	color: #3A3C3E;
+	
+}
+h10{
+	font-size: 20px;
+	color: #2A6A88;	
+}
+h3{
+	font-size: 16px;
+	color: #2A6A88;
+	font-weight: 1;
+	margin-left: 10%;
+	float: left;
+}
+h13{
+	font-size: 12px;
+	color: gray;
+	font-weight: 1;
+}
+h12{
+	font-size: 14px;
+	color: #CEE3F6;
+	font-weight: 1;
+}
+h14{
+	font-size: 17px;
+	color: #FFF;
+	font-weight: 2;
+
+}
+h15{
+	font-size: 12px;
+	color: #FFF;
+	font-weight: 1;
+}
+h16{
+	font-size: 14px;
+	color: #4C36C6;
+	margin-left:212px;
+	font-weight: 1;
+	font-style: italic;
+}
+h17{
+	font-size: 14px;
+	color: #FFF;
+	margin-left:78%;
+	font-weight: 3;
+}
+#botn{
+	background: #2d455f;
+	width: 100px;
+	text-align: center; 
+	margin-left:25%; 
+	padding: 13px;
+	opacity: 0.9;
+}
+#botn2{
+	background: #F55555;
+	width: 100px;
+	text-align: center; 
+	margin-left:25%; 
+	padding: 13px;
+	opacity: 0.9;
+}
+#botn3{
+	padding:9px; 
+	border:1px solid #2d455f; 
+	height:18px; 
+	width:190px; 
+	margin-top:12px; 
+	text-align:center; 
+	margin-right:auto;
+	margin-left: auto;
+	color:white;
+}
+#botn4{
+	background: #F9FAE9;
+	border:1px solid #F9FAE9; 
+	width: 100px;
+	text-align: center; 
+	padding: 10px;
+	opacity: 0.9;
+	float: left;
+}
+
+#botnH{
+	background: #FAFAFA;
+	border:1px solid #F9FAE9; 
+	width: 100px;
+	text-align: center; 
+	padding: 10px;
+	opacity: 0.9;
+	float: left;
+	width:200px;
+	margin-top:20px;
+	margin-right:30px
+	
+}
+
+#botn5{
+	background: #2d455f;
+	color: white;
+	width: 100px;
+	text-align: center; 
+	padding: 10px;
+	opacity: 0.9;
+	float: left;
+	opacity: .7;
+	margin-left:5px;
+}
+#botn3:hover, #botn4:hover{
+	border:1px solid gray; 
+}
+#botn5:hover, #botn5a:hover {
+	opacity: .5;
+}
+
+#botn5 a, #botn5a a	{
+	color: white;
+}
+#botn5:hover a, #botn5a:hover a  	{
+	color: white;
+	text-decoration: none;
+}
+
+#botn3 a, #botn4 a {
+	font-size: 16px;
+	color: #2d455f;
+	text-decoration: none;
+}	
+#botn3 a:hover{
+	color: #2d455f;
+}
+#botn a, #botn2 a{
+	font-size: 16px;
+	color: #FFF;
+	text-decoration: none;
+}
+#botn a:hover, #botn2 a:hover {
+	font-size: 16px;
+	color: #FFF;
+	text-decoration: none;
+}
+#botn:hover, #botn2:hover{
+	opacity: 0.8;
+}
+#a1{
+	text-align: center;
+}
+#a1:hover{
+	-webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; 
+	background-image: url("../images/eliminarH.png"); 
+	width: 100%;
+	z-index: 300;
+	opacity: 0.8;
+}
+
+#txt{
+	font-weight: lighter;
+	font-size: 16px;
+	color: #6E6F74;
+	padding: 10px;
+	background: #E2EEFE;
+}
+#txt2{
+	font-weight: lighter;
+	font-size: 15px;
+	color: #525D6B;
+	padding: 10px;
+	background: #F3F6F9;
+}
+
+#txt3 p,#txt2 p, #txt p {
+	color: #BC2020;
+}
+#txt3{
+	font-weight: lighter;
+	font-size: 15px;
+	color: #215DB2;
+	padding: 10px;
+}
+
+a:link
+{
+	color: #000;
+	text-decoration: none;
+}
+
+a:visited
+{
+	color: #2d455f;
+	text-decoration: none;
+}
+
+a:hover
+{
+	color: #A10D1C;
+	text-decoration: underline;
+}
+
+a:active
+{
+	color: #2d455f;
+	text-decoration: none;
+}
+
+a.nontext /* used to override default properties of 'a' tag */
+{
+	color: black;
+	text-decoration: none;
+	font-style: normal;
+	font-weight: normal;
+}

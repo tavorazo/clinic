@@ -1,0 +1,235 @@
+<manifest alg="2" build="314" opt="false" iceEnabled="true">
+  <folder name="css">
+    <file name="site_global.css" crc="417434784"/>
+    <file name="master_modif-master.css" crc="3789319557" ref="sin-título-20:agregar_receta"/>
+    <file name="master_a-master.css" crc="466637097" ref="index"/>
+    <file name="master_panel-master.css" crc="3855693814" ref="buscar-paciente:add-usuario:almacen:contabilidad:agenda:panel:ficha-paciente:add-paciente"/>
+    <file name="master_b-master.css" crc="471741950" ref="clinica:servicios_empresariales:curriculum_completo:servicios:doctores:noticia_ind:pacientes"/>
+    <file name="clinica.css" crc="383453551" ref="clinica"/>
+    <file name="index.css" crc="324473584" ref="index"/>
+    <file name="buscar-paciente.css" crc="4261381216" ref="buscar-paciente"/>
+    <file name="servicios_empresariales.css" crc="3821850208" ref="servicios_empresariales"/>
+    <file name="add-usuario.css" crc="378988628" ref="add-usuario"/>
+    <file name="curriculum_completo.css" crc="59476794" ref="curriculum_completo"/>
+    <file name="servicios.css" crc="182837630" ref="servicios"/>
+    <file name="almacen.css" crc="3991206480" ref="almacen"/>
+    <file name="doctores.css" crc="14803310" ref="doctores"/>
+    <file name="contabilidad.css" crc="4223761626" ref="contabilidad"/>
+    <file name="noticia_ind.css" crc="528612588" ref="noticia_ind"/>
+    <file name="agenda.css" crc="272506617" ref="agenda"/>
+    <file name="panel.css" crc="3775447103" ref="panel"/>
+    <file name="ficha-paciente.css" crc="529269572" ref="ficha-paciente"/>
+    <file name="sin-t_tulo-20.css" crc="4287400126" ref="sin-título-20"/>
+    <file name="pacientes.css" crc="4242740055" ref="pacientes"/>
+    <file name="add-paciente.css" crc="335997060" ref="add-paciente"/>
+    <file name="agregar_receta.css" crc="4008918636" ref="agregar_receta"/>
+  </folder>
+  <folder name="scripts">
+    <file name="jquery-1.8.3.min.js" crc="209076791" ref="index:add-paciente:buscar-paciente:add-usuario:panel:doctores:noticia_ind:ficha-paciente:agregar_receta:clinica:servicios:servicios_empresariales:curriculum_completo:almacen:contabilidad:agenda:pacientes:sin-título-20"/>
+    <file name="museutils.js" crc="3865766194" ref="index:add-paciente:buscar-paciente:add-usuario:panel:doctores:noticia_ind:ficha-paciente:agregar_receta:clinica:servicios:servicios_empresariales:curriculum_completo:almacen:contabilidad:agenda:pacientes:sin-título-20"/>
+    <file name="jquery.tobrowserwidth.js" crc="3842421675" ref="index:add-paciente:buscar-paciente:add-usuario:panel:doctores:noticia_ind:ficha-paciente:agregar_receta:clinica:servicios:servicios_empresariales:curriculum_completo:almacen:contabilidad:agenda:pacientes:sin-título-20"/>
+    <file name="jquery.watch.js" crc="4068933136" ref="index:add-paciente:buscar-paciente:add-usuario:panel:doctores:noticia_ind:ficha-paciente:agregar_receta:clinica:servicios:servicios_empresariales:curriculum_completo:almacen:contabilidad:agenda:pacientes:sin-título-20"/>
+    <file name="pie.js" crc="3827607177" ref="noticia_ind:clinica:servicios:curriculum_completo"/>
+  </folder>
+  <folder name="images">
+    <file name="logo-endoperio-dental-center.jpg" crc="4273332230" ref="index:add-paciente:buscar-paciente:add-usuario:panel:doctores:noticia_ind:ficha-paciente:agregar_receta:clinica:servicios:servicios_empresariales:curriculum_completo:almacen:contabilidad:agenda:pacientes:sin-título-20"/>
+    <file name="home1-u73.png" crc="221692372" ref="index"/>
+    <file name="home1h-u73-r.png" crc="192700090" ref="index"/>
+    <file name="blank.gif" crc="4208392903" ref="index:add-paciente:buscar-paciente:add-usuario:panel:doctores:noticia_ind:ficha-paciente:agregar_receta:clinica:servicios:servicios_empresariales:curriculum_completo:almacen:contabilidad:agenda:pacientes"/>
+    <file name="u74_states.png" crc="283695118" ref="index"/>
+    <file name="u74_states-r.png" crc="78071714" ref="index"/>
+    <file name="home-u75.png" crc="4280963042" ref="index"/>
+    <file name="homeh-u75-r.png" crc="13572891" ref="index"/>
+    <file name="u76_states.png" crc="3783720264" ref="index"/>
+    <file name="u76_states-r.png" crc="66626536" ref="index"/>
+    <file name="en2-u77.png" crc="4082250562" ref="index"/>
+    <file name="en2h-u77-r.png" crc="4253719329" ref="index"/>
+    <file name="u78_states.png" crc="4021527620" ref="index"/>
+    <file name="u78_states-r.png" crc="527734821" ref="index"/>
+    <file name="en3-u79.png" crc="3833565574" ref="index"/>
+    <file name="en3h-u79-r.png" crc="3786766255" ref="index"/>
+    <file name="u80_states.png" crc="43484182" ref="index"/>
+    <file name="u80_states-r.png" crc="3799416203" ref="index"/>
+    <file name="d1.png" crc="396524113" ref="index"/>
+    <file name="u251-4.png" crc="4132362423" ref="index"/>
+    <file name="u249-7.png" crc="4149512499" ref="index"/>
+    <file name="u253-4.png" crc="4206501920" ref="index"/>
+    <file name="u252-4.png" crc="10682191" ref="index"/>
+    <file name="u254-12.png" crc="173007714" ref="index"/>
+    <file name="calendar-128.png" crc="446264351" ref="index"/>
+    <file name="u260.png" crc="3808730620" ref="index"/>
+    <file name="u260-r.png" crc="23096659" ref="index"/>
+    <file name="u270-4.png" crc="37541306" ref="index"/>
+    <file name="u273-4.png" crc="3844087126" ref="index"/>
+    <file name="u275-5.png" crc="3832870585" ref="index"/>
+    <file name="mueladeljuicion-220x122.jpg" crc="502373287" ref="index"/>
+    <file name="u294_states.png" crc="4070563610" ref="index"/>
+    <file name="u294_states-r.png" crc="4079772182" ref="index"/>
+    <file name="twitter.png" crc="4268259869" ref="index:noticia_ind"/>
+    <file name="facebook.png" crc="489048188" ref="index:noticia_ind"/>
+    <file name="en5.png" crc="4085194964" ref="index:doctores:noticia_ind:clinica:servicios:servicios_empresariales:curriculum_completo:pacientes"/>
+    <file name="u1093-7.png" crc="3938640371" ref="index"/>
+    <file name="direccion.png" crc="63998208" ref="index:doctores:noticia_ind:clinica:servicios:servicios_empresariales:curriculum_completo:pacientes"/>
+    <file name="phone.png" crc="3971383603" ref="index:doctores:noticia_ind:clinica:servicios:servicios_empresariales:curriculum_completo:pacientes"/>
+    <file name="email.png" crc="474245324" ref="index:doctores:noticia_ind:clinica:servicios:servicios_empresariales:curriculum_completo:pacientes"/>
+    <file name="u335-6.png" crc="140062193" ref="index"/>
+    <file name="u420-6.png" crc="127303531" ref="index"/>
+    <file name="u333-6.png" crc="4072333491" ref="index"/>
+    <file name="u334-4.png" crc="4069263197" ref="index"/>
+    <file name="completo7.png" crc="4253978034" ref="index:add-paciente:buscar-paciente:add-usuario:panel:doctores:noticia_ind:ficha-paciente:clinica:servicios:servicios_empresariales:curriculum_completo:almacen:contabilidad:agenda:pacientes"/>
+    <file name="u372.png" crc="318241831" ref="add-paciente:buscar-paciente:add-usuario:panel:ficha-paciente:almacen:contabilidad:agenda"/>
+    <file name="u372-r.png" crc="513409531" ref="add-paciente:buscar-paciente:add-usuario:panel:ficha-paciente:almacen:contabilidad:agenda"/>
+    <file name="u376_states.png" crc="3776885530" ref="add-paciente:buscar-paciente:add-usuario:panel:ficha-paciente:almacen:contabilidad:agenda"/>
+    <file name="u376_states-r.png" crc="3994874096" ref="add-paciente:buscar-paciente:add-usuario:panel:ficha-paciente:almacen:contabilidad:agenda"/>
+    <file name="u376_states-a.png" crc="3994874096" ref="add-paciente:buscar-paciente:add-usuario:panel:ficha-paciente:almacen:contabilidad:agenda"/>
+    <file name="u377_states.png" crc="3890954661" ref="add-paciente:buscar-paciente:add-usuario:panel:ficha-paciente:almacen:contabilidad:agenda"/>
+    <file name="u377_states-r.png" crc="98155734" ref="add-paciente:buscar-paciente:add-usuario:panel:ficha-paciente:almacen:contabilidad:agenda"/>
+    <file name="u377_states-a.png" crc="98155734" ref="add-paciente:buscar-paciente:add-usuario:panel:ficha-paciente:almacen:contabilidad:agenda"/>
+    <file name="u378_states.png" crc="51656845" ref="add-paciente:buscar-paciente:add-usuario:panel:ficha-paciente:almacen:contabilidad:agenda"/>
+    <file name="u378_states-r.png" crc="3974930021" ref="add-paciente:buscar-paciente:add-usuario:panel:ficha-paciente:almacen:contabilidad:agenda"/>
+    <file name="u378_states-a.png" crc="3974930021" ref="add-paciente:buscar-paciente:add-usuario:panel:ficha-paciente:almacen:contabilidad:agenda"/>
+    <file name="u480_states.png" crc="4020781955" ref="add-paciente:buscar-paciente:add-usuario:panel:ficha-paciente:almacen:contabilidad:agenda"/>
+    <file name="u480_states-r.png" crc="4287447714" ref="add-paciente:buscar-paciente:add-usuario:panel:ficha-paciente:almacen:contabilidad:agenda"/>
+    <file name="u480_states-a.png" crc="4287447714" ref="add-paciente:buscar-paciente:add-usuario:panel:ficha-paciente:almacen:contabilidad:agenda"/>
+    <file name="u550_states.png" crc="520967629" ref="add-paciente:buscar-paciente:add-usuario:panel:ficha-paciente:almacen:contabilidad:agenda"/>
+    <file name="u550_states-r.png" crc="4096437974" ref="add-paciente:buscar-paciente:add-usuario:panel:ficha-paciente:almacen:contabilidad:agenda"/>
+    <file name="u550_states-a.png" crc="4096437974" ref="add-paciente:buscar-paciente:add-usuario:panel:ficha-paciente:almacen:contabilidad:agenda"/>
+    <file name="u552_states.png" crc="3995195323" ref="add-paciente:buscar-paciente:add-usuario:panel:ficha-paciente:almacen:contabilidad:agenda"/>
+    <file name="u552_states-r.png" crc="3931036017" ref="add-paciente:buscar-paciente:add-usuario:panel:ficha-paciente:almacen:contabilidad:agenda"/>
+    <file name="u552_states-a.png" crc="3931036017" ref="add-paciente:buscar-paciente:add-usuario:panel:ficha-paciente:almacen:contabilidad:agenda"/>
+    <file name="u388-4.png" crc="528249264" ref="add-paciente"/>
+    <file name="u472-4.png" crc="376158448" ref="buscar-paciente"/>
+    <file name="u485-4.png" crc="64016476" ref="add-usuario"/>
+    <file name="u1090-4.png" crc="4158754403" ref="panel"/>
+    <file name="home1-u501.png" crc="536183725" ref="doctores:noticia_ind:clinica:servicios:servicios_empresariales:curriculum_completo:pacientes"/>
+    <file name="home1h-u501-r.png" crc="207812679" ref="doctores:noticia_ind:clinica:servicios:servicios_empresariales:curriculum_completo:pacientes"/>
+    <file name="u502_states.png" crc="283695118" ref="doctores:noticia_ind:clinica:servicios:servicios_empresariales:curriculum_completo:pacientes"/>
+    <file name="u502_states-r.png" crc="78071714" ref="doctores:noticia_ind:clinica:servicios:servicios_empresariales:curriculum_completo:pacientes"/>
+    <file name="u502_states-a.png" crc="78071714" ref="doctores:noticia_ind:clinica:servicios:servicios_empresariales:curriculum_completo:pacientes"/>
+    <file name="home-u503.png" crc="3898678881" ref="doctores:noticia_ind:clinica:servicios:servicios_empresariales:curriculum_completo:pacientes"/>
+    <file name="homeh-u503-r.png" crc="4255937771" ref="doctores:noticia_ind:clinica:servicios:servicios_empresariales:curriculum_completo:pacientes"/>
+    <file name="u504_states.png" crc="3783720264" ref="doctores:noticia_ind:clinica:servicios:servicios_empresariales:curriculum_completo:pacientes"/>
+    <file name="u504_states-r.png" crc="66626536" ref="doctores:noticia_ind:clinica:servicios:servicios_empresariales:curriculum_completo:pacientes"/>
+    <file name="u504_states-a.png" crc="66626536" ref="doctores:noticia_ind:clinica:servicios:servicios_empresariales:curriculum_completo:pacientes"/>
+    <file name="en2-u505.png" crc="73587459" ref="doctores:noticia_ind:clinica:servicios:servicios_empresariales:curriculum_completo:pacientes"/>
+    <file name="en2h-u505-r.png" crc="4099514499" ref="doctores:noticia_ind:clinica:servicios:servicios_empresariales:curriculum_completo:pacientes"/>
+    <file name="u506_states.png" crc="4021527620" ref="doctores:noticia_ind:clinica:servicios:servicios_empresariales:curriculum_completo:pacientes"/>
+    <file name="u506_states-r.png" crc="527734821" ref="doctores:noticia_ind:clinica:servicios:servicios_empresariales:curriculum_completo:pacientes"/>
+    <file name="u506_states-a.png" crc="527734821" ref="doctores:noticia_ind:clinica:servicios:servicios_empresariales:curriculum_completo:pacientes"/>
+    <file name="en3-u507.png" crc="303424672" ref="doctores:noticia_ind:clinica:servicios:servicios_empresariales:curriculum_completo:pacientes"/>
+    <file name="en3h-u507-r.png" crc="428803314" ref="doctores:noticia_ind:clinica:servicios:servicios_empresariales:curriculum_completo:pacientes"/>
+    <file name="u508_states.png" crc="142101548" ref="doctores:noticia_ind:clinica:servicios:servicios_empresariales:curriculum_completo:pacientes"/>
+    <file name="u508_states-r.png" crc="355168281" ref="doctores:noticia_ind:clinica:servicios:servicios_empresariales:curriculum_completo:pacientes"/>
+    <file name="u508_states-a.png" crc="355168281" ref="doctores:noticia_ind:clinica:servicios:servicios_empresariales:curriculum_completo:pacientes"/>
+    <file name="u1099-7.png" crc="3938640371" ref="doctores:noticia_ind:clinica:servicios:servicios_empresariales:curriculum_completo:pacientes"/>
+    <file name="u1102-6.png" crc="140062193" ref="doctores:noticia_ind:clinica:servicios:servicios_empresariales:curriculum_completo:pacientes"/>
+    <file name="u1107-6.png" crc="127303531" ref="doctores:noticia_ind:clinica:servicios:servicios_empresariales:curriculum_completo:pacientes"/>
+    <file name="u1100-6.png" crc="4072333491" ref="doctores:noticia_ind:clinica:servicios:servicios_empresariales:curriculum_completo:pacientes"/>
+    <file name="u1101-4.png" crc="4069263197" ref="doctores:noticia_ind:clinica:servicios:servicios_empresariales:curriculum_completo:pacientes"/>
+    <file name="u537_states.png" crc="372563186" ref="noticia_ind"/>
+    <file name="u537_states-r.png" crc="88543495" ref="noticia_ind"/>
+    <file name="u1154.png" crc="362124941" ref="agregar_receta"/>
+    <file name="u1154-r.png" crc="4203985776" ref="agregar_receta"/>
+    <file name="u691-14.png" crc="4149510956" ref="clinica"/>
+    <file name="u904-4.png" crc="363855707" ref="clinica"/>
+    <file name="dr1-u897-fr.jpg" crc="4086793150" ref="clinica:curriculum_completo"/>
+    <file name="dr1-u897-r-fr.png" crc="3873595053" ref="clinica:curriculum_completo"/>
+    <file name="u905-21.png" crc="4213197798" ref="clinica"/>
+    <file name="u907_states.png" crc="3830840766" ref="clinica"/>
+    <file name="u907_states-r.png" crc="3762889260" ref="clinica"/>
+    <file name="azamudio-u908-fr.jpg" crc="3821540281" ref="clinica"/>
+    <file name="azamudio.jpg" crc="495722372" ref="clinica"/>
+    <file name="azamudio-u908-r-fr.png" crc="3842345018" ref="clinica"/>
+    <file name="u909-18.png" crc="3775613242" ref="clinica"/>
+    <file name="atames-u918-fr.jpg" crc="4191683114" ref="clinica"/>
+    <file name="atames.jpg" crc="4162032528" ref="clinica"/>
+    <file name="atames-u918-r-fr.png" crc="3830683181" ref="clinica"/>
+    <file name="u932-15.png" crc="3778927824" ref="clinica"/>
+    <file name="gurincho-u919-fr.jpg" crc="185375106" ref="clinica"/>
+    <file name="gurincho.jpg" crc="3853114019" ref="clinica"/>
+    <file name="gurincho-u919-r-fr.png" crc="253304605" ref="clinica"/>
+    <file name="u935-15.png" crc="4221638046" ref="clinica"/>
+    <file name="mgarcia-u956-fr.jpg" crc="3875843775" ref="clinica"/>
+    <file name="mgarcia.jpg" crc="3945366228" ref="clinica"/>
+    <file name="mgarcia-u956-r-fr.png" crc="324670472" ref="clinica"/>
+    <file name="u958-17.png" crc="3898158069" ref="clinica"/>
+    <file name="atamesm-u957-fr.jpg" crc="258849531" ref="clinica"/>
+    <file name="atamesm.jpg" crc="3958749077" ref="clinica"/>
+    <file name="atamesm-u957-r-fr.png" crc="4233524528" ref="clinica"/>
+    <file name="u959-16.png" crc="80007436" ref="clinica"/>
+    <file name="gguzman-u955-fr.jpg" crc="247218784" ref="clinica"/>
+    <file name="gguzman.jpg" crc="4016315335" ref="clinica"/>
+    <file name="gguzman-u955-r-fr.png" crc="4015172613" ref="clinica"/>
+    <file name="u954-15.png" crc="343623301" ref="clinica"/>
+    <file name="cserrato-u1005-fr.jpg" crc="4094934954" ref="clinica"/>
+    <file name="cserrato.jpg" crc="3832461533" ref="clinica"/>
+    <file name="cserrato-u1005-r-fr.png" crc="436047345" ref="clinica"/>
+    <file name="u1006-17.png" crc="3844441602" ref="clinica"/>
+    <file name="amarin-u995-fr.jpg" crc="312095351" ref="clinica"/>
+    <file name="amarin.jpg" crc="64143152" ref="clinica"/>
+    <file name="amarin-u995-r-fr.png" crc="3970082997" ref="clinica"/>
+    <file name="u996-16.png" crc="58776519" ref="clinica"/>
+    <file name="maburto-u994-fr.jpg" crc="4066482051" ref="clinica"/>
+    <file name="maburto.jpg" crc="3811985244" ref="clinica"/>
+    <file name="maburto-u994-r-fr.png" crc="4006651835" ref="clinica"/>
+    <file name="u993-16.png" crc="81700454" ref="clinica"/>
+    <file name="endoperio2-u743-fr.png" crc="3895613663" ref="servicios"/>
+    <file name="endoperio2.png" crc="4080345168" ref="servicios"/>
+    <file name="u741-4.png" crc="3932311432" ref="servicios"/>
+    <file name="u742-5.png" crc="3850598763" ref="servicios"/>
+    <file name="u758_states.png" crc="375044886" ref="servicios"/>
+    <file name="u758_states-r.png" crc="271385502" ref="servicios"/>
+    <file name="u716-4.png" crc="3796981172" ref="servicios"/>
+    <file name="u715-4.png" crc="260062442" ref="servicios"/>
+    <file name="u794-4.png" crc="341783618" ref="servicios"/>
+    <file name="u784-5.png" crc="4085977633" ref="servicios"/>
+    <file name="u785-11.png" crc="4066228664" ref="servicios"/>
+    <file name="u798-4.png" crc="3799465112" ref="servicios"/>
+    <file name="u797-5.png" crc="181522430" ref="servicios"/>
+    <file name="u799-4.png" crc="3831807591" ref="servicios"/>
+    <file name="u808-4.png" crc="50306933" ref="servicios"/>
+    <file name="u807-5.png" crc="31071470" ref="servicios"/>
+    <file name="u806-14.png" crc="182205025" ref="servicios"/>
+    <file name="u831-4.png" crc="356367241" ref="servicios"/>
+    <file name="u832-5.png" crc="421565866" ref="servicios"/>
+    <file name="u833-24.png" crc="208673671" ref="servicios"/>
+    <file name="u851-4.png" crc="3942924238" ref="servicios"/>
+    <file name="u852-5.png" crc="348211572" ref="servicios"/>
+    <file name="u850-11.png" crc="227216221" ref="servicios"/>
+    <file name="u860-4.png" crc="405450874" ref="servicios"/>
+    <file name="u861-5.png" crc="3934564904" ref="servicios"/>
+    <file name="u859-29.png" crc="3833055349" ref="servicios"/>
+    <file name="u738-4.png" crc="377610438" ref="servicios_empresariales"/>
+    <file name="u737-17.png" crc="236653227" ref="servicios_empresariales"/>
+    <file name="u772-7.png" crc="4271616002" ref="servicios_empresariales"/>
+    <file name="u774-6.png" crc="3990363154" ref="servicios_empresariales"/>
+    <file name="u775-6.png" crc="4124803920" ref="servicios_empresariales"/>
+    <file name="u773-4.png" crc="39349818" ref="servicios_empresariales"/>
+    <file name="u777-5.png" crc="87618330" ref="servicios_empresariales"/>
+    <file name="u779-5.png" crc="3886189098" ref="servicios_empresariales"/>
+    <file name="u780-5.png" crc="4153259632" ref="servicios_empresariales"/>
+    <file name="u1042-24.png" crc="304303538" ref="curriculum_completo"/>
+    <file name="u1047-37.png" crc="3963251681" ref="curriculum_completo"/>
+    <file name="u1084-4.png" crc="64016476" ref="almacen"/>
+    <file name="u1087-4.png" crc="64016476" ref="contabilidad"/>
+    <file name="u1078-4.png" crc="64016476" ref="agenda"/>
+  </folder>
+  <file name="index.html" crc="3888920479" mt="1402033307711" redirect="true"/>
+  <file name="add-paciente.html" crc="4199456926" mt="1402032280102" redirect="true"/>
+  <file name="buscar-paciente.html" crc="4250555092" mt="1402032280105" redirect="true"/>
+  <file name="add-usuario.html" crc="3981159169" mt="1402032280107" redirect="true"/>
+  <file name="panel.html" crc="306024124" mt="1402032280110" redirect="true"/>
+  <file name="doctores.html" crc="3862266773" mt="1402033375084" redirect="true"/>
+  <file name="noticia_ind.html" crc="4162869763" mt="1402033375087" redirect="true"/>
+  <file name="ficha-paciente.html" crc="34118724" mt="1402032280112" redirect="true"/>
+  <file name="agregar_receta.html" crc="3980726854" mt="1402032275004" redirect="true"/>
+  <file name="clinica.html" crc="28914236" mt="1402033375089" redirect="true"/>
+  <file name="servicios.html" crc="21039525" mt="1402033375092" redirect="true"/>
+  <file name="servicios_empresariales.html" crc="20083223" mt="1402033375095" redirect="true"/>
+  <file name="curriculum_completo.html" crc="507190663" mt="1402033375098" redirect="true"/>
+  <file name="almacen.html" crc="497043437" mt="1402032280114" redirect="true"/>
+  <file name="contabilidad.html" crc="3949063812" mt="1402032280117" redirect="true"/>
+  <file name="agenda.html" crc="3862911671" mt="1402032280119" redirect="true"/>
+  <file name="pacientes.html" crc="448480508" mt="1402033375100" redirect="true"/>
+  <file name="sin-título-20.html" crc="436356641" mt="1402033104121" redirect="true"/>
+</manifest>
