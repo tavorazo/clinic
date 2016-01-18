@@ -23,6 +23,10 @@
 	
 	$a = $_GET['id'];
 	include('../php/base.php');
+	
+	require '../phpmailer/PHPMailerAutoload.php';
+	$mail = new PHPMailer;							// Inicia phpMailer
+
 	$insertar = "update agenda set confirmacion='1' where id_cita='$a'";
 	if(!$conn->query($insertar))
 		die('Error de consulta 1: '.mysql_error());
@@ -44,10 +48,15 @@
 	$apellido = $renglonpaciente['apellido_paterno'];
 	$apellido2 = $renglonpaciente['apellido_materno'];
 	$correo = $renglonpaciente['correo'];
+	
+	$mail->setFrom('endoperio@endoperio.com.mx', 'Endoperio');		// Desde
+	$mail->addReplyTo('endoperio@endoperio.com.mx', 'Endoperio');	// Respuesta
+	$mail->addAddress($correo, $nombre.' '.$apellido.' '.$apellido2); // Para
 //$para == $correo;
 	
 // Asunto
 	$titulo = 'Tu cita ha sido confirmada';
+	$mail->Subject = $titulo;     									// Asunto
 	
 // Cuerpo o mensaje
 	$mensaje = '
@@ -55,39 +64,38 @@
 	<head>
 	<title>Confirmaci&oacute;n de cita Endoperio, Clinica Dental</title>
 	</head>
-	<body>
-	Hola '.$nombre.' '.$apellido.' '.$apellido2.'<br><br>
+	<body style="font-family: Arial, Helvetica, sans-serif; background: #E6E6E6;">
+	Hola <strong>'.$nombre.' '.$apellido.' '.$apellido2.'</strong><br><br>
 	Tu cita ha sido confirmada para la fecha:<br>
-	El dia: '.$dia.' del mes: '.$mes.' del a&ntilde;o en curso <br>
-	Alas :  '.$hora.':'.$min.'<br>
+	El dia: <strong>'.$dia.'</strong> del mes: <strong>'.$mes.'</strong> del a&ntilde;o en curso <br>
+	A las :  <strong>'.$hora.':'.$min.'</strong><br>
 	<br>
 	Te esperamos 15 minutos antes<br><br>
 	<hr>
-	Endoperio
+	<img src="../images/endoperio-logo.png" width="50%">
 	</body>
 	</html>
 	';
+	$mail->msgHTML($mensaje);
+	$mail->IsHTML(true);
+	$mail->CharSet = 'UTF-8';
 //echo $mensaje;
 	
-// Cabecera que especifica que es un HMTL
-	$cabeceras  = 'MIME-Version: 1.0' . "\r\n";
-	$cabeceras .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
-	
 // enviamos el correo!
-	if($correo!=''){
-		if(mail($correo, $titulo , $mensaje, $cabeceras) or die ("No se ha podido enviar tu mensaje. Ha ocurrido un error"))
-			echo "enviado"; 
-		else
-			echo "no enviado";
-	}
 	mysqli_close ( $conn );
 	echo '<br><br><br><center><img src="../images/endoperio2.png" width="100px" alt=""> <br> ';
-	echo "Cita confirmada con exito<br><br><br>";
-	echo '<div style="  padding:9px; border:1px solid #E6E6E6; height:18px; width:120px; margin-top:12px; text-align:center; margin-right:10px ">';
-	echo "<a href='../panel.php' > <font color='white'>Regresar </a></center></div>";
+	if (!$mail->send()) {
+		echo "Mailer Error: " . $mail->ErrorInfo;
+	} else {
+		echo "Cita confirmada con exito<br><br><br>";
+		echo '<div style="  padding:9px; border:1px solid #E6E6E6; height:18px; width:120px; margin-top:12px; text-align:center; margin-right:10px ">';
+		echo "<a href='../panel.php' > <font color='white'>Regresar </a></center></div>";
+		echo '<META HTTP-EQUIV="Refresh" CONTENT="1; URL=../panel.php">';
+	}
+	
 	?>
 	<!--Cita confirmada <a href='ver_citas.php'>Regresar</a-->
-	<META HTTP-EQUIV="Refresh" CONTENT="0; URL=../panel.php">
+	
 		
 	</body>
 	</html>

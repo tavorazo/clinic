@@ -146,7 +146,7 @@ $usuario = $_SESSION['u'];
 
 						<h3><label>Doctor: </label>", $renglon2['nombres']," ",$renglon2['apellido_paterno']," ",$renglon2['apellido_materno'],"
 						<br><label>Paciente: </label>", $renglon['nombres']," ",$renglon['apellido_paterno']," ",$renglon['apellido_materno'],"
-						<br><label>Obsevaciones:</label><br> ", $row2[8],"
+						<br><label>Obsevaciones:</label><br> ", $row2[9],"
 						</h3>
 						</td><td>";
 

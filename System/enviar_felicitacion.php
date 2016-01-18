@@ -27,6 +27,9 @@
 
 
 include('php/base.php');
+require 'phpmailer/PHPMailerAutoload.php';
+$mail = new PHPMailer; 												//Inicio de la framework phpMailer
+
 date_default_timezone_set('America/Mexico_City');
 $a = date("d-m");
 
@@ -52,7 +55,7 @@ while ($r_p = $pacientes->fetch_row()){
 		<title>Felicidades</title>
 	</head>
 	<body>
-		<img src="http://www.webox.org.mx/Proyectos/endoperio/images/feliz.png">
+		<img src="images/feliz.png" width="100%">
 	</body>
 	</html>
 	';
@@ -60,10 +63,23 @@ while ($r_p = $pacientes->fetch_row()){
 	$encabezados .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
 	$encabezados .= "From: $remitente\nReply-To: $remitente" ;
 	
+	$mail->setFrom($remitente, 'Endoperio'); 		// Desde 
+	$mail->addReplyTo($remitente, 'Endoperio'); 		// Reply
+	$mail->Subject = $asunto;						// Asunto
+	$mail->msgHTML($mensaje);
+	$mail->IsHTML(true);
+	$mail->CharSet = 'UTF-8';
+
+	
 	if($destino!=''){
-		//mail($destino, $asunto, $mensaje, $encabezados) or die ("No se ha podido enviar tu mensaje. Ha ocurrido un error") ;
-		mail($destino, $asunto, $mensaje, $encabezados);
-		echo " Enviado<br>";
+		$mail->addAddress($destino, $r_p[1].' '. $r_p[2].' '.$r_p[3]);
+		if($destino!=''){
+			if (!$mail->send()) {
+				echo "Mailer Error: " . $mail->ErrorInfo;
+			} else {
+				echo "Enviado<br>";
+			}
+		}
 	}
 }
 /*usuarios*/
@@ -74,7 +90,7 @@ while ($r_p = $usuarios->fetch_array()){
 	echo  $r_p[1]." - ".$r_p[2]." - ".$r_p[3];
 	echo " . . .";
 
-	$remitente = 'endoperio@endoperio.com';
+	$remitente = 'endoperio@endoperio.com.mx';
 	$destino = $r_p[4];
 	$asunto = "Feliz cumpleanios te desea Endoperio";
 	$mensaje = '
@@ -83,17 +99,28 @@ while ($r_p = $usuarios->fetch_array()){
 		<title>Felicidades</title>
 	</head>
 	<body>
-		<img src="http://www.webox.org.mx/Proyectos/endoperio/images/feliz.png">
+		<img src="images/feliz.png" width="100%">
 	</body>
 	</html>
 	';
-	$encabezados = 'MIME-Version: 1.0' . "\r\n";
-	$encabezados .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
-	$encabezados .= "From: $remitente\nReply-To: $remitente" ;
-	if($destino!=''){
 
-		mail($destino, $asunto, $mensaje, $encabezados) or die ("No se ha podido enviar tu mensaje. Ha ocurrido un error") ;
-		echo " Enviado<br>";
+	$mail->setFrom($remitente, 'Endoperio'); 		// Desde 
+	$mail->addReplyTo($remitente, 'Endoperio'); 		// Reply
+	$mail->Subject = $asunto;						// Asunto
+	$mail->msgHTML($mensaje);
+	$mail->IsHTML(true);
+	$mail->CharSet = 'UTF-8';
+
+	
+	if($destino!=''){
+		$mail->addAddress($destino, $r_p[1].' '. $r_p[2].' '.$r_p[3]);
+		if($destino!=''){
+			if (!$mail->send()) {
+				echo "Mailer Error: " . $mail->ErrorInfo;
+			} else {
+				echo "Enviado<br>";
+			}
+		}
 	}
 }
 

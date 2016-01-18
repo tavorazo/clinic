@@ -36,7 +36,7 @@
 		}
 		$paciente = $_POST['paciente'];
 		$id = $_POST['id'];
-		$expediente = $_POST['expediente'];
+		//$expediente = $_POST['expediente'];
 		$nombre = $_POST['nombre'];
 		$paterno = $_POST['a_pat'];
 		$materno = $_POST['a_mat'];

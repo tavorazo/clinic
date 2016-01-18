@@ -99,10 +99,7 @@ if($_SESSION['u']=='')
       </div> 
       </div>
       <div style='padding:15px; margin-left:auto;  margin-right:auto; border:1px solid #298A08; height:15px; width:200px; margin-top:40px; text-align:center '>
-      <a href='imprimir_receta.php?id=",$id_receta,"' > Imprimir Receta</a>
-      </div>
-      <div style='padding:15px; margin-left:auto;  margin-right:auto; border:1px solid #298A08; height:15px; width:200px; margin-top:40px; text-align:center '>
-      <a href='recetapdf.php?id=",$id_receta,"&p=",$p,"&f=",$f,"&m=",$medicament,"&o=",$observac,"' > PDF</a>
+      <a href='pdf_receta.php?id=",$id_receta,"' > PDF</a>
       </div>";
       
          // echo "<a href='imprimir_receta.php?id=",$id_receta,"'> imprimir </a>";
