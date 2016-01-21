@@ -1,7 +1,7 @@
 <?php
 	@session_start();
-		if($_SESSION['u']=='')
-			header('location: ../../index.php');
+		//if($_SESSION['u']=='')
+		//	header('location: ../../index.php');
     if($_SESSION['rol']!='merca')
       header('location: ../../index.php');
 	//if($_SESSION['rol']!='admin')
