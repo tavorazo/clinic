@@ -37,36 +37,37 @@
 		$imagen="predeterminado.png";
 
 	$expediente = $_POST['expediente'];
-	$nombre = $_POST['nombre'];
-	$paterno = $_POST['a_pat'];
-	$materno = $_POST['a_mat'];
+	$nombre = $_POST['nombre'];  if(strlen($nombre) > 50) $nombre = substr($nombre,0,50);        //Se limitan los valores que en el form pudieran ser rebazados
+	$paterno = $_POST['a_pat'];  if(strlen($paterno) > 100) $paterno = substr($paterno,0,100);
+	$materno = $_POST['a_mat'];  if(strlen($materno) > 100) $materno = substr($materno,0,100);
 	$fecha = $_POST['fechaNacimiento'];
 
 	$edad = edad($fecha);
 	$edad = floor($edad);
 
 
-	$sexo = $_POST['sexo'];
-	$estado = $_POST['estado'];
-	$ciudad = $_POST['ciudad'];
-	$colonia = $_POST['colonia'];
-	$calle = $_POST['calle'];
-	$CP = $_POST['cp'];
-	$numero = $_POST['numero'];
-	$telefono = $_POST['telefono'];
-	$celular = $_POST['celular'];
-	$correo = $_POST['correo'];
-	$redes_sociales = $_POST['red_social'];
-	$nom_emergencia = $_POST['name_emergencia'];
-	$tel_emergencia = $_POST['tel_emergencia'];
-	$referencia = $_POST['referencia'];
-	$empresa = $_POST['empresa'];
+	$sexo = $_POST['sexo'];			
+	$estado = $_POST['estado'];		if(strlen($estado) > 100) $estado = substr($estado,0,100);
+	$ciudad = $_POST['ciudad']; 	if(strlen($ciudad) > 100) $ciudad = substr($ciudad,0,100);
+	$colonia = $_POST['colonia']; 	if(strlen($colonia) > 100) $colonia = substr($colonia,0,100);
+	$calle = $_POST['calle']; 		if(strlen($calle) > 100) $calle = substr($calle,0,100);
+	$CP = $_POST['cp']; 			if(strlen($CP) > 5) $CP = substr($CP,0,5);
+	$numero = $_POST['numero'];     if(strlen($numero) > 9) $numero = substr($numero,0,9);
+	$telefono = $_POST['telefono']; if(strlen($telefono) > 20) $telefono = substr($telefono,0,20);
+	$celular = $_POST['celular'];	if(strlen($celular) > 20) $celular = substr($celular,0,20);
+	$correo = $_POST['correo'];		if(strlen($correo) > 90) $correo = substr($correo,0,90);
+	$redes_sociales = $_POST['red_social'];				if(strlen($redes_sociales) > 30) $redes_sociales = substr($redes_sociales,0,30);
+	$nom_emergencia = $_POST['name_emergencia']; 		if(strlen($nom_emergencia) > 25) $nom_emergencia = substr($nom_emergencia,0,25);
+	$tel_emergencia = $_POST['tel_emergencia']; 		if(strlen($tel_emergencia) > 10) $tel_emergencia = substr($tel_emergencia,0,10);
+	$tel_emergencia = abs($tel_emergencia); echo strlen($tel_emergencia);			//Se limita a que sólo haya enteros positivos
+	$referencia = $_POST['referencia'];					if(strlen($referencia) > 100) $referencia = substr($referencia,0,100);
+	$empresa = $_POST['empresa'];						if(strlen($empresa) > 25) $empresa = substr($empresa,0,25);
 	$fecha_alta = date('Y-m-d');
-	$RFC = $_POST['RFC'];
+	$RFC = $_POST['RFC'];								if(strlen($RFC) > 12) $RFC = substr($RFC,0,12);
 	$observaciones = $_POST['observaciones'];
 	$observaciones = htmlspecialchars($observaciones);
 	$alergias = $_POST['alergias'];
-	$Num_seguro = $_POST['Num_seguro'];
+	$Num_seguro = $_POST['Num_seguro'];					if(strlen($Num_seguro) > 8) $Num_seguro = substr($Num_seguro,0,8);
 	$terminos = $_POST['validar'];
 
 	include('../../php/base.php');
@@ -84,6 +85,7 @@
 	
 	//$insertar = "insert into paciente (nombres,apellido_paterno, apellido_materno, fecha_nacimiento, edad, estado, ciudad, colonia, calle, numero, telefono, celular, referencia, CP, sexo, n_registro) values ('$a','$b','$c','$fecha_nac','$edad','$d','$e','$f','$g','$h', '$i', '$j', '$k', '$cp', '$sexo', '$exp')";
 	$insertChk = $conn->query($insertar);
+	if(!$insertChk) die('Error de consulta 4: '.mysqli_error($conn));
 	$id_p = $conn->insert_id;
 	$historial = "INSERT into historial_tabla_pacientes (id_paciente, id_usuario, estado, fecha) values ('$ultimo_registro','$id_usuario','Ha agregado al paciente',now())";
 	$resul = $conn->query($historial);
