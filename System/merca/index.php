@@ -5,30 +5,22 @@
 <script language="JavaScript" type="text/javascript" src="ajax.js"></script>
 <link rel="stylesheet" type="text/css" href="filtros.css"/>
 <p>Buscar lista de pacientes </p>
-<form action="query.php" class="ajax" method="post" accept-charset="utf-8" >
-  <select name="by" class="campoT" >
-    <option>Selecciona el filtro...</option>
-    <option value="nombres">Nombre</option>
-	<option value="apellido_paterno">Apellido paterno</option>
-	<option value="apellido_materno">Apellido materno</option>
-	<option value="estado">Estado</option>
-	<option value="ciudad">Ciudad</option>
-    <option value="fecha_nacimiento">Fecha de nacimiento</option>
-	<option value="edad">Edad</option>
-    <option value="sexo">Genero</option>
-	<option value="fecha">Ultima consulta</option>
-  </select>
-  <div class="sel">Seleccione...</div>
-  	<input type="submit" id="form" name="lista" value="Buscar"  />
+<div><br>Escriba en uno o más filtros de búsqueda</div>
+<form action="query.php" class="ajax" method="post" accept-charset="utf-8" >  	
+	Edad <input type='number' name='edad' class='campoT' placeholder='Años'>
+	Ciudad <input type='text' class='campoT' name='ciudad' placeholder='Ej. Morelia'>
+	Estado <input type='text' class='campoT' name='estado' placeholder='Ej. Michoacán'>
+	Genero <select name="sexo" class="campoT" >
+			<option value ="A">Ambos</option>
+			<option value="M">Masculino</option>
+			<option value="F">Femenino</option>
+	</select>
+	Fecha de consulta: <input type='date' name='fecha' class='campoT'>
+	O semana <input type='week' name='semana' class='campoT'>
+	O Mes <input type='month' name='mes' class='campoT'>
+	Ordenados por: 
+	Nombre<input name="orden" type="Radio" value="apellido_paterno" checked="checked">Edad<input type="Radio" name="orden" value="edad">
+	<input type="submit" id="form" name="lista" value="Buscar"  />
 </form>
-
-
-<div class="return">
-  [ - - La lista se descargará en formato XML - - ]
-</div>
-
-
-
-
 
 <?php include("../+/footer.php"); ?>

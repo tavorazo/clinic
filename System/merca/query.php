@@ -3,9 +3,6 @@ if (file_exists('pacientes.zip')) unlink('pacientes.zip'); //Limpia los archivos
 
 include('../php/base.php');
 
-$by = $_POST['by'];
-$buscar = $_POST['buscar'];
-
 $zip = new ZipArchive();
 $zip->open('pacientes.zip', ZipArchive::CREATE);  //Inicia la funcion para comprimir en ZIP
 
@@ -15,18 +12,21 @@ $xml->setIndent(true);  //Inicia la función para escribir documentos XML
 $xml->startDocument(); 
  
 $xml->startElement('pacientes');    //Añade el elemento principal con el valor de búsqueda como atributo
-$xml->writeAttribute($by, $buscar); 
+//$xml->writeAttribute($by, $buscar); 
  
-ini_set('max_execution_time', 300);
+ini_set('max_execution_time', 300); //Si la query es muy larga no se detendrá el server hasta que termine la query
 
+$edad = (isset($_POST['edad'])?$_POST['edad']:NULL);
+$ciudad = (isset($_POST['ciudad'])?$_POST['ciudad']:NULL);
+$estado = (isset($_POST['estado'])?$_POST['estado']:NULL);
+$sexo = (isset($_POST['sexo'])?$_POST['sexo']:NULL);
+$fecha = (isset($_POST['fecha'])?$_POST['fecha']:NULL);
+$semana = (isset($_POST['semana'])?$_POST['semana']:NULL);
+$mes = (isset($_POST['mes'])?$_POST['mes']:NULL);
+$orden = (isset($_POST['orden'])?$_POST['orden']:NULL);
+//echo $semana;
 
-if($by=='fecha')
-	$by="a.".$by;
-else
-	$by="p.".$by; 
-
-$query = "SELECT CONCAT(p.`nombres`, ' ', p.`apellido_paterno`, ' ', p.`apellido_materno`) AS nombre_completo,".
-				"p.`id_paciente`,".
+$select = "SELECT CONCAT(p.`apellido_paterno`,' ',p.`apellido_materno`,' ',p.`nombres`) AS nombre_completo,".
 				"p.`estado`,".
 				"p.`ciudad`,".
 				"p.`fecha_nacimiento`,".
@@ -35,11 +35,38 @@ $query = "SELECT CONCAT(p.`nombres`, ' ', p.`apellido_paterno`, ' ', p.`apellido
 				"p.`correo`,".
 				"a.`observacion`,".
 				"max(a.`fecha`) as fecha_consulta ".
-			"FROM agenda as a, paciente as p ".
-			"WHERE a.id_paciente = p.id_paciente AND ".$by." LIKE '".$buscar."%' AND a.fecha <= CURDATE() ".
-			"GROUP BY a.`id_paciente` ".
-			"ORDER BY p.`id_paciente` ASC";
-			
+			"FROM agenda as a, paciente as p ";	
+$where = "WHERE a.id_paciente = p.id_paciente AND a.fecha <= CURDATE() ";
+
+
+if($edad!=NULL) 
+	$where .= "AND p.edad like '".$edad."' ";
+if($ciudad!=NULL)
+	$where .= "AND p.ciudad like '%".$ciudad."%' ";
+if($estado!=NULL)
+	$where .= "AND p.estado like '%".$estado."%' ";
+if($sexo!="A")
+	$where .= "AND p.sexo like '".$sexo."%' ";
+
+if($fecha!=NULL && $semana==NULL && $mes==NULL){
+	$where .= "AND a.fecha = '".$fecha."%' ";
+}
+else if($fecha==NULL && $semana!=NULL && $mes==NULL){
+	$fecha = date("Y-m-d", strtotime($semana));
+	$where .= 'AND WEEK(a.fecha) = WEEK("'.$fecha.'") ';
+}
+else if($fecha==NULL && $semana==NULL && $mes!=NULL){
+	$anio = strftime("%Y", strtotime($mes)); //sacar año
+    $mes = strftime("%m", strtotime($mes)); //sacar mes
+    $where .= 'AND YEAR(a.fecha) = "'.$anio.'" AND MONTH(a.fecha) = "'.$mes.'" ';
+}
+$group = "GROUP BY a.`id_paciente` ";
+$orderBy = "ORDER BY p.`".$orden."` ASC";
+
+
+$query=$select.$where.$group.$orderBy;
+//echo $query;
+
 $result=$conn->query($query);
 if(!$result)
 			die('Error de consulta 4: '.mysqli_error($conn));
