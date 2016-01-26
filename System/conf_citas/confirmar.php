@@ -23,9 +23,7 @@
 	
 	$a = $_GET['id'];
 	include('../php/base.php');
-	
-	require '../phpmailer/PHPMailerAutoload.php';
-	$mail = new PHPMailer;							// Inicia phpMailer
+	include('../mail.php'); // Archivo con la función que usa cURL para enviar el correo
 
 	$insertar = "update agenda set confirmacion='1' where id_cita='$a'";
 	if(!$conn->query($insertar))
@@ -49,14 +47,10 @@
 	$apellido2 = $renglonpaciente['apellido_materno'];
 	$correo = $renglonpaciente['correo'];
 	
-	$mail->setFrom('endoperio@endoperio.com.mx', 'Endoperio');		// Desde
-	$mail->addReplyTo('endoperio@endoperio.com.mx', 'Endoperio');	// Respuesta
-	$mail->addAddress($correo, $nombre.' '.$apellido.' '.$apellido2); // Para
 //$para == $correo;
 	
 // Asunto
 	$titulo = 'Tu cita ha sido confirmada';
-	$mail->Subject = $titulo;     									// Asunto
 	
 // Cuerpo o mensaje
 	$mensaje = '
@@ -76,22 +70,19 @@
 	</body>
 	</html>
 	';
-	$mail->msgHTML($mensaje);
-	$mail->IsHTML(true);
-	$mail->CharSet = 'UTF-8';
 //echo $mensaje;
 	
 // enviamos el correo!
 	mysqli_close ( $conn );
 	echo '<br><br><br><center><img src="../images/endoperio2.png" width="100px" alt=""> <br> ';
-	if (!$mail->send()) {
-		echo "Mailer Error: " . $mail->ErrorInfo;
-	} else {
-		echo "Cita confirmada con exito<br><br><br>";
-		echo '<div style="  padding:9px; border:1px solid #E6E6E6; height:18px; width:120px; margin-top:12px; text-align:center; margin-right:10px ">';
-		echo "<a href='../panel.php' > <font color='white'>Regresar </a></center></div>";
-		echo '<META HTTP-EQUIV="Refresh" CONTENT="1; URL=../panel.php">';
-	}
+	
+	send_mail($correo, $titulo, $mensaje); //Función contenida en mail.php
+	
+	echo "Cita confirmada con exito<br><br><br>";
+	echo '<div style="  padding:9px; border:1px solid #E6E6E6; height:18px; width:120px; margin-top:12px; text-align:center; margin-right:10px ">';
+	echo "<a href='../panel.php' > <font color='white'>Regresar </a></center></div>";
+	echo '<META HTTP-EQUIV="Refresh" CONTENT="1; URL=../panel.php">';
+
 	
 	?>
 	<!--Cita confirmada <a href='ver_citas.php'>Regresar</a-->

@@ -1,7 +1,6 @@
 <?php
 	include("php/base.php");
-	require 'phpmailer/PHPMailerAutoload.php';
-	$mail = new PHPMailer; 												//Inicio de la framework phpMailer
+	include("mail.php"); // Archivo con la función que usa cURL para enviar el correo
 
 	$asunto = $_POST['asunto'];
 	$contenido = $_POST['contenido'];
@@ -31,49 +30,27 @@
 	</body>
 	</html>';
 
-	$mail->setFrom($remitente, 'Endoperio'); 		// Desde 
-	$mail->addReplyTo($remitente, 'Endoperio'); 		// Reply
-	$mail->Subject = $asunto;						// Asunto
-	$mail->msgHTML($mensaje);
-	$mail->IsHTML(true);
-	$mail->CharSet = 'UTF-8';
-
 
 if($correo==''){
 	$pacientes = $conn->query("SELECT fecha_nacimiento, nombres, apellido_paterno, apellido_materno, correo FROM paciente WHERE DAY(  `fecha_nacimiento` ) = DAY( NOW( ) )  AND MONTH(  `fecha_nacimiento` ) = MONTH( NOW( ) ) ");
 	while ($r_p = $pacientes->fetch_array()){
 		$destino = $r_p[4];
-		$mail->addAddress($destino, $r_p[1].' '. $r_p[2].' '.$r_p[3]);
 		if($destino!=''){
-			if (!$mail->send()) {
-				echo "Mailer Error: " . $mail->ErrorInfo;
-			} else {
-				echo "Enviado<br>";
-			}
+			send_mail($destino, $asunto, $mensaje);
 		}
 	}
 	$usuarios = $conn->query("SELECT fecha_nacimiento, nombres, apellido_paterno, apellido_materno, correo FROM usuarios WHERE DAY(  `fecha_nacimiento` ) = DAY( NOW( ) )  AND MONTH(  `fecha_nacimiento` ) = MONTH( NOW( ) ) ");
 	while ($r_p = $usuarios->fetch_array()){
 		$destino = $r_p[4];
-		$mail->addAddress($destino, $r_p[1].' '. $r_p[2].' '.$r_p[3]);
 		if($destino!=''){
-			if (!$mail->send()) {
-				echo "Mailer Error: " . $mail->ErrorInfo;
-			} else {
-				echo "Enviado<br>";
-			}
+			send_mail($destino, $asunto, $mensaje);
 		}
 	}
 
 }else{
 
 	if($correo!=''){
-		$mail->addAddress($correo, ' ');
-		if (!$mail->send()) {
-			echo "Mailer Error: " . $mail->ErrorInfo;
-		} else {
-			echo "Enviado<br>";
-		}
+		send_mail($destino, $asunto, $mensaje);
 	}
 }
 //header('Location: /panel.php');

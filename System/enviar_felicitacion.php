@@ -25,10 +25,8 @@
 
 <?php
 
-
 include('php/base.php');
-require 'phpmailer/PHPMailerAutoload.php';
-$mail = new PHPMailer; 												//Inicio de la framework phpMailer
+include('mail.php'); // Archivo con la función que usa cURL para enviar el correo
 
 date_default_timezone_set('America/Mexico_City');
 $a = date("d-m");
@@ -62,24 +60,10 @@ while ($r_p = $pacientes->fetch_row()){
 	$encabezados = 'MIME-Version: 1.0' . "\r\n";
 	$encabezados .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
 	$encabezados .= "From: $remitente\nReply-To: $remitente" ;
-	
-	$mail->setFrom($remitente, 'Endoperio'); 		// Desde 
-	$mail->addReplyTo($remitente, 'Endoperio'); 		// Reply
-	$mail->Subject = $asunto;						// Asunto
-	$mail->msgHTML($mensaje);
-	$mail->IsHTML(true);
-	$mail->CharSet = 'UTF-8';
 
 	
 	if($destino!=''){
-		$mail->addAddress($destino, $r_p[1].' '. $r_p[2].' '.$r_p[3]);
-		if($destino!=''){
-			if (!$mail->send()) {
-				echo "Mailer Error: " . $mail->ErrorInfo;
-			} else {
-				echo "Enviado<br>";
-			}
-		}
+		send_mail($destino, $asunto, $mensaje); //Función contenida en mail.php
 	}
 }
 /*usuarios*/
@@ -103,24 +87,9 @@ while ($r_p = $usuarios->fetch_array()){
 	</body>
 	</html>
 	';
-
-	$mail->setFrom($remitente, 'Endoperio'); 		// Desde 
-	$mail->addReplyTo($remitente, 'Endoperio'); 		// Reply
-	$mail->Subject = $asunto;						// Asunto
-	$mail->msgHTML($mensaje);
-	$mail->IsHTML(true);
-	$mail->CharSet = 'UTF-8';
-
 	
 	if($destino!=''){
-		$mail->addAddress($destino, $r_p[1].' '. $r_p[2].' '.$r_p[3]);
-		if($destino!=''){
-			if (!$mail->send()) {
-				echo "Mailer Error: " . $mail->ErrorInfo;
-			} else {
-				echo "Enviado<br>";
-			}
-		}
+		send_mail($destino, $asunto, $mensaje); //Función contenida en mail.php
 	}
 }
 
