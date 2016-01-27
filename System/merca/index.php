@@ -6,7 +6,7 @@
 <link rel="stylesheet" type="text/css" href="filtros.css"/>
 <p>Buscar lista de pacientes </p>
 <div><br>Escriba en uno o más filtros de búsqueda</div>
-<form action="query.php" class="ajax" method="post" accept-charset="utf-8" >  	
+<form action="query.php" class="ajax" method="post" accept-charset="utf-8" style="position: relative;" >  	
 	Edad <input type='number' name='edad' class='campoT' placeholder='Años'>
 	Ciudad <input type='text' class='campoT' name='ciudad' placeholder='Ej. Morelia'>
 	Estado <input type='text' class='campoT' name='estado' placeholder='Ej. Michoacán'>
