@@ -1,4 +1,4 @@
-$(document).ready(function() {  //se ejecuta el plugin de camara
+$(document).ready(function() {
 				$("#container").scriptcam({
 					showMicrophoneErrors:false,
 					onError:onError,
@@ -10,19 +10,21 @@ $(document).ready(function() {  //se ejecuta el plugin de camara
 					onPictureAsBase64:base64_tofield_and_image
 				});
 			});
-			
-function base64_tofield_and_image() {
-	$('#formfield').val($.scriptcam.getFrameAsBase64());  // Se puede hacer POST de este valor en codigo Base64 y en php decodificar
-	$('#foto').attr("src","data:image/png;base64,"+$.scriptcam.getFrameAsBase64());
-	};
-
-function changeCamera() {
-	$.scriptcam.changeCamera($('#cameraNames').val());  //Se selecciona la camara por la cual se va a capturar
-}		
-
-function onWebcamReady(cameraNames,camera,microphoneNames,microphone,volume) {
-	$.each(cameraNames, function(index, text) {
-		$('#cameraNames').append( $('<option></option>').val(index).html(text) )
-	}); 
-	$('#cameraNames').val(camera);
-}
+			function base64_tofield_and_image() {
+				$('#formfield').val($.scriptcam.getFrameAsBase64());  // Se puede hacer POST de este valor en codigo Base64 y en php decodificar
+				$('#foto').attr("src","data:image/png;base64,"+$.scriptcam.getFrameAsBase64());
+			};
+			function changeCamera() {
+				$.scriptcam.changeCamera($('#cameraNames').val());
+			}
+			function onError(errorId,errorMsg) {
+				$( "#btn1" ).attr( "disabled", true );
+				$( "#btn2" ).attr( "disabled", true );
+				alert(errorMsg);
+			}			
+			function onWebcamReady(cameraNames,camera,microphoneNames,microphone,volume) {
+				$.each(cameraNames, function(index, text) {
+					$('#cameraNames').append( $('<option></option>').val(index).html(text) )
+				}); 
+				$('#cameraNames').val(camera);
+			}

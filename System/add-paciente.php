@@ -233,9 +233,6 @@ $usuario = $_SESSION['u'];
    <img class="preload" src="images/u552_states-a.png" alt=""/>
  </div>
  <!-- JS includes -->
-  <script type="text/javascript">
-  window.jQuery || document.write('\x3Cscript src="scripts/jquery-1.8.3.min.js" type="text/javascript">\x3C/script>');
-  </script>
   <script src="scripts/museutils.js?3865766194" type="text/javascript"></script>
   <script src="scripts/jquery.tobrowserwidth.js?3842421675" type="text/javascript"></script>
   <script src="scripts/jquery.watch.js?4068933136" type="text/javascript"></script>
