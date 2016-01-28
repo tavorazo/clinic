@@ -50,7 +50,7 @@ $(document).ready(function() {
       $.ajax({
         type: "POST",
         dataType: "json",
-        url: "consulta.php", //Relative or absolute path to response.php file
+        url: "query.php", //Relative or absolute path to response.php file
         data: data,
         success: function(data) {
             data_parse = JSON.parse(data);
