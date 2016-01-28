@@ -421,7 +421,7 @@ while ($cita = $result2->fetch_assoc()) {
   $a = $cita["id_paciente"];
   $slc = 'SELECT * from paciente where id_paciente="'.$a.'";';
   $resul = mysqli_query($conn,$slc, $dbh) or die ("problema con la solicitud");
-  $renglon_paciente = mysql_fetch_assoc($resul);
+  $renglon_paciente = mysqli_fetch_assoc($resul);
   echo "<br>Paciente: ",$renglon_paciente['nombres']," ", $renglon_paciente['apellido_paterno']," ", $$renglon_paciente['apellido_materno'];
   echo "<br>Telefono: ",$renglon_paciente['telefono'];
   echo "<br>Celular: ", $renglon_paciente['celular'];
