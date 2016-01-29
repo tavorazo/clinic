@@ -31,4 +31,5 @@
   <!-- La tabla de regreso es invisible -->
   
 </div>
+<a href="#" class="export" id="export"></a>
 <?php include("../+/footer.php"); ?>
