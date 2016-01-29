@@ -58,8 +58,8 @@
 	$correo = $_POST['correo'];		if(strlen($correo) > 90) $correo = substr($correo,0,90);
 	$redes_sociales = $_POST['red_social'];				if(strlen($redes_sociales) > 30) $redes_sociales = substr($redes_sociales,0,30);
 	$nom_emergencia = $_POST['name_emergencia']; 		if(strlen($nom_emergencia) > 25) $nom_emergencia = substr($nom_emergencia,0,25);
-	$tel_emergencia = $_POST['tel_emergencia']; 		if(strlen($tel_emergencia) > 10) $tel_emergencia = substr($tel_emergencia,0,10);
-	$tel_emergencia = abs($tel_emergencia); echo strlen($tel_emergencia);			//Se limita a que sólo haya enteros positivos
+	$tel_emergencia = $_POST['tel_emergencia']; 		if(strlen($tel_emergencia) > 12) $tel_emergencia = substr($tel_emergencia,0,12);
+	//$tel_emergencia = abs($tel_emergencia); echo strlen($tel_emergencia);			//Se limita a que sólo haya enteros positivos
 	$referencia = $_POST['referencia'];					if(strlen($referencia) > 100) $referencia = substr($referencia,0,100);
 	$empresa = $_POST['empresa'];						if(strlen($empresa) > 25) $empresa = substr($empresa,0,25);
 	$fecha_alta = date('Y-m-d');

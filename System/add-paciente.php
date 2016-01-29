@@ -174,7 +174,7 @@ $usuario = $_SESSION['u'];
           <label style="float:left; width:150px; margin-right:15%">Llamar en emergencia: </label>
           <input type="tel" name="name_emergencia" class="campoT" required></br>
           <label style="float:left; width:150px; margin-right:15%">Tel de emergencia: </label>
-          <input type="number" name="tel_emergencia" class="campoT" required></br> <!-- Fuerza a que sea type number ya que en la BD el campo es del tipo int-->
+          <input type="tel" name="tel_emergencia" class="campoT" required></br> <!-- La bd requiere tipo int-->
           <!--referencia y empresa-->
           <label style="float:left; width:150px; margin-right:15%">Referencia: </label>
           <input type="text" name="referencia" class="campoT" required></br>

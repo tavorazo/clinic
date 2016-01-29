@@ -64,7 +64,7 @@ function get_pacientes(){
 	}
 	else if($fecha==NULL && $semana!=NULL && $mes==NULL){
 		$fecha = date("Y-m-d", strtotime($semana));
-		$where .= 'AND WEEK(a.fecha) = WEEK("'.$fecha.'") ';
+		$where .= 'AND YEAR(a.fecha) = "'.$fecha.'" AND WEEK(a.fecha) = WEEK("'.$fecha.'") ';
 	}
 	else if($fecha==NULL && $semana==NULL && $mes!=NULL){
 		$anio = strftime("%Y", strtotime($mes)); //sacar año

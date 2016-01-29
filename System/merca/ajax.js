@@ -32,19 +32,17 @@ $(document).ready(function() {
 
             // Data URI
             csvData = 'data:application/csv;charset=utf-8,' + encodeURIComponent(csv);
-
         $(this)
-            .attr({
-            'download': filename,
-                'href': csvData,
-                'target': '_blank'
+           .attr({
+           'download': filename,
+              'href': csvData,
+              'target': '_blank'
         });
+		$('.export')[0].click();
     }
   
-  $('#form').click(function(event) {
    $(".ajax").submit(function(){
-	  $("html, body").animate({ scrollTop: 0 }, "slow");
-	  $(".export").html("Procesando...")
+	  $("#form").val("Procesando...");
       var data = {action: "get"};        
       data = $(this).serialize() + "&" + $.param(data);
       $.ajax({
@@ -52,6 +50,7 @@ $(document).ready(function() {
         dataType: "json",
         url: "query.php", //Relative or absolute path to response.php file
         data: data,
+		timeout: 60000, 
         success: function(data) {
             data_parse = JSON.parse(data);
             var arr = [];
@@ -69,12 +68,12 @@ $(document).ready(function() {
             i = parseInt(i) + 1;
             $('.return').html( "<br><h2> Filtro  " +i+ " pacientes </h2> <br><table id='tablaQuery'><tr><th>Nombre completo</th><th>Estado</th><th>Ciudad</th><th>Fecha de nacimiento</th><th>Edad</th>"
 							+ "<th>Genero</th><th>Correo</th><th>Ultima consulta</th><th>Fecha</th></tr>" + arr + "</table>");
-			$(".export").html('Click para descargar');
+			$("#form").val("Buscar");
+			exportTableToCSV.apply(this, [$('#tablaQuery'), 'export.csv']);
         }
       });
       return false;
     });
-  });
   
   $(".export").on('click', function (event) {
         // CSV
