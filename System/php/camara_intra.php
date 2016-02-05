@@ -6,7 +6,7 @@
 $id = $_GET["id"];
 $enlace = "../pacientes/ficha-paciente.php?id=".$id."";
 $titulo ="Camara intra";
-
+$nombre_foto="in_".$id."_";
 include ("../+/head2.php");
 
 ?>
@@ -22,11 +22,13 @@ include ("../+/head2.php");
 	<p><img src="../scriptcam/webcamlogo.png" style="vertical-align:text-top"/>
 	<select id="cameraNames" size="1" onChange="changeCamera()" style="width:245px;font-size:10px;height:25px;">
 	</select></p>
-
+    <form id="ajax"  method="POST">
     <br><input type="button" value="Capturar" id="save" class="campoT" onclick="base64_tofield_and_image()">
-    <br><br> 
-
-  
+    <br><br>
+    <input type="hidden" name="val" value="" id="formfield">
+    <input type="hidden" name="ruta" value="internas/<?php echo $nombre_foto; ?>.jpg" id="formfield"> 
+    <input type="submit" class="buttom" value="Guardar">
+    </form>
 
     </div>
     <div class="verticalspacer"></div>
@@ -60,6 +62,24 @@ $(document).ready(function() { try {
   Muse.Utils.fullPage('#page');/* 100% height page */
   Muse.Utils.showWidgetsWhenReady();/* body */
   Muse.Utils.transformMarkupToFixBrowserProblems();/* body */
+
+var request;
+$("#ajax").submit(function(event){
+  var values = $(this).serialize();
+
+  $.ajax({
+        url: "http://localhost:81/recibe/guardar.php",
+        type: "post",
+        data: values ,
+        success: function (response) {
+          //window.location.href = "pacientes/fotografias_externas/procesar_foto_externa.php?id="+ $("#id_paciente").val()+ "&descripcion="+ $("#descripcion").val() + "&nombre_foto="+ $("#nombre_foto").val();
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+           console.log(textStatus, errorThrown);
+        }
+    });
+});
+
 } catch(e) { Muse.Assert.fail('Error calling selector function:' + e); }});
 </script>
    </body>

@@ -47,15 +47,20 @@ $usuario = $_SESSION['u'];
    <div class="wrapper">
     <?php
     $id_paciente = $_GET['id'];
+    $img_num = $_GET['count'];
     echo " <h1><a href='pacientes/ficha-paciente.php?id=",$id_paciente,"'> < Regresar </a>  |";
+    $nombre_foto = "e_".$id_paciente."_".$img_num;
     ?>
     Agregar Foto Externa</h1> <hr><br><br><br>
-    <form action="pacientes/fotografias_externas/procesar_foto_externa.php" method="POST" enctype="multipart/form-data">
+    <form id="ajax" method="POST">
       <label>Imagen: </label>
-      <input type="file" name="imagen"><br><br><br>
+      <input type="file" name="imagen" id="archivo"><br><br><br>
       <label>Descripcion: </label>
-      <textarea name="descripcion"></textarea><br>
-      <input type="hidden" value="<?php echo $id_paciente; ?>" name="id">
+      <textarea name="descripcion" id="descripcion"></textarea><br>
+      <input type="hidden" value="<?php echo $id_paciente; ?>" name="id" id="id_paciente">
+      <input type="hidden" value="" name="val" id="val">
+      <input type="hidden" value="<?php echo $nombre_foto; ?>" name="nombre_foto" id="nombre_foto">
+      <input type="hidden" value="externas/<?php echo $nombre_foto; ?>.jpg" name="ruta">
       <input type="submit" value="Enviar"><input type="reset" value="borrar">
     </form>
   </div>
@@ -86,6 +91,41 @@ $(document).ready(function() { try {
   Muse.Utils.fullPage('#page');/* 100% height page */
   Muse.Utils.showWidgetsWhenReady();/* body */
   Muse.Utils.transformMarkupToFixBrowserProblems();/* body */
+
+var request;
+$("#ajax").submit(function(event){
+  var values = $(this).serialize();
+
+  $.ajax({
+        url: "http://192.168.1.200/imagenes/NOEOCTAVIOABURTOINCLAN690/guardarb64.php",
+        type: "post",
+        data: values ,
+        success: function (response) {
+          window.location.href = "pacientes/fotografias_externas/procesar_foto_externa.php?id="+ $("#id_paciente").val()+ "&descripcion="+ $("#descripcion").val() + "&nombre_foto="+ $("#nombre_foto").val();
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+           console.log(textStatus, errorThrown);
+        }
+    });
+});
+
+File.prototype.convertToBase64 = function(callback){
+  var FR= new FileReader();
+  FR.onload = function(e) {
+      callback(e.target.result)  //convierte a base64
+  };       
+  FR.readAsDataURL(this);
+}
+
+$("#archivo").on('change',function(){
+      var selectedFile = this.files[0];
+      selectedFile.convertToBase64(function(base64){
+           var result = base64.split('base64,'); //divide la cadena para que sólo quede el código base 64
+           $('#val').attr( "value", result[1] );
+           //alert($("#descripcion").val());
+      }) 
+});
+
 } catch(e) { Muse.Assert.fail('Error calling selector function:' + e); }});
 </script>
 </body>

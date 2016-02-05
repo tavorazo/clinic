@@ -1,9 +1,9 @@
 <?php
 error_reporting(E_ALL & ~E_NOTICE);
-$server = "endoperio.com.mx";
+$server = "localhost";
 $port = "3306";
-$username = "endoper2_git";
-$password = "T~J{QM=4F;Q#";
+$username = "root";
+$password = "admin";
 $db = "endoper2_1";
  try{
   //$conn = new PDO("mysql:host=$server;dbname= $db;charset=UTF8", $username, $password); 

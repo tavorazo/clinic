@@ -5,37 +5,24 @@
 <body>
 	<?php
 	date_default_timezone_set("Mexico/General");
-	$a = $_POST['id'];
-	$b = $_POST['descripcion'];
-	if($_FILES['imagen']['name']!=""){
-		copy($_FILES['imagen']['tmp_name'],$_FILES['imagen']['name']);
-		$imagen=$_FILES['imagen']['name'];
-	}
-	else
-		$imagen="";
+	$a = $_GET['id'];
+	$b = $_GET['descripcion'];
+	$c = $_GET['nombre_foto'];
 	include('../../php/base.php');
 //include('../../php/base3.php');
-	$insertar = "insert into fotografias_externas (id_paciente, fecha_foto, descripcion) values ('$a', now(),'$b')";
+	$insertar = "insert into fotografias_externas (id_paciente, fecha_foto, descripcion, nombre_foto) values ('$a', now(),'$b', '$c')";
 	if(!$conn->query($insertar))
 		die('Error de consulta: '.mysqli_error($conn));
 	/****************************************/
-
-	$select = 'select * from fotografias_externas order by id_foto desc limit 1;';
-	$resul = $conn->query($select) or die ("problema con la solicitud");
-	$renglon = $resul->fetch_assoc();
-	$ficha = $renglon['id_paciente'];
-	$a = $renglon['id_foto'];
-	$ultimo = $a;
-	//print "\n\nsdfasdfasdfasdfasdfa $ultimo";
-	rename($imagen,$ultimo);
-	$sentencia = "UPDATE fotografias_externas SET nombre_foto='$ultimo' WHERE id_foto='$a';";
-	if(!$conn->query($sentencia))
-		die('Error de consulta: '.mysqli_error($conn));
 	mysqli_close($conn);
 	/****************************************/
-	$a = '../ficha-paciente.php?id='.$ficha;
+	$a = '../ficha-paciente.php?id='.$a;
+	echo '<br><br><br><center><img src="../../images/endoperio2.png" width="100px" alt=""> <br> ';
+	  echo "Foto subida con exito<br><br><br>";
+	  echo '<div style="  padding:9px; border:1px solid #E6E6E6; height:18px; width:120px; margin-top:12px; text-align:center; margin-right:10px ">';
 	//header('location: ../ficha-paciente.php?id='.$ficha);
 	echo '<META HTTP-EQUIV="Refresh" CONTENT="3; URL=',$a,'">';
+	echo "<a href='",$a,"' > <font color='white'>Regresar </a></center></div>";
 	?>
 </body>
 </html>

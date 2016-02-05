@@ -267,15 +267,17 @@ echo "<fieldset><legend>Fotografias clinicas</legend><h2><br><br>";
       //echo "<a href='".$directorio_clinicas."' target='_blank'>Ver Fotografias Clinicas</a><br><br><br><br>";
 $result3 = $conn->query("SELECT * from fotografias_clinicas where id_paciente='$buscar' order by fecha_foto desc;");
 echo "<table width='100%'><br><br>";
+$img_count = 1;
 while ($row_clinica = $result3->fetch_row()) {
   echo  "<tr>
   <td width='25%'>
-  <a href='fotografias_clinicas/",$row_clinica[2],"' >
-  <img src='fotografias_clinicas/",$row_clinica[2],"'' width='108px' style='border: 1px solid gray; margin-left:5% '> 
+  <a href='http://192.168.1.200/imagenes/NOEOCTAVIOABURTOINCLAN690/clinicas/",$row_clinica[2],".jpg' >
+  <img src='http://192.168.1.200/imagenes/NOEOCTAVIOABURTOINCLAN690/clinicas/",$row_clinica[2],".jpg' width='108px' style='border: 1px solid gray; margin-left:5% '> 
   </a> 
   </td><td width='40%'><div> 
   <font color='black'>",$row_clinica[3],"</font><br>",$row_clinica[4],"</div>
   </td><td width='10%'>";
+  $img_count++;
   if($_SESSION['rol']=='admin' || $_SESSION['rol']=='dentista'){
     echo "<div style='width:40px; margin-left:100px;' id='a1'>
     <a href='../php/eliminar.php?cat=1&id=",$row_clinica[0],"&id_p=",$row2[0],"' >
@@ -295,7 +297,7 @@ while ($row_clinica = $result3->fetch_row()) {
 echo "</table><br>";
 if($_SESSION['rol']=='admin' || $_SESSION['rol']=='dentista'){
  echo" <div id='botn' style='float:left; margin-left: 5%; width:280px; background:#333 '>
- <a href='../agregar_foto_clinica.php?id=",$row2[0],"' >Agregar Fotograf&iacute;a Clinica</a>
+ <a href='../agregar_foto_clinica.php?id=",$row2[0],"&count=",$img_count,"' >Agregar Fotograf&iacute;a Clinica</a> //////////////////
  </div><br><br><br><br>";
 }
 echo "<a href='historial_completo.php?id_paciente=",$row2[0],"&tipo=3' style='color:gray; font-size:14px; float:right'>Historial completo</a>";
@@ -306,15 +308,17 @@ echo "<fieldset><legend>Fotografias Externas</legend><h2><br><br>";
 $result3 = $conn->query("SELECT * from fotografias_externas where id_paciente='$buscar' order by fecha_foto desc;;");
 
 echo "<table width='100%'><br><br>";
+$img_count = 1; // Numera las imagenes
 while ($row_externa = $result3->fetch_row()) {
   echo "<tr>
   <td width='25%'>
-  <a   href='fotografias_externas/",$row_externa[2],"'    >
-  <img src='fotografias_externas/",$row_externa[2],"'' width='125px' style='border: 1px solid gray; margin-left:5% '> 
+  <a   href='http://192.168.1.200/imagenes/NOEOCTAVIOABURTOINCLAN690/externas/",$row_externa[2],".jpg'    >
+  <img src='http://192.168.1.200/imagenes/NOEOCTAVIOABURTOINCLAN690/externas/",$row_externa[2],".jpg' width='125px' style='border: 1px solid gray; margin-left:5% '></a>
   </td><td width='40%'>
   <div style='margin-left:10%; width:200px'> 
   <font color='black'>",$row_externa[3],"</font><br>",$row_externa[4],"</div>
   </td><td width='10%'>";
+  $img_count++;
   if($_SESSION['rol']=='admin' || $_SESSION['rol']=='dentista'){
     echo "<div style='width:40px; margin-left:68px' id='a1'>
     <a href='../php/eliminar.php?cat=2&id=",$row_externa[0],"&id_p=",$row2[0],"' >
@@ -336,7 +340,7 @@ echo "</table>";
 echo "<br>";
 if($_SESSION['rol']=='admin' || $_SESSION['rol']=='dentista'){
   echo "<div id='botn' style='float:left; margin-left: 5%; width:280px; background:#333 '>
-  <a href='../agregar_foto_externa.php?id=",$row2[0],"'   >Agregar Fotograf&iacute;a Externa</a>
+  <a href='../agregar_foto_externa.php?id=",$row2[0],"&count=",$img_count,"'   >Agregar Fotograf&iacute;a Externa</a>
   </div><br><br><br><br>";
 }
 echo "<a href='historial_completo.php?id_paciente=",$row2[0],"&tipo=4' style='color:gray; font-size:14px; float:right'>Historial completo</a>";
@@ -351,13 +355,15 @@ echo "<fieldset><legend>Radiografias</legend><h2><br><br>";
 $result3 = $conn->query("SELECT * from radiografias where id_paciente='$buscar' order by fecha_foto desc;;");
 
 echo "<table width='100%'>";
+$img_count = 1; // Numera las imagenes
 while ($row_radio = $result3->fetch_row()) {
   echo "<tr>
   <td width='25%'>
-  <a href='radiografias/",$row_radio[2],"'  >
-  <img src='radiografias/",$row_radio[2],"'' width='125px' style='border: 1px solid gray; margin-left:5% '> 
+  <a href='http://192.168.1.200/imagenes/NOEOCTAVIOABURTOINCLAN690/radiografias/",$row_radio[2],".jpg'  >
+  <img src='http://192.168.1.200/imagenes/NOEOCTAVIOABURTOINCLAN690/radiografias/",$row_radio[2],".jpg' width='125px' style='border: 1px solid gray; margin-left:5% '> 
   </a>
   </td><td width='40%'>";
+  $img_count++;
   if($_SESSION['rol']=='admin' || $_SESSION['rol']=='dentista'){
     echo "<div style='margin-left:10%; width:500px'>",$row_radio[3],"<br>",$row_radio[4],"</div>
     </td><td width='10%'>
@@ -380,7 +386,7 @@ while ($row_radio = $result3->fetch_row()) {
 echo "</table><br>";
 if($_SESSION['rol']=='admin' || $_SESSION['rol']=='dentista' || $_SESSION['rol']=='recepcionista'){
  echo " <div id='botn' style='float:left; margin-left: 5%; width:280px; background:#333 '>
- <a href='../agregar_radiografia.php?id=",$row2[0],"'   >Agregar Radriografia</a></div>";
+ <a href='../agregar_radiografia.php?id=",$row2[0],"&count=",$img_count,"'   >Agregar Radriografia</a></div>";
  echo "<br><br><br><br>";
 }
 echo "<a href='historial_completo.php?id_paciente=",$row2[0],"&tipo=5' style='color:gray; font-size:14px; float:right'>Historial completo</a>";
