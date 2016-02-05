@@ -68,7 +68,7 @@ $("#ajax").submit(function(event){
   var values = $(this).serialize();
 
   $.ajax({
-        url: "http://localhost:81/recibe/guardar.php",
+        url: "http://192.168.1.200/imagenes/NOEOCTAVIOABURTOINCLAN690/clinicas/guardarb64.php",
         type: "post",
         data: values ,
         success: function (response) {
