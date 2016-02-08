@@ -28,10 +28,8 @@
 		$diferencia_de_fechas = time() - $fecha_de_nacimiento;
 		return ($diferencia_de_fechas / (60 * 60 * 24 * 365));
 	}
-	if($_FILES['imagen']['name']!=""){
-		copy($_FILES['imagen']['tmp_name'],$_FILES['imagen']['name']);
-		$imagen=$_FILES['imagen']['name'];
-		$imagen=htmlspecialchars($imagen);
+	if($_POST['val']!=""){
+		$imagen=$_POST['ruta'];
 	}
 	else
 		$imagen="predeterminado.png";
@@ -93,9 +91,9 @@
 	if($imagen!='predeterminado.png'){
 		//$renglon = mysql_fetch_assoc($resul);
 		$ultimo = $renglon['id_paciente'];
-		rename($imagen,$ultimo_registro);
+		//rename($imagen,$ultimo_registro);
 		echo $imagen = $ultimo_registro;
-		$sentencia = "UPDATE paciente SET foto_ingreso='$ultimo_registro' WHERE id_paciente='$ultimo_registro';";
+		$sentencia = "UPDATE paciente SET foto_ingreso='p_".$ultimo_registro."' WHERE id_paciente='$ultimo_registro';";
 		//echo "<br>".$sentencia;
 		if(!$conn->query($sentencia))
 			die('Error de consulta 4: '.mysqli_error($conn));

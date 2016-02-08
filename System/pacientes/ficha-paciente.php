@@ -77,7 +77,7 @@ while ($row2 = $result2->fetch_row()) {
   if($row2[21] == "")
     echo "<br><img src='images_pacientes/predeterminado.png'>";
   else
-    echo "<br><img src='images_pacientes/",$row2[21],"'>";
+    echo "<br><img src='http://192.168.1.200/imagenes/NOEOCTAVIOABURTOINCLAN690/clinicas/externas/",$row2[21],".jpg'>";
 
   echo "</div><div id='fieldset1' style='padding-top: 50px; margin-left:-200px;'>
   <label style='display: block; width:150px; float:left'>N&uacute;mero de ficha: </label>", $row2[0], "<br>";

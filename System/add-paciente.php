@@ -95,7 +95,7 @@ $usuario = $_SESSION['u'];
   </div>
   <div class="colelem" id="u464" ><!-- simple frame --></div>
   <div class="verticalspacer" ></div> 
-  <form action="pacientes/images_pacientes/nuevo_paciente.php" method="POST" enctype="multipart/form-data"  style="margin-top:-100px; z-index:300; background:#FFFFFF; padding:20px; width:90%; padding-top:70px" >
+  <form action="pacientes/images_pacientes/nuevo_paciente.php" method="POST" enctype="multipart/form-data"  style="margin-top:-100px; z-index:300; background:#FFFFFF; padding:20px; width:90%; padding-top:70px" id="paciente_form">
     <!--a href="menu.php">Regresar</a--><br>
     <label style="float:left; width:150px; margin-right:15%">Nombre(s):</label> <input type="text" name="nombre"  class="campoT" required><br>
     <label style="float:left; width:150px; margin-right:15%">Apellido Paterno: </label><input type="text" name="a_pat" class="campoT" required><br>
@@ -197,6 +197,21 @@ $usuario = $_SESSION['u'];
 		
 		<!-- Aquí se ejecuta el script para la cámara -->
 		<!-- El script permite capturar imagenes desde cualquier webcam conectada o desde archivo -->
+    <?php
+    include('php/base.php');
+    $select = 'SELECT max(id_paciente) as id_paciente from paciente';
+    try {
+      $result = $conn->query($select);  
+    } catch (Exception $e) {
+      printf('Error: %s', $e->getMessage());  
+    }
+    $renglon = $result->fetch_assoc();
+    $ultimo_registro = $renglon['id_paciente'];
+
+    $id_paciente_nuevo = $ultimo_registro+1;
+    $nombre_foto = "p_".$id_paciente_nuevo;
+    /* Se extrae la última id de paciente+1 de la BD para asignarle de nombre a la foto de perfil del paciente */
+    ?>
         <div id="container" style="float:left; margin-left:15px; margin-right:15px;">
         </div>
         <img id="foto" style="width:200px;height:153px;" style="float:right;" />
@@ -204,6 +219,10 @@ $usuario = $_SESSION['u'];
 		<p><img src="scriptcam/webcamlogo.png" style="vertical-align:text-top"/>
 		<select id="cameraNames" size="1" onChange="changeCamera()" style="width:245px;font-size:10px;height:25px;">
 		</select></p>
+    <input type="hidden" name="val" value="" id="formfield">
+    <input type="hidden" name="ruta" value="externas/<?php echo $nombre_foto; ?>.jpg" id="formfield">
+    <input type="button" name="ajax" class="buttom" value="Guardar Foto" id="ajax" style="margin-left:54%;">
+    <!-- Se envía por post ajax la nueva foto de paciente -->
 		
         <br><br>    
         <label style="float:left; width:150px; margin-right:15%">Foto de ingreso</label>
@@ -246,6 +265,24 @@ $usuario = $_SESSION['u'];
     Muse.Utils.showWidgetsWhenReady();/* body */
     Muse.Utils.transformMarkupToFixBrowserProblems();/* body */
   } catch(e) { Muse.Assert.fail('Error calling selector function:' + e); }});
+
+var request;
+$("#ajax").click(function(){
+  var values = $("#paciente_form").serialize();
+
+  $.ajax({
+        url: "http://192.168.1.200/imagenes/NOEOCTAVIOABURTOINCLAN690/clinicas/guardarb64.php",
+        type: "post",
+        data: values ,
+        success: function (response) {
+          $("#ajax").val("Foto guardada")
+          //window.location.href = "pacientes/fotografias_externas/procesar_foto_externa.php?id="+ $("#id_paciente").val()+ "&descripcion="+ $("#descripcion").val() + "&nombre_foto="+ $("#nombre_foto").val();
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+           console.log(textStatus, errorThrown);
+        }
+    });
+});
   </script>
 </body>
 </html>
