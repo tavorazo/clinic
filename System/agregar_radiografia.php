@@ -104,7 +104,7 @@ $("#ajax").submit(function(event){
           window.location.href = "pacientes/radiografias/procesar_radiografia.php?id="+ $("#id_paciente").val()+ "&descripcion="+ $("#descripcion").val() + "&nombre_foto="+ $("#nombre_foto").val();
         },
         error: function(jqXHR, textStatus, errorThrown) {
-           console.log(textStatus, errorThrown);
+           alert("Error, vuelva a intentarlo!!");
         }
     });
 });

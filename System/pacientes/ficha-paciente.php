@@ -254,8 +254,13 @@ echo "<br></fieldset><br>";
 
 //foto intra link
 if($_SESSION['rol']=='admin' || $_SESSION['rol']=='dentista'){
-echo "<fieldset><legend>Foto intra</legend><br>
-<div id='botn' style='float:left; width:90%; margin:30px'>
+  echo "<fieldset><legend>Foto intra</legend><br>";
+  $result3 = $conn->query("SELECT * from fotografias_intra where id_paciente='$buscar' order by fecha_foto desc;");
+  while ($row_intra = $result3->fetch_row()) {
+  echo "<a href='http://192.168.1.200/imagenes/NOEOCTAVIOABURTOINCLAN690/internas/",$row_intra[2],".jpg' >
+        <img src='http://192.168.1.200/imagenes/NOEOCTAVIOABURTOINCLAN690/internas/",$row_intra[2],".jpg' width='108px' style='border: 1px solid gray; margin-left:5% '>";
+  }
+echo "<div id='botn' style='float:left; width:90%; margin:30px'>
   <a href='../php/camara_intra.php?id=",$row2[0],"'' target='_blank'> Tomar foto</a>
 </div>
 <br></fieldset><br>";
@@ -297,7 +302,7 @@ while ($row_clinica = $result3->fetch_row()) {
 echo "</table><br>";
 if($_SESSION['rol']=='admin' || $_SESSION['rol']=='dentista'){
  echo" <div id='botn' style='float:left; margin-left: 5%; width:280px; background:#333 '>
- <a href='../agregar_foto_clinica.php?id=",$row2[0],"&count=",$img_count,"' >Agregar Fotograf&iacute;a Clinica</a> //////////////////
+ <a href='../agregar_foto_clinica.php?id=",$row2[0],"&count=",$img_count,"' >Agregar Fotograf&iacute;a Clinica</a>
  </div><br><br><br><br>";
 }
 echo "<a href='historial_completo.php?id_paciente=",$row2[0],"&tipo=3' style='color:gray; font-size:14px; float:right'>Historial completo</a>";
