@@ -26,7 +26,7 @@ include ("../+/head2.php");
     <br><input type="button" value="Capturar" id="save" class="campoT" onclick="base64_tofield_and_image()">
     <br><br>
     <input type="hidden" name="val" value="" id="formfield">
-    <input type="hidden" name="ruta" value="internas/<?php echo $nombre_foto; ?>.jpg" id="formfield"> 
+    <input type="hidden" name="ruta" value="intra/<?php echo $nombre_foto; ?>.jpg" id="formfield"> 
     <input type="submit" class="buttom" value="Guardar">
     </form>
 

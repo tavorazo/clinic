@@ -220,7 +220,7 @@ $usuario = $_SESSION['u'];
 		<select id="cameraNames" size="1" onChange="changeCamera()" style="width:245px;font-size:10px;height:25px;">
 		</select></p>
     <input type="hidden" name="val" value="" id="formfield">
-    <input type="hidden" name="ruta" value="externas/<?php echo $nombre_foto; ?>.jpg" id="formfield">
+    <input type="hidden" name="ruta" value="pacientes/Fotos-endoperio/<?php echo $nombre_foto; ?>.jpg" id="formfield">
     <input type="button" name="ajax" class="buttom" value="Guardar Foto" id="ajax" style="margin-left:54%;">
     <!-- Se envía por post ajax la nueva foto de paciente -->
 		
