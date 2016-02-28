@@ -365,7 +365,7 @@ if($_SESSION['rol']=='admin' || $_SESSION['rol']=='secretaria' || $_SESSION['rol
   while ($queryCita1 = $result2->fetch_array()) {
     $d = $queryCita1["id_usuario"];
     $p = $queryCita1["id_paciente"];
-    $doctor = mysqli_query($conn,"SELECT * from usuarios where id_usuario='$d'; ");
+    $doctor = mysqli_query($conn,"SELECT * from usuarios where id_usuario='$d' AND rol='dentista'; ");
     $paciente = mysqli_query($conn,"SELECT * from paciente where id_paciente='$p';");
     //while ($row_doctor = mysqli_fetch_array($doctor, MYSQL_NUM)){
     while ($row_doctor = $doctor->fetch_assoc()) {
