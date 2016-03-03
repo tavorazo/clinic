@@ -78,7 +78,7 @@ if($_SESSION['rol']=='admin')
     <option value=""> / categorias /</option>
     <option value="Proveedores">Proveedores</option>
     <option value="Gastos Administrativos">Gastos Administrativos</option>
-    <option value="Nomina">Nomina</option>
+    <!--option value="Nomina">Nomina</option-->
     <option value="Egresos Laboratorio">Laboratorio</option>
     <option value="Gastos de Publicidad">Publicidad</option>
     <option value="Mantenimiento y Mano de Obra">Mantenimiento y Mano de Obra</option>
