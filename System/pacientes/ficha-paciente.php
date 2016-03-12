@@ -125,20 +125,52 @@ while ($row2 = $result2->fetch_row()) {
   echo " - <a href='cambiar_recomendado.php?id_paciente=",$row2[0],"'>cambiar</a><br>";
   echo "<br><br></fieldset><br>";
 
-  echo "<fieldset><legend>Pagos y Adeudos</legend><br><h2>";
-  echo "<label >Pagos:  </label><a href='pago.php?id_paciente=", $row2[0],"'>Pagar adeudo</a><br>";
-  echo "<label >Adeudos:  </label><a href='adeudo.php?id_paciente=", $row2[0],"'>Generar adeudo</a><br>";
-  echo "<label >Comprobantes:  </label><a href='comprobante_pago.php?id_paciente=", $row2[0],"'>Revisar</a><br>";
-  echo "<br><br></fieldset><br>";
+  echo '<fieldset><legend>Pagos y Adeudos</legend><br><h2><a href="adeudo.php?id_paciente=1" style="'.
+   'background: #2d455f;'.
+   'padding: 10px 25px;'.
+   'color: #fff;'.
+   'font-weight: 100;'.
+   'margin: 0 35px;'.
+  ' font-family: sans-serif;'.
+'">Generar adeudo</a><a href="pago.php?id_paciente=1" style="'.
+   'background: #2d455f;'.
+   'padding: 10px 25px;'.
+   'color: #fff;'.
+   'font-weight: 100;'.
+   'margin: 0 35px;'.
+   'font-family: sans-serif;'.
+'">Pagar adeudo</a><a href="comprobante_pago.php?id_paciente=1" style="'.
+   'background: #2d455f;'.
+   'padding: 10px 25px;'.
+   'color: #fff;'.
+   'font-weight: 100;'.
+   'margin: 0 35px;'.
+   'font-family: sans-serif;'.
+'">Comprobantes</a><br><br><br></h2></fieldset><br>';
 
-  echo "<fieldset><legend>Compras</legend><br><h2>";
-  echo "<label >Hacer compra:  </label><a href='compra.php?id_paciente=", $row2[0],"'>Aqui</a><br>";
-  echo "<label >Historial de compras:  </label><a href='historial_compras.php?id_paciente=", $row2[0],"'>Revisar</a><br>";
-  echo "<label >Diplomados e Instrumental:  </label><a href='../php/diplomados.php?id=", $row2[0],"'>Comprar</a><br>";
-  echo "<br><br></fieldset><br>";
-  echo "<fieldset><legend>Observaciones:</legend><br><h2>";
-  echo "<label >  </label><br><br><p style='padding:25px'>", htmlentities($row2[20]), "</p><br>";
-  echo "<br><br></fieldset><br>";
+  echo "<fieldset><legend>Ventas </legend><br><h2><a href='compra.php?id_paciente=1' style='".
+   "background: #2d455f;".
+   "padding: 10px 25px;".
+   "color: #fff;".
+   "font-weight: 100;".
+   "margin: 0 35px;".
+   "font-family: sans-serif;".
+"'>Vender producto </a><a href='../php/diplomados.php?id=1' style='".
+   "background: #2d455f;".
+   "padding: 10px 25px;".
+   "color: #fff;".
+   "font-weight: 100;".
+   "margin: 0 45px;".
+   "/* font-family: sans-serif; */".
+   "opacity: 0.9;".
+"'>Vender diplomado o curso</a><a href='historial_compras.php?id_paciente=1' style='".
+   "background: #8A0808;".
+   "padding: 10px 25px;".
+   "color: #fff;".
+   "font-weight: 100;".
+   "margin: 0 35px;".
+   "font-family: sans-serif;".
+"'>Cuenta de paciente</a><br><br><br></h2></fieldset><br>";
 
   echo "<fieldset><legend>Asegurado</legend><br><h2>";
   echo "<label >Empresa:  </label>", $row2[17],"<br>";

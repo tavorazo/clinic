@@ -26,10 +26,31 @@ $usuario = $_SESSION['u'];
  </script>
  <script>
  function ver(){
-   document.getElementById("uno").style.display = "inline"
+  if(document.getElementById("uno").style.display == "inline"){
+   document.getElementById("uno").style.display = "none"
+  }
+  else{
+    document.getElementById("uno").style.display = "inline"
+  }
+
  }
  function ver2(){
-   document.getElementById("dos").style.display = "inline"
+  if(document.getElementById("dos").style.display == "inline"){
+   document.getElementById("dos").style.display = "none"
+  }
+  else{
+    document.getElementById("dos").style.display = "inline"
+  }
+
+ }
+ function ver3(){
+  if(document.getElementById("tres").style.display == "inline"){
+   document.getElementById("tres").style.display = "none"
+  }
+  else{
+    document.getElementById("tres").style.display = "inline"
+  }
+
  }
  </script>
 </head>
@@ -87,6 +108,26 @@ $usuario = $_SESSION['u'];
   <input type="hidden" name="usuario" value="<?php echo $id; ?>">
   <label><br>Descripción de instrumental: </label>
   <textarea name="diplomado" style="height:50px" placeholder="Escriba aqu&iacute;..."></textarea><br><br>
+  <h1 style="float:left; margin-right:20px">Precio</h1>
+  <input type="number" min="0" name="precio" class="campoT" style="width:100px; height:14px; float:left; margin-right:20px" placeholder="$100">
+  <label style="float:left; margin-right:20px">Tipo de pago</label>
+  <select name="pago" style="width:100px; height:14px; float:left; margin-right:20px" class="campoT">
+    <option value="0"  > </option>
+    <option value="1">Efectivo</option>
+    <option value="2">Cheque</option>
+    <option value="3">Tarjeta</option>
+    <option value="4">Transferencia</option>
+  </select><br><br>
+  <label>Descripción de pago</label><br>
+  <textarea name="descripcion" style="height:50px" placeholder="Escriba aqu&iacute;..."></textarea><br>
+  <input type="submit" value="Crear" style="height:30px">
+</form>
+<br><h1><a href="#" onClick="ver3();"> > Uniforme</a> </h1>
+<hr style="width:200px; float:left"> <br><br>
+<form action="procesar_uniforme.php" method="POST" style="padding-left: 10px; display:none" id="tres"> 
+  <input type="hidden" name="usuario" value="<?php echo $id; ?>">
+  <label><br>Descripción de uniforme: </label>
+  <textarea name="uniforme" style="height:50px" placeholder="Escriba aqu&iacute;..."></textarea><br><br>
   <h1 style="float:left; margin-right:20px">Precio</h1>
   <input type="number" min="0" name="precio" class="campoT" style="width:100px; height:14px; float:left; margin-right:20px" placeholder="$100">
   <label style="float:left; margin-right:20px">Tipo de pago</label>
