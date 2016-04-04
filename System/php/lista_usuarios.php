@@ -45,7 +45,7 @@ $u= $_SESSION['u'];
 			</div>
 			<br>
 			<label>Id: </label>", $row2[0];
-			echo "<br><label>Nombre: </label>", $row2[1]," ",$row2[2]," ", $row2[3];
+			echo "<br><label>Nombre: </label>", utf8_encode($row2[1])," ",utf8_encode($row2[2])," ", utf8_encode($row2[3]);
 			echo "<br><label>Fecha de Nacimiento: </label>", $row2[4];
 			echo "<br><label>Rol: </label>", $row2[5];
 			echo "<br><label>Correo: </label>", $row2[6];
@@ -84,7 +84,7 @@ $u= $_SESSION['u'];
 			while ($row2 = $result2->fetch_row()){
 				echo "<div style='width:80%; margin:10px auto; padding:20px; border: #2d455f 1px solid;'>
 				<label>Id: </label>", $row2[0];
-				echo "<br><label>Nombre: </label>", $row2[1]," ",$row2[2]," ", $row2[3];
+				echo "<br><label>Nombre: </label>", utf8_encode($row2[1])," ",utf8_encode($row2[2])," ", utf8_encode($row2[3]);
 				echo "<br><label>Fecha de Nacimiento: </label>", $row2[4];
 				echo "<br><label>Rol: </label>", $row2[5];
 				echo "<br><label>Correo: </label>", $row2[6];
@@ -123,7 +123,7 @@ $u= $_SESSION['u'];
 	            </div>
 	            <br>
 	            <label>Id: </label>", $row2[0];
-	            echo "<br><label>Nombre: </label>", $row2[1]," ",$row2[2]," ", $row2[3];
+	            echo "<br><label>Nombre: </label>", utf8_encode($row2[1])," ",utf8_encode($row2[2])," ", utf8_encode($row2[3]);
 	            echo "<br><label>Fecha de Nacimiento: </label>", $row2[4];
 	            echo "<br><label>Rol: </label>", $row2[5];
 	            echo "<br><label>Correo: </label>", $row2[6];

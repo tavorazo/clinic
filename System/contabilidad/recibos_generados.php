@@ -400,7 +400,7 @@ while ($row2 = $result2->fetch_row()){
     $renglon = $resul->fetch_assoc();
     //$renglon = mysql_fetch_assoc($resul);
 
-    echo "<td> ".$renglon['nombres']." ".$renglon['apellido_paterno']." ".$renglon['apellido_materno']."</td>";
+    echo "<td> ".utf8_encode($renglon['nombres'])." ".utf8_encode($renglon['apellido_paterno'])." ".utf8_encode($renglon['apellido_materno'])."</td>";
 
     $paciente = $row2[5];
     $select = 'SELECT * from paciente where id_paciente="'.$paciente.'";';

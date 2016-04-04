@@ -37,5 +37,5 @@ echo "<br>Fecha: ", $renglon['fecha'];
 echo "<br>Descripcion: ", $renglon['descripcion'];
 echo "<br>Cantidad: ", $renglon['cantidad'];
 echo "<br>Total: $ ", $renglon['total'];
-echo "<br><br><hr>Recibo emitido por: ", $renglon_vendedor['nombres'], " ", $renglon_vendedor['apellido_paterno'], " ", $renglon_vendedor['apellido_materno'];
+echo "<br><br><hr>Recibo emitido por: ", utf8_encode($renglon_vendedor['nombres']), " ", utf8_encode($renglon_vendedor['apellido_paterno']), " ", utf8_encode($renglon_vendedor['apellido_materno']);
 ?>
