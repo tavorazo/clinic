@@ -56,12 +56,20 @@
     </div>
     <div class="clearfix colelem" id="pu375"><!-- group -->
      <div class="browser_width grpelem" id="u375"><!-- simple frame --></div>
-     <a class="nonblock nontext grpelem" id="u376" href="../agenda.php"><!-- state-based BG images --><img id="u376_states" alt="Registro de consultas" src="../images/blank.gif"/></a>
-     <a class="nonblock nontext grpelem" id="u377" href="../buscar-paciente.php"><!-- state-based BG images --><img id="u377_states" alt="Buscar paciente" src="../images/blank.gif"/></a>
-     <a class="nonblock nontext MuseLinkActive grpelem" id="u378" href="../add-paciente.php"><!-- state-based BG images --><img id="u378_states" alt="Agregar pacientes" src="../images/blank.gif"/></a>
-     <a class="nonblock nontext grpelem" id="u480" href="../add-usuario.php"><!-- state-based BG images --><img id="u480_states" alt="Agregar usuarios" src="../images/blank.gif"/></a>
-     <a class="nonblock nontext grpelem" id="u550" href="../almacen.php"><!-- state-based BG images --><img id="u550_states" alt="Almacen" src="../images/blank.gif"/></a>
-     <a class="nonblock nontext grpelem" id="u552" href="../contabilidad.php"><!-- state-based BG images --><img id="u552_states" alt="Contabilidad" src="../images/blank.gif"/></a>
+       <?php
+       if($_SESSION['rol']=='admin' || $_SESSION['rol']=='secretaria' || $_SESSION['rol']=='recepcionista')
+        echo '<a class="nonblock nontext grpelem" id="u376" href="agenda.php"> <img id="u376_states" alt="Registro de consultas" src="../images/blank.gif"/></a>';
+      if($_SESSION['rol']=='admin' || $_SESSION['rol']=='secretaria' || $_SESSION['rol']=='recepcionista' || $_SESSION['rol']=='dentista')
+        echo '<a class="nonblock nontext grpelem" id="u377" href="buscar-paciente.php"> <img id="u377_states" alt="Buscar paciente" src="../images/blank.gif"/></a>';
+      if($_SESSION['rol']=='admin' || $_SESSION['rol']=='secretaria' || $_SESSION['rol']=='recepcionista')
+        echo '<a class="nonblock nontext MuseLinkActive grpelem" id="u378" href="add-paciente.php"> <img id="u378_states" alt="Agregar pacientes" src="../images/blank.gif"/></a>';
+      if($_SESSION['rol']=='admin')
+        echo '<a class="nonblock nontext grpelem" id="u480" href="add-usuario.php"> <img id="u480_states" alt="Agregar usuarios" src="../images/blank.gif"/></a>';
+      if($_SESSION['rol']=='admin' || $_SESSION['rol']=='almacen')
+        echo '<a class="nonblock nontext grpelem" id="u550" href="almacen.php"> <img id="u550_states" alt="Almacen" src="../images/blank.gif"/></a>';
+      if($_SESSION['rol']=='admin')
+        echo '<a class="nonblock nontext grpelem" id="u552" href="contabilidad.php"> <img id="u552_states" alt="Contabilidad" src="../images/blank.gif"/></a>';
+      ?>
     </div>
     <div class="clearfix colelem" id="pu388-4" ><!-- group -->
      <img class="grpelem" id="u388-4" src="../images/u388-4.png" alt="Agregar paciente" width="237" height="29"/>
