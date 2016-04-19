@@ -125,21 +125,21 @@ while ($row2 = $result2->fetch_row()) {
   echo " - <a href='cambiar_recomendado.php?id_paciente=",$row2[0],"'>cambiar</a><br>";
   echo "<br><br></fieldset><br>";
 
-  echo '<fieldset><legend>Pagos y Adeudos</legend><br><h2><a href="adeudo.php?id_paciente=1" style="'.
+  echo '<fieldset><legend>Pagos y Adeudos</legend><br><h2><a href="adeudo.php?id_paciente='.$row2[0].'" style="'.
    'background: #2d455f;'.
    'padding: 10px 25px;'.
    'color: #fff;'.
    'font-weight: 100;'.
    'margin: 0 35px;'.
   ' font-family: sans-serif;'.
-'">Generar adeudo</a><a href="pago.php?id_paciente=1" style="'.
+'">Generar adeudo</a><a href="pago.php?id_paciente='.$row2[0].'" style="'.
    'background: #2d455f;'.
    'padding: 10px 25px;'.
    'color: #fff;'.
    'font-weight: 100;'.
    'margin: 0 35px;'.
    'font-family: sans-serif;'.
-'">Pagar adeudo</a><a href="comprobante_pago.php?id_paciente=1" style="'.
+'">Pagar adeudo</a><a href="comprobante_pago.php?id_paciente='.$row2[0].'" style="'.
    'background: #2d455f;'.
    'padding: 10px 25px;'.
    'color: #fff;'.
@@ -148,14 +148,14 @@ while ($row2 = $result2->fetch_row()) {
    'font-family: sans-serif;'.
 '">Comprobantes</a><br><br><br></h2></fieldset><br>';
 
-  echo "<fieldset><legend>Ventas </legend><br><h2><a href='compra.php?id_paciente=1' style='".
+  echo "<fieldset><legend>Ventas </legend><br><h2><a href='compra.php?id_paciente=".$row2[0]."' style='".
    "background: #2d455f;".
    "padding: 10px 25px;".
    "color: #fff;".
    "font-weight: 100;".
    "margin: 0 35px;".
    "font-family: sans-serif;".
-"'>Vender producto </a><a href='../php/diplomados.php?id=1' style='".
+"'>Vender producto </a><a href='../php/diplomados.php?id=".$row2[0]."' style='".
    "background: #2d455f;".
    "padding: 10px 25px;".
    "color: #fff;".
@@ -163,7 +163,7 @@ while ($row2 = $result2->fetch_row()) {
    "margin: 0 45px;".
    "/* font-family: sans-serif; */".
    "opacity: 0.9;".
-"'>Vender diplomado o curso</a><a href='historial_compras.php?id_paciente=1' style='".
+"'>Vender diplomado o curso</a><a href='historial_compras.php?id_paciente=".$row2[0]."' style='".
    "background: #8A0808;".
    "padding: 10px 25px;".
    "color: #fff;".
