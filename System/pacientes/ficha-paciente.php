@@ -205,7 +205,7 @@ while ($row2 = $result2->fetch_row()) {
  echo "<br>Ultimas 10 recetas:<br><br>";
  /*RECETAS*/
  while ($row_receta = $result3->fetch_row()) {
-  echo "<label >Fecha de receta:</label> <a href='../php/ver_receta.php?id=",$row_receta[0],"' target='_blank' >", $row_receta[5],"</a><br>";
+  echo "<label >Fecha de receta:</label> <a href='../php/ver_receta.php?id=",$row_receta[0],"' target='_blank' >", $row_receta[5]," - Ver receta</a><br>";
   $SELECT = 'SELECT * from usuarios where id_usuario="'.$row_receta[1].'";';
   $resul = $conn->query($SELECT) or die ("problema con la solicitud");
   $renglon = $resul->fetch_assoc();
