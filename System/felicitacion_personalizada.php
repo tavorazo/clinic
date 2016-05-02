@@ -64,7 +64,7 @@ $usuario = $_SESSION['u'];
      $nombres = $renglon_paciente['nombres']." ". $renglon_paciente['apellido_paterno']." ".$renglon_paciente['apellido_materno'];
 
 
-     if($correo1=''){
+     if($correo!=''){
       echo '<h1>Felicitación personalizada para: '.$renglon_paciente['nombres'].' '.$renglon_paciente['apellido_paterno'].' '.$renglon_paciente['apellido_materno'].' </h1>';
       echo '<br>Correo: '.$correo.'<br><br><br>';
     }else{
