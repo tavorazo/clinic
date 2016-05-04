@@ -72,7 +72,7 @@ $usuario = $_SESSION['u'];
   <option value="recepcionista">Recepcionista</option>
   <option value="secretaria">Aux administrativo</option>
   <option value="dentista">Dentista</option>
-  <option value="almacen">Instrumentalista</option>
+  <option value="almacen">Almacenista</option>
   <option value="becario">Becario</option>
   <option value="publicista">Publicista</option>
 </select><br><br>
