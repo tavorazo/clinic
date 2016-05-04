@@ -79,7 +79,7 @@ $usuario = $_SESSION['u'];
 <label style="float:left; width:150px; margin-right:15%" >Correo</label>
 <input type="mail" name="correo" class="campoT"  required style="width:250px; "><br>
 <label style="float:left; width:150px; margin-right:15%" >Tel emergencia</label>
-<input type="tel" name="tel_emergencia" class="campoT"  required style="width:250px; "><br>
+<input type="number" name="tel_emergencia" class="campoT"  required style="width:250px; "><br>
 <label style="float:left; width:150px; margin-right:15%" >Nombre emergencia</label>
 <input type="text" name="name_emergencia" class="campoT"  required style="width:250px; "><br>
       <!--label style="float:left; width:150px; margin-right:15%" >Fecha de alta</label>
