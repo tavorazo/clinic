@@ -5,6 +5,7 @@ if($_SESSION['u']=='')
 date_default_timezone_set("Mexico/General");
 //echo'<META HTTP-EQUIV="Refresh" CONTENT="0; URL=index.php">';
 $usuario = $_SESSION['u'];
+$sucursal = $_SESSION['sucursal'];
 //include('php/base3.php');
 include('php/base.php');
 ?>
@@ -76,8 +77,10 @@ if($_SESSION['rol']=='admin' || $_SESSION['rol']=='almacen'){
     echo '<div style="background: #FFFFFF; width:96%; min-height: 90px; margin-bottom:70px; " id="txt2">
     <img src="images/alert.png" width="20px" alt="" style="float:left; margin-right:10px">
     <p>Inventario:</p> ';
-    
-    $sql = "SELECT * FROM inventario where reabastesible='1'";
+
+    $sql = ($sucursal==0) ? "SELECT * FROM inventario where reabastesible='1'" : "SELECT * FROM inventario where reabastesible='1' and id_sucursal=$sucursal";
+
+    //$sql = "SELECT * FROM inventario where reabastesible='1' and id_sucursal=$sucursal";
     if($result = $conn->query($sql)) {
      while ($row2 = $result->fetch_assoc()) {
       if($row2["cantidad_minima"] > $row2["cantidad"]){
@@ -174,7 +177,9 @@ echo ' </div>';
     $c = date("Y");
     $fecha_cumplea = "-$b-$a";
 
-    $pacientes = $conn->query("SELECT * FROM paciente WHERE fecha_nacimiento like '%$fecha_cumplea%' ORDER BY id_paciente DESC limit 10;");
+    $pacientes = $conn->query( ($sucursal == 0) ? 
+                    "SELECT * FROM paciente WHERE fecha_nacimiento like '%$fecha_cumplea%' ORDER BY id_paciente DESC limit 10;" : 
+                    "SELECT * FROM paciente WHERE fecha_nacimiento like '%$fecha_cumplea%' AND id_sucursal=$sucursal ORDER BY id_paciente DESC limit 10;" );
     echo "<br> <h3> Pacientes </h3><br>";
     $count = 0;
     //while ($r_p = mysqli_fetch_array($pacientes, MYSQL_NUM)){
@@ -185,7 +190,9 @@ echo ' </div>';
         echo $r_p["nombres"]." ".$r_p["apellido_paterno"] .", ";
     }
     echo '<a href="cumpleaneros.php">...</a>';
-    $trabajadores = $conn->query("SELECT fecha_nacimiento, nombres, apellido_paterno, apellido_materno from usuarios;");
+    $trabajadores = $conn->query( ($sucursal==0) ?
+      "SELECT fecha_nacimiento, nombres, apellido_paterno, apellido_materno from usuarios;" : 
+       "SELECT fecha_nacimiento, nombres, apellido_paterno, apellido_materno from usuarios WHERE id_sucursal=$sucursal;");
     echo "<br><br><hr> <h3> Trabajadores </h3><br>";
     $count = 0;
     //while ($r_t = mysqli_fetch_array($trabajadores, MYSQL_NUM)){
@@ -230,7 +237,8 @@ if($_SESSION['rol']=='admin' || $_SESSION['rol']=='publicista'){
 
 <?php 
 if($_SESSION['rol']=='admin' || $_SESSION['rol']=='secretaria' || $_SESSION['rol']=='recepcionista'){ 
-  $sql = "SELECT id_paciente, nombres, apellido_paterno, apellido_materno FROM paciente WHERE etiqueta_laboratorio = '1' ";
+  $sql = ($sucursal==0) ? "SELECT id_paciente, nombres, apellido_paterno, apellido_materno FROM paciente WHERE etiqueta_laboratorio = '1' " :
+    "SELECT id_paciente, nombres, apellido_paterno, apellido_materno FROM paciente WHERE etiqueta_laboratorio = '1' AND id_sucursal=$sucursal ";
   $result1 = $conn->query($sql);
 ?>
     <div style=" background: #FFFFFF; width:96%; min-height:80px; float:left; margin-top:80px" id="txt">
@@ -290,13 +298,13 @@ if($_SESSION['rol']=='admin' || $_SESSION['rol']=='secretaria' || $_SESSION['rol
 <!--Control de asistencias-->
 <?php 
 if($_SESSION['rol']=='admin' || $_SESSION['rol']=='secretaria' || $_SESSION['rol']=='recepcionista'){ 
-    $sql = "SELECT id_paciente FROM paciente WHERE inasistencia = 1";
-    $sql2 = "SELECT id_paciente FROM paciente WHERE inasistencia = 2";
-    $sql3 = "SELECT id_paciente FROM paciente WHERE inasistencia >= 3";
+    $sql = ($sucursal==0) ? "SELECT id_paciente FROM paciente WHERE inasistencia = 1" : "SELECT id_paciente FROM paciente WHERE inasistencia = 1 AND id_sucursal=$sucursal";
+    $sql2 = ($sucursal==0) ? "SELECT id_paciente FROM paciente WHERE inasistencia = 2" : "SELECT id_paciente FROM paciente WHERE inasistencia = 2 AND id_sucursal=$sucursal";
+    $sql3 = ($sucursal==0) ? "SELECT id_paciente FROM paciente WHERE inasistencia >= 3" : "SELECT id_paciente FROM paciente WHERE inasistencia >= 3 AND id_sucursal=$sucursal";
     $falta_1 = mysqli_num_rows($conn->query($sql));
     $falta_2 = mysqli_num_rows($conn->query($sql2));
     $falta_3 = mysqli_num_rows($conn->query($sql3));
-    $sql4 = "SELECT id_paciente FROM pago_adeudo WHERE adeudo > pagado  ";
+    $sql4 = ($sucursal==0) ? "SELECT id_paciente FROM pago_adeudo WHERE adeudo > pagado" : "SELECT id_paciente FROM pago_adeudo WHERE adeudo > pagado";
     $resul = $conn->query($sql);
     $row = $resul->fetch_row();
       $tmp = $row[0]; 
@@ -356,9 +364,11 @@ $semana = strftime("%V", strtotime(date("m.d.y")));
 
   //$result2 = mysqli_query($conn,"select * from agenda where confirmacion='0' and mes='$n_mes' and ano='$consulta_anio' and web='0' and dia>='$hoy' order by hora, fecha, minuto; ");
 if($buscar_paciente==0)
-  $result2 = $conn->query("SELECT * from agenda where confirmacion='0' and n_semana ='$semana' order by ano, mes, dia, hora, minuto");
+  $result2 = $conn->query(($sucursal==0) ? "SELECT * from agenda where confirmacion='0' and n_semana ='$semana' order by ano, mes, dia, hora, minuto" :
+                          "SELECT * from agenda where confirmacion='0' and n_semana = '$semana' and exists (select id_sucursal from paciente where  id_sucursal='$sucursal' and id_paciente=agenda.id_paciente) order by ano, mes, dia, hora, minuto" );
 else 
-  $result2 = $conn->query("SELECT * from agenda where confirmacion='0'  and id_paciente='$buscar_paciente' order by hora, fecha, minuto; ");
+  $result2 = $conn->query(($sucursal==0) ? "SELECT * from agenda where confirmacion='0' and id_paciente='$buscar_paciente' order by hora, fecha, minuto; " :
+                          "SELECT * from agenda where confirmacion='0' and id_paciente='$buscar_paciente' and exists (select id_sucursal from paciente where  id_sucursal='$sucursal' and id_paciente=agenda.id_paciente) order by hora, fecha, minuto; ");
 
 if($_SESSION['rol']=='admin' || $_SESSION['rol']=='secretaria' || $_SESSION['rol']=='recepcionista'){
   //while ($row3 = mysqli_fetch_array($result2, MYSQL_NUM)){  
@@ -415,7 +425,7 @@ if($_SESSION['rol']=='admin' || $_SESSION['rol']=='secretaria' || $_SESSION['rol
 ?>
 <?php
 $hoy = date("d");
-$result2 = mysqli_query($conn,"SELECT * from agenda where confirmacion='0' and web='1' and dia>='$hoy';");
+$result2 = mysqli_query($conn, ($sucursal==0) ? "SELECT * from agenda where confirmacion='0' and web='1' and dia>='$hoy';" : "SELECT * from agenda where confirmacion='0' and web='1' and dia>='$hoy' and exists (select id_sucursal from paciente where  id_sucursal='$sucursal' and id_paciente=agenda.id_paciente);");
 //while ($cita = mysqli_fetch_array($result2, MYSQL_NUM)){
 while ($cita = $result2->fetch_assoc()) {
   $a = $cita["id_paciente"];
@@ -434,7 +444,7 @@ while ($cita = $result2->fetch_assoc()) {
   $minuto = $cita["minuto"];
   
   /*Buscar doctores*/
-  $doctores = mysqli_query($conn,"SELECT * from usuarios where rol='dentista';");
+  $doctores = mysqli_query($conn,($sucursal==0) ? "SELECT * from usuarios where rol='dentista'" : "SELECT * from usuarios where rol='dentista' and id_sucursal=$sucursal;");
   $contador_doctores=0;
   echo '<form action="conf_citas/web/confirmar.php" method="POST" >';
   echo "<input type='hidden' name='id' value='".$cita["id_cita"]."'>";
