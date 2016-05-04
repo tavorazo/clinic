@@ -87,7 +87,7 @@ $("#ajax").submit(function(event){
   var url = "procesar_foto_intra.php?id="+ $("#id_paciente").val()+ "&nombre_foto="+ $("#nombre_foto").val();
 
   $.ajax({
-        url: "http://192.168.1.74/subir/guardarB64.php",
+        url: "http://192.168.1.200/imagenes/NOEOCTAVIOABURTOINCLAN690/guardarb64.php",
         type: "post",
         data: values ,
         success: function (response) {
