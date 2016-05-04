@@ -7,6 +7,7 @@ if($_SESSION['rol']!='recepcionista')
     if($_SESSION['rol']!='secretaria')
      echo'<META HTTP-EQUIV="Refresh" CONTENT="1; URL=panel.php">';
    $usuario = $_SESSION['u'];
+   $sucursal = $_SESSION['sucursal'];
    ?>
    <!DOCTYPE html>
    <html class="html">
@@ -78,7 +79,7 @@ if($_SESSION['rol']!='recepcionista')
     or die('No se pudo conectar: ' . mysql_error());
     mysql_select_db('Endoperio') or die('No se pudo seleccionar la base de datos');*/
     include('php/base.php');
-    $result=$conn->query("select * from usuarios where rol='admin' ||  rol='dentista';");
+    $result=$conn->query(($sucursal==0) ? "select * from usuarios where rol='admin' ||  rol='dentista';" :  "select * from usuarios where (rol='admin' ||  rol='dentista') and id_sucursal=$sucursal;");
     $contador = 0;
     //$doctor = $row2[0];
     //$result2 = $conn->query("select * from usuarios where rol='admin' ||  rol='dentista';");
