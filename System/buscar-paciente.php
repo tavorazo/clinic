@@ -4,6 +4,7 @@ if($_SESSION['u']=='')
   header('location: index.php');
     //echo'<META HTTP-EQUIV="Refresh" CONTENT="0; URL=index.php">';
 $usuario = $_SESSION['u'];
+$sucursal = $_SESSION['sucursal'];
 ?>
 <!DOCTYPE html>
 <html class="html">
@@ -88,10 +89,10 @@ $id = $_POST['id'];
 <!--a href="menu.php">Regresar</a-->
 <?php
 if($id == 0)
-  $result2 = $conn->query("SELECT * from paciente where nombres like '%$buscar%' or apellido_paterno like '%$buscar%' or apellido_materno like '%$buscar%' or id_paciente like '%$buscar%' or n_registro like '%$buscar%'  LIMIT 10;");
+  $result2 = $conn->query(($sucursal==0) ? "SELECT * from paciente where nombres like '%$buscar%' or apellido_paterno like '%$buscar%' or apellido_materno like '%$buscar%' or id_paciente like '%$buscar%' or n_registro like '%$buscar%'  LIMIT 10;" : "SELECT * from paciente where (nombres like '%$buscar%' or apellido_paterno like '%$buscar%' or apellido_materno like '%$buscar%' or id_paciente like '%$buscar%' or n_registro like '%$buscar%') and id_sucursal=$sucursal LIMIT 10;" );
         //$result2 = $conn->query("SELECT * from paciente where nombres like '%$buscar%' or apellido_paterno like '%$buscar%' or apellido_materno like '%$buscar%' or id_paciente like '%$buscar%' or n_registro like '%$buscar%'  LIMIT 10;");
 else
-  $result2 = $conn->query("SELECT * from paciente where  id_paciente like '%$id%'  LIMIT 10;");
+  $result2 = $conn->query(($sucursal==0) ?  "SELECT * from paciente where  id_paciente like '%$id%'  LIMIT 10;" : "SELECT * from paciente where  id_paciente like '%$id%' and id_sucursal=$sucursal LIMIT 10;" );
         //$result2 = $conn->query("SELECT * from paciente where  id_paciente like '%$id%'  LIMIT 10;");
 while ($row2 = $result2->fetch_row()) {
     //while ($row2 = mysql_fetch_array($result2, MYSQL_NUM) ) {
