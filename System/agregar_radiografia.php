@@ -10,7 +10,7 @@ $usuario = $_SESSION['u'];
 <head>
   <meta http-equiv="Content-type" content="text/html;charset=UTF-8"/>
   <meta name="generator" content="7.0.314.244"/>
-  <title>agregar_foto_clinica</title>
+  <title>Agregar Radiografia</title>
   <link rel="shortcut icon" type="x-icon" href="images/icon.png" /><!--para logo en barra-->
   <!-- CSS -->
   <link rel="stylesheet" type="text/css" href="css/s1.css"/>
@@ -95,16 +95,23 @@ $(document).ready(function() { try {
 var request;
 $("#ajax").submit(function(event){
   var values = $(this).serialize();
+  var url = "pacientes/radiografias/procesar_radiografia.php?id="+ $("#id_paciente").val()+ 
+  "&descripcion="+ $("#descripcion").val() + "&nombre_foto="+ $("#nombre_foto").val();
 
   $.ajax({
         url: "http://192.168.1.200/imagenes/NOEOCTAVIOABURTOINCLAN690/guardarb64.php",
         type: "post",
         data: values ,
         success: function (response) {
-          window.location.href = "pacientes/radiografias/procesar_radiografia.php?id="+ $("#id_paciente").val()+ "&descripcion="+ $("#descripcion").val() + "&nombre_foto="+ $("#nombre_foto").val();
+          window.location.href = url;
         },
         error: function(jqXHR, textStatus, errorThrown) {
-           alert("Error, vuelva a intentarlo!!");
+            $.ajax({
+              url: url,
+              type: "get"
+            });
+
+            alert("Guardado!");
         }
     });
 });

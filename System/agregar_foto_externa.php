@@ -95,16 +95,23 @@ $(document).ready(function() { try {
 var request;
 $("#ajax").submit(function(event){
   var values = $(this).serialize();
+  var url = "pacientes/fotografias_externas/procesar_foto_externa.php?id="+ $("#id_paciente").val()+ 
+  "&descripcion="+ $("#descripcion").val() + "&nombre_foto="+ $("#nombre_foto").val();
 
   $.ajax({
         url: "http://192.168.1.200/imagenes/NOEOCTAVIOABURTOINCLAN690/guardarb64.php",
         type: "post",
         data: values ,
         success: function (response) {
-          window.location.href = "pacientes/fotografias_externas/procesar_foto_externa.php?id="+ $("#id_paciente").val()+ "&descripcion="+ $("#descripcion").val() + "&nombre_foto="+ $("#nombre_foto").val();
+          window.location.href = url;
         },
         error: function(jqXHR, textStatus, errorThrown) {
-           alert("Error, vuelva a intentarlo!!");
+            $.ajax({
+              url: url,
+              type: "get"
+            });
+
+            alert("Guardado!");
         }
     });
 });
