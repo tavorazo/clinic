@@ -65,6 +65,7 @@
 		//echo $renglon['id_usuario'];
 		$_SESSION['rol']=$renglon['rol'];
 		$_SESSION['nombres'] = $renglon['nombres'];
+    $_SESSION['sucursal'] = $renglon['id_sucursal'];
 		echo "<br>Correcto. . .";
 		if ($renglon['rol'] == 'merca') 
 			echo '<META HTTP-EQUIV="Refresh" CONTENT="5; URL=../merca/">';
