@@ -9,6 +9,7 @@ if($_SESSION['rol']!='admin'){
   }
 } 
 $usuario = $_SESSION['u'];
+$sucursal = $_SESSION['sucursal'];
 ?>
 <!DOCTYPE html>
 <html class="html">
@@ -124,7 +125,7 @@ if($_SESSION['rol']=='admin')
     $buscar = "";
   
   //$result2 = $conn->query("select * from inventario where nombre like '%$buscar%' or numero_serial like '%$buscar%' or descripcion like '%$buscar%' order by nombre;");
-  $result2 = $conn->query("SELECT * FROM inventario where nombre like '%$buscar%' or numero_serial like '%$buscar%' or descripcion like '%$buscar%' order by nombre;");
+  $result2 = $conn->query(($sucursal==0) ? "SELECT * FROM inventario where nombre like '%$buscar%' or numero_serial like '%$buscar%' or descripcion like '%$buscar%' order by nombre;" : "SELECT * FROM inventario where (nombre like '%$buscar%' or numero_serial like '%$buscar%' or descripcion like '%$buscar%') AND id_sucursal=$sucursal order by nombre;");
   //ocultar esto mientra no busque
   echo '<h1>En almacen: ',$buscar,'</h1>';
   $a = 0;
