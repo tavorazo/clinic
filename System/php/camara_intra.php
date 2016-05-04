@@ -4,9 +4,10 @@
 		header('location: index.php');
 	$usuario = $_SESSION['u'];
 $id = $_GET["id"];
+$img_num = $_GET['count'];
 $enlace = "../pacientes/ficha-paciente.php?id=".$id."";
 $titulo ="Camara intra";
-$nombre_foto="in_".$id."_";
+$nombre_foto="in_".$id."_".$img_num;
 include ("../+/head2.php");
 
 ?>
@@ -25,8 +26,10 @@ include ("../+/head2.php");
     <form id="ajax"  method="POST">
     <br><input type="button" value="Capturar" id="save" class="campoT" onclick="base64_tofield_and_image()">
     <br><br>
+    <input type="hidden" value="<?php echo $id; ?>" name="id" id="id_paciente">
     <input type="hidden" name="val" value="" id="formfield">
     <input type="hidden" name="ruta" value="intra/<?php echo $nombre_foto; ?>.jpg" id="formfield"> 
+    <input type="hidden" value="<?php echo $nombre_foto; ?>" name="nombre_foto" id="nombre_foto">
     <input type="submit" class="buttom" value="Guardar">
     </form>
 
@@ -67,16 +70,36 @@ var request;
 $("#ajax").submit(function(event){
   var values = $(this).serialize();
 
+  // $.ajax({
+  //       url: "http://192.168.1.74/subir/guardarB64.php",
+  //       type: "post",
+  //       data: values ,
+  //       success: function (response) {
+  //         //window.location.href = "pacientes/fotografias_externas/procesar_foto_externa.php?id="+ $("#id_paciente").val()+ "&descripcion="+ $("#descripcion").val() + "&nombre_foto="+ $("#nombre_foto").val();
+  //         alert("Imagen guardada!!");
+  //       },
+  //       error: function(jqXHR, textStatus, errorThrown) {
+  //          console.log(textStatus, errorThrown);
+  //          alert("Imagen guardada!!");
+  //       }
+  //   });
+
+  var url = "procesar_foto_intra.php?id="+ $("#id_paciente").val()+ "&nombre_foto="+ $("#nombre_foto").val();
+
   $.ajax({
-        url: "http://192.168.1.200/imagenes/NOEOCTAVIOABURTOINCLAN690/guardarb64.php",
+        url: "http://192.168.1.74/subir/guardarB64.php",
         type: "post",
         data: values ,
         success: function (response) {
-          //window.location.href = "pacientes/fotografias_externas/procesar_foto_externa.php?id="+ $("#id_paciente").val()+ "&descripcion="+ $("#descripcion").val() + "&nombre_foto="+ $("#nombre_foto").val();
-          alert("Imagen guardada!!")
+          window.location.href = url;
         },
         error: function(jqXHR, textStatus, errorThrown) {
-           console.log(textStatus, errorThrown);
+            $.ajax({
+              url: url,
+              type: "get"
+            });
+
+            alert("Guardado! " + url);
         }
     });
 });
