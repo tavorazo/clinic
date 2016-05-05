@@ -6,6 +6,8 @@ if($_SESSION['rol']!='admin'){
     header('location: ../panel.php');
 }
 $usuario = $_SESSION['u'];
+$sucursal = $_SESSION['sucursal'];
+
 include('../php/base.php');
    // include('../php/base2.php');
     //include('../php/base3.php');
@@ -301,7 +303,7 @@ date_default_timezone_set("Mexico/General");
       $total = 0;
       $fecha = $ano."-".$mes;
 //echo $fecha;
-      $result_pagos = $conn->query("SELECT * from pago_adeudo");
+      $result_pagos = $conn->query(($sucursal==0) ? "SELECT * from pago_adeudo" : "SELECT * from pago_adeudo where exists (select id_sucursal from paciente where  id_sucursal='$sucursal' and id_paciente=pago_adeudo.id_paciente)");
       setlocale(LC_MONETARY, 'en_US');
       
       //while ($fila_pagos = mysql_fetch_array($result_pagos, MYSQL_NUM)){
@@ -337,7 +339,8 @@ date_default_timezone_set("Mexico/General");
 //$result_pagos = $conn->query("SELECT * from pago_adeudo");
     //while ($fila_pagos = mysql_fetch_array($result_pagos, MYSQL_NUM)){
       //$id_adeudo = $fila_pagos['0'];
-        $result_pagos2 = $conn->query("SELECT * from historial_compras where id_tipo='3' and YEAR(fecha)='$ano' and MONTH(fecha)='$mes' ");
+        $result_pagos2 = $conn->query(($sucursal==0) ? "SELECT * from historial_compras where id_tipo='3' and YEAR(fecha)='$ano' and MONTH(fecha)='$mes' " : 
+                          "SELECT * from historial_compras where id_tipo='3' and YEAR(fecha)='$ano' and MONTH(fecha)='$mes' and exists (select id_sucursal from paciente where  id_sucursal='$sucursal' and id_paciente=historial_compras.id_paciente)");
         //print "SELECT * from historial_compras where id_tipo='3' and fecha like '%$fecha%'";
         //while ($fila_pagos2 = mysql_fetch_array($result_pagos2, MYSQL_NUM)){
         while ($fila_pagos2 = $result_pagos2->fetch_array()){
@@ -371,7 +374,9 @@ date_default_timezone_set("Mexico/General");
           /*+++++++++++++++++++++++ DIPLOMADO TARJETA++++++++++++++++++++++++*/    
           $semana = $primeraSemana;
           $total = 0;
-          $result_pagos = $conn->query("SELECT * from historial_diplomados where YEAR(fecha)='$ano' and MONTH(fecha)='$mes' && tipo_pago='3'");
+          $result_pagos = $conn->query(($sucursal==0) ? "SELECT * from historial_diplomados where YEAR(fecha)='$ano' and MONTH(fecha)='$mes' && tipo_pago='3'" :
+                                        "SELECT * from historial_diplomados where YEAR(fecha)='$ano' and MONTH(fecha)='$mes' && tipo_pago='3' and exists (select id_sucursal from usuarios where id_sucursal='$sucursal' and id_usuario=historial_diplomados.id_usuario)");
+          if(!$result_pagos) die('Error de consulta diplomados: '.mysqli_error($conn));
           //while ($fila_pagos = mysql_fetch_array($result_pagos, MYSQL_NUM)){
           while ($fila_pagos =$result_pagos->fetch_array()){
             echo "<tr>";
@@ -400,7 +405,8 @@ date_default_timezone_set("Mexico/General");
             /*+++++++++++++++++++++++ INSTRUMENTAL TARJETA++++++++++++++++++++++++*/    
             $semana = $primeraSemana;
             $total = 0;
-            $result_pagos = $conn->query("SELECT * from historial_instrumental where YEAR(fecha)='$ano' and MONTH(fecha)='$mes' && tipo_pago='3'");
+            $result_pagos = $conn->query(($sucursal==0) ? "SELECT * from historial_instrumental where YEAR(fecha)='$ano' and MONTH(fecha)='$mes' && tipo_pago='3'":
+                                        "SELECT * from historial_instrumental where YEAR(fecha)='$ano' and MONTH(fecha)='$mes' && tipo_pago='3' and exists (select id_sucursal from usuarios where  id_sucursal='$sucursal' and id_usuario=historial_instrumental.id_usuario)");
             //while ($fila_pagos = mysql_fetch_array($result_pagos, MYSQL_NUM)){
             while ($fila_pagos =$result_pagos->fetch_array()){
               echo "<tr>";
