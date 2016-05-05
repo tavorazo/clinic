@@ -79,14 +79,14 @@ if(!$result)
 				<select name="sucursal" class="campoT">
 					<?php  
 						while($sucs = $result->fetch_assoc()){
-							echo "<option value='".$sucs['id_sucursal']."'> ".$sucs['sucursal']." </option> ";
+							echo "<option value='".$sucs['id_sucursal']."'> ".$sucs['id_sucursal'].".- ".$sucs['sucursal']." </option> ";
 						}
 					?>
 				</select>
 				<input type="submit" value="Cambiar" class="campoT"></input>
 			</form>
 <?php 
-	echo $sel_sucursal; 
+	echo "<p>Sucursal actual: <b>".$sel_sucursal."</b></p>"; 
 	if($sel_sucursal!=$sucursal)
 		$_SESSION['sucursal']=$sel_sucursal;
 ?>
