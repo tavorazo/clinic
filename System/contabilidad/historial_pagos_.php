@@ -7,6 +7,7 @@ if($_SESSION['rol']!='admin'){
 }
     //echo'<META HTTP-EQUIV="Refresh" CONTENT="0; URL=index.php">';
 $usuario = $_SESSION['u'];
+$sucursal = $_SESSION['sucursal'];
 include('../php/base.php');
 //include('../php/base2.php');
 //include('../php/base3.php');
@@ -336,9 +337,9 @@ date_default_timezone_set("Mexico/General");
     echo "<a href='?semana_b=",$semana_anterior,"&ano=",$ano_s,"&S=1'>  <div id='botnH' style='margin-left:180px; border:0px #888 solid; width:140px; border-top-left-radius:30px; border-bottom-left-radius:30px;'>  semana anterior  </div></a>";
     echo "<a href='?semana_b=",$semana_siguiente,"&ano=",$ano_s,"&S=1'> <div id='botnH' style='border:0px #888 solid; width:140px; border-top-right-radius:30px; border-bottom-right-radius:30px;'> semana siguiente </div> </a><br><br><br>";
   }
-  if($semana_b=='') $result2 = $conn->query("SELECT * from pago_adeudo where fecha like '%$fechab%'");
+  if($semana_b=='') $result2 = $conn->query(($sucursal==0) ? "SELECT * from pago_adeudo where fecha like '%$fechab%'" : "SELECT * from pago_adeudo where fecha like '%$fechab%' and exists (select id_sucursal from paciente where  id_sucursal='$sucursal' and id_paciente=pago_adeudo.id_paciente)" );
   //$result2 = $conn->query("select * from pago_adeudo where fecha like '%$fechab%'");
-  else              $result2 = $conn->query("SELECT * from pago_adeudo");
+  else              $result2 = $conn->query(($sucursal==0) ? "SELECT * from pago_adeudo " : "SELECT * from pago_adeudo and exists (select id_sucursal from paciente where  id_sucursal='$sucursal' and id_paciente=pago_adeudo.id_paciente)");
   //$result2 = $conn->query("select * from pago_adeudo");
   //
   echo "<table border=1 style='margin-top:100px; '>
@@ -374,7 +375,8 @@ date_default_timezone_set("Mexico/General");
               
     //$resul2 = $conn->query($sql, $conn) or die ("problema con la solicitud");
     //$renglon2 = mysql_fetch_assoc($resul2);  
-              $sql = 'SELECT * from pagos_historia WHERE semana="'.$semana_b.'" AND id_adeudo="'.$id_deuda.'" AND y="'.$ano.'";';
+              $sql = ($sucursal==0) ? 'SELECT * from pagos_historia WHERE semana="'.$semana_b.'" AND id_adeudo="'.$id_deuda.'" AND y="'.$ano.'";' :
+                          'SELECT * from pagos_historia WHERE semana="'.$semana_b.'" AND id_adeudo="'.$id_deuda.'" AND y="'.$ano.'"; and exists (select id_sucursal from paciente where  id_sucursal="'.$sucursal.'" and id_paciente=pago_adeudo.id_paciente)';
     //echo $sql;
               $result = $conn->query($sql);
               while ($renglon2 = $result->fetch_assoc())
