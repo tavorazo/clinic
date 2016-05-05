@@ -339,6 +339,7 @@ date_default_timezone_set("Mexico/General");
   }
   if($semana_b=='') $result2 = $conn->query(($sucursal==0) ? "SELECT * from pago_adeudo where fecha like '%$fechab%'" : "SELECT * from pago_adeudo where fecha like '%$fechab%' and exists (select id_sucursal from paciente where  id_sucursal='$sucursal' and id_paciente=pago_adeudo.id_paciente)" );
   //$result2 = $conn->query("select * from pago_adeudo where fecha like '%$fechab%'");
+
   else              $result2 = $conn->query(($sucursal==0) ? "SELECT * from pago_adeudo " : "SELECT * from pago_adeudo and exists (select id_sucursal from paciente where  id_sucursal='$sucursal' and id_paciente=pago_adeudo.id_paciente)");
   //$result2 = $conn->query("select * from pago_adeudo");
   //
@@ -376,7 +377,7 @@ date_default_timezone_set("Mexico/General");
     //$resul2 = $conn->query($sql, $conn) or die ("problema con la solicitud");
     //$renglon2 = mysql_fetch_assoc($resul2);  
               $sql = ($sucursal==0) ? 'SELECT * from pagos_historia WHERE semana="'.$semana_b.'" AND id_adeudo="'.$id_deuda.'" AND y="'.$ano.'";' :
-                          'SELECT * from pagos_historia WHERE semana="'.$semana_b.'" AND id_adeudo="'.$id_deuda.'" AND y="'.$ano.'"; and exists (select id_sucursal from paciente where  id_sucursal="'.$sucursal.'" and id_paciente=pago_adeudo.id_paciente)';
+                          'SELECT * from pagos_historia WHERE semana="'.$semana_b.'" AND id_adeudo="'.$id_deuda.'" AND y="'.$ano.'" and exists (select id_sucursal from paciente where  id_sucursal="'.$sucursal.'" and id_paciente=pago_adeudo.id_paciente)';
     //echo $sql;
               $result = $conn->query($sql);
               while ($renglon2 = $result->fetch_assoc())
