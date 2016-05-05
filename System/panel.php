@@ -72,6 +72,28 @@ if($_SESSION['rol']=='admin' || $_SESSION['rol']=='secretaria')
 <div class="verticalspacer"></div>
 <!--div avisos-->
 <?php
+$result=$conn->query("SELECT id_sucursal from usuarios where id_usuario = '$usuario' ");
+if(!$result)
+  die('Error de consulta 2: '.mysqli_error($conn));
+
+$usr_sucursal = $result->fetch_assoc();
+
+if($_SESSION['rol']=='admin' && $usr_sucursal['id_sucursal']==0){
+  echo '<div style="background: #FFFFFF; width:96%; min-height: 90px; margin-bottom:70px; text-align:center;"><br>';
+  echo '<p>Usted está viendo los datos como la sucursal: <b>'.$sucursal.' - ';
+
+  $result2=$conn->query("SELECT sucursal from sucursales where id_sucursal = '$sucursal' ");
+  if(!$result2)
+    die('Error de consulta 2: '.mysqli_error($conn));
+  $nombre_suc = $result2->fetch_assoc();
+  echo $nombre_suc['sucursal'].'</b></p>';
+  echo '<a href="cambio_sucursal.php">Cambiar de sucursal</a> ';
+  echo '</div>';
+}
+   
+?>
+
+<?php
 /*if($_SESSION['rol']=='admin' || $_SESSION['rol']=='secretaria' || $_SESSION['rol']=='recepcionista' || $_SESSION['rol']=='almacen'){*/
 if($_SESSION['rol']=='admin' || $_SESSION['rol']=='almacen'){
     echo '<div style="background: #FFFFFF; width:96%; min-height: 90px; margin-bottom:70px; " id="txt2">
