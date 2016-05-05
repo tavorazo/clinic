@@ -7,6 +7,7 @@ if($_SESSION['rol']!='admin'){
 }
       //echo'<META HTTP-EQUIV="Refresh" CONTENT="0; URL=index.php">';
 $usuario = $_SESSION['u'];
+$sucursal = $_SESSION['sucursal'];
 include('../php/base.php');
 date_default_timezone_set("Mexico/General");
 
@@ -343,9 +344,11 @@ if($S == 1){
 
   //echo $fechab;
 if($semana_b=='')
- $result2 = $conn->query("SELECT * from historial_compras where fecha like '%$fechab%'");
+ $result2 = $conn->query(($sucursal==0) ? "SELECT * from historial_compras where fecha like '%$fechab%' " : "SELECT * from historial_compras where fecha like '%$fechab%' and exists (select id_usuario from usuarios where id_sucursal='$sucursal' and id_usuario=historial_compras.id_usuario)");
 else
-  $result2 = $conn->query("SELECT * from historial_compras where semana='$semana_b' and y='$ano_s'");
+  $result2 = $conn->query(($sucursal==0) ? "SELECT * from historial_compras where semana='$semana_b' and y='$ano_s'" : "SELECT * from historial_compras where semana='$semana_b' and y='$ano_s' and exists (select id_usuario from usuarios where id_sucursal='$sucursal' and id_usuario=historial_compras.id_usuario)" );
+
+if(!$result2) die('Error de consulta 1: '.mysqli_error($conn));
 
 echo "<table border=1 style='margin-top:100px; max-width:1000px '>
 <tr>
