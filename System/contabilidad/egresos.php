@@ -284,7 +284,7 @@ $TOTAL_EGRESO = 0;
 echo "<br><br><br><br><br><br>";
 
 //$result2 = $conn->query("SELECT * from egresos_otros where fecha like '%$fechab%' and tipo='Proveedores'");
-$result2 = $conn->query("SELECT * from egresos_otros where fecha like '%$fechab%' and tipo='Proveedores'");
+$result2 = $conn->query(($sucursal==0) ? "SELECT * from egresos_otros where fecha like '%$fechab%' and tipo='Proveedores'" : "SELECT * from egresos_otros where fecha like '%$fechab%' and tipo='Proveedores' and exists (select id_usuario from usuarios where id_sucursal='$sucursal' and id_usuario=egresos_otros.id_usuario)");
 $proveedores=0;
 echo "<h1>Proveedores</h1>";
 echo "<table>";
@@ -318,7 +318,7 @@ echo "<br><br><br><br><br><br>";
 
 
 //$result2 = $conn->query("SELECT * from egresos_otros where fecha like '%$fechab%' and tipo='Gastos Administrativos'");
-    $result2 = $conn->query("SELECT * from egresos_otros where fecha like '%$fechab%' and tipo='Gastos Administrativos'");
+    $result2 = $conn->query(($sucursal==0) ? "SELECT * from egresos_otros where fecha like '%$fechab%' and tipo='Gastos Administrativos'" : "SELECT * from egresos_otros where fecha like '%$fechab%' and tipo='Gastos Administrativos' and exists (select id_usuario from usuarios where id_sucursal='$sucursal' and id_usuario=egresos_otros.id_usuario)");
 echo "<h1>Gastos Administrativos</h1>";
 echo "<table style='height:100px;width100%'>";
     echo "<tr>
@@ -347,7 +347,7 @@ echo "<table style='height:100px;width100%'>";
 
       }
 //$result3 = $conn->query("SELECT * from nomina_historial where fecha like '%$fechab%' and aprobada='1'");
-      $result3 = $conn->query("SELECT * from  nomina_historial where fecha like '%$fechab%' and aprobada='1'");
+      $result3 = $conn->query(($sucursal==0) ? "SELECT * from  nomina_historial where fecha like '%$fechab%' and aprobada='1'" : "SELECT * from  nomina_historial where fecha like '%$fechab%' and aprobada='1' and exists (select id_usuario from usuarios where id_sucursal='$sucursal' and id_usuario=nomina_historial.id_usuario)");
       $nomina = 0;
 //while ($row3 = mysql_fetch_array($result3, MYSQL_NUM)){
       while ($row3 = $result3->fetch_row()){
@@ -370,7 +370,7 @@ echo "<table style='height:100px;width100%'>";
 
 
 //$result2 = $conn->query("SELECT * from egresos_otros where fecha like '%$fechab%' and tipo='Egresos Laboratorio'");
-          $result2 = $conn->query("SELECT * from egresos_otros where fecha like '%$fechab%' and tipo='Egresos Laboratorio'");
+          $result2 = $conn->query(($sucursal==0) ? "SELECT * from egresos_otros where fecha like '%$fechab%' and tipo='Egresos Laboratorio'" : "SELECT * from egresos_otros where fecha like '%$fechab%' and tipo='Egresos Laboratorio' and exists (select id_usuario from usuarios where id_sucursal='$sucursal' and id_usuario=egresos_otros.id_usuario)");
           echo "<h1>Egresos Laboratorio</h1>";
           echo "<table>";
           echo "<tr>
@@ -402,7 +402,7 @@ echo "<table style='height:100px;width100%'>";
               echo "</table>";
               echo "<br><br><br>";
 //$result2 = $conn->query("SELECT * from egresos_otros where fecha like '%$fechab%' and tipo='Gastos de Remodelacion'");
-              $result2 = $conn->query("SELECT * from egresos_otros where fecha like '%$fechab%' and tipo='Gastos de Remodelacion'");
+              $result2 = $conn->query(($sucursal==0) ? "SELECT * from egresos_otros where fecha like '%$fechab%' and tipo='Gastos de Remodelacion'" : "SELECT * from egresos_otros where fecha like '%$fechab%' and tipo='Gastos de Remodelacion' and exists (select id_usuario from usuarios where id_sucursal='$sucursal' and id_usuario=egresos_otros.id_usuario)");
 
               echo "<h1>Gastos de Remodelación</h1>";
               echo "<table>";
@@ -435,7 +435,7 @@ echo "<table style='height:100px;width100%'>";
                   echo "</table>";
                   echo "<br><br><br>";
 //$result2 = $conn->query("SELECT * from egresos_otros where fecha like '%$fechab%' and tipo='Mantenimiento y Mano de Obra'");
-                  $result2 = $conn->query("SELECT * from egresos_otros where fecha like '%$fechab%' and tipo='Mantenimiento y Mano de Obra'");
+                  $result2 = $conn->query(($sucursal==0) ? "SELECT * from egresos_otros where fecha like '%$fechab%' and tipo='Mantenimiento y Mano de Obra'" : "SELECT * from egresos_otros where fecha like '%$fechab%' and tipo='Mantenimiento y Mano de Obra' and exists (select id_usuario from usuarios where id_sucursal='$sucursal' and id_usuario=egresos_otros.id_usuario)");
 
                   echo "<h1>Mantenimiento y Mano de Obra</h1>";
                   echo "<table>";
@@ -468,7 +468,7 @@ echo "<table style='height:100px;width100%'>";
                   echo "</table>";
                       echo "<br><br><br>";
 //$result2 = $conn->query("SELECT * from egresos_otros where fecha like '%$fechab%' and tipo='Personales'");
-                      $result2 = $conn->query("SELECT * from egresos_otros where fecha like '%$fechab%' and tipo='Personales'");
+                      $result2 = $conn->query(($sucursal==0) ? "SELECT * from egresos_otros where fecha like '%$fechab%' and tipo='Personales'" : "SELECT * from egresos_otros where fecha like '%$fechab%' and tipo='Personales' and exists (select id_usuario from usuarios where id_sucursal='$sucursal' and id_usuario=egresos_otros.id_usuario)");
 
                       echo "<h1>Personales</h1>";
                       echo "<table>";
@@ -501,7 +501,7 @@ echo "<table style='height:100px;width100%'>";
                           echo "</table>";
                           echo "<br><br><br>";
 //$result2 = $conn->query("SELECT * from egresos_otros where fecha like '%$fechab%' and tipo='Gastos Medicos'");
-                          $result2 = $conn->query("SELECT * from egresos_otros where fecha like '%$fechab%' and tipo='Gastos Medicos'");
+                          $result2 = $conn->query(($sucursal==0) ? "SELECT * from egresos_otros where fecha like '%$fechab%' and tipo='Gastos Medicos'" : "SELECT * from egresos_otros where fecha like '%$fechab%' and tipo='Gastos Medicos' and exists (select id_usuario from usuarios where id_sucursal='$sucursal' and id_usuario=egresos_otros.id_usuario)");
 
                           echo "<h1>Gastos Medicos</h1>";
                           echo "<table>";
@@ -535,7 +535,7 @@ echo "<table style='height:100px;width100%'>";
                               echo "</table>";
                               echo "<br><br><br>";
 //$result2 = $conn->query("SELECT * from egresos_otros where fecha like '%$fechab%' and tipo='Inbursa'");
-                              $result2 = $conn->query("SELECT * from egresos_otros where fecha like '%$fechab%' and tipo='Inbursa'");
+                              $result2 = $conn->query(($sucursal==0) ? "SELECT * from egresos_otros where fecha like '%$fechab%' and tipo='Inbursa'" : "SELECT * from egresos_otros where fecha like '%$fechab%' and tipo='Inbursa' and exists (select id_usuario from usuarios where id_sucursal='$sucursal' and id_usuario=egresos_otros.id_usuario)");
 
                               echo "<h1>Inbursa</h1>";
                               echo "<table>";
@@ -568,7 +568,7 @@ echo "<table style='height:100px;width100%'>";
                                   echo "</table>";
                                   echo "<br><br><br>";
 //$result2 = $conn->query("SELECT * from egresos_otros where fecha like '%$fechab%' and tipo='Pagos de Tarjeta de Credito'");
-                                  $result2 = $conn->query("SELECT * from egresos_otros where fecha like '%$fechab%' and tipo='Pagos de Tarjeta de Credito'");
+                                  $result2 = $conn->query(($sucursal==0) ? "SELECT * from egresos_otros where fecha like '%$fechab%' and tipo='Pagos de Tarjeta de Credito'" : "SELECT * from egresos_otros where fecha like '%$fechab%' and tipo='Pagos de Tarjeta de Credito' and exists (select id_usuario from usuarios where id_sucursal='$sucursal' and id_usuario=egresos_otros.id_usuario)");
 
                                   echo "Pagos de Tarjeta de Credito";
                                   echo "<table>";
@@ -601,7 +601,7 @@ echo "<table style='height:100px;width100%'>";
                                       echo "</table>";
                                       echo "<br><br><br>";
 //$result2 = $conn->query("SELECT * from egresos_otros where fecha like '%$fechab%' and tipo='Rentas'");
-                                      $result2 = $conn->query("SELECT * from egresos_otros where fecha like '%$fechab%' and tipo='Rentas'");
+                                      $result2 = $conn->query(($sucursal==0) ? "SELECT * from egresos_otros where fecha like '%$fechab%' and tipo='Rentas'" : "SELECT * from egresos_otros where fecha like '%$fechab%' and tipo='Rentas' and tipo='Pagos de Tarjeta de Credito' and exists (select id_usuario from usuarios where id_sucursal='$sucursal' and id_usuario=egresos_otros.id_usuario)");
 
                                       echo "<h1>Rentas</h1>";
                                       echo "<table>";
@@ -634,7 +634,7 @@ echo "<table style='height:100px;width100%'>";
                                           echo "</table>";
                                           echo "<br><br><br>";
 //$result2 = $conn->query("SELECT * from inventario_historial_entradas where fecha like '%$fechab%'");
-                                          $result2 = $conn->query("SELECT * from inventario_historial_entradas where fecha like '%$fechab%'");
+                                          $result2 = $conn->query(($sucursal==0) ? "SELECT * from inventario_historial_entradas where fecha like '%$fechab%'" : "SELECT * from inventario_historial_entradas where fecha like '%$fechab%' and exists (select id_usuario from usuarios where id_sucursal='$sucursal' and id_usuario=inventario_historial_entradas.id_usuario)");
                                           echo "<h1>Compras de productos</h1>";
                                           echo "<table>";
                                           echo "<tr>
