@@ -1,6 +1,8 @@
 <?php
 @session_start();
 error_reporting(0);
+$usuario = $_SESSION['u'];
+$sucursal = $_SESSION['sucursal'];
 
 include('../php/base.php');
 date_default_timezone_set("Mexico/General");
@@ -376,9 +378,10 @@ if($S == 1){
   </a><br><br><br>";
 }
 if($semana_b=='')
-  $result2 = $conn->query("SELECT * from recibos where fecha like '%$fechab%'");
+  $result2 = $conn->query(($sucursal==0) ? "SELECT * from recibos where fecha like '%$fechab%'" : "SELECT * from recibos where fecha like '%$fechab%' and exists (select id_usuario from usuarios where id_sucursal='$sucursal' and id_usuario=recibos.vendedor) ");
 else
-  $result2 = $conn->query("SELECT * from pago_adeudo");
+  $result2 = $conn->query(($sucursal==0) ? "SELECT * from pago_adeudo" : "SELECT * from pago_adeudo where exists (select id_usuario from usuarios where id_sucursal='$sucursal' and id_usuario=pago_adeudo.id_usuario)");
+
 echo "<table border=1 style='margin-top:100px; '>
 <tr>
 <td style='color:#58ACFA'>No.       </td>
