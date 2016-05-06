@@ -6,6 +6,9 @@
 
 <h3>Elije la fecha</h3>
 <?php
+@session_start();
+$usuario = $_SESSION['u'];
+$sucursal = $_SESSION['sucursal'];
 
 $mes = $_GET['mes'];
 $ano = $_GET['ano'];
@@ -262,9 +265,9 @@ if($S == 1){
 
     //echo $fechab;
     if($semana_b=='')
-	   $result2 = $conn->query("SELECT * from nomina_historial where fecha like '%$fechab%'");
+	   $result2 = $conn->query(($sucursal==0) ? "SELECT * from nomina_historial where fecha like '%$fechab%'" : "SELECT * from nomina_historial where fecha like '%$fechab%' and exists (select id_usuario from usuarios where id_sucursal='$sucursal' and id_usuario=nomina_historial.id_usuario)");
     else
-        $result2 = $conn->query("SELECT * from nomina_historial where semana='$semana_b' and y='$ano_s'");
+        $result2 = $conn->query(($sucursal==0) ? "SELECT * from nomina_historial where semana='$semana_b' and y='$ano_s'" : "SELECT * from nomina_historial where semana='$semana_b' and y='$ano_s' and exists (select id_usuario from usuarios where id_sucursal='$sucursal' and id_usuario=nomina_historial.id_usuario)");
     
 
 		echo "<table border=1 style='margin-top:100px; '>
