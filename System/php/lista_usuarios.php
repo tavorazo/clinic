@@ -5,6 +5,7 @@ if($_SESSION['u']=='')
 	//if($_SESSION['rol']!='admin')
 	//		header('location: ../panel.php');
 $u= $_SESSION['u'];
+$sucursal = $_SESSION['sucursal'];
 
 ?>
 <!DOCTYPE html>
@@ -36,7 +37,7 @@ $u= $_SESSION['u'];
 	if($_SESSION['rol']=='admin'){
 	      //$result2 = $conn->query("SELECT * FROM $tabla");
 	      //while ($row2 = mysql_fetch_array($result2, MYSQL_NUM)) {
-		$result2 = $conn->query("SELECT * FROM $tabla");
+		$result2 = $conn->query(($sucursal==0) ? "SELECT * FROM $tabla" : "SELECT * FROM $tabla where id_sucursal=$sucursal");
 		while ($row2 = $result2->fetch_row()) {
 			echo "<div style='width:80%; margin:10px auto; padding:20px; border: #2d455f 1px solid;'
 			<br>
@@ -80,7 +81,7 @@ $u= $_SESSION['u'];
  	      	//$result2 = $conn->query("SELECT * FROM usuarios where id_usuario='$u'");
  	     	//print "SELECT * FROM usuarios where id_usuario=$usuario";
 	      	//while ($row2 = mysql_fetch_array($result2, MYSQL_NUM)) {
-			$result2 = $conn->query("SELECT * FROM usuarios where id_usuario='$u'");
+			$result2 = $conn->query(($sucursal==0) ? "SELECT * FROM usuarios where id_usuario='$u'" : "SELECT * FROM usuarios where id_usuario='$u' and id_sucursal=$sucursal");
 			while ($row2 = $result2->fetch_row()){
 				echo "<div style='width:80%; margin:10px auto; padding:20px; border: #2d455f 1px solid;'>
 				<label>Id: </label>", $row2[0];
@@ -114,7 +115,7 @@ $u= $_SESSION['u'];
 	    }else{
 	      //$result2 = $conn->query("SELECT * FROM $tabla");
 	      //while ($row2 = mysql_fetch_array($result2, MYSQL_NUM)) {
-	        $result2 = $conn->query("SELECT * FROM $tabla");
+	        $result2 = $conn->query(($sucursal==0) ? "SELECT * FROM $tabla" : "SELECT * FROM $tabla where id_sucursal=$sucursal");
 	        while ($row2 = $result->fetch_row()){
 	            echo "<div style='width:80%; margin:10px auto; padding:20px; border: #2d455f 1px solid;'
 	            <br>
