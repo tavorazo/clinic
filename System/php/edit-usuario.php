@@ -1,5 +1,6 @@
 <?php
 @session_start();
+$sucursal = $_SESSION['sucursal'];
 if($_SESSION['u']=='')
  header('location: ../index.php');
 
@@ -16,6 +17,13 @@ if($_SESSION['u']=='')
   //$renglon = mysql_fetch_assoc($resul);
   $resul = $conn->query($select);
   $renglon = $resul->fetch_assoc();
+
+
+$result_suc=$conn->query("SELECT id_sucursal from usuarios where id_usuario = '$usuario' ");
+if(!$result_suc)
+  die('Error de consulta 2: '.mysqli_error($conn));
+
+$usr_sucursal = $result_suc->fetch_assoc();
   ?>
   <!DOCTYPE html>
   <html class="html">
@@ -65,6 +73,22 @@ if($_SESSION['u']=='')
  <a   href="lista_usuarios.php" style="float:left; margin-right:10px"> << Regresar </a> <h3>| Edita tu perfil</h3><br><br>
 </div>
 <form action="../usuarios/edit_process_usuario.php" method="POST" enctype="multipart/form-data" style="margin-top:225px; padding:20px; padding-top:60px; margin-left:0px; background:#FFFFFF; z-index:4901; width:930px">
+  <label style="float:left; width:150px; margin-right:15%">Sucursal: <b><?php echo $renglon['id_sucursal']?> </b> </label> 
+    <?php 
+    if($usr_sucursal['id_sucursal']==0){
+      //echo 'Cambiar - ';
+      echo '<select name="sucursal" class="campoT" required>';
+      $result_suc = $conn->query("select * from sucursales");
+      while($sucs = $result_suc->fetch_assoc()){
+              echo "<option value='".$sucs['id_sucursal']."'> ".$sucs['id_sucursal'].".- ".$sucs['sucursal']."  </option> ";
+            }
+      echo '</select>';
+    }
+    else{
+      echo '<input type=hidden name="sucursal" value="'.$sucursal.'">';
+    }
+    ?>
+    <br>
   <label style="float:left; width:150px; margin-right:15%" >Nombre(s):</label> 
   <input type="text" name="nombre" class="campoT"  required style="width:250px; " value="<?php echo $renglon['nombres'];?>"><br>
   <label style="float:left; width:150px; margin-right:15%" >Apellido Paterno: </label>

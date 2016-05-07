@@ -9,6 +9,7 @@ $id = $_POST['nickname'];
 include('../php/base.php');
 //include('../php/base3.php');
 //include('../php/base2.php');
+$sucursal = $_POST['sucursal'];	
 $nombre = $_POST['nombre'];
 $paterno = $_POST['a_pat'];
 $materno = $_POST['a_mat'];
@@ -32,7 +33,7 @@ if($imagen!=''){
 	$imagen = $imagen_vieja;
 $insertar = "UPDATE usuarios set nombres = '$nombre', 		apellido_paterno = '$paterno',		apellido_materno = '$materno',
 				fecha_nacimiento = '$fecha',	name_emergencia = '$nom_emergencia',	tel_emergencia = '$tel_emergencia',
-				correo = '$correo', 		password = '$password', imagen = '$imagen'		 where id_usuario = '$id';";
+				correo = '$correo', 		password = '$password', imagen = '$imagen', id_sucursal='$sucursal'	 where id_usuario = '$id';";
 //if(!$conn->query($insertar))
 if(!$conn->query($insertar))
 	die('Error de consulta: '.mysqli_error($conn));
