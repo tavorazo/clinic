@@ -11,6 +11,12 @@ $result = $conn->query($sql);
 $renglon = $result->fetch_assoc();
 //$resul = $conn->query($select) or die ("problema con la solicitud");
 //$renglon = mysql_fetch_assoc($resul)
+
+$result_suc=$conn->query("SELECT id_sucursal from usuarios where id_usuario = '$usuario' ");
+if(!$result_suc)
+  die('Error de consulta 2: '.mysqli_error($conn));
+
+$usr_sucursal = $result_suc->fetch_assoc();
 ?>
 <!DOCTYPE html>
 <html class="html">
@@ -64,6 +70,22 @@ $renglon = $result->fetch_assoc();
      <a   href="../panel.php" style="float:left; margin-right:10px"> << Regresar </a> <h3  style="margin-right:5px">|</h3>
      <h1>Editar Producto</h1><hr><br><br>
      <form action="inventario_editar_informacion_procesar.php" method="POST" >
+      <label>Sucursal: <b><?php echo $renglon['id_sucursal']?> </b> </label> 
+    <?php 
+    if($usr_sucursal['id_sucursal']==0){
+      //echo 'Cambiar - ';
+      echo '<select name="sucursal" class="campoT" required>';
+      $result_suc = $conn->query("select * from sucursales where id_sucursal!=0");
+      while($sucs = $result_suc->fetch_assoc()){
+              echo "<option value='".$sucs['id_sucursal']."'> ".$sucs['id_sucursal'].".- ".$sucs['sucursal']."  </option> ";
+            }
+      echo '</select>';
+    }
+    else{
+      echo '<input type=hidden name="sucursal" value="'.$sucursal.'">';
+    }
+    ?>
+    <br>
       <label >Nombre de Producto</label>
       <input class="campoT" type="text" name="nombre" value="<?php echo $renglon['nombre'];?>"><br>
       <label >Número de Serial</label>

@@ -3,6 +3,16 @@
 if($_SESSION['u']=='')
   header('location: ../index.php');
 $usuario = $_SESSION['u'];
+$sucursal = $_SESSION['sucursal'];
+
+include('../php/base.php');
+
+$result=$conn->query("SELECT id_sucursal from usuarios where id_usuario = '$usuario' ");
+if(!$result)
+  die('Error de consulta 2: '.mysqli_error($conn));
+
+$usr_sucursal = $result->fetch_assoc();
+
 ?>
 <!DOCTYPE html>
 <html class="html">
@@ -56,6 +66,20 @@ $usuario = $_SESSION['u'];
      <a   href="../panel.php" style="float:left; margin-right:10px"> << Regresar </a> <h3  style="margin-right:5px">|</h3>
      <h1>Agregar producto a almacen</h1><hr><br><br>
      <form action="inventario_insertar_procesar.php" method="POST" >
+     <?php 
+    if($usr_sucursal['id_sucursal']==0){
+      echo '<label>Sucursal: </label>';
+      echo '<select name="sucursal" class="campoT" required>';
+      $result_suc = $conn->query("select * from sucursales where id_sucursal!=0");
+      while($sucs = $result_suc->fetch_assoc()){
+              echo "<option value='".$sucs['id_sucursal']."'> ".$sucs['id_sucursal'].".- ".utf8_encode($sucs['sucursal'])." </option> ";
+            }
+      echo '</select><br>';
+    }
+    else{
+      echo '<input type=hidden name="sucursal" value="'.$sucursal.'">';
+    }
+    ?>
       <label >Nombre de Producto</label>
       <input class="campoT" type="text" name="nombre" required><br>
       <label >Número de Serial</label>

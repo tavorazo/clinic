@@ -1,6 +1,7 @@
 <?php
 date_default_timezone_set("Mexico/General");
 session_start();
+$sucursal = $_POST['sucursal'];	
 $a = $_POST['nombre'];
 $b = $_POST['serial'];
 $c = $_POST['descripcion'];
@@ -33,7 +34,7 @@ include('../php/base.php');
 	} 
 	else{
 
-		$instruccion = "INSERT into inventario (nombre,numero_serial,descripcion,cantidad,reabastesible,cantidad_minima,ultimo_abastecimiento, venta, precio_compra, precio_venta,tipo_definicion) values ('$a','$b','$c','$d','$e','$f',now(), '$venta', '$pcompra', '$pventa','$tipo');";
+		$instruccion = "INSERT into inventario (nombre,numero_serial,descripcion,cantidad,reabastesible,cantidad_minima,ultimo_abastecimiento, venta, precio_compra, precio_venta,tipo_definicion,id_sucursal) values ('$a','$b','$c','$d','$e','$f',now(), '$venta', '$pcompra', '$pventa','$tipo','$sucursal');";
 		
 		//echo $select;
 		//if(!$conn->query($instruccion))
