@@ -37,6 +37,7 @@
 		$paciente = $_POST['paciente'];
 		$id = $_POST['id'];
 		//$expediente = $_POST['expediente'];
+		$sucursal = $_POST['sucursal'];	
 		$nombre = $_POST['nombre'];
 		$paterno = $_POST['a_pat'];
 		$materno = $_POST['a_mat'];
@@ -86,6 +87,7 @@
 		sexo = '$sexo',
 		n_registro = '$expediente',
 		Num_seguro = '$Num_seguro',
+		id_sucursal = '$sucursal',
 		redes_sociales = '$redes_sociales'
 		 where id_paciente = '$id'";
 		if(!$conn->query($insertar))

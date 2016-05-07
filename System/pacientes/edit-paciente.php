@@ -3,6 +3,7 @@
 	if($_SESSION['u']=='')
 		header('location: ../index.php');
 		$usuario = $_SESSION['u'];
+    $sucursal = $_SESSION['sucursal'];
 ?>
 <?php
 	include('../php/base.php');
@@ -13,6 +14,14 @@
 	$resul = $conn->query($select) or die ("problema con la solicitud");
   //$renglon = mysql_fetch_assoc($resul);
 	$renglon = $resul->fetch_assoc();
+
+
+$result_suc=$conn->query("SELECT id_sucursal from usuarios where id_usuario = '$usuario' ");
+if(!$result_suc)
+  die('Error de consulta 2: '.mysqli_error($conn));
+
+$usr_sucursal = $result_suc->fetch_assoc();
+
 ?>
 
 <!DOCTYPE html>
@@ -86,6 +95,22 @@
     <input type="hidden" value="<?php echo $id; ?>" name="id">
     <!--<label style="float:left; width:150px; margin-right:15%">Id Expediente:</label> <input type="text" name="expediente" class="campoT" required
     value="<?php echo $renglon['n_registro']?>">--><br>
+    <label style="float:left; width:150px; margin-right:15%">Sucursal: <b><?php echo $renglon['id_sucursal']?> </b> </label> 
+    <?php 
+    if($usr_sucursal['id_sucursal']==0){
+      //echo 'Cambiar - ';
+      echo '<select name="sucursal" class="campoT" required>';
+      $result_suc = $conn->query("select * from sucursales where id_sucursal!=0");
+      while($sucs = $result_suc->fetch_assoc()){
+              echo "<option value='".$sucs['id_sucursal']."'> ".$sucs['id_sucursal'].".- ".$sucs['sucursal']."  </option> ";
+            }
+      echo '</select>';
+    }
+    else{
+      echo '<input type=hidden name="sucursal" value="'.$sucursal.'">';
+    }
+    ?>
+    <br>
     <label style="float:left; width:150px; margin-right:15%">Nombre(s):</label> <input type="text" name="nombre"  class="campoT" required
     value="<?php echo $renglon['nombres']?>"><br>
     <label style="float:left; width:150px; margin-right:15%">Apellido Paterno: </label><input type="text" name="a_pat" class="campoT" required
