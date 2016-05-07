@@ -1,9 +1,17 @@
 <?php
 @session_start();
+include('php/base.php');
 if($_SESSION['rol']!='admin')
   header('location: index.php');
     //echo'<META HTTP-EQUIV="Refresh" CONTENT="1; URL=index.php">';
 $usuario = $_SESSION['u'];
+$sucursal = $_SESSION['sucursal'];
+
+$result=$conn->query("SELECT id_sucursal from usuarios where id_usuario = '$usuario' ");
+if(!$result)
+  die('Error de consulta 2: '.mysqli_error($conn));
+
+$usr_sucursal = $result->fetch_assoc();
 ?>
 <!DOCTYPE html>
 <html class="html">
@@ -57,6 +65,20 @@ $usuario = $_SESSION['u'];
 </div>
 <div class="verticalspacer"></div>
 <form action="usuarios/nuevo_usuario.php" method="POST" enctype="multipart/form-data" style="margin-top:50px;z-index:9000; padding:20px; margin-left:0px; background:#FFFFFF; z-index:400; width:90%">
+  <?php 
+    if($usr_sucursal['id_sucursal']==0){
+      echo '<label style="float:left; width:150px; margin-right:15%">Sucursal: </label>';
+      echo '<select name="sucursal" class="campoT" required>';
+      $result_suc = $conn->query("select * from sucursales");
+      while($sucs = $result_suc->fetch_assoc()){
+              echo "<option value='".$sucs['id_sucursal']."'> ".$sucs['id_sucursal'].".- ".utf8_encode($sucs['sucursal'])." </option> ";
+            }
+      echo '</select><br>';
+    }
+    else{
+      echo '<input type=hidden name="sucursal" value="'.$sucursal.'">';
+    }
+    ?>
   <label style="float:left; width:150px; margin-right:15%" >Nombre(s):</label> 
   <input type="text" name="nombre" class="campoT"  required style="width:250px; "><br>
   <label style="float:left; width:150px; margin-right:15%" >Apellido Paterno: </label>

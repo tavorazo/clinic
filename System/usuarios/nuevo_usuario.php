@@ -12,6 +12,7 @@
 </head>
 <body>
 	<?php
+	$sucursal = $_POST['sucursal'];
 	$nombre = $_POST['nombre'];
 	$paterno = $_POST['a_pat'];
 	$materno = $_POST['a_mat'];
@@ -46,8 +47,8 @@
 			die('Error de Conexion: ' .mysqli_error($conn));
 		}
 		
-		$insertar = "INSERT into usuarios (id_usuario,nombres,apellido_paterno,apellido_materno,fecha_nacimiento,rol,correo,tel_emergencia,name_emergencia,fecha_alta,password,imagen) 
-values ('$id_usuario', '$nombre',  '$paterno', '$materno', '$fecha', '$rol', '$correo', '$tel_emergencia', '$name_emergencia', '$fecha_alta', '$contra', '$imagen');";
+		$insertar = "INSERT into usuarios (id_usuario,nombres,apellido_paterno,apellido_materno,fecha_nacimiento,rol,correo,tel_emergencia,name_emergencia,fecha_alta,password,imagen,id_sucursal) 
+values ('$id_usuario', '$nombre',  '$paterno', '$materno', '$fecha', '$rol', '$correo', '$tel_emergencia', '$name_emergencia', '$fecha_alta', '$contra', '$imagen',$sucursal);";
 //if(!$conn->query($insertar, $conn)){	
 if(!$conn->query($insertar)){	
 	echo "<br>Tal vez el nickname ya esté en uso, intenta con otro o rellena algún campo faltante<br>";
