@@ -1,5 +1,9 @@
 
 <?php 
+@session_start();
+$usuario = $_SESSION['u'];
+$sucursal = $_SESSION['sucursal'];
+
 $title = "Cumpleañeros";
 include("+/head1.php");
 include('php/base.php');
@@ -7,7 +11,7 @@ $a = date(d);
 $b = date(m);
 $c = date(Y);
 $fecha_cumplea = "-$b-$a";
-$pacientes = $conn->query("SELECT * FROM paciente WHERE fecha_nacimiento like '%$fecha_cumplea%' ORDER BY id_paciente;");
+$pacientes = $conn->query(($sucursal==0) ? "SELECT * FROM paciente WHERE fecha_nacimiento like '%$fecha_cumplea%' ORDER BY id_paciente;" : "SELECT * FROM paciente WHERE fecha_nacimiento like '%$fecha_cumplea%' and id_sucursal=$sucursal ORDER BY id_paciente;");
 echo "<br> <h3 style='width:800px'> Pacientes </h3><br><br><br>";
 $count = 0;
 //while ($r_p = mysql_fetch_array($pacientes, MYSQL_NUM)){
@@ -32,7 +36,7 @@ while ($r_p = $pacientes->fetch_row()) {
  </a> ";
  echo "</p><br><br>";
 }
-$trabajadores = $conn->query("select fecha_nacimiento, nombres, apellido_paterno, apellido_materno from usuarios;");
+$trabajadores = $conn->query(($sucursal==0) ? "SELECT fecha_nacimiento, nombres, apellido_paterno, apellido_materno from usuarios;" : "SELECT fecha_nacimiento, nombres, apellido_paterno, apellido_materno from usuarios where id_sucursal=$sucursal;");
 echo "<br><br> <h3> Trabajadores </h3><br>";
 $count = 0;
 //while ($r_t = mysql_fetch_array($trabajadores, MYSQL_NUM)){
