@@ -1,10 +1,19 @@
 <?php
+include('php/base.php');
 @session_start();
 if($_SESSION['u']=='')
   header('location: index.php');
 //if($_SESSION['rol']!='admin' ||)
 //  header('location: panel.php');
 $usuario = $_SESSION['u'];
+$sucursal = $_SESSION['sucursal'];
+
+$result=$conn->query("SELECT id_sucursal from usuarios where id_usuario = '$usuario' ");
+if(!$result)
+  die('Error de consulta 2: '.mysqli_error($conn));
+
+$usr_sucursal = $result->fetch_assoc();
+
 ?>
 <!DOCTYPE html>
 <html class="html">
@@ -97,6 +106,20 @@ $usuario = $_SESSION['u'];
   <div class="verticalspacer" ></div> 
   <form action="pacientes/images_pacientes/nuevo_paciente.php" method="POST" enctype="multipart/form-data"  style="margin-top:-100px; z-index:300; background:#FFFFFF; padding:20px; width:90%; padding-top:70px" id="paciente_form">
     <!--a href="menu.php">Regresar</a--><br>
+    <?php 
+    if($usr_sucursal['id_sucursal']==0){
+      echo '<label style="float:left; width:150px; margin-right:15%">Sucursal: </label>';
+      echo '<select name="sucursal" class="campoT" required>';
+      $result_suc = $conn->query("select * from sucursales where id_sucursal!=0");
+      while($sucs = $result_suc->fetch_assoc()){
+              echo "<option value='".$sucs['id_sucursal']."'> ".$sucs['id_sucursal'].".- ".$sucs['sucursal']." </option> ";
+            }
+      echo '</select>';
+    }
+    else{
+      echo '<input type=hidden name="sucursal" value="'.$sucursal.'">';
+    }
+    ?>
     <label style="float:left; width:150px; margin-right:15%">Nombre(s):</label> <input type="text" name="nombre"  class="campoT" required><br>
     <label style="float:left; width:150px; margin-right:15%">Apellido Paterno: </label><input type="text" name="a_pat" class="campoT" required><br>
     <label style="float:left; width:150px; margin-right:15%">Apellido Materno:</label><input type="text" name="a_mat" class="campoT" required><br>
@@ -198,7 +221,6 @@ $usuario = $_SESSION['u'];
 		<!-- Aquí se ejecuta el script para la cámara -->
 		<!-- El script permite capturar imagenes desde cualquier webcam conectada o desde archivo -->
     <?php
-    include('php/base.php');
     $select = 'SELECT max(id_paciente) as id_paciente from paciente';
     try {
       $result = $conn->query($select);  
