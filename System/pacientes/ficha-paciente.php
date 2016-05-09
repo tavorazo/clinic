@@ -81,6 +81,12 @@ while ($row2 = $result2->fetch_row()) {
 
   echo "</div><div id='fieldset1' style='padding-top: 50px; margin-left:-200px;'>
   <label style='display: block; width:150px; float:left'>N&uacute;mero de ficha: </label>", $row2[0], "<br>";
+
+  echo "<label style='display: block; width:150px; float:left'>Sucursal: </label>";
+  $result_suc = $conn->query("SELECT sucursal from sucursales where id_sucursal='".$row2[33]."';");  //Extrae el nombre de la sucursal
+  $suc = $result_suc->fetch_assoc();
+  echo $row2[33]." - ".$suc['sucursal']."<br>";
+
   echo "<label style='display: block; width:150px; float:left'>Nombre: </label>", $row2[1]," ", $row2[2]," ",$row2[3],"<br>";
   /*CONCATENO NOMBRE DE PACIENTE Y NUMERO DE FICHA PARA EL DIRECTORIO*/
   $directorio_para_imagenes = "http://192.168.1.140/listar.php?id=".str_replace(" ","",$row2[1])."".$row2[2]."".$row2[3]."".$row2[0];

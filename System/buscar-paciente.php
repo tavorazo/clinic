@@ -109,6 +109,7 @@ while ($row2 = $result2->fetch_row()) {
     echo "<img src='pacientes/images_pacientes/",$row2[21],"' width='130px' height='130px' style='border-radius:50%;  border: 1px solid #D8D8D8;'> </div>";
   echo "<div  style='width:50%; height:220px; float:left; margin-left:-5%; ' ><br><br><br>";
   echo "<label style='width:200px; float:left; margin-left:15px; '>Numero de ficha:</label> ", $row2[0], "<br>";
+   echo "<label style='width:200px; float:left; margin-left:15px; '>Sucursal:</label> ", $row2[33], "<br>";
   echo "<label style='width:200px; float:left; margin-left:15px; '>Nombre: </label>", $row2[1]," ", $row2[2]," ",$row2[3],"<br>";
   echo "<label style='width:200px; float:left; margin-left:15px; '>Fecha de nacimiento: </label>", $row2[4];
   echo "<br><label style='width:200px; float:left; margin-left:15px;'>Sexo: </label>", $row2[23];

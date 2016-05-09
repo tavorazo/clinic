@@ -70,20 +70,6 @@ var request;
 $("#ajax").submit(function(event){
   var values = $(this).serialize();
 
-  // $.ajax({
-  //       url: "http://192.168.1.74/subir/guardarB64.php",
-  //       type: "post",
-  //       data: values ,
-  //       success: function (response) {
-  //         //window.location.href = "pacientes/fotografias_externas/procesar_foto_externa.php?id="+ $("#id_paciente").val()+ "&descripcion="+ $("#descripcion").val() + "&nombre_foto="+ $("#nombre_foto").val();
-  //         alert("Imagen guardada!!");
-  //       },
-  //       error: function(jqXHR, textStatus, errorThrown) {
-  //          console.log(textStatus, errorThrown);
-  //          alert("Imagen guardada!!");
-  //       }
-  //   });
-
   var url = "procesar_foto_intra.php?id="+ $("#id_paciente").val()+ "&nombre_foto="+ $("#nombre_foto").val();
 
   $.ajax({
@@ -99,7 +85,7 @@ $("#ajax").submit(function(event){
               type: "get"
             });
 
-            alert("Guardado! " + url);
+            alert("Guardado! ");
         }
     });
 });
