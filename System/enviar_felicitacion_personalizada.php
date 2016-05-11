@@ -1,4 +1,6 @@
 <?php
+	@session_start();
+	$sucursal = $_SESSION['sucursal'];
 	include("php/base.php");
 	include("mail.php"); // Archivo con la función que usa cURL para enviar el correo
 
@@ -6,6 +8,9 @@
 	$contenido = $_POST['contenido'];
 	$correo = $_POST['correo'];
 	$nombre = $_POST['nombre'];
+
+	$felicitacion_result =  $conn->query("SELECT * from felicitacion");
+	$felicitacion = $felicitacion_result->fetch_assoc();
 
 
 	if($_FILES['imagen']['name']!=""){
@@ -18,39 +23,33 @@
 		$imagen="images/feliz.png";
 
 
-	$remitente = 'endoperio@endoperio.com.mx';
-	$mensaje = '	<!doctype html>
-	<head><meta charset="utf-8">
-		<title>Felicidades</title>
-	</head>
-	<body body style="font-family: Arial, Helvetica, sans-serif;">
-		
-		<img src="'.$imagen.'" width="100%">
-		<br>'.$contenido.'<br>
-	</body>
+	$remitente = $felicitacion['remitente'];
+	$mensaje = '	<html>
+		<p style="font-size:15px;">'.$contenido.'<p><br><br><hr><br>
+		<img style="display:block;" class="img1" src="http://www.endoperio.com.mx/System/'.$imagen.'" width="100%"/>
 	</html>';
 
 
 if($correo==''){
-	$pacientes = $conn->query("SELECT fecha_nacimiento, nombres, apellido_paterno, apellido_materno, correo FROM paciente WHERE DAY(  `fecha_nacimiento` ) = DAY( NOW( ) )  AND MONTH(  `fecha_nacimiento` ) = MONTH( NOW( ) ) ");
+	$pacientes = $conn->query(($sucursal == 0) ? "SELECT fecha_nacimiento, nombres, apellido_paterno, apellido_materno, correo FROM paciente WHERE DAY(  `fecha_nacimiento` ) = DAY( NOW( ) )  AND MONTH(  `fecha_nacimiento` ) = MONTH( NOW( ) ) " :  "SELECT fecha_nacimiento, nombres, apellido_paterno, apellido_materno, correo FROM paciente WHERE DAY(  `fecha_nacimiento` ) = DAY( NOW( ) )  AND MONTH(  `fecha_nacimiento` ) = MONTH( NOW( ) ) AND id_sucursal=$sucursal");
 	while ($r_p = $pacientes->fetch_array()){
 		$destino = $r_p[4];
 		if($destino!=''){
-			send_mail($destino, $asunto, $mensaje);
+			send_mail($remitente,$destino, $asunto, $mensaje);
 		}
 	}
-	$usuarios = $conn->query("SELECT fecha_nacimiento, nombres, apellido_paterno, apellido_materno, correo FROM usuarios WHERE DAY(  `fecha_nacimiento` ) = DAY( NOW( ) )  AND MONTH(  `fecha_nacimiento` ) = MONTH( NOW( ) ) ");
+	$usuarios = $conn->query(($sucursal == 0) ? "SELECT fecha_nacimiento, nombres, apellido_paterno, apellido_materno, correo FROM usuarios WHERE DAY(  `fecha_nacimiento` ) = DAY( NOW( ) )  AND MONTH(  `fecha_nacimiento` ) = MONTH( NOW( ) ) " : "SELECT fecha_nacimiento, nombres, apellido_paterno, apellido_materno, correo FROM usuarios WHERE DAY(  `fecha_nacimiento` ) = DAY( NOW( ) )  AND MONTH(  `fecha_nacimiento` ) = MONTH( NOW( ) ) AND id_sucursal=$sucursal");
 	while ($r_p = $usuarios->fetch_array()){
 		$destino = $r_p[4];
 		if($destino!=''){
-			send_mail($destino, $asunto, $mensaje);
+			send_mail($remitente,$destino, $asunto, $mensaje);
 		}
 	}
 
 }else{
 
 	if($correo!=''){
-		send_mail($destino, $asunto, $mensaje);
+		send_mail($remitente,$correo, $asunto, $mensaje);
 	}
 }
 //header('Location: /panel.php');

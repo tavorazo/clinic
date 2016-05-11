@@ -28,11 +28,17 @@
 include('php/base.php');
 include('mail.php'); // Archivo con la función que usa cURL para enviar el correo
 
+@session_start();
+$sucursal = $_SESSION['sucursal'];
+
 date_default_timezone_set('America/Mexico_City');
 $a = date("d-m");
 
+$felicitacion_result =  $conn->query("SELECT * from felicitacion");
+$felicitacion = $felicitacion_result->fetch_assoc();
+
 $fecha_cumplea = "-".$a;
-$pacientes = $conn->query("SELECT fecha_nacimiento, nombres, apellido_paterno, apellido_materno, correo FROM paciente WHERE DAY(  `fecha_nacimiento` ) = DAY( NOW( ) )  AND MONTH(  `fecha_nacimiento` ) = MONTH( NOW( ) ) ");
+$pacientes = $conn->query(($sucursal == 0) ? "SELECT fecha_nacimiento, nombres, apellido_paterno, apellido_materno, correo FROM paciente WHERE DAY(  `fecha_nacimiento` ) = DAY( NOW( ) )  AND MONTH(  `fecha_nacimiento` ) = MONTH( NOW( ) ) " : "SELECT fecha_nacimiento, nombres, apellido_paterno, apellido_materno, correo FROM paciente WHERE DAY(  `fecha_nacimiento` ) = DAY( NOW( ) )  AND MONTH(  `fecha_nacimiento` ) = MONTH( NOW( ) ) AND id_sucursal=$sucursal");
 $i = 0;
 
 		echo '<br><br><br><center><img src="images/endoperio2.png" width="100px" alt=""> <br> ';
@@ -41,29 +47,23 @@ $i = 0;
 		echo "<a href='panel.php' > <font color='white'>Regresar </a></center></div>";
           
 while ($r_p = $pacientes->fetch_row()){
-	echo  $r_p[1]." - ".$r_p[2]." - ".$r_p[3];
-	echo " . . .";
+	echo  $r_p[1]." ".$r_p[2]." ".$r_p[3];
+	echo " . . . <br>";
 
-	$remitente = 'endoperio@endoperio.com.mx';
+	$remitente = $felicitacion['remitente'];
 	$destino = $r_p[4];
-	$asunto = "Feliz cumpleanos te desea Endoperio";
-	$mensaje = '
-	<html>
-	<head><meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
-		<title>Felicidades</title>
-	</head>
-	<body>
-		<img src="images/feliz.png" width="100%">
-	</body>
-	</html>
-	';
+	$asunto = $felicitacion['titulo'];
+	$mensaje = '	<html>
+		<p style="font-size:15px;">'.$felicitacion['mensaje'].'<p><br><br><hr><br>
+		<img style="display:block;" class="img1" src="http://www.endoperio.com.mx/System/images/'.$felicitacion['img'].'" width="100%"/>
+	</html>';
 	$encabezados = 'MIME-Version: 1.0' . "\r\n";
 	$encabezados .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
 	$encabezados .= "From: $remitente\nReply-To: $remitente" ;
 
 	
 	if($destino!=''){
-		send_mail($destino, $asunto, $mensaje); //Función contenida en mail.php
+		send_mail($remitente,$destino, $asunto, $mensaje); //Función contenida en mail.php
 	}
 }
 /*usuarios*/
@@ -72,24 +72,18 @@ $i = 0;
           
 while ($r_p = $usuarios->fetch_array()){
 	echo  $r_p[1]." - ".$r_p[2]." - ".$r_p[3];
-	echo " . . .";
+	echo " . . . <br>";
 
-	$remitente = 'endoperio@endoperio.com.mx';
+	$remitente = $felicitacion['remitente'];
 	$destino = $r_p[4];
-	$asunto = "Feliz cumpleanios te desea Endoperio";
-	$mensaje = '
-	<html>
-	<head>
-		<title>Felicidades</title>
-	</head>
-	<body>
-		<img src="images/feliz.png" width="100%">
-	</body>
-	</html>
-	';
+	$asunto = $felicitacion['titulo'];
+	$mensaje = '	<html>
+		<p style="font-size:15px;">'.$felicitacion['mensaje'].'<p><br><br><hr><br>
+		<img style="display:block;" class="img1" src="http://www.endoperio.com.mx/System/images/'.$felicitacion['img'].'" width="100%"/>
+	</html>';
 	
 	if($destino!=''){
-		send_mail($destino, $asunto, $mensaje); //Función contenida en mail.php
+		send_mail($remitente,$destino, $asunto, $mensaje); //Función contenida en mail.php
 	}
 }
 
