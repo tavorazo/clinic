@@ -74,7 +74,7 @@ while ($row2 = $result2->fetch_row()) {
   echo "<br><br>";
   echo "<fieldset><legend>Datos Personales</legend>";
   echo "<h2><div id='fieldset1'> ";
-  if($row2[21] == "")
+  if($row2[21] == "predeterminado.png")
     echo "<br><img src='images_pacientes/predeterminado.png'>";
   else
     echo "<br><img src='http://192.168.1.200/imagenes/NOEOCTAVIOABURTOINCLAN690/clinicas/pacientes/Fotos-endoperio/",$row2[21],".jpg'>";
