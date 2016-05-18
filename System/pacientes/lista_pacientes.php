@@ -1,5 +1,7 @@
 <?php
 	include("../php/base.php");
+  @session_start();
+  $sucursal = $_SESSION['sucursal'];
 	
 $result = $conn->query("SHOW COLUMNS FROM paciente");
 ?>
@@ -19,7 +21,7 @@ if (mysqli_num_rows($result)> 0) {
 ?>
 <br><br><br></td></tr>
 <?php
-$result2 = $conn->query("SELECT * FROM paciente");
+$result2 = $conn->query(($sucursal==0) ? "SELECT * FROM paciente" : "SELECT * FROM paciente WHERE id_sucursal = $sucursal");
   while ($row2 = $result2->fetch_row()) {
 echo "<tr><td>";
       for($i=0; $i<count($row2); $i++){

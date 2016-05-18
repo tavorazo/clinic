@@ -1,5 +1,8 @@
 <?php
 include("../php/base.php");
+@session_start();
+$sucursal = $_SESSION['sucursal'];
+
 //Consultamos a la base de datos para sacar las columnas de la tabla
 $result = $conn->query("SHOW COLUMNS FROM paciente");
 ?>
@@ -10,17 +13,17 @@ $result = $conn->query("SHOW COLUMNS FROM paciente");
 <table >
 <tr>
 <?php
-if ($result->fetch_row() > 0) {
+//if ($result->fetch_row() > 0) {
    while ($row = $result->fetch_assoc()) {
    	if($row['Field']!='apellido_paterno' && $row['Field']!='apellido_materno')
        echo "<td>",$row['Field'],"</td>";
    }
-}
+//}
 ?>
 </tr>
 <?php
 //ahora consultamos a la base de datos para sacar los registros contenidos
-$result2 = $conn->query("SELECT * FROM paciente");
+$result2 = $conn->query(($sucursal==0) ? "SELECT * FROM paciente" : "SELECT * FROM paciente WHERE id_sucursal = $sucursal");
 while ($row2 = $result2->fetch_row()) {
 echo "<tr>";
     for($i=0; $i<count($row2); $i++){
