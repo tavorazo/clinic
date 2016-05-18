@@ -75,7 +75,8 @@ if($_SESSION['rol']=='admin' || $_SESSION['rol']=='secretaria')
     <a href="contabilidad/egresos.php"> Historial egresos de gastos en la clinica</a><br>
     <a href="contabilidad/nomina.php"> Historial egresos en nomina</a>
     <br><br>
-    <a href="contabilidad/recibos_generados.php"> Lista completa de recibos generados</a>
+    <a href="contabilidad/recibos_generados.php"> Lista completa de recibos generados</a><br>
+    <a href="contabilidad/corte_del_dia.php">Corte del día </a>
     
   </div>
   <div style="width:400px; height:200px; background:#FFF; margin-top:50px; padding:10px; float:left; margin-left:30px">
@@ -96,8 +97,13 @@ if($_SESSION['rol']=='admin' || $_SESSION['rol']=='secretaria')
             </div>
             <br><br><br><br><br><br><br><br><br><br>
             <a href="php/tratamientos/lista_precios.php">Lista de precios para tratamientos </a>
+            <br><br>
+            
           </div>
-        </div>
+
+
+
+</div>
         
         <div class="verticalspacer"></div>
         <a class="nonblock nontext clip_frame colelem" id="u405" href="http://tavorazo.github.io"><!-- image --><img class="block" id="u405_img" src="https://cdn4.iconfinder.com/data/icons/iconsimple-logotypes/512/github-32.png"alt="Octavio Razo" /></a>
