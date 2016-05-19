@@ -90,6 +90,8 @@ if(!$result)
 	if($sel_sucursal!=$sucursal)
 		$_SESSION['sucursal']=$sel_sucursal;
 ?>
+    <br><br><br>
+      <a href="sucursales/listado_sucursales.php">Ver todas las sucursales</a>
 		</div>
 </div>
     <div class="verticalspacer"></div>
