@@ -69,8 +69,10 @@ $result2 = $conn->query("SELECT * from paciente where id_paciente='$buscar';");
 echo " <div class='colelem' style=' width:950px; '>";
 while ($row2 = $result2->fetch_row()) {
   echo "<h1>Ficha de Paciente <font color='black'> [",$row2[1]," ", $row2[2]," ",$row2[3]," ]</font></h1>";
-  if($_SESSION['rol']=='admin' || $_SESSION['rol']=='recepcionista')
+  if($_SESSION['rol']=='admin' || $_SESSION['rol']=='recepcionista'){
     echo "<a href='edit-paciente.php?id= ".$row2[0]."&paciente=".$buscar."'> Editar </a>";
+    echo " - <a href='migrar_sucursal.php?id_paciente=".$row2[0]."'> Migrar de sucursal </a>";
+  }
   echo "<br><br>";
   echo "<fieldset><legend>Datos Personales</legend>";
   echo "<h2><div id='fieldset1'> ";
