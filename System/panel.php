@@ -421,6 +421,11 @@ if($_SESSION['rol']=='admin' || $_SESSION['rol']=='secretaria' || $_SESSION['rol
    echo "<br>Paciente: ",$paciente_ficha," - ",$paciente_nombre," ", $paciente_apellido," ", $paciente_apellido2;
    echo "<BR><a href='pacientes/ficha-paciente.php?id=",$p,"'> VER FICHA";
    echo "</a>";
+
+  $result_sucursal    =   mysqli_query($conn, "SELECT sucursal from sucursales WHERE id_sucursal=".$p);
+  $renglon_sucursal  =   $result_sucursal->fetch_assoc();
+  echo "<br>Sucursal: ",$renglon_sucursal['sucursal'];
+
    echo "<br>Tel: ", $tel;
    echo "<br>Cel: ", $cel;
    echo "<br>Fecha  ",$queryCita1["dia"],"/",$queryCita1["mes"],"/", $queryCita1["ano"]," a las ", $queryCita1["hora"],":", $queryCita1["minuto"],
@@ -455,6 +460,11 @@ while ($cita = $result2->fetch_assoc()) {
   $resul = mysqli_query($conn,$slc, $dbh) or die ("problema con la solicitud");
   $renglon_paciente = mysqli_fetch_assoc($resul);
   echo "<br>Paciente: ",$renglon_paciente['nombres']," ", $renglon_paciente['apellido_paterno']," ", $$renglon_paciente['apellido_materno'];
+
+  $result_sucursal    =   mysqli_query($conn, "SELECT sucursal from sucursales WHERE id_sucursal=".$renglon_paciente['id_sucursal']);
+  $renglon_sucursal  =   $result_sucursal->fetch_assoc();
+  echo "<br>Sucursal: ",$renglon_sucursal['sucursal'];
+
   echo "<br>Telefono: ",$renglon_paciente['telefono'];
   echo "<br>Celular: ", $renglon_paciente['celular'];
   echo "<br>Fecha (aaaa/mm/dd): ", $cita["ano"],"/",$cita["mes"],"/",$cita["dia"]," a las ", $cita["hora"],":", $cita["minuto"];
