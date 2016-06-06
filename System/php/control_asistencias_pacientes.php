@@ -7,6 +7,7 @@ if($_SESSION['u']=='')
 
 $enlace="../panel.php";
 $titulo = "control de asistencia de pacientes";
+$sucursal = $_SESSION['sucursal'];
 
 include("../+/head2.php");
 
@@ -30,31 +31,43 @@ include("../+/head2.php");
 if($_SESSION['rol']=='admin' || $_SESSION['rol']=='secretaria' || $_SESSION['rol']=='recepcionista'){ 
     
     include("base.php");
-    $select = 'SELECT * from paciente where inasistencia = 1 ';
+    $select = ($sucursal==0) ? 'SELECT * from paciente where inasistencia = 1 ' : 'SELECT * from paciente where inasistencia = 1 AND id_sucursal = '.$sucursal;
     $resul = $conn->query($select);
     echo "<br><br><br><h1>Pacientes con una falta</h1>";
     echo "<table width='100%'>";
-    echo "<tr><th>id</th><th>Nombre</th><th>Telefono</th></tr>";
-        while ($r = $resul->fetch_row()) 
-            echo "<tr><td>".$r[0]."</td><td>".$r[1]. " ".$r[2]." ".$r[3]."</td><td>".$r[11]."</td></tr>";
+    echo "<tr><th>id</th><th>Sucursal</th><th>Nombre</th><th>Telefono</th></tr>";
+        while ($r = $resul->fetch_row()) {
+            $result_sucursal    =   mysqli_query($conn, "SELECT sucursal from sucursales WHERE id_sucursal=".$r[33]);
+            $renglon_sucursal  =   $result_sucursal->fetch_assoc();
+            echo "<tr><td>".$r[0]."</td><td>".$renglon_sucursal['sucursal']."</td><td>".$r[1]. " ".$r[2]." ".$r[3]."</td><td>".$r[11]."</td></tr>";
+        }
+
     echo "</table>";
     
-    $select = 'SELECT * from paciente where inasistencia = 2 ';
+    $select = ($sucursal==0) ? 'SELECT * from paciente where inasistencia = 2 ' : 'SELECT * from paciente where inasistencia = 2 AND id_sucursal = '.$sucursal;
     $resul = $conn->query($select);
     echo "<h1>Pacientes con 2 faltas</h1>";
     echo "<table width='100%'>";
-    echo "<tr><th>id</th><th>Nombre</th><th>Telefono</th></tr>";
-        while ($r = $resul->fetch_row()) 
-            echo "<tr><td>".$r[0]."</td><td>".$r[1]. " ".$r[2]." ".$r[3]."</td><td>".$r[11]."</td></tr>";
+    echo "<tr><th>id</th><th>Sucursal</th><th>Nombre</th><th>Telefono</th></tr>";
+        while ($r = $resul->fetch_row()) {
+            $result_sucursal    =   mysqli_query($conn, "SELECT sucursal from sucursales WHERE id_sucursal=".$r[33]);
+            $renglon_sucursal  =   $result_sucursal->fetch_assoc();
+            echo "<tr><td>".$r[0]."</td><td>".$renglon_sucursal['sucursal']."</td><td>".$r[1]. " ".$r[2]." ".$r[3]."</td><td>".$r[11]."</td></tr>";
+        }
+
     echo "</table>";
     
-    $select = 'SELECT * from paciente where inasistencia >= 3 ';
+    $select = ($sucursal==0) ? 'SELECT * from paciente where inasistencia >= 3 ' : 'SELECT * from paciente where inasistencia = 3 AND id_sucursal = '.$sucursal;
     $resul = $conn->query($select);
     echo "<h1>Pacientes con más de 3 faltas</h1>";
     echo "<table width='100%'>";
-    echo "<tr><th>id</th><th>Nombre</th><th>Telefono</th></tr>";
-        while ($r = $resul->fetch_row()) 
-            echo "<tr><td>".$r[0]."</td><td>".$r[1]. " ".$r[2]." ".$r[3]."</td><td>".$r[11]."</td></tr>";
+    echo "<tr><th>id</th><th>Sucursal</th><th>Nombre</th><th>Telefono</th></tr>";
+        while ($r = $resul->fetch_row()) {
+            $result_sucursal    =   mysqli_query($conn, "SELECT sucursal from sucursales WHERE id_sucursal=".$r[33]);
+            $renglon_sucursal  =   $result_sucursal->fetch_assoc();
+            echo "<tr><td>".$r[0]."</td><td>".$renglon_sucursal['sucursal']."</td><td>".$r[1]. " ".$r[2]." ".$r[3]."</td><td>".$r[11]."</td></tr>";
+        }
+
     echo "</table>";
    
     
@@ -62,12 +75,16 @@ if($_SESSION['rol']=='admin' || $_SESSION['rol']=='secretaria' || $_SESSION['rol
     $resul = $conn->query($sql);
     echo "<h1>Pacientes con adeudos</h1>";
     echo "<table width='100%'>";
-    echo "<tr><th>id</th><th>Nombre</th><th>Descripción</th><th>Adeudo</th><th>Pagado</th><th>Telefono</th></tr>";
+    echo "<tr><th>id</th><th>Sucursal</th><th>Nombre</th><th>Descripción</th><th>Adeudo</th><th>Pagado</th><th>Telefono</th></tr>";
         while ($r = $resul->fetch_row()) {
-            $s = "SELECT  nombres, apellido_paterno, apellido_materno, telefono FROM paciente WHERE id_paciente =".$r[0];
+            $s = "SELECT  nombres, apellido_paterno, apellido_materno, telefono, id_sucursal FROM paciente WHERE id_paciente =".$r[0];
             $paciente = $conn->query($s);
             $d_p = $paciente->fetch_row();
-            echo "<tr><td>".$r[0]. "</td><td>".$d_p[0]." ".$d_p[1]." ".$d_p[2]."</td><td>".$r[1]. "</td><td>".$r[2]."</td><td>".$r[3]."</td><td>".$d_p[3]."</td></tr>";
+
+            $result_sucursal    =   mysqli_query($conn, "SELECT sucursal from sucursales WHERE id_sucursal=".$d_p[4]);
+            $renglon_sucursal  =   $result_sucursal->fetch_assoc();
+            
+            echo "<tr><td>".$r[0]. "</td><td>".$renglon_sucursal['sucursal']."</td><td>".$d_p[0]." ".$d_p[1]." ".$d_p[2]."</td><td>".$r[1]. "</td><td>".$r[2]."</td><td>".$r[3]."</td><td>".$d_p[3]."</td></tr>";
         }
     echo "</table>";
 ?>
