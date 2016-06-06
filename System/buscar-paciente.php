@@ -107,18 +107,22 @@ while ($row2 = $result2->fetch_row()) {
     echo "<img src='pacientes/images_pacientes/predeterminado.png' width='130px' height='130px' style='border-radius:50%;  border: 1px solid #D8D8D8;'> </div>";
   else
     echo "<img src='pacientes/images_pacientes/",$row2[21],"' width='130px' height='130px' style='border-radius:50%;  border: 1px solid #D8D8D8;'> </div>";
-  echo "<div  style='width:50%; height:220px; float:left; margin-left:-5%; ' ><br><br><br>";
-  echo "<label style='width:200px; float:left; margin-left:15px; '>Numero de ficha:</label> ", $row2[0], "<br>";
-   echo "<label style='width:200px; float:left; margin-left:15px; '>Sucursal:</label> ", $row2[33], "<br>";
-  echo "<label style='width:200px; float:left; margin-left:15px; '>Nombre: </label>", $row2[1]," ", $row2[2]," ",$row2[3],"<br>";
-  echo "<label style='width:200px; float:left; margin-left:15px; '>Fecha de nacimiento: </label>", $row2[4];
-  echo "<br><label style='width:200px; float:left; margin-left:15px;'>Sexo: </label>", $row2[23];
-  echo "<br><label style='width:200px; float:left; margin-left:15px;'>Referencia: </label>", $row2[16];
-  echo "</div>
-  <div  style='width:25%; height:220px; floar:right; margin-left:70%'> ";
-  echo "<br><br><br><br><br>
-  <div id='botn'><a href='pacientes/ficha-paciente.php?id=",$row2[0],"'>Revisar</a></div><br>";
-  echo "</div></div></fieldset>";
+    echo "<div  style='width:50%; height:220px; float:left; margin-left:-5%; ' ><br><br><br>";
+    echo "<label style='width:200px; float:left; margin-left:15px; '>Numero de ficha:</label> ", $row2[0], "<br>";
+
+    $result_sucursal    =   mysqli_query($conn, "SELECT sucursal from sucursales WHERE id_sucursal=".$row2[33]);
+    $renglon_sucursal  =   $result_sucursal->fetch_assoc();
+    echo "<label style='width:200px; float:left; margin-left:15px; '>Sucursal:</label> ", $renglon_sucursal['sucursal'], "<br>";
+
+    echo "<label style='width:200px; float:left; margin-left:15px; '>Nombre: </label>", $row2[1]," ", $row2[2]," ",$row2[3],"<br>";
+    echo "<label style='width:200px; float:left; margin-left:15px; '>Fecha de nacimiento: </label>", $row2[4];
+    echo "<br><label style='width:200px; float:left; margin-left:15px;'>Sexo: </label>", $row2[23];
+    echo "<br><label style='width:200px; float:left; margin-left:15px;'>Referencia: </label>", $row2[16];
+    echo "</div>
+    <div  style='width:25%; height:220px; floar:right; margin-left:70%'> ";
+    echo "<br><br><br><br><br>
+    <div id='botn'><a href='pacientes/ficha-paciente.php?id=",$row2[0],"'>Revisar</a></div><br>";
+    echo "</div></div></fieldset>";
       //echo "<hr style='margin-bottom:20px;'>";
 }
 ?>
