@@ -39,7 +39,7 @@ if($_SESSION['rol']=='admin' || $_SESSION['rol']=='secretaria' || $_SESSION['rol
         while ($r = $resul->fetch_row()) {
             $result_sucursal    =   mysqli_query($conn, "SELECT sucursal from sucursales WHERE id_sucursal=".$r[33]);
             $renglon_sucursal  =   $result_sucursal->fetch_assoc();
-            echo "<tr><td>".$r[0]."</td><td>".$renglon_sucursal['sucursal']."</td><td>".$r[1]. " ".$r[2]." ".$r[3]."</td><td>".$r[11]."</td></tr>";
+            echo "<tr><td>".$r[0]."</td><td>".$renglon_sucursal['sucursal']."</td><td>".utf8_encode($r[1]). " ".utf8_encode($r[2])." ".utf8_encode($r[3])."</td><td>".$r[11]."</td></tr>";
         }
 
     echo "</table>";
@@ -52,7 +52,7 @@ if($_SESSION['rol']=='admin' || $_SESSION['rol']=='secretaria' || $_SESSION['rol
         while ($r = $resul->fetch_row()) {
             $result_sucursal    =   mysqli_query($conn, "SELECT sucursal from sucursales WHERE id_sucursal=".$r[33]);
             $renglon_sucursal  =   $result_sucursal->fetch_assoc();
-            echo "<tr><td>".$r[0]."</td><td>".$renglon_sucursal['sucursal']."</td><td>".$r[1]. " ".$r[2]." ".$r[3]."</td><td>".$r[11]."</td></tr>";
+            echo "<tr><td>".$r[0]."</td><td>".$renglon_sucursal['sucursal']."</td><td>".utf8_encode($r[1]). " ".utf8_encode($r[2])." ".utf8_encode($r[3])."</td><td>".$r[11]."</td></tr>";
         }
 
     echo "</table>";
@@ -65,7 +65,7 @@ if($_SESSION['rol']=='admin' || $_SESSION['rol']=='secretaria' || $_SESSION['rol
         while ($r = $resul->fetch_row()) {
             $result_sucursal    =   mysqli_query($conn, "SELECT sucursal from sucursales WHERE id_sucursal=".$r[33]);
             $renglon_sucursal  =   $result_sucursal->fetch_assoc();
-            echo "<tr><td>".$r[0]."</td><td>".$renglon_sucursal['sucursal']."</td><td>".$r[1]. " ".$r[2]." ".$r[3]."</td><td>".$r[11]."</td></tr>";
+            echo "<tr><td>".$r[0]."</td><td>".$renglon_sucursal['sucursal']."</td><td>".utf8_encode($r[1]). " ".utf8_encode($r[2])." ".utf8_encode($r[3])."</td><td>".$r[11]."</td></tr>";
         }
 
     echo "</table>";
@@ -83,7 +83,7 @@ if($_SESSION['rol']=='admin' || $_SESSION['rol']=='secretaria' || $_SESSION['rol
 
             $result_sucursal    =   mysqli_query($conn, "SELECT sucursal from sucursales WHERE id_sucursal=".$d_p[4]);
             $renglon_sucursal  =   $result_sucursal->fetch_assoc();
-            
+
             echo "<tr><td>".$r[0]. "</td><td>".$renglon_sucursal['sucursal']."</td><td>".$d_p[0]." ".$d_p[1]." ".$d_p[2]."</td><td>".$r[1]. "</td><td>".$r[2]."</td><td>".$r[3]."</td><td>".$d_p[3]."</td></tr>";
         }
     echo "</table>";
