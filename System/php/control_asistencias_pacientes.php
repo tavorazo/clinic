@@ -71,7 +71,7 @@ if($_SESSION['rol']=='admin' || $_SESSION['rol']=='secretaria' || $_SESSION['rol
     echo "</table>";
    
     
-    $sql = "SELECT  id_paciente, descripcion, adeudo, pagado, fecha_adeudo FROM pago_adeudo WHERE adeudo > pagado  ";
+    $sql = ($sucursal==0) ? "SELECT  id_paciente, descripcion, adeudo, pagado, fecha_adeudo FROM pago_adeudo WHERE adeudo > pagado" : "SELECT  id_paciente, descripcion, adeudo, pagado, fecha_adeudo FROM pago_adeudo WHERE adeudo > pagado AND exists (select id_sucursal from paciente where  id_sucursal='$sucursal' and id_paciente=pago_adeudo.id_paciente)";
     $resul = $conn->query($sql);
     echo "<h1>Pacientes con adeudos</h1>";
     echo "<table width='100%'>";
