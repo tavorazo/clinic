@@ -98,7 +98,7 @@ if($_SESSION['rol']=='admin' && $usr_sucursal['id_sucursal']==0){
 echo "<p style='font-size:17px; color:#1295c8; margin-bottom:15px; color:'>Sucursal: <b>".utf8_encode($nombre_suc['sucursal'])."</b></p>";
 /*if($_SESSION['rol']=='admin' || $_SESSION['rol']=='secretaria' || $_SESSION['rol']=='recepcionista' || $_SESSION['rol']=='almacen'){*/
 if($_SESSION['rol']=='admin' || $_SESSION['rol']=='almacen'){
-    echo '<div style="background: #FFFFFF; width:96%; min-height: 90px; margin-bottom:70px; " id="txt2">
+    echo '<div style="background: #FFFFFF; width:96%; min-height: 90px; margin-bottom:70px; max-height:500px; overflow: scroll; " id="txt2">
     <img src="images/alert.png" width="20px" alt="" style="float:left; margin-right:10px">
     <p>Inventario:</p> ';
 
@@ -448,7 +448,7 @@ echo '    </div>';
 </form>
 <?php
 if($_SESSION['rol']=='admin' || $_SESSION['rol']=='secretaria' || $_SESSION['rol']=='recepcionista'){
- echo ' <div style="background: #FFFFFF; width:96%; min-height: 90px; margin-bottom:10px; float:left " id="txt2">';
+ echo ' <div style="background: #FFFFFF; width:96%; min-height: 90px; margin-bottom:10px; float:left max-height:500px; overflow: scroll;" id="txt2" >';
  echo '<img src="images/citas.png" width="20px" alt="" style="float:left; margin-right:10px">
  <p> Citas a confirmar en la semana (WEB):</p><hr>';
 }
