@@ -129,15 +129,21 @@ if($_SESSION['rol']=='admin')
   //ocultar esto mientra no busque
   echo '<h1>En almacen: ',$buscar,'</h1>';
   $a = 0;
-  echo "<table style='border:none; min-width:90%; color:#A0ABAB'>";
-  echo "<tr style=' background:#585A5A'>
+  echo "<div style='max-height:500px; overflow: scroll;'><table style='border:none; min-width:100%; color:#A0ABAB; '>";
+  echo "<tr style=' background:#585A5A'><td>Suc.</td>
   <td>Nombre</td><td>Serial</td><td>Descripcion</td><td>Tipo</td><td>En existencia</td><td> Abastecible </td><td>Cantidad minima</td><td>Ajustar</td><td></td><td></td><td></td></tr>
   <td></td><td></td><td></td><td></td><td></td><td> </td><td></td><td></td><td></td><td></td></tr>";
   
   //while ($row2 = mysql_fetch_array($result2, MYSQL_NUM)) {
   while ($row2 = $result2->fetch_row()) {
     $a = 1;
-    echo "<tr style='background:#FFFFFF'><td>",utf8_encode($row2[1]),"</td><td>", $row2[2],"</td><td>", $row2[3],"</td><td>",$row2[11],"</td><td>", $row2[4],"</td>";
+    echo "<tr style='background:#FFFFFF'>";
+
+    $result_sucursal    =   mysqli_query($conn, "SELECT sucursal from sucursales WHERE id_sucursal=".$row2[12]);
+    $renglon_sucursal  =   $result_sucursal->fetch_assoc(); //Extrae sucursal
+    echo "<td>",substr($renglon_sucursal['sucursal'],0,3),"</td>";
+
+    echo "<td>",utf8_encode($row2[1]),"</td><td>", $row2[2],"</td><td>", $row2[3],"</td><td>",$row2[11],"</td><td>", $row2[4],"</td>";
     if($row2[5]=='1'){
       echo "<td> Si</td><td>",$row2[6],"</td>";
       
@@ -193,7 +199,7 @@ if($_SESSION['rol']=='admin')
         echo "</tr>";
       }
     }
-    echo "</table>";
+    echo "</table></div>";
     if($a==0)
       print "no hay resultados<br><br>";
     ?>
