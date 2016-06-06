@@ -137,7 +137,7 @@ if($_SESSION['rol']=='admin')
   //while ($row2 = mysql_fetch_array($result2, MYSQL_NUM)) {
   while ($row2 = $result2->fetch_row()) {
     $a = 1;
-    echo "<tr style='background:#FFFFFF'><td>",$row2[1],"</td><td>", $row2[2],"</td><td>", $row2[3],"</td><td>",$row2[11],"</td><td>", $row2[4],"</td>";
+    echo "<tr style='background:#FFFFFF'><td>",utf8_encode($row2[1]),"</td><td>", $row2[2],"</td><td>", $row2[3],"</td><td>",$row2[11],"</td><td>", $row2[4],"</td>";
     if($row2[5]=='1'){
       echo "<td> Si</td><td>",$row2[6],"</td>";
       
