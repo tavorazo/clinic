@@ -414,6 +414,7 @@ if($_SESSION['rol']=='admin' || $_SESSION['rol']=='secretaria' || $_SESSION['rol
      $tel = $row_paciente["telefono"];
      $cel = $row_paciente["celular"];
      $p = $row_paciente["id_paciente"];
+     $s = $row_paciente['id_sucursal'];
    }
    
    echo "<div style='float:left; width:600px'> 
@@ -422,7 +423,7 @@ if($_SESSION['rol']=='admin' || $_SESSION['rol']=='secretaria' || $_SESSION['rol
    echo "<BR><a href='pacientes/ficha-paciente.php?id=",$p,"'> VER FICHA";
    echo "</a>";
 
-  $result_sucursal    =   mysqli_query($conn, "SELECT sucursal from sucursales WHERE id_sucursal=".$p);
+  $result_sucursal    =   mysqli_query($conn, "SELECT sucursal from sucursales WHERE id_sucursal=".$s);
   $renglon_sucursal  =   $result_sucursal->fetch_assoc();
   echo "<br>Sucursal: ",$renglon_sucursal['sucursal'];
 
