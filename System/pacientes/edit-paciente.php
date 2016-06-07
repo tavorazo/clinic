@@ -102,7 +102,10 @@ $usr_sucursal = $result_suc->fetch_assoc();
       echo '<select name="sucursal" class="campoT" required>';
       $result_suc = $conn->query("select * from sucursales where id_sucursal!=0");
       while($sucs = $result_suc->fetch_assoc()){
-              echo "<option value='".$sucs['id_sucursal']."'> ".$sucs['id_sucursal'].".- ".$sucs['sucursal']."  </option> ";
+              if($renglon['id_sucursal']==$sucs['id_sucursal'])
+                echo "<option value='".$sucs['id_sucursal']."' selected> ".$sucs['id_sucursal'].".- ".$sucs['sucursal']."  </option> ";
+              else
+                echo "<option value='".$sucs['id_sucursal']."'> ".$sucs['id_sucursal'].".- ".$sucs['sucursal']."  </option> ";
             }
       echo '</select>';
     }
@@ -132,7 +135,7 @@ $usr_sucursal = $result_suc->fetch_assoc();
       	if($renglon['sexo']=='Masculino')
       		echo '<option value="Masculino" selected>Mascuino</option>';
       	else
-      		echo '<option value="Femenino" seleted>Femenino</option>';
+      		echo '<option value="Femenino" selected>Femenino</option>';
       ?>
       <!--<option value="Masculino" >Masculino</option>
       <option value="Femenino">Femenino</option>-->
