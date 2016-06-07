@@ -67,17 +67,17 @@ $usr_sucursal = $result_suc->fetch_assoc();
      <div class="browser_width grpelem" id="u375"><!-- simple frame --></div>
        <?php
        if($_SESSION['rol']=='admin' || $_SESSION['rol']=='secretaria' || $_SESSION['rol']=='recepcionista')
-        echo '<a class="nonblock nontext grpelem" id="u376" href="agenda.php"> <img id="u376_states" alt="Registro de consultas" src="../images/blank.gif"/></a>';
+        echo '<a class="nonblock nontext grpelem" id="u376" href="../agenda.php"> <img id="u376_states" alt="Registro de consultas" src="../images/blank.gif"/></a>';
       if($_SESSION['rol']=='admin' || $_SESSION['rol']=='secretaria' || $_SESSION['rol']=='recepcionista' || $_SESSION['rol']=='dentista')
-        echo '<a class="nonblock nontext grpelem" id="u377" href="buscar-paciente.php"> <img id="u377_states" alt="Buscar paciente" src="../images/blank.gif"/></a>';
+        echo '<a class="nonblock nontext grpelem" id="u377" href="../buscar-paciente.php"> <img id="u377_states" alt="Buscar paciente" src="../images/blank.gif"/></a>';
       if($_SESSION['rol']=='admin' || $_SESSION['rol']=='secretaria' || $_SESSION['rol']=='recepcionista')
-        echo '<a class="nonblock nontext MuseLinkActive grpelem" id="u378" href="add-paciente.php"> <img id="u378_states" alt="Agregar pacientes" src="../images/blank.gif"/></a>';
+        echo '<a class="nonblock nontext MuseLinkActive grpelem" id="u378" href="../add-paciente.php"> <img id="u378_states" alt="Agregar pacientes" src="../images/blank.gif"/></a>';
       if($_SESSION['rol']=='admin')
-        echo '<a class="nonblock nontext grpelem" id="u480" href="add-usuario.php"> <img id="u480_states" alt="Agregar usuarios" src="../images/blank.gif"/></a>';
+        echo '<a class="nonblock nontext grpelem" id="u480" href="../add-usuario.php"> <img id="u480_states" alt="Agregar usuarios" src="../images/blank.gif"/></a>';
       if($_SESSION['rol']=='admin' || $_SESSION['rol']=='almacen')
-        echo '<a class="nonblock nontext grpelem" id="u550" href="almacen.php"> <img id="u550_states" alt="Almacen" src="../images/blank.gif"/></a>';
+        echo '<a class="nonblock nontext grpelem" id="u550" href="../almacen.php"> <img id="u550_states" alt="Almacen" src="../images/blank.gif"/></a>';
       if($_SESSION['rol']=='admin')
-        echo '<a class="nonblock nontext grpelem" id="u552" href="contabilidad.php"> <img id="u552_states" alt="Contabilidad" src="../images/blank.gif"/></a>';
+        echo '<a class="nonblock nontext grpelem" id="u552" href="../contabilidad.php"> <img id="u552_states" alt="Contabilidad" src="../images/blank.gif"/></a>';
       ?>
     </div>
     <div class="clearfix colelem" id="pu388-4" ><!-- group -->
