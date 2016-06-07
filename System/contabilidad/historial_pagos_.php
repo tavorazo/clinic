@@ -344,7 +344,7 @@ date_default_timezone_set("Mexico/General");
   //$result2 = $conn->query("select * from pago_adeudo");
   //
   echo "<table border=1 style='margin-top:100px; '>
-  <tr> <td style='color:#58ACFA'>No. </td> <td style='color:#58ACFA'>Generado por  </td> <td style='color:#58ACFA'>Paciente    </td> <td style='color:#58ACFA'>Descripción   </td> <td style='color:#58ACFA'>Costo       </td> <td style='color:#58ACFA'>Pagado      </td> <td style='color:#58ACFA'>Saldo      </td> <td style='color:#58ACFA'>Detalles   </td> </tr>";
+  <tr style='color:#58ACFA'> <td >No. </td> <td>Generado por  </td> <td>Paciente    </td><td>Sucursal </td><td>Descripción   </td> <td>Costo       </td> <td>Pagado      </td> <td>Saldo      </td> <td>Detalles   </td> </tr>";
 //while ($dato_pagos = mysql_fetch_array($result2, MYSQL_NUM)){
   while ($dato_pagos = $result2->fetch_row()) {
     if($semana_b==''){
@@ -354,25 +354,32 @@ date_default_timezone_set("Mexico/General");
       $sql = 'SELECT nombres, apellido_paterno, apellido_materno FROM usuarios WHERE id_usuario = "'.$usuario.'"';
       $result = $conn->query($sql);
       $user = $result->fetch_assoc();
-        echo "<td> ".$user["nombres"]." ".$user["apellido_paterno"]." ".$user["apellido_materno"]."</td>";
 
-        $paciente = $dato_pagos[7];
-        $sql = 'SELECT * FROM paciente where id_paciente="'.$paciente.'"';
-        if ($result = $conn->query($sql)) 
-          while ($pacient = $result->fetch_assoc())
-            $nombre_paciente =$pacient['nombres']." ".$pacient['apellido_paterno']." ".$pacient['apellido_materno']; 
+
+      echo "<td> ".$user["nombres"]." ".$user["apellido_paterno"]." ".$user["apellido_materno"]."</td>";
+
+      $paciente = $dato_pagos[7];
+      $sql = 'SELECT * FROM paciente where id_paciente="'.$paciente.'"';
+      if ($result = $conn->query($sql)) 
+        $pacient = $result->fetch_assoc();
+        $nombre_paciente =$pacient['nombres']." ".$pacient['apellido_paterno']." ".$pacient['apellido_materno']; 
           
-          echo "<td>".$nombre_paciente."</td>";
-          echo "<td>", htmlentities($dato_pagos[4]),"</td>";
-          echo "<td>",$dato_pagos[2],"</td>"; 
-            echo " <td>", htmlentities($dato_pagos[3]),"</td>
+        echo "<td>".$nombre_paciente."</td>";
+
+        $result_sucursal    =   mysqli_query($conn, "SELECT sucursal from sucursales WHERE id_sucursal=".$pacient['id_sucursal']);
+        $renglon_sucursal  =   $result_sucursal->fetch_assoc();
+        echo "<td>".$renglon_sucursal['sucursal']."</td>";
+
+        echo "<td>", htmlentities($dato_pagos[4]),"</td>";
+        echo "<td>",$dato_pagos[2],"</td>"; 
+        echo " <td>", htmlentities($dato_pagos[3]),"</td>
             <td>",money_format('%(#10n',$dato_pagos[2]-$dato_pagos[3])," </td>";
-              $deuda = $dato_pagos[0];
+        $deuda = $dato_pagos[0];
               
-              echo '<td><a href="abonos.php?id_adeudo=',$deuda,'&fecha=',$fechab,'&nombre_paciente=',$nombre_paciente,'" class="prueba2">Ver >></a></td></tr>';
-            }else{
-              $id_deuda = $dato_pagos[0];
-              $ano = date(Y);
+        echo '<td><a href="abonos.php?id_adeudo=',$deuda,'&fecha=',$fechab,'&nombre_paciente=',$nombre_paciente,'" class="prueba2">Ver >></a></td></tr>';
+      }else{
+        $id_deuda = $dato_pagos[0];
+        $ano = date(Y);
               
     //$resul2 = $conn->query($sql, $conn) or die ("problema con la solicitud");
     //$renglon2 = mysql_fetch_assoc($resul2);  
