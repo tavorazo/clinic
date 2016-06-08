@@ -5,6 +5,7 @@
 	//if($_SESSION['rol']!='admin')
 	//		header('location: ../panel.php');
 	$usuario = $_SESSION['u'];
+  $sucursal = $_SESSION['sucursal'];
 ?>
 <!DOCTYPE html>
 <html class="html">
@@ -49,7 +50,6 @@
      <a   href="../panel.php" style="float:left; margin-right:10px"> << Regresar </a> <h3  style="margin-right:5px">|</h3>
      <h1>Generar aviso</h1><hr><br>
 		<form action="aviso_procesar.php" method="POST">
-
 			<label>Titulo de aviso</label>
 				<input type="text" class="campoT" name="titulo"><br>
 			<label>Texto</label>
@@ -61,13 +61,31 @@
 				<option value="a">Almacen</option>
 				
 			<?php
-				include('../php/base.php');
-				$result = $conn->query("SELECT * FROM usuarios order by apellido_paterno");
+        include('../php/base.php');
+				$result = $conn->query(($sucursal==0) ? "SELECT * FROM usuarios order by apellido_paterno" : "SELECT * FROM usuarios where id_sucursal=$sucursal order by apellido_paterno");
 		      while ($row = $result->fetch_assoc()) {
 		      	echo "<option value='",$row["id_usuario"],"'>",$row["nombres"],"</option>";
 		      }
+          echo "</select>";
+
+          $result=$conn->query("SELECT id_sucursal from usuarios where id_usuario = '$usuario' ");
+          $usr_sucursal = $result->fetch_assoc();
+
+          if($usr_sucursal['id_sucursal'] != 0){ //Si el usuario es matriz entonces podrá escoger a qué sucursal enviar los datos
+            echo "<input type='hidden' value='$sucursal' name='sucursal'>";
+          }
+          else{
+            echo "<label>Enviar a sucursal:</label><select class='campoT' name='sucursal'>"; 
+            $result=$conn->query("SELECT * from sucursales");
+            while($sucs = $result->fetch_assoc()){
+              echo "<option value='".$sucs['id_sucursal']."'>";
+              echo ($sucs['id_sucursal']==0) ? "Todas" : $sucs['sucursal'];
+              echo " </option> ";
+            }
+            echo "</select>";
+          }
 			?>
-			</select>
+			
 			<input type="submit" value="enviar" style="float:left">
 			<br><br>
       <br><br><br>

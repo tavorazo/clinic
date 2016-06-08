@@ -135,7 +135,7 @@ echo ' </div>';
     $a = $_SESSION['u'];  
     echo "<h13>Generales<hr></h13>";
     //$result1 = mysqli_query($conn,"SELECT * FROM avisos where id_persona='g' order by fecha desc limit 10");
-    $sql = "SELECT * FROM avisos where id_persona='g' order by fecha desc limit 10";
+    $sql = ($sucursal==0) ? "SELECT * FROM avisos where id_persona='g' order by fecha desc limit 10" : "SELECT * FROM avisos where id_persona='g' AND (id_sucursal=$sucursal OR id_sucursal=0) order by fecha desc limit 10";
     $result1 = $conn->query($sql);
     //while ($row1 = mysqli_fetch_array($result1, MYSQL_NUM)) {
     while ($row1 = $result1->fetch_assoc()) {
@@ -145,7 +145,7 @@ echo ' </div>';
     }
     echo "<h13>Dentistas<hr></h13>";
     //$result1 = mysqli_query($conn,"SELECT * FROM avisos where id_persona='d' order by fecha desc limit 10");
-    $sql = "SELECT * FROM avisos where id_persona='d' order by fecha desc limit 10";
+    $sql = ($sucursal==0) ? "SELECT * FROM avisos where id_persona='d' order by fecha desc limit 10" : "SELECT * FROM avisos where id_persona='d' AND (id_sucursal=$sucursal OR id_sucursal=0) order by fecha desc limit 10";
     $result1 = $conn->query($sql);
     //while ($row1 = mysqli_fetch_array($result1, MYSQL_NUM)) {
     while ($row1 = $result1->fetch_assoc()) {
@@ -156,7 +156,7 @@ echo ' </div>';
     echo "<h13>Administrativo<hr></h13>";
     //$result1 = mysqli_query($conn,"SELECT * FROM avisos where id_persona='ad' order by fecha desc limit 10");
     //while ($row1 = mysqli_fetch_array($result1, MYSQL_NUM)) {
-    $sql = "SELECT * FROM avisos where id_persona='ad' order by fecha desc limit 10";
+    $sql = ($sucursal==0) ? "SELECT * FROM avisos where id_persona='ad' order by fecha desc limit 10" : "SELECT * FROM avisos where id_persona='ad' AND (id_sucursal=$sucursal OR id_sucursal=0) order by fecha desc limit 10";
     $result1 = $conn->query($sql);
     while ($row1 = $result1->fetch_assoc()) {
       echo "<h3>", $row1["titulo"], "</h3><br><br><h13>";
@@ -165,7 +165,7 @@ echo ' </div>';
     }
     echo "<h13>Almacen<hr></h13>";
     //$result1 = mysqli_query($conn,"SELECT * FROM avisos where id_persona='$a' order by fecha desc limit 10");
-    $sql = "SELECT * FROM avisos where id_persona='$a' order by fecha desc limit 10";
+    $sql = ($sucursal==0) ? "SELECT * FROM avisos where id_persona='$a' order by fecha desc limit 10" : "SELECT * FROM avisos where id_persona='$a' AND (id_sucursal=$sucursal OR id_sucursal=0) order by fecha desc limit 10";
     $result1 = $conn->query($sql);
     // while ($row1 = mysqli_fetch_array($result1, MYSQL_NUM)) {
     while ($row1 = $result1->fetch_assoc()) {

@@ -5,6 +5,7 @@
 	if($_SESSION['rol']!='admin')
 			header('location: ../panel.php');
 	$usuario = $_SESSION['u'];
+   $sucursal = $_SESSION['sucursal'];
 ?>
 <!DOCTYPE html>
 <html>
@@ -30,6 +31,9 @@
 include('../php/base.php');			   
                $tabla="avisos";
 
+               $result=$conn->query("SELECT id_sucursal from usuarios where id_usuario = '$usuario' ");
+               $usr_sucursal = $result->fetch_assoc();
+
                //Consultamos a la base de datos para sacar las columnas de la tabla
                $result = $conn->query("SHOW COLUMNS FROM $tabla");
                ?>
@@ -38,6 +42,7 @@ include('../php/base.php');
     
          <tr style="background:#E0F8F1; font-weight: lighter; font-size: 24px; color: #506DBD; text-align: center;"> 
             <td>ID</td>
+            <td>Sucursal</td>
             <td>aviso</td>
             <td>fecha</td>
             <td></td>
@@ -46,12 +51,12 @@ include('../php/base.php');
 
                <?php
                //ahora consultamos a la base de datos para sacar los registros contenidos
-               $result = $conn->query("SELECT * FROM $tabla");
+               $result = $conn->query(($usr_sucursal['id_sucursal']==0) ? "SELECT * FROM $tabla" : "SELECT * FROM $tabla WHERE id_sucursal=$sucursal");
                
                while ($row2 = $result->fetch_array(MYSQLI_NUM)) {
                	echo "<tr>";
                         echo "<td style='width: 10%; color:#4457AA' ><center>",$row2[0],"</td>";
-         					
+         					echo "<td style='width: 10%; color:#4457AA' ><center>",$row2[5],"</td>";
                         echo "<td style='width: 70%; background:#FAFFFE; padding:10px' >".$row2[1],"<br>",$row2[2],"<br><br><br></td>";
                         echo "<td style='width: 25%; padding:10px; color:#4457AA ' >",$row2[4],"<br><br><br></td>";
                

@@ -26,6 +26,7 @@
 	$a = $_POST['titulo'];
 	$b = $_POST['texto'];
 	$c = $_POST['usuario'];
+	$d = $_POST['sucursal'];
 	
 	$a = htmlentities($a);
 	$b = htmlentities($b);
@@ -33,7 +34,7 @@
 
 include('../php/base.php');
 
-$insertar = "insert into avisos (titulo, contenido, id_persona, fecha)values ('$a','$b','$c', now())";
+$insertar = "insert into avisos (titulo, contenido, id_persona, fecha, id_sucursal)values ('$a','$b','$c', now(), '$d')";
 $result=$conn->query($insertar);
 
 if(!$result)
