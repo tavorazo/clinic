@@ -295,6 +295,7 @@ echo "<table>";
 echo "<tr>
 <td>Fecha</td>
 <td>Responsable de Movimiento</td>
+<td>Sucursal</td>
 <td>Descripción</td>
 <td style='text-align: left;'>Cantidad</td>
 </tr>";
@@ -309,380 +310,461 @@ while ($row2 = $result2->fetch_row()){
 //$resul = $conn->query($select) or die ("problema con la solicitud");
 //$renglon = mysql_fetch_assoc($resul);
   echo "<td>".$renglon['nombres']." ". $renglon['apellido_paterno']." ".$renglon['apellido_materno']."</td>";
+
+  $result_sucursal    =   $conn->query("SELECT sucursal from sucursales WHERE id_sucursal=".$renglon['id_sucursal']);
+  $renglon_sucursal  =   $result_sucursal->fetch_assoc();
+  echo "<td>".utf8_encode($renglon_sucursal['sucursal'])."</td>";
+
   echo "<td>".$row2[3]."</td>";
-  echo "<td style='text-align: left;>".money_format('%(#10n', $row2[4])."</td>";
+  echo "<td style='text-align: left;'>".money_format('%(#10n', $row2[4])."</td>";
     $GASTOS_ADMIN = $GASTOS_ADMIN + $row2[4];
     $proveedores = $proveedores + $row2[4];
     echo "</tr>";
 
   }
-  echo "<tr><td></td><td></td><td>Total</td><td style='text-align: left;>".money_format('%(#10n', $proveedores)."</td></tr>";
+echo "<tr><td>-</td> <td>-</td> <td>-</td> <td>Total</td> <td style='text-align: left;'>".money_format('%(#10n', $proveedores)."</td></tr>";
 echo "</table>";
 echo "<br><br><br><br><br><br>";
 
 
 //$result2 = $conn->query("SELECT * from egresos_otros where fecha like '%$fechab%' and tipo='Gastos Administrativos'");
-    $result2 = $conn->query(($sucursal==0) ? "SELECT * from egresos_otros where fecha like '%$fechab%' and tipo='Gastos Administrativos'" : "SELECT * from egresos_otros where fecha like '%$fechab%' and tipo='Gastos Administrativos' and exists (select id_usuario from usuarios where id_sucursal='$sucursal' and id_usuario=egresos_otros.id_usuario)");
+$result2 = $conn->query(($sucursal==0) ? "SELECT * from egresos_otros where fecha like '%$fechab%' and tipo='Gastos Administrativos'" : "SELECT * from egresos_otros where fecha like '%$fechab%' and tipo='Gastos Administrativos' and exists (select id_usuario from usuarios where id_sucursal='$sucursal' and id_usuario=egresos_otros.id_usuario)");
 echo "<h1>Gastos Administrativos</h1>";
 echo "<table style='height:100px;width100%'>";
-    echo "<tr>
+echo "<tr>
     <td>Fecha</td>
     <td>Responsable de Movimiento</td>
+    <td>Sucursal</td>
     <td>Descripción</td>
     <td style='text-align: left;'>Cantidad</td>
     </tr>";
-    $g_admin=0;
+$g_admin=0;
 //while ($row2 = mysql_fetch_array($result2, MYSQL_NUM)){
-    while ($row2 = $result2->fetch_row()){
-      echo "<tr>";
-      echo "<td>".$row2[5]."</td>";
-      $usuario = $row2[1];
-      $select = "SELECT * from usuarios where id_usuario = '$usuario'";
-      $resul = $conn->query($select);
-      $renglon = $resul->fetch_assoc(); // or trigger_error($conn->error."[$select]");
+while ($row2 = $result2->fetch_row()){
+  echo "<tr>";
+  echo "<td>".$row2[5]."</td>";
+  $usuario = $row2[1];
+  $select = "SELECT * from usuarios where id_usuario = '$usuario'";
+  $resul = $conn->query($select);
+  $renglon = $resul->fetch_assoc(); // or trigger_error($conn->error."[$select]");
 //$resul = $conn->query($select) or die ("problema con la solicitud");
 //$renglon = mysql_fetch_assoc($resul);
-      echo "<td>".$renglon['nombres']." ". $renglon['apellido_paterno']." ".$renglon['apellido_materno']."</td>";
-      echo "<td>".$row2[3]."</td>";
-      echo "<td style='text-align: left;>".money_format('%(#10n', $row2[4])."</td>";
-        $GASTOS_ADMIN = $GASTOS_ADMIN + $row2[4];
-        $g_admin = $g_admin+$row2[4];
-        echo "</tr>";
+  echo "<td>".$renglon['nombres']." ". $renglon['apellido_paterno']." ".$renglon['apellido_materno']."</td>";
 
-      }
+  $result_sucursal    =   $conn->query("SELECT sucursal from sucursales WHERE id_sucursal=".$renglon['id_sucursal']);
+  $renglon_sucursal  =   $result_sucursal->fetch_assoc();
+  echo "<td>".utf8_encode($renglon_sucursal['sucursal'])."</td>";
+
+  echo "<td>".$row2[3]."</td>";
+  echo "<td style='text-align: left;'>".money_format('%(#10n', $row2[4])."</td>";
+  $GASTOS_ADMIN = $GASTOS_ADMIN + $row2[4];
+  $g_admin = $g_admin+$row2[4];
+  echo "</tr>";
+
+}
 //$result3 = $conn->query("SELECT * from nomina_historial where fecha like '%$fechab%' and aprobada='1'");
-      $result3 = $conn->query(($sucursal==0) ? "SELECT * from  nomina_historial where fecha like '%$fechab%' and aprobada='1'" : "SELECT * from  nomina_historial where fecha like '%$fechab%' and aprobada='1' and exists (select id_usuario from usuarios where id_sucursal='$sucursal' and id_usuario=nomina_historial.id_usuario)");
-      $nomina = 0;
+$result3 = $conn->query(($sucursal==0) ? "SELECT * from  nomina_historial where fecha like '%$fechab%' and aprobada='1'" : "SELECT * from  nomina_historial where fecha like '%$fechab%' and aprobada='1' and exists (select id_usuario from usuarios where id_sucursal='$sucursal' and id_usuario=nomina_historial.id_usuario)");
+$nomina = 0;
 //while ($row3 = mysql_fetch_array($result3, MYSQL_NUM)){
-      while ($row3 = $result3->fetch_row()){
-        $GASTOS_ADMIN = $GASTOS_ADMIN + $row3[5];
-        $nomina = $nomina + $row3[5];
-        $g_admin = $g_admin + $row3[5];
-      }
-      echo "<tr>";
-      echo "<td>";
-      echo "</td>";
-      echo "<td>";
-      echo "</td>";
-      echo "<td>Nomina";
-      echo "</td>";
-      echo "<td style='text-align: left;>".money_format('%(#10n', $nomina)."</td>";      
-        echo "</tr>";
-        echo "<tr><td></td><td></td><td>Total</td><td style='text-align: left;>".money_format('%(#10n', $g_admin)."</td></tr>";
-          echo "</table>";
-          echo "<br><br><br>";
+while ($row3 = $result3->fetch_row()){
+  $GASTOS_ADMIN = $GASTOS_ADMIN + $row3[5];
+  $nomina = $nomina + $row3[5];
+  $g_admin = $g_admin + $row3[5];
+}
+echo "<tr>";
+echo "<td></td>";
+echo "<td></td>";
+echo "<td>";
+
+if($sucursal==0)
+  echo "Todas";
+else{
+  $result2=$conn->query("SELECT sucursal from sucursales where id_sucursal = '$sucursal' ");
+  if(!$result2)
+    die('Error de consulta 2: '.mysqli_error($conn));
+  $nombre_suc = $result2->fetch_assoc();
+  echo $nombre_suc['sucursal'];
+}
+
+echo "</td>";
+echo "<td>Nomina";
+echo "</td>";
+echo "<td style='text-align: left;'>".money_format('%(#10n', $nomina)."</td>";      
+echo "</tr>";
+echo "<tr><td>-</td><td>-</td><td>-</td><td>Total</td><td style='text-align: left;'>".money_format('%(#10n', $g_admin)."</td></tr>";
+echo "</table>";
+echo "<br><br><br>";
 
 
 //$result2 = $conn->query("SELECT * from egresos_otros where fecha like '%$fechab%' and tipo='Egresos Laboratorio'");
-          $result2 = $conn->query(($sucursal==0) ? "SELECT * from egresos_otros where fecha like '%$fechab%' and tipo='Egresos Laboratorio'" : "SELECT * from egresos_otros where fecha like '%$fechab%' and tipo='Egresos Laboratorio' and exists (select id_usuario from usuarios where id_sucursal='$sucursal' and id_usuario=egresos_otros.id_usuario)");
-          echo "<h1>Egresos Laboratorio</h1>";
-          echo "<table>";
-          echo "<tr>
+$result2 = $conn->query(($sucursal==0) ? "SELECT * from egresos_otros where fecha like '%$fechab%' and tipo='Egresos Laboratorio'" : "SELECT * from egresos_otros where fecha like '%$fechab%' and tipo='Egresos Laboratorio' and exists (select id_usuario from usuarios where id_sucursal='$sucursal' and id_usuario=egresos_otros.id_usuario)");
+echo "<h1>Egresos Laboratorio</h1>";
+echo "<table>";
+echo "<tr>
           <td>Fecha</td>
           <td>Responsable de Movimiento</td>
+          <td>Sucursal</td>
           <td>Descripción</td>
           <td style='text-align: left;'>Cantidad</td>
           </tr>";
-          $lab = 0;
+$lab = 0;
 //while ($row2 = mysql_fetch_array($result2, MYSQL_NUM)){
-          while ($row2 = $result2->fetch_row()){
-            echo "<tr>";
-            echo "<td>".$row2[5]."</td>";
-            $usuario = $row2[1];
-            $select = 'SELECT * from usuarios where id_usuario="'.$usuario.'";';
-            $resul = $conn->query($select);
-            $renglon = $resul->fetch_assoc();
+while ($row2 = $result2->fetch_row()){
+  echo "<tr>";
+  echo "<td>".$row2[5]."</td>";
+  $usuario = $row2[1];
+  $select = 'SELECT * from usuarios where id_usuario="'.$usuario.'";';
+  $resul = $conn->query($select);
+  $renglon = $resul->fetch_assoc();
 //$resul = $conn->query($select) or die ("problema con la solicitud");
 //$renglon = mysql_fetch_assoc($resul);
-            echo "<td>".$renglon['nombres']." ". $renglon['apellido_paterno']." ".$renglon['apellido_materno']."</td>";
-            echo "<td>".$row2[3]."</td>";
-            echo "<td style='text-align: left;>".money_format('%(#10n', $row2[4])."</td>";
-              $GASTOS_ADMIN = $GASTOS_ADMIN + $row2[4];
-              $lab = $lab + $row2[4];
-              echo "</tr>";
+  echo "<td>".$renglon['nombres']." ". $renglon['apellido_paterno']." ".$renglon['apellido_materno']."</td>";
 
-            }
-            echo "<tr><td></td><td></td><td>Total</td><td style='text-align: left;>".money_format('%(#10n', $lab)."</td></tr>";
-              echo "</table>";
-              echo "<br><br><br>";
+  $result_sucursal    =   $conn->query("SELECT sucursal from sucursales WHERE id_sucursal=".$renglon['id_sucursal']);
+  $renglon_sucursal  =   $result_sucursal->fetch_assoc();
+  echo "<td>".utf8_encode($renglon_sucursal['sucursal'])."</td>";
+
+  echo "<td>".$row2[3]."</td>";
+  echo "<td style='text-align: left;'>".money_format('%(#10n', $row2[4])."</td>";
+  $GASTOS_ADMIN = $GASTOS_ADMIN + $row2[4];
+  $lab = $lab + $row2[4];
+  echo "</tr>";
+
+}
+echo "<tr><td>-</td><td>-</td><td>-</td><td>Total</td><td style='text-align: left;'>".money_format('%(#10n', $lab)."</td></tr>";
+echo "</table>";
+echo "<br><br><br>";
+
 //$result2 = $conn->query("SELECT * from egresos_otros where fecha like '%$fechab%' and tipo='Gastos de Remodelacion'");
-              $result2 = $conn->query(($sucursal==0) ? "SELECT * from egresos_otros where fecha like '%$fechab%' and tipo='Gastos de Remodelacion'" : "SELECT * from egresos_otros where fecha like '%$fechab%' and tipo='Gastos de Remodelacion' and exists (select id_usuario from usuarios where id_sucursal='$sucursal' and id_usuario=egresos_otros.id_usuario)");
+$result2 = $conn->query(($sucursal==0) ? "SELECT * from egresos_otros where fecha like '%$fechab%' and tipo='Gastos de Remodelacion'" : "SELECT * from egresos_otros where fecha like '%$fechab%' and tipo='Gastos de Remodelacion' and exists (select id_usuario from usuarios where id_sucursal='$sucursal' and id_usuario=egresos_otros.id_usuario)");
 
-              echo "<h1>Gastos de Remodelación</h1>";
-              echo "<table>";
-              echo "<tr>
-              <td>Fecha</td>
-              <td>Responsable de Movimiento</td>
-              <td>Descripción</td>
-              <td style='text-align: left;'>Cantidad</td>
-              </tr>";
-              $remo = 0;
+echo "<h1>Gastos de Remodelación</h1>";
+echo "<table>";
+echo "<tr>
+  <td>Fecha</td>
+  <td>Responsable de Movimiento</td>
+  <td>Sucursal</td>
+  <td>Descripción</td>
+  <td style='text-align: left;'>Cantidad</td>
+  </tr>";
+$remo = 0;
 //while ($row2 = mysql_fetch_array($result2, MYSQL_NUM)){
-              while ($row2 = $result2->fetch_row()){  
-                echo "<tr>";
-                echo "<td>".$row2[5]."</td>";
-                $usuario = $row2[1];
-                $select = 'SELECT * from usuarios where id_usuario="'.$usuario.'";';
-                $resul = $conn->query($select);
-                $renglon = $resul->fetch_assoc();
+while ($row2 = $result2->fetch_row()){  
+  echo "<tr>";
+  echo "<td>".$row2[5]."</td>";
+  $usuario = $row2[1];
+  $select = 'SELECT * from usuarios where id_usuario="'.$usuario.'";';
+  $resul = $conn->query($select);
+  $renglon = $resul->fetch_assoc();
 //$resul = $conn->query($select) or die ("problema con la solicitud");
 //$renglon = mysql_fetch_assoc($resul);
-                echo "<td>".$renglon['nombres']." ". $renglon['apellido_paterno']." ".$renglon['apellido_materno']."</td>";
-                echo "<td>".$row2[3]."</td>";
-                echo "<td style='text-align: left;>".money_format('%(#10n', $row2[4])."</td>";
-                  $GASTOS_ADMIN = $GASTOS_ADMIN + $row2[4];
-                  $remo = $remo + $row2[4];
-                  echo "</tr>";
+  echo "<td>".$renglon['nombres']." ". $renglon['apellido_paterno']." ".$renglon['apellido_materno']."</td>";
 
-                }
-                echo "<tr><td></td><td></td><td>Total</td><td style='text-align: left;>".money_format('%(#10n', $remo)."</td></tr>";
-                  echo "</table>";
-                  echo "<br><br><br>";
+  $result_sucursal    =   $conn->query("SELECT sucursal from sucursales WHERE id_sucursal=".$renglon['id_sucursal']);
+  $renglon_sucursal  =   $result_sucursal->fetch_assoc();
+  echo "<td>".utf8_encode($renglon_sucursal['sucursal'])."</td>";
+
+  echo "<td>".$row2[3]."</td>";
+  echo "<td style='text-align: left;'>".money_format('%(#10n', $row2[4])."</td>";
+  $GASTOS_ADMIN = $GASTOS_ADMIN + $row2[4];
+  $remo = $remo + $row2[4];
+  echo "</tr>";
+
+}
+echo "<tr><td>-</td><td>-</td><td>-</td><td>Total</td><td style='text-align: left;'>".money_format('%(#10n', $remo)."</td></tr>";
+echo "</table>";
+echo "<br><br><br>";
 //$result2 = $conn->query("SELECT * from egresos_otros where fecha like '%$fechab%' and tipo='Mantenimiento y Mano de Obra'");
-                  $result2 = $conn->query(($sucursal==0) ? "SELECT * from egresos_otros where fecha like '%$fechab%' and tipo='Mantenimiento y Mano de Obra'" : "SELECT * from egresos_otros where fecha like '%$fechab%' and tipo='Mantenimiento y Mano de Obra' and exists (select id_usuario from usuarios where id_sucursal='$sucursal' and id_usuario=egresos_otros.id_usuario)");
+$result2 = $conn->query(($sucursal==0) ? "SELECT * from egresos_otros where fecha like '%$fechab%' and tipo='Mantenimiento y Mano de Obra'" : "SELECT * from egresos_otros where fecha like '%$fechab%' and tipo='Mantenimiento y Mano de Obra' and exists (select id_usuario from usuarios where id_sucursal='$sucursal' and id_usuario=egresos_otros.id_usuario)");
 
-                  echo "<h1>Mantenimiento y Mano de Obra</h1>";
-                  echo "<table>";
-                  echo "<tr>
-                  <td>Fecha</td>
-                  <td>Responsable de Movimiento</td>
-                  <td>Descripción</td>
-                  <td style='text-align: left;'>Cantidad</td>
-                  </tr>";
-                  $mante = 0;
+echo "<h1>Mantenimiento y Mano de Obra</h1>";
+echo "<table>";
+echo "<tr>
+  <td>Fecha</td>
+  <td>Responsable de Movimiento</td>
+  <td>Sucursal</td>
+  <td>Descripción</td>
+  <td style='text-align: left;'>Cantidad</td>
+  </tr>";
+$mante = 0;
 //while ($row2 = mysql_fetch_array($result2, MYSQL_NUM)){
-                  while ($row2 = $result2->fetch_row()){
-                    echo "<tr>";
-                    echo "<td>".$row2[5]."</td>";
-                    $usuario = $row2[1];
-                    $select = 'SELECT * from usuarios where id_usuario="'.$usuario.'";';
-                    $resul = $conn->query($select);
-                    $renglon = $resul->fetch_assoc();
+while ($row2 = $result2->fetch_row()){
+  echo "<tr>";
+  echo "<td>".$row2[5]."</td>";
+  $usuario = $row2[1];
+  $select = 'SELECT * from usuarios where id_usuario="'.$usuario.'";';
+  $resul = $conn->query($select);
+  $renglon = $resul->fetch_assoc();
 //$resul = $conn->query($select) or die ("problema con la solicitud");
 //$renglon = mysql_fetch_assoc($resul);
-                    echo "<td>".$renglon['nombres']." ". $renglon['apellido_paterno']." ".$renglon['apellido_materno']."</td>";
-                    echo "<td>".$row2[3]."</td>";
-                    echo "<td style='text-align: left;>".money_format('%(#10n', $row2[4])."</td>";
-                      $GASTOS_ADMIN = $GASTOS_ADMIN + $row2[4];
-                      $mante = $mante + $row2[4];
-                    echo "</tr>";
-                    }
+  echo "<td>".$renglon['nombres']." ". $renglon['apellido_paterno']." ".$renglon['apellido_materno']."</td>";
 
-                    echo "<tr><td></td><td></td><td>Total</td><td style='text-align: left;>adasdsad".money_format('%(#10n', $mante)."</td></tr>";
-                  echo "</table>";
-                      echo "<br><br><br>";
+  $result_sucursal    =   $conn->query("SELECT sucursal from sucursales WHERE id_sucursal=".$renglon['id_sucursal']);
+  $renglon_sucursal  =   $result_sucursal->fetch_assoc();
+  echo "<td>".utf8_encode($renglon_sucursal['sucursal'])."</td>";
+
+  echo "<td>".$row2[3]."</td>";
+  echo "<td style='text-align: left;'>".money_format('%(#10n', $row2[4])."</td>";
+  $GASTOS_ADMIN = $GASTOS_ADMIN + $row2[4];
+  $mante = $mante + $row2[4];
+  echo "</tr>";
+}
+echo "<tr><td>-</td><td>-</td><td>-</td><td>Total</td><td style='text-align: left;'".money_format('%(#10n', $mante)."</td></tr>";
+echo "</table>";
+echo "<br><br><br>";
+
 //$result2 = $conn->query("SELECT * from egresos_otros where fecha like '%$fechab%' and tipo='Personales'");
-                      $result2 = $conn->query(($sucursal==0) ? "SELECT * from egresos_otros where fecha like '%$fechab%' and tipo='Personales'" : "SELECT * from egresos_otros where fecha like '%$fechab%' and tipo='Personales' and exists (select id_usuario from usuarios where id_sucursal='$sucursal' and id_usuario=egresos_otros.id_usuario)");
+$result2 = $conn->query(($sucursal==0) ? "SELECT * from egresos_otros where fecha like '%$fechab%' and tipo='Personales'" : "SELECT * from egresos_otros where fecha like '%$fechab%' and tipo='Personales' and exists (select id_usuario from usuarios where id_sucursal='$sucursal' and id_usuario=egresos_otros.id_usuario)");
 
-                      echo "<h1>Personales</h1>";
-                      echo "<table>";
-                      echo "<tr>
-                      <td>Fecha</td>
-                      <td>Responsable de Movimiento</td>
-                      <td>Descripción</td>
-                      <td style='text-align: left;'>Cantidad</td>
-                      </tr>";
-                      $perso = 0;
+echo "<h1>Personales</h1>";
+echo "<table>";
+echo "<tr>
+<td>Fecha</td>
+<td>Responsable de Movimiento</td>
+<td>Sucursal</td>
+<td>Descripción</td>
+<td style='text-align: left;'>Cantidad</td>
+</tr>";
+$perso = 0;
 //while ($row2 = mysql_fetch_array($result2, MYSQL_NUM)){
-                      while ($row2 = $result2->fetch_row()){
-                        echo "<tr>";
-                        echo "<td>".$row2[5]."</td>";
-                        $usuario = $row2[1];
-                        $select = 'SELECT * from usuarios where id_usuario="'.$usuario.'";';
-                        $resul = $conn->query($select);
-                        $renglon = $resul->fetch_assoc();
+while ($row2 = $result2->fetch_row()){
+  echo "<tr>";
+  echo "<td>".$row2[5]."</td>";
+  $usuario = $row2[1];
+  $select = 'SELECT * from usuarios where id_usuario="'.$usuario.'";';
+  $resul = $conn->query($select);
+  $renglon = $resul->fetch_assoc();
 //$resul = $conn->query($select) or die ("problema con la solicitud");
 //$renglon = mysql_fetch_assoc($resul);
-                        echo "<td>".$renglon['nombres']." ". $renglon['apellido_paterno']." ".$renglon['apellido_materno']."</td>";
-                        echo "<td>".$row2[3]."</td>";
-                        echo "<td style='text-align: left;>".money_format('%(#10n', $row2[4])."</td>";
-                          $GASTOS_PERSO = $GASTOS_PERSO + $row2[4];
-                          $perso = $perso + $row2[4];
-                          echo "</tr>";
+  echo "<td>".$renglon['nombres']." ". $renglon['apellido_paterno']." ".$renglon['apellido_materno']."</td>";
 
-                        }
-                        echo "<tr><td></td><td></td><td>Total</td><td style='text-align: left;>".money_format('%(#10n', $perso)."</td></tr>";
-                          echo "</table>";
-                          echo "<br><br><br>";
+  $result_sucursal    =   $conn->query("SELECT sucursal from sucursales WHERE id_sucursal=".$renglon['id_sucursal']);
+  $renglon_sucursal  =   $result_sucursal->fetch_assoc();
+  echo "<td>".utf8_encode($renglon_sucursal['sucursal'])."</td>";
+
+  echo "<td>".$row2[3]."</td>";
+  echo "<td style='text-align: left;'>".money_format('%(#10n', $row2[4])."</td>";
+  $GASTOS_PERSO = $GASTOS_PERSO + $row2[4];
+  $perso = $perso + $row2[4];
+  echo "</tr>";
+
+}
+echo "<tr><td>-</td><td>-</td><td>-</td><td>Total</td><td style='text-align: left;'>".money_format('%(#10n', $perso)."</td></tr>";
+echo "</table>";
+echo "<br><br><br>";
+
 //$result2 = $conn->query("SELECT * from egresos_otros where fecha like '%$fechab%' and tipo='Gastos Medicos'");
-                          $result2 = $conn->query(($sucursal==0) ? "SELECT * from egresos_otros where fecha like '%$fechab%' and tipo='Gastos Medicos'" : "SELECT * from egresos_otros where fecha like '%$fechab%' and tipo='Gastos Medicos' and exists (select id_usuario from usuarios where id_sucursal='$sucursal' and id_usuario=egresos_otros.id_usuario)");
+$result2 = $conn->query(($sucursal==0) ? "SELECT * from egresos_otros where fecha like '%$fechab%' and tipo='Gastos Medicos'" : "SELECT * from egresos_otros where fecha like '%$fechab%' and tipo='Gastos Medicos' and exists (select id_usuario from usuarios where id_sucursal='$sucursal' and id_usuario=egresos_otros.id_usuario)");
 
-                          echo "<h1>Gastos Medicos</h1>";
-                          echo "<table>";
-                          echo "<tr>
-                          <td>Fecha</td>
-                          <td>Responsable de Movimiento</td>
-                          <td>Descripción</td>
-                          <td style='text-align: left; color:red;'>Cantidad</td>
-                          </tr>";
-                          $med = 0;
+echo "<h1>Gastos Medicos</h1>";
+echo "<table>";
+echo "<tr>
+  <td>Fecha</td>
+  <td>Responsable de Movimiento</td>
+  <td>Sucursal</td>
+  <td>Descripción</td>
+  <td style='text-align: left; color:red;'>Cantidad</td>
+  </tr>";
+$med = 0;
 
 //while ($row2 = mysql_fetch_array($result2, MYSQL_NUM)){
-                          while ($row2 = $result2->fetch_row()){
-                            echo "<tr>";
-                            echo "<td>".$row2[5]."</td>";
-                            $usuario = $row2[1];
-                            $select = 'SELECT * from usuarios where id_usuario="'.$usuario.'";';
-                            $resul = $conn->query($select);
-                            $renglon = $resul->fetch_assoc();
+while ($row2 = $result2->fetch_row()){
+  echo "<tr>";
+  echo "<td>".$row2[5]."</td>";
+  $usuario = $row2[1];
+  $select = 'SELECT * from usuarios where id_usuario="'.$usuario.'";';
+  $resul = $conn->query($select);
+  $renglon = $resul->fetch_assoc();
 //$resul = $conn->query($select) or die ("problema con la solicitud");
 //$renglon = mysql_fetch_assoc($resul);
-                            echo "<td>".$renglon['nombres']." ". $renglon['apellido_paterno']." ".$renglon['apellido_materno']."</td>";
-                            echo "<td>".$row2[3]."</td>";
-                            echo "<td style='text-align: left;>".money_format('%(#10n', $row2[4])."</td>";
-                              $GASTOS_PERSO = $GASTOS_PERSO + $row2[4];
-                              $med = $med + $row2[4];
-                              echo "</tr>";
+  echo "<td>".$renglon['nombres']." ". $renglon['apellido_paterno']." ".$renglon['apellido_materno']."</td>";
 
-                            }
-                            echo "<tr><td></td><td></td><td>Total</td><td style='text-align: left;>".money_format('%(#10n', $med)."</td></tr>";
-                              echo "</table>";
-                              echo "<br><br><br>";
+  $result_sucursal    =   $conn->query("SELECT sucursal from sucursales WHERE id_sucursal=".$renglon['id_sucursal']);
+  $renglon_sucursal  =   $result_sucursal->fetch_assoc();
+  echo "<td>".utf8_encode($renglon_sucursal['sucursal'])."</td>";
+
+  echo "<td>".$row2[3]."</td>";
+  echo "<td style='text-align: left;'>".money_format('%(#10n', $row2[4])."</td>";
+  $GASTOS_PERSO = $GASTOS_PERSO + $row2[4];
+  $med = $med + $row2[4];
+  echo "</tr>";
+
+}
+echo "<tr><td>-</td><td>-</td><td>-</td><td>Total</td><td style='text-align: left;'>".money_format('%(#10n', $med)."</td></tr>";
+echo "</table>";
+echo "<br><br><br>";
+
 //$result2 = $conn->query("SELECT * from egresos_otros where fecha like '%$fechab%' and tipo='Inbursa'");
-                              $result2 = $conn->query(($sucursal==0) ? "SELECT * from egresos_otros where fecha like '%$fechab%' and tipo='Inbursa'" : "SELECT * from egresos_otros where fecha like '%$fechab%' and tipo='Inbursa' and exists (select id_usuario from usuarios where id_sucursal='$sucursal' and id_usuario=egresos_otros.id_usuario)");
+$result2 = $conn->query(($sucursal==0) ? "SELECT * from egresos_otros where fecha like '%$fechab%' and tipo='Inbursa'" : "SELECT * from egresos_otros where fecha like '%$fechab%' and tipo='Inbursa' and exists (select id_usuario from usuarios where id_sucursal='$sucursal' and id_usuario=egresos_otros.id_usuario)");
 
-                              echo "<h1>Inbursa</h1>";
-                              echo "<table>";
-                              echo "<tr>
-                              <td>Fecha</td>
-                              <td>Responsable de Movimiento</td>
-                              <td>Descripción</td>
-                              <td style='text-align: left; color:pink'>Cantidad</td>
-                              </tr>";
-                              $inbu = 0;
+echo "<h1>Inbursa</h1>";
+echo "<table>";
+echo "<tr>
+  <td>Fecha</td>
+  <td>Responsable de Movimiento</td>
+  <td>Sucursal</td>
+  <td>Descripción</td>
+  <td style='text-align: left;'>Cantidad</td>
+   </tr>";
+$inbu = 0;
 //while ($row2 = mysql_fetch_array($result2, MYSQL_NUM)){
-                              while ($row2 = $result2->fetch_row()){
-                                echo "<tr>";
-                                echo "<td>".$row2[5]."</td>";
-                                $usuario = $row2[1];
-                                $select = 'SELECT * from usuarios where id_usuario="'.$usuario.'";';
-                                $resul = $conn->query($select);
-                                $renglon = $resul->fetch_assoc();
+while ($row2 = $result2->fetch_row()){
+  echo "<tr>";
+  echo "<td>".$row2[5]."</td>";
+  $usuario = $row2[1];
+  $select = 'SELECT * from usuarios where id_usuario="'.$usuario.'";';
+  $resul = $conn->query($select);
+  $renglon = $resul->fetch_assoc();
 //$resul = $conn->query($select) or die ("problema con la solicitud");
 //$renglon = mysql_fetch_assoc($resul);
-                                echo "<td>".$renglon['nombres']." ". $renglon['apellido_paterno']." ".$renglon['apellido_materno']."</td>";
-                                echo "<td>".$row2[3]."</td>";
-                                echo "<td style='text-align: left;>".money_format('%(#10n', $row2[4])."</td>";
-                                  $GASTOS_PERSO = $GASTOS_PERSO + $row2[4];
-                                  $inbu = $inbu + $row2[4];
-                                  echo "</tr>";
+  echo "<td>".$renglon['nombres']." ". $renglon['apellido_paterno']." ".$renglon['apellido_materno']."</td>";
 
-                                }
-                                echo "<tr><td></td><td></td><td>Total</td><td style='text-align: left;>".money_format('%(#10n', $inbu)."</td></tr>";
-                                  echo "</table>";
-                                  echo "<br><br><br>";
+  $result_sucursal    =   $conn->query("SELECT sucursal from sucursales WHERE id_sucursal=".$renglon['id_sucursal']);
+  $renglon_sucursal  =   $result_sucursal->fetch_assoc();
+  echo "<td>".utf8_encode($renglon_sucursal['sucursal'])."</td>";
+
+  echo "<td>".$row2[3]."</td>";
+  echo "<td style='text-align: left;'>".money_format('%(#10n', $row2[4])."</td>";
+  $GASTOS_PERSO = $GASTOS_PERSO + $row2[4];
+  $inbu = $inbu + $row2[4];
+  echo "</tr>";
+
+}
+echo "<tr><td>-</td><td>-</td><td>-</td><td>Total</td><td style='text-align: left;'>".money_format('%(#10n', $inbu)."</td></tr>";
+echo "</table>";
+echo "<br><br><br>";
+
 //$result2 = $conn->query("SELECT * from egresos_otros where fecha like '%$fechab%' and tipo='Pagos de Tarjeta de Credito'");
-                                  $result2 = $conn->query(($sucursal==0) ? "SELECT * from egresos_otros where fecha like '%$fechab%' and tipo='Pagos de Tarjeta de Credito'" : "SELECT * from egresos_otros where fecha like '%$fechab%' and tipo='Pagos de Tarjeta de Credito' and exists (select id_usuario from usuarios where id_sucursal='$sucursal' and id_usuario=egresos_otros.id_usuario)");
+$result2 = $conn->query(($sucursal==0) ? "SELECT * from egresos_otros where fecha like '%$fechab%' and tipo='Pagos de Tarjeta de Credito'" : "SELECT * from egresos_otros where fecha like '%$fechab%' and tipo='Pagos de Tarjeta de Credito' and exists (select id_usuario from usuarios where id_sucursal='$sucursal' and id_usuario=egresos_otros.id_usuario)");
 
-                                  echo "Pagos de Tarjeta de Credito";
-                                  echo "<table>";
-                                  echo "<tr>
-                                  <td>Fecha</td>
-                                  <td>Responsable de Movimiento</td>
-                                  <td>Descripción</td>
-                                  <td style='text-align: left; color:green'>Cantidad</td>
-                                  </tr>";
-                                  $cre = 0;
+echo "<h1>Pagos de Tarjeta de Credito</h1>";
+echo "<table>";
+echo "<tr>
+    <td>Fecha</td>
+    <td>Responsable de Movimiento</td>
+    <td>Sucursal</td>
+    <td>Descripción</td>
+    <td style='text-align: left;'>Cantidad</td>
+    </tr>";
+$cre = 0;
 //while ($row2 = mysql_fetch_array($result2, MYSQL_NUM)){
-                                  while ($row2 = $result2->fetch_row()){
-                                    echo "<tr>";
-                                    echo "<td>".$row2[5]."</td>";
-                                    $usuario = $row2[1];
-                                    $select = 'SELECT * from usuarios where id_usuario="'.$usuario.'";';
-                                    $resul = $conn->query($select);
-                                    $renglon = $resul->fetch_assoc();
+while ($row2 = $result2->fetch_row()){
+  echo "<tr>";
+  echo "<td>".$row2[5]."</td>";
+  $usuario = $row2[1];
+  $select = 'SELECT * from usuarios where id_usuario="'.$usuario.'";';
+  $resul = $conn->query($select);
+  $renglon = $resul->fetch_assoc();
 //$resul = $conn->query($select) or die ("problema con la solicitud");
 //$renglon = mysql_fetch_assoc($resul);
-                                    echo "<td>".$renglon['nombres']." ". $renglon['apellido_paterno']." ".$renglon['apellido_materno']."</td>";
-                                    echo "<td>".$row2[3]."</td>";
-                                    echo "<td style='text-align: left;>".money_format('%(#10n', $row2[4])."</td>";
-                                      $GASTOS_PERSO = $GASTOS_PERSO + $row2[4];
-                                      $cre = $cre + $row2[4];
-                                      echo "</tr>";
+  echo "<td>".$renglon['nombres']." ". $renglon['apellido_paterno']." ".$renglon['apellido_materno']."</td>";
 
-                                    }
-                                    echo "<tr><td></td><td></td><td>Total</td><td style='text-align: left;>".money_format('%(#10n', $cre)."</td></tr>";
-                                      echo "</table>";
-                                      echo "<br><br><br>";
+  $result_sucursal    =   $conn->query("SELECT sucursal from sucursales WHERE id_sucursal=".$renglon['id_sucursal']);
+  $renglon_sucursal  =   $result_sucursal->fetch_assoc();
+  echo "<td>".utf8_encode($renglon_sucursal['sucursal'])."</td>";
+
+  echo "<td>".$row2[3]."</td>";
+  echo "<td style='text-align: left;'>".money_format('%(#10n', $row2[4])."</td>";
+  $GASTOS_PERSO = $GASTOS_PERSO + $row2[4];
+  $cre = $cre + $row2[4];
+  echo "</tr>";
+
+}
+echo "<tr><td>-</td><td>-</td><td>-</td><td>Total</td><td style='text-align: left;'>".money_format('%(#10n', $cre)."</td></tr>";
+echo "</table>";
+echo "<br><br><br>";
 //$result2 = $conn->query("SELECT * from egresos_otros where fecha like '%$fechab%' and tipo='Rentas'");
-                                      $result2 = $conn->query(($sucursal==0) ? "SELECT * from egresos_otros where fecha like '%$fechab%' and tipo='Rentas'" : "SELECT * from egresos_otros where fecha like '%$fechab%' and tipo='Rentas' and tipo='Pagos de Tarjeta de Credito' and exists (select id_usuario from usuarios where id_sucursal='$sucursal' and id_usuario=egresos_otros.id_usuario)");
+$result2 = $conn->query(($sucursal==0) ? "SELECT * from egresos_otros where fecha like '%$fechab%' and tipo='Rentas'" : "SELECT * from egresos_otros where fecha like '%$fechab%' and tipo='Rentas' and tipo='Pagos de Tarjeta de Credito' and exists (select id_usuario from usuarios where id_sucursal='$sucursal' and id_usuario=egresos_otros.id_usuario)");
 
-                                      echo "<h1>Rentas</h1>";
-                                      echo "<table>";
-                                      echo "<tr>
-                                      <td>Fecha</td>
-                                      <td>Responsable de Movimiento</td>
-                                      <td>Descripción</td>
-                                      <td style='text-align: left;'>Cantidad</td>
-                                      </tr>";
-                                      $ren = 0;
+echo "<h1>Rentas</h1>";
+echo "<table>";
+echo "<tr>
+   <td>Fecha</td>
+   <td>Responsable de Movimiento</td>
+   <td>Descripción</td>
+   <td>Sucursal</td>
+   <td style='text-align: left;'>Cantidad</td>
+   </tr>";
+$ren = 0;
 //while ($row2 = mysql_fetch_array($result2, MYSQL_NUM)){
-                                      while ($row2 = $result2->fetch_row()){
-                                        echo "<tr>";
-                                        echo "<td>".$row2[5]."</td>";
-                                        $usuario = $row2[1];
-                                        $select = 'SELECT * from usuarios where id_usuario="'.$usuario.'";';
-                                        $resul = $conn->query($select);
-                                        $renglon = $resul->fetch_assoc();
+while ($row2 = $result2->fetch_row()){
+  echo "<tr>";
+  echo "<td>".$row2[5]."</td>";
+  $usuario = $row2[1];
+  $select = 'SELECT * from usuarios where id_usuario="'.$usuario.'";';
+  $resul = $conn->query($select);
+  $renglon = $resul->fetch_assoc();
 //$resul = $conn->query($select) or die ("problema con la solicitud");
 //$renglon = mysql_fetch_assoc($resul);
-                                        echo "<td>".$renglon['nombres']." ". $renglon['apellido_paterno']." ".$renglon['apellido_materno']."</td>";
-                                        echo "<td>".$row2[3]."</td>";
-                                        echo "<td style='text-align: left;>".money_format('%(#10n', $row2[4])."</td>";
-                                          $GASTOS_PERSO = $GASTOS_PERSO + $row2[4];
-                                          $ren = $ren + $row2[4];
-                                          echo "</tr>";
+  echo "<td>".$renglon['nombres']." ". $renglon['apellido_paterno']." ".$renglon['apellido_materno']."</td>";
 
-                                        }
-                                        echo "<tr><td></td><td></td><td>Total</td><td style='text-align: left;>".money_format('%(#10n', $ren)."</td></tr>";
-                                          echo "</table>";
-                                          echo "<br><br><br>";
+  $result_sucursal    =   $conn->query("SELECT sucursal from sucursales WHERE id_sucursal=".$renglon['id_sucursal']);
+  $renglon_sucursal  =   $result_sucursal->fetch_assoc();
+  echo "<td>".utf8_encode($renglon_sucursal['sucursal'])."</td>";
+
+  echo "<td>".$row2[3]."</td>";
+  echo "<td style='text-align: left;'>".money_format('%(#10n', $row2[4])."</td>";
+    $GASTOS_PERSO = $GASTOS_PERSO + $row2[4];
+    $ren = $ren + $row2[4];
+    echo "</tr>";
+
+}
+echo "<tr><td>-</td><td>-</td><td>-</td><td>Total</td><td style='text-align: left;'>".money_format('%(#10n', $ren)."</td></tr>";
+echo "</table>";
+echo "<br><br><br>";
+
 //$result2 = $conn->query("SELECT * from inventario_historial_entradas where fecha like '%$fechab%'");
-                                          $result2 = $conn->query(($sucursal==0) ? "SELECT * from inventario_historial_entradas where fecha like '%$fechab%'" : "SELECT * from inventario_historial_entradas where fecha like '%$fechab%' and exists (select id_usuario from usuarios where id_sucursal='$sucursal' and id_usuario=inventario_historial_entradas.id_usuario)");
-                                          echo "<h1>Compras de productos</h1>";
-                                          echo "<table>";
-                                          echo "<tr>
-                                          <td>Fecha</td>
-                                          <td>Responsable de Movimiento</td>
-                                          <td>Descripción</td>
-                                          <td style='text-align: left;'>Cantidad</td>
-                                          </tr>";
-                                          $c_in = 0;
+$result2 = $conn->query(($sucursal==0) ? "SELECT * from inventario_historial_entradas where fecha like '%$fechab%'" : "SELECT * from inventario_historial_entradas where fecha like '%$fechab%' and exists (select id_usuario from usuarios where id_sucursal='$sucursal' and id_usuario=inventario_historial_entradas.id_usuario)");
+echo "<h1>Compras de productos</h1>";
+echo "<table>";
+echo "<tr>
+  <td>Fecha</td>
+  <td>Responsable de Movimiento</td>
+  <td>Sucursal</td>
+  <td>Descripción</td>
+  <td style='text-align: left;'>Cantidad</td>
+  </tr>";
+$c_in = 0;
 //while ($row2 = mysql_fetch_array($result2, MYSQL_NUM)){
-                                          while ($row2 = $result2->fetch_row()){  
-                                            echo "<tr>";
-                                            echo "<td>".$row2[5]."</td>";
-                                            $usuario = $row2[4];
-                                            $select = 'SELECT * from usuarios where id_usuario="'.$usuario.'";';
-                                            $resul = $conn->query($select);
-                                            $renglon = $resul->fetch_assoc();
+while ($row2 = $result2->fetch_row()){  
+  echo "<tr>";
+  echo "<td>".$row2[5]."</td>";
+  $usuario = $row2[4];
+  $select = 'SELECT * from usuarios where id_usuario="'.$usuario.'";';
+  $resul = $conn->query($select);
+  $renglon = $resul->fetch_assoc();
 //$resul = $conn->query($select) or die ("problema con la solicitud");
 //$renglon = mysql_fetch_assoc($resul);
-                                            echo "<td>".$renglon['nombres']." ". $renglon['apellido_paterno']." ".$renglon['apellido_materno']."</td>";
-                                            $producto_inventario = $row2[1];
-                                            $select = 'SELECT * from inventario where id_producto="'.$producto_inventario.'";';
-                                            $resul = $conn->query($select);
-                                            $renglon = $resul->fetch_assoc();
-//$resul = $conn->query($select) or die ("problema con la solicitud");
-//$renglon = mysql_fetch_assoc($resul);
-                                            echo "<td>".$renglon['nombre']."</td>";
-                                            echo "<td style='text-align: left;'>".money_format('%(#10n', $row2[3])."</td>";
-//$GASTOS_PERSO = $GASTOS_PERSO + $row2[4];
-                                              $c_in = $c_in + $row2[3];
-                                              echo "</tr>";
+  echo "<td>".$renglon['nombres']." ". $renglon['apellido_paterno']." ".$renglon['apellido_materno']."</td>";
 
-                                            }
-                                            echo "<tr><td></td><td></td><td>Total</td><td style='text-align: left;'>".money_format('%(#10n', $c_in)."</td></tr>";
-                                              echo "</table>";
-                                              echo "<br><br><br>";
-                                              echo "<BR>Total de Gastos Administrativos: ". money_format('%(#10n', $GASTOS_ADMIN)."<hr>";
-                                                echo "<BR>Total de Gastos Personales: ". money_format('%(#10n', $GASTOS_PERSO)."<hr>";
-                                                  echo "<BR>Total de Gastos Inventario: ". money_format('%(#10n', $c_in);
-                                                    $TOTAL_EGRESO = $GASTOS_ADMIN + $GASTOS_PERSO;
-                                                    echo "<br><br><br><BR><hr><hr>Total de Egresos Administrativos y Personales: ". money_format('%(#10n', $TOTAL_EGRESO)."<hr><hr>";
-                                                      $TOTAL_EGRESO = $TOTAL_EGRESO + $c_in;
-                                                      echo "<br>Total General de Egresos: ". money_format('%(#10n', $TOTAL_EGRESO)."<hr>";
-                                                      ?>
+  $result_sucursal    =   $conn->query("SELECT sucursal from sucursales WHERE id_sucursal=".$renglon['id_sucursal']);
+  $renglon_sucursal  =   $result_sucursal->fetch_assoc();
+  echo "<td>".utf8_encode($renglon_sucursal['sucursal'])."</td>";
+
+  $producto_inventario = $row2[1];
+  $select = 'SELECT * from inventario where id_producto="'.$producto_inventario.'";';
+  $resul = $conn->query($select);
+  $renglon = $resul->fetch_assoc();
+//$resul = $conn->query($select) or die ("problema con la solicitud");
+//$renglon = mysql_fetch_assoc($resul);
+  echo "<td>".$renglon['nombre']."</td>";
+  echo "<td style='text-align: left;'>".money_format('%(#10n', $row2[3])."</td>";
+//$GASTOS_PERSO = $GASTOS_PERSO + $row2[4];
+  $c_in = $c_in + $row2[3];
+  echo "</tr>";
+
+}
+echo "<tr><td>-</td><td>-</td><td>-</td><td>Total</td><td style='text-align: left;'>".money_format('%(#10n', $c_in)."</td></tr>";
+echo "</table>";
+echo "<br><br><br>";
+echo "<BR>Total de Gastos Administrativos: ". money_format('%(#10n', $GASTOS_ADMIN)."<hr>";
+echo "<BR>Total de Gastos Personales: ". money_format('%(#10n', $GASTOS_PERSO)."<hr>";
+echo "<BR>Total de Gastos Inventario: ". money_format('%(#10n', $c_in);
+$TOTAL_EGRESO = $GASTOS_ADMIN + $GASTOS_PERSO;
+echo "<br><br><br><BR><hr><hr>Total de Egresos Administrativos y Personales: ". money_format('%(#10n', $TOTAL_EGRESO)."<hr><hr>";
+$TOTAL_EGRESO = $TOTAL_EGRESO + $c_in;
+echo "<br>Total General de Egresos: ". money_format('%(#10n', $TOTAL_EGRESO)."<hr>";
+?>
                                                     </div>
 
                                                   </div>

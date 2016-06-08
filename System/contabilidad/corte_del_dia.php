@@ -79,6 +79,20 @@ date_default_timezone_set("Mexico/General");
     <h1>Ingresos</h1>
   </div>
   <div style="width: 500px;">
+    <?php
+
+ if($sucursal==0)
+  echo "<br><br><p>Sucursal: <u>Todas</u></p>";
+ else{
+  $result2=$conn->query("SELECT sucursal from sucursales where id_sucursal = '$sucursal' ");
+  if(!$result2)
+    die('Error de consulta 2: '.mysqli_error($conn));
+  $nombre_suc = $result2->fetch_assoc();
+  echo "<br><br><p>Sucursal: <u>".$nombre_suc['sucursal']."</u></p>";
+
+ }
+
+    ?>
     <table style='margin-top:100px; min-width:99%; border:0; width:100%;'>
     <th>Tipo</th><th style="width: 300px;">Cantidad total:</th>
 
@@ -88,7 +102,7 @@ date_default_timezone_set("Mexico/General");
     <?php 
     $total_ingresos=0;
 
-    $result_pagos = $conn->query(($sucursal==0) ? "SELECT * FROM pagos_historia WHERE DATE(fecha) = CURDATE() AND id_tipo='1' " : "SELECT * FROM pagos_historia WHERE DATE(fecha) = CURDATE() AND id_tipo='1' and exists (select id_sucursal from paciente where  id_sucursal='$sucursal' and id_paciente=pagos_historia.id_paciente)");
+    $result_pagos = $conn->query(($sucursal==0) ? "SELECT * FROM pagos_historia WHERE DATE(fecha) = CURDATE() AND id_tipo='1' " : "SELECT * FROM pagos_historia WHERE DATE(fecha) = CURDATE() AND id_tipo='1' and exists (select id_sucursal from usuarios where  id_sucursal='$sucursal' and id_usuario=pagos_historia.id_usuario)");
     $total_efectivo=0;
     while ($fila_pagos = $result_pagos->fetch_row()){
       $total_efectivo = $total_efectivo + $fila_pagos['4'];
@@ -101,7 +115,7 @@ date_default_timezone_set("Mexico/General");
 
      <tr style='background:#F5F6CE;'><td>Pago de pacientes con cheque</td>
       <?php 
-    $result_pagos = $conn->query(($sucursal==0) ? "SELECT * FROM pagos_historia WHERE DATE(fecha) = CURDATE() AND id_tipo='2' " : "SELECT * FROM pagos_historia WHERE DATE(fecha) = CURDATE() AND id_tipo='2' and exists (select id_sucursal from paciente where  id_sucursal='$sucursal' and id_paciente=pagos_historia.id_paciente)");
+    $result_pagos = $conn->query(($sucursal==0) ? "SELECT * FROM pagos_historia WHERE DATE(fecha) = CURDATE() AND id_tipo='2' " : "SELECT * FROM pagos_historia WHERE DATE(fecha) = CURDATE() AND id_tipo='2' and exists (select id_sucursal from usuarios where  id_sucursal='$sucursal' and id_usuario=pagos_historia.id_usuario)");
     $total_efectivo=0;
     while ($fila_pagos = $result_pagos->fetch_row()){
       $total_efectivo = $total_efectivo + $fila_pagos['4'];
@@ -114,7 +128,7 @@ date_default_timezone_set("Mexico/General");
 
       <tr style='background:#F5F6CE;'><td>Pago de pacientes con tarjeta</td>
       <?php 
-    $result_pagos = $conn->query(($sucursal==0) ? "SELECT * FROM pagos_historia WHERE DATE(fecha) = CURDATE() AND id_tipo='3' " : "SELECT * FROM pagos_historia WHERE DATE(fecha) = CURDATE() AND id_tipo='3' and exists (select id_sucursal from paciente where  id_sucursal='$sucursal' and id_paciente=pagos_historia.id_paciente)");
+    $result_pagos = $conn->query(($sucursal==0) ? "SELECT * FROM pagos_historia WHERE DATE(fecha) = CURDATE() AND id_tipo='3' " : "SELECT * FROM pagos_historia WHERE DATE(fecha) = CURDATE() AND id_tipo='3' and exists (select id_sucursal from usuarios where  id_sucursal='$sucursal' and id_usuario=pagos_historia.id_usuario)");
     $total_efectivo=0;
     while ($fila_pagos = $result_pagos->fetch_row()){
       $total_efectivo = $total_efectivo + $fila_pagos['4'];
@@ -127,7 +141,7 @@ date_default_timezone_set("Mexico/General");
 
       <tr style='background:#F5F6CE;'><td>Pago de pacientes por tranferencia</td>
       <?php 
-    $result_pagos = $conn->query(($sucursal==0) ? "SELECT * FROM pagos_historia WHERE DATE(fecha) = CURDATE() AND id_tipo='4' " : "SELECT * FROM pagos_historia WHERE DATE(fecha) = CURDATE() AND id_tipo='4' and exists (select id_sucursal from paciente where  id_sucursal='$sucursal' and id_paciente=pagos_historia.id_paciente)");
+    $result_pagos = $conn->query(($sucursal==0) ? "SELECT * FROM pagos_historia WHERE DATE(fecha) = CURDATE() AND id_tipo='4' " : "SELECT * FROM pagos_historia WHERE DATE(fecha) = CURDATE() AND id_tipo='4' and exists (select id_sucursal from usuarios where  id_sucursal='$sucursal' and id_usuario=pagos_historia.id_usuario)");
     $total_efectivo=0;
     while ($fila_pagos = $result_pagos->fetch_row()){
       $total_efectivo = $total_efectivo + $fila_pagos['4'];
@@ -143,7 +157,7 @@ date_default_timezone_set("Mexico/General");
        <tr style='background:#F5F6CE;'><td>Pago Productos Efectivo</td>
     <?php 
 
-    $result_pagos = $conn->query(($sucursal==0) ? "SELECT * FROM historial_compras WHERE DATE(fecha) = CURDATE() AND id_tipo='1' " : "SELECT * FROM historial_compras WHERE DATE(fecha) = CURDATE() AND id_tipo='1' and exists (select id_sucursal from paciente where  id_sucursal='$sucursal' and id_paciente=historial_compras.id_paciente)");
+    $result_pagos = $conn->query(($sucursal==0) ? "SELECT * FROM historial_compras WHERE DATE(fecha) = CURDATE() AND id_tipo='1' " : "SELECT * FROM historial_compras WHERE DATE(fecha) = CURDATE() AND id_tipo='1' and exists (select id_sucursal from usuarios where  id_sucursal='$sucursal' and id_usuario=historial_compras.id_usuario)");
     $total_efectivo=0;
     while ($fila_pagos = $result_pagos->fetch_row()){
       $total_efectivo = $total_efectivo + $fila_pagos['6'];
@@ -158,7 +172,7 @@ date_default_timezone_set("Mexico/General");
     <tr style='background:#F5F6CE;'><td>Pago Productos Cheque</td>
     <?php 
 
-    $result_pagos = $conn->query(($sucursal==0) ? "SELECT * FROM historial_compras WHERE DATE(fecha) = CURDATE() AND id_tipo='2' " : "SELECT * FROM historial_compras WHERE DATE(fecha) = CURDATE() AND id_tipo='2' and exists (select id_sucursal from paciente where  id_sucursal='$sucursal' and id_paciente=historial_compras.id_paciente)");
+    $result_pagos = $conn->query(($sucursal==0) ? "SELECT * FROM historial_compras WHERE DATE(fecha) = CURDATE() AND id_tipo='2' " : "SELECT * FROM historial_compras WHERE DATE(fecha) = CURDATE() AND id_tipo='2' and exists (select id_sucursal from usuarios where  id_sucursal='$sucursal' and id_usuario=historial_compras.id_usuario)");
     $total_efectivo=0;
     while ($fila_pagos = $result_pagos->fetch_row()){
       $total_efectivo = $total_efectivo + $fila_pagos['6'];
@@ -173,7 +187,7 @@ date_default_timezone_set("Mexico/General");
     <tr style='background:#F5F6CE;'><td>Pago Productos Tarjeta</td>
     <?php 
 
-    $result_pagos = $conn->query(($sucursal==0) ? "SELECT * FROM historial_compras WHERE DATE(fecha) = CURDATE() AND id_tipo='3' " : "SELECT * FROM historial_compras WHERE DATE(fecha) = CURDATE() AND id_tipo='3' and exists (select id_sucursal from paciente where  id_sucursal='$sucursal' and id_paciente=historial_compras.id_paciente)");
+    $result_pagos = $conn->query(($sucursal==0) ? "SELECT * FROM historial_compras WHERE DATE(fecha) = CURDATE() AND id_tipo='3' " : "SELECT * FROM historial_compras WHERE DATE(fecha) = CURDATE() AND id_tipo='3' and exists (select id_sucursal from usuarios where  id_sucursal='$sucursal' and id_usuario=historial_compras.id_usuario)");
     $total_efectivo=0;
     while ($fila_pagos = $result_pagos->fetch_row()){
       $total_efectivo = $total_efectivo + $fila_pagos['6'];
@@ -187,7 +201,7 @@ date_default_timezone_set("Mexico/General");
      <tr style='background:#F5F6CE;'><td>Pago Productos Transferencia</td>
     <?php 
 
-    $result_pagos = $conn->query(($sucursal==0) ? "SELECT * FROM historial_compras WHERE DATE(fecha) = CURDATE() AND id_tipo='4' " : "SELECT * FROM historial_compras WHERE DATE(fecha) = CURDATE() AND id_tipo='4' and exists (select id_sucursal from paciente where  id_sucursal='$sucursal' and id_paciente=historial_compras.id_paciente)");
+    $result_pagos = $conn->query(($sucursal==0) ? "SELECT * FROM historial_compras WHERE DATE(fecha) = CURDATE() AND id_tipo='4' " : "SELECT * FROM historial_compras WHERE DATE(fecha) = CURDATE() AND id_tipo='4' and exists (select id_sucursal from usuarios where  id_sucursal='$sucursal' and id_usuario=historial_compras.id_usuario)");
     $total_efectivo=0;
     while ($fila_pagos = $result_pagos->fetch_row()){
       $total_efectivo = $total_efectivo + $fila_pagos['6'];

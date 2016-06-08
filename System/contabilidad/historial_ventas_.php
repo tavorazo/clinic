@@ -357,6 +357,7 @@ echo "<table border=1 style='margin-top:100px; max-width:1000px '>
 <td style='color:#58ACFA'>Descripción     </td>
 <td style='color:#58ACFA'>Fecha           </td>
 <td style='color:#58ACFA'>Vendido Por     </td>
+<td style='color:#58ACFA'>Sucursal        </td>
 <td style='color:#58ACFA'>Precio Unitario </td>
 <td style='color:#58ACFA'>Cantidad        </td>
 <td style='color:#58ACFA'>Total           </td>
@@ -388,6 +389,11 @@ while ($row2 = $result2->fetch_array()){
               $renglon = $resul->fetch_assoc();
 			//vendido por
               echo "<td>".$renglon['nombres']." ".$renglon['apellido_paterno']." ".$renglon['apellido_materno']."</td>";
+
+              $result_sucursal    =   mysqli_query($conn, "SELECT sucursal from sucursales WHERE id_sucursal=".$renglon['id_sucursal']);
+              $renglon_sucursal  =   $result_sucursal->fetch_assoc();
+              echo "<td>".utf8_encode($renglon_sucursal['sucursal'])."</td>";
+
               echo "<td>".money_format('%(#10n', (int)$row2[4])."</td>";   //p unit
               echo "<td>".$row2[5]."</td>";   //cantidad
               echo "<td>".money_format('%(#10n', (int)$row2[6])."</td>";   //total

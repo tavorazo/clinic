@@ -291,6 +291,7 @@ date_default_timezone_set("Mexico/General");
       echo "<table border=1 style='margin-top:100px; '>
       <tr>
       <td style='color:#58ACFA'>Fecha             </td>";
+      echo "<td style='color:#58ACFA'>Sucursal:</td>";
       echo "<td style='color:#58ACFA'>Nombre <br>"; 
       echo "<td style='color:#58ACFA'>Concepto <br>";
       echo "<td style='color:#58ACFA'>Cantidad</td>
@@ -303,7 +304,7 @@ date_default_timezone_set("Mexico/General");
       $total = 0;
       $fecha = $ano."-".$mes;
 //echo $fecha;
-      $result_pagos = $conn->query(($sucursal==0) ? "SELECT * from pago_adeudo" : "SELECT * from pago_adeudo where exists (select id_sucursal from paciente where  id_sucursal='$sucursal' and id_paciente=pago_adeudo.id_paciente)");
+      $result_pagos = $conn->query(($sucursal==0) ? "SELECT * from pago_adeudo" : "SELECT * from pago_adeudo where exists (select id_sucursal from usuarios where  id_sucursal='$sucursal' and id_usuario=pago_adeudo.id_usuario)");
       setlocale(LC_MONETARY, 'en_US');
       
       //while ($fila_pagos = mysql_fetch_array($result_pagos, MYSQL_NUM)){
@@ -315,7 +316,11 @@ date_default_timezone_set("Mexico/General");
           echo "<tr>";
           echo "<td>".$fila_pagos2[5]."</td>";
           $paciente = $fila_pagos2[2];
-          $select= 'SELECT * from paciente where id_paciente="'.$paciente.'";';
+
+          $result_sucursal    =   $conn->query("SELECT s.sucursal,u.id_usuario FROM sucursales AS s, usuarios AS u WHERE u.id_sucursal=s.id_sucursal AND u.id_usuario='".$fila_pagos2[7]."'");
+          $renglon_sucursal  =   $result_sucursal->fetch_assoc();
+          echo "<td>".utf8_encode($renglon_sucursal['sucursal'])."</td>";
+
           $resul = $conn->query('SELECT * from paciente where id_paciente="'.$paciente.'";');
           //$renglon = mysql_fetch_assoc($resul);
           $renglon = $resul->fetch_assoc();
@@ -323,30 +328,35 @@ date_default_timezone_set("Mexico/General");
           echo "<td>",($fila_pagos[4]),"</td>";
           $total = $total + $fila_pagos2[4];
           echo "<td>",money_format('%(#10n',$fila_pagos2[4]),"</td>";
-            echo "</tr>";
-          }
+          echo "</tr>";
         }
-        $valor = 0;
-        $semana++;
+      }
+      $valor = 0;
+      $semana++;
 //echo "<td>",$total,"</td></tr>";
-        $TOTAL_TARJETA=$TOTAL_TARJETA+$total;
+      $TOTAL_TARJETA=$TOTAL_TARJETA+$total;
         /*+++++++++++++++++++++++TERMINA TARJETA++++++++++++++++++++++++*/
-        $valor = 0;
+      $valor = 0;
         /*+++++++++++++++++++++++ PRODUCTO TARJETA++++++++++++++++++++++++*/    
-        $total = 0;
-        $fecha = $ano."-".$mes;
+      $total = 0;
+      $fecha = $ano."-".$mes;
 //echo $fecha;
 //$result_pagos = $conn->query("SELECT * from pago_adeudo");
     //while ($fila_pagos = mysql_fetch_array($result_pagos, MYSQL_NUM)){
       //$id_adeudo = $fila_pagos['0'];
-        $result_pagos2 = $conn->query(($sucursal==0) ? "SELECT * from historial_compras where id_tipo='3' and YEAR(fecha)='$ano' and MONTH(fecha)='$mes' " : 
-                          "SELECT * from historial_compras where id_tipo='3' and YEAR(fecha)='$ano' and MONTH(fecha)='$mes' and exists (select id_sucursal from paciente where  id_sucursal='$sucursal' and id_paciente=historial_compras.id_paciente)");
+      $result_pagos2 = $conn->query(($sucursal==0) ? "SELECT * from historial_compras where id_tipo='3' and YEAR(fecha)='$ano' and MONTH(fecha)='$mes' " : 
+                          "SELECT * from historial_compras where id_tipo='3' and YEAR(fecha)='$ano' and MONTH(fecha)='$mes' and exists (select id_sucursal from usuarios where  id_sucursal='$sucursal' and id_usuario=historial_compras.id_usuario)");
         //print "SELECT * from historial_compras where id_tipo='3' and fecha like '%$fecha%'";
         //while ($fila_pagos2 = mysql_fetch_array($result_pagos2, MYSQL_NUM)){
-        while ($fila_pagos2 = $result_pagos2->fetch_array()){
+      while ($fila_pagos2 = $result_pagos2->fetch_array()){
           echo "<tr>";
           echo "<td>".$fila_pagos2[7]."</td>";
           $paciente = $fila_pagos2[1];
+
+          $result_sucursal    =   $conn->query("SELECT s.sucursal,u.id_usuario FROM sucursales AS s, usuarios AS u WHERE u.id_sucursal=s.id_sucursal AND u.id_usuario='".$fila_pagos2[2]."'");
+          $renglon_sucursal  =   $result_sucursal->fetch_assoc();
+          echo "<td>".utf8_encode($renglon_sucursal['sucursal'])."</td>";
+
           //$SELECT= 'SELECT * from paciente where id_paciente="'.$paciente.'";';
           $resul = $conn->query('SELECT * from paciente where id_paciente="'.$paciente.'";') or die ("problema con la solicitud");
           //$renglon = mysql_fetch_assoc($resul);
@@ -363,8 +373,8 @@ date_default_timezone_set("Mexico/General");
           echo "<td>",$renglon['nombre'],"</td>";
           $total = $total + $fila_pagos2[6];
           echo "<td>",money_format('%(#10n',$fila_pagos2[6]),"</td>";
-            echo "</tr>";
-          }
+          echo "</tr>";
+      }
           
           $valor = 0;
           $semana++;
@@ -382,6 +392,11 @@ date_default_timezone_set("Mexico/General");
             echo "<tr>";
             echo "<td>",$fila_pagos[7],"</td>";
             $usuario = $fila_pagos[2];
+
+            $result_sucursal    =   $conn->query("SELECT s.sucursal,u.id_usuario FROM sucursales AS s, usuarios AS u WHERE u.id_sucursal=s.id_sucursal AND u.id_usuario='".$fila_pagos[1]."'");
+            $renglon_sucursal  =   $result_sucursal->fetch_assoc();
+            echo "<td>".utf8_encode($renglon_sucursal['sucursal'])."</td>";
+
             //$SELECT= 'SELECT * from paciente where id_paciente="'.$usuario.'";';
             $resul = $conn->query('SELECT * from paciente where id_paciente="'.$usuario.'";') or die ("problema con la solicitud");
             //$renglon = mysql_fetch_assoc($resul);
@@ -412,6 +427,11 @@ date_default_timezone_set("Mexico/General");
               echo "<tr>";
               echo "<td>",$fila_pagos[7],"</td>";
               $usuario = $fila_pagos[2];
+
+              $result_sucursal    =   $conn->query("SELECT s.sucursal,u.id_usuario FROM sucursales AS s, usuarios AS u WHERE u.id_sucursal=s.id_sucursal AND u.id_usuario='".$fila_pagos[1]."'");
+              $renglon_sucursal  =   $result_sucursal->fetch_assoc();
+              echo "<td>".utf8_encode($renglon_sucursal['sucursal'])."</td>";
+
               //$SELECT= 'SELECT * from paciente where id_paciente="'.$usuario.'";';
               $resul = $conn->query('SELECT * from paciente where id_paciente="'.$usuario.'";') or die ("problema con la solicitud");
               //$renglon = mysql_fetch_assoc($resul);

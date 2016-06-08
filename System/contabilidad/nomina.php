@@ -274,6 +274,7 @@ if($S == 1){
     <tr>
           <td style='color:#58ACFA'>No.         </td>
           <td style='color:#58ACFA'>Usuario     </td>
+          <td style='color:#58ACFA'>Sucursal    </td>
           <td style='color:#58ACFA'>Sueldo      </td>
           <td style='color:#58ACFA'>Vacaciones  </td>
           <td style='color:#58ACFA'>Aguinaldo   </td>
@@ -285,8 +286,8 @@ if($S == 1){
     $total_semanal = 0;
   //while ($row2 = mysql_fetch_array($result2, MYSQL_NUM)){
 	while ($row2 = $result2->fetch_row()){
-			echo "<tr>";
-            echo "<td>",$row2[0],"</td>";
+			  echo "<tr>";
+        echo "<td>",$row2[0],"</td>";
 				
 				$usuario = $row2[1];
 				$select = 'SELECT * from usuarios where id_usuario="'.$usuario.'";';
@@ -295,20 +296,25 @@ if($S == 1){
 				$renglon = $resul->fetch_assoc();
 				//vendido por
 				echo "<td>".$renglon['nombres']." ".$renglon['apellido_paterno']." ".$renglon['apellido_materno']."</td>";
-                echo "<td>".money_format('%(#10n',$row2[2])."</td>";//sueldo
-                echo "<td>".money_format('%(#10n',$row2[3])."</td>";//vacaciones
-                echo "<td>".money_format('%(#10n',$row2[4])."</td>";//aginaldo
-                echo "<td>".money_format('%(#10n',$row2[5])."</td>"; //total
-                $total_semanal = $total_semanal + $row2[5];
-                echo "<td>".$row2[6]."</td>";
-                echo "<td>";
-                	if($row2[7]=='0')
-                			echo "No";
-                	else
-                			echo "Si";
-                echo "</td>"; 
+
+        $result_sucursal    =   $conn->query("SELECT sucursal from sucursales WHERE id_sucursal=".$renglon['id_sucursal']);
+        $renglon_sucursal  =   $result_sucursal->fetch_assoc();
+        echo "<td>".utf8_encode($renglon_sucursal['sucursal'])."</td>";
+
+        echo "<td>".money_format('%(#10n',$row2[2])."</td>";//sueldo
+        echo "<td>".money_format('%(#10n',$row2[3])."</td>";//vacaciones
+        echo "<td>".money_format('%(#10n',$row2[4])."</td>";//aginaldo
+        echo "<td>".money_format('%(#10n',$row2[5])."</td>"; //total
+        $total_semanal = $total_semanal + $row2[5];
+        echo "<td>".$row2[6]."</td>";
+        echo "<td>";
+        if($row2[7]=='0')
+              echo "No";
+        else
+              echo "Si";
+        echo "</td>"; 
 					
-			echo "</tr>";		
+			  echo "</tr>";		
 		}
 echo "</table>";
 

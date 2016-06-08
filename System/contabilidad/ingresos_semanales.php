@@ -317,6 +317,18 @@ function semanasMes($year,$month)
  $TOTAL_CHEQUE = 0;
  $TOTAL_TARJETA = 0;
  $TOTAL_TRANSFERENCIA = 0;
+ 
+ if($sucursal==0)
+  echo "<br><br><p>Sucursal: <u>Todas</u></p>";
+ else{
+  $result2=$conn->query("SELECT sucursal from sucursales where id_sucursal = '$sucursal' ");
+  if(!$result2)
+    die('Error de consulta 2: '.mysqli_error($conn));
+  $nombre_suc = $result2->fetch_assoc();
+  echo "<br><br><p>Sucursal: <u>".$nombre_suc['sucursal']."</u></p>";
+
+ }
+
 	echo "<table style='margin-top:100px; min-width:99%; border:0 '>
     <tr>
           <td style='color:#2d455f; border-bottom:4px solid #2d455f'>Tipo de ingreso  </td>";
@@ -342,7 +354,7 @@ $semana = $primeraSemana;
 $total = 0;
 echo "<tr style='background:#f2f2f2;'><td>Pago de pacientes con Efectivo</td>";
 for($i=$primeraSemana;$i<=$ultimaSemana;$i++){
-$result_pagos = $conn->query(($sucursal==0) ? "SELECT * from pagos_historia where semana='$semana' and y='$ano' && id_tipo='1'" : "SELECT * from pagos_historia where semana='$semana' and y='$ano' && id_tipo='1' and exists (select id_sucursal from paciente where  id_sucursal='$sucursal' and id_paciente=pagos_historia.id_paciente)");
+$result_pagos = $conn->query(($sucursal==0) ? "SELECT * from pagos_historia where semana='$semana' and y='$ano' && id_tipo='1'" : "SELECT * from pagos_historia where semana='$semana' and y='$ano' && id_tipo='1' and exists (select id_sucursal from usuarios where  id_sucursal='$sucursal' and id_usuario=pagos_historia.id_usuario)");
 		echo"<td>";
     // while ($fila_pagos = $result_pagos->fetch_row()){
 		while ($fila_pagos = $result_pagos->fetch_row()){
@@ -366,7 +378,7 @@ $semana = $primeraSemana;
 $total = 0;
 echo "<tr style='background:#F5F6CE;'><td>Pago de pacientes con Cheque</td>";
 for($i=$primeraSemana;$i<=$ultimaSemana;$i++){
-$result_pagos = $conn->query(($sucursal==0) ? "SELECT * from pagos_historia where semana='$semana' and y='$ano' && id_tipo='2' " : "SELECT * from pagos_historia where semana='$semana' and y='$ano' && id_tipo='2' and exists (select id_sucursal from paciente where  id_sucursal='$sucursal' and id_paciente=pagos_historia.id_paciente)");
+$result_pagos = $conn->query(($sucursal==0) ? "SELECT * from pagos_historia where semana='$semana' and y='$ano' && id_tipo='2' " : "SELECT * from pagos_historia where semana='$semana' and y='$ano' && id_tipo='2' and exists (select id_sucursal from usuarios where  id_sucursal='$sucursal' and id_usuario=pagos_historia.id_usuario)");
 		echo"<td>";
 		//while ($fila_pagos = mysql_fetch_array($result_pagos, MYSQL_NUM)){
     while ($fila_pagos = $result_pagos->fetch_row()){
@@ -390,7 +402,7 @@ $semana = $primeraSemana;
 $total = 0;
 echo "<tr style='background:#E0F8F1;'><td>Pago de pacientes con Tarjeta</td>";
 for($i=$primeraSemana;$i<=$ultimaSemana;$i++){
-$result_pagos = $conn->query(($sucursal==0) ? "SELECT * from pagos_historia where semana='$semana' and y='$ano' && id_tipo='3'" : "SELECT * from pagos_historia where semana='$semana' and y='$ano' && id_tipo='3' and exists (select id_sucursal from paciente where  id_sucursal='$sucursal' and id_paciente=pagos_historia.id_paciente)");
+$result_pagos = $conn->query(($sucursal==0) ? "SELECT * from pagos_historia where semana='$semana' and y='$ano' && id_tipo='3'" : "SELECT * from pagos_historia where semana='$semana' and y='$ano' && id_tipo='3' and exists (select id_sucursal from usuarios where  id_sucursal='$sucursal' and id_usuario=pagos_historia.id_usuario)");
 		echo"<td>";
 		//while ($fila_pagos = mysql_fetch_array($result_pagos, MYSQL_NUM)){
     while ($fila_pagos = $result_pagos->fetch_row()){
@@ -413,7 +425,7 @@ $semana = $primeraSemana;
 $total = 0;
 echo "<tr><td>Pago de pacientes con Transferencia</td>";
 for($i=$primeraSemana;$i<=$ultimaSemana;$i++){
-$result_pagos = $conn->query(($sucursal==0) ? "SELECT * from pagos_historia where semana='$semana' and y='$ano' && id_tipo='4' " : "SELECT * from pagos_historia where semana='$semana' and y='$ano' && id_tipo='4' and exists (select id_sucursal from paciente where  id_sucursal='$sucursal' and id_paciente=pagos_historia.id_paciente)");
+$result_pagos = $conn->query(($sucursal==0) ? "SELECT * from pagos_historia where semana='$semana' and y='$ano' && id_tipo='4' " : "SELECT * from pagos_historia where semana='$semana' and y='$ano' && id_tipo='4' and exists (select id_sucursal from usuarios where  id_sucursal='$sucursal' and id_usuario=pagos_historia.id_usuario)");
 
 		echo"<td>";
 		//while ($fila_pagos = mysql_fetch_array($result_pagos, MYSQL_NUM)){
