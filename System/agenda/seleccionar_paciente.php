@@ -3,7 +3,8 @@
 	if($_SESSION['u']=='')
 		header('location: ../index.php');
 		//echo'<META HTTP-EQUIV="Refresh" CONTENT="0; URL=index.php">';
-	$usuario = $_SESSION['u'];  
+	$usuario = $_SESSION['u']; 
+  $sucursal = $_SESSION['sucursal']; 
   error_reporting(E_ALL & ~E_NOTICE);
   
   ?>
@@ -94,6 +95,27 @@ $doctor = $_POST['doctor'];
   ?>
   <label style="float:left; width:150px; margin-right:15%">  N. de Expediente </label>
     <input type="text" name="n_registro" class="campoT" placeholder="ej. 999a"><br>
+
+  <label style="float:left; width:150px; margin-right:15%">  Sucursal del paciente </label>
+    <select name="sucursal" class="campoT">
+      <?php  
+      include('../php/base.php');
+
+      $result=$conn->query("SELECT * from sucursales where id_sucursal!='0'");
+
+      
+      if($sucursal==0){
+        echo "<option value='0' selected> Todas las sucursales </option> ";
+      }
+      else{
+        echo "<option value='".$sucursal."' selected> Sucursal actual - ".$sucursal." </option> ";
+        echo "<option value='0'> Todas las sucursales </option> ";
+      }
+      while($sucs = $result->fetch_assoc()){
+        echo "<option value='".$sucs['id_sucursal']."'> ".$sucs['id_sucursal'].".- ".$sucs['sucursal']." </option> ";
+      }
+      ?>
+    </select><br>
   <label style="float:left; width:150px; margin-right:15%">  Nombre           </label>
     <input type="text" name="nombre" class="campoT" placeholder="ej. Juan"><br>
   <label style="float:left; width:150px; margin-right:15%">Apellido Paterno   </label>
