@@ -5,6 +5,7 @@ if($_SESSION['u']=='')
     //echo'<META HTTP-EQUIV="Refresh" CONTENT="0; URL=index.php">';
 $usuario = $_SESSION['u'];
 $sucursal = $_SESSION['sucursal'];
+include('php/base.php');
 ?>
 <!DOCTYPE html>
 <html class="html">
@@ -67,64 +68,71 @@ if($_SESSION['rol']=='admin')
 <div class="colelem" id="u470">
 </div>
 <div class="verticalspacer"></div>
-<form action="buscar-paciente.php" method="POST" style="margin-top:-20px; z-index:300; background:#FFFFFF; padding:20px; width:89%" >
-  <label style="float:left; margin-left:60px; margin-right:20px; "> Ingrese nombre del paciente   </label>
-  <input type="search" name="b_paciente"  class="campoT" style=" border: 1px solid gray; height:35px; margin-right:20px; ">
-  <label style="float:left; margin-left:60px; margin-top:10px; margin-right:50px; "> O ingrese ID del paciente   </label>
-  <input type="search" name="id"  class="campoT" style="float:left; border: 1px solid gray; height:35px; margin-right:20px; ">
-  
+<form action="buscar_sucursal_externa.php" method="POST" style="margin-top:-20px; z-index:300; background:#FFFFFF; padding:20px; width:89%" >
+  <label style="float:left; width:150px; margin-right:15%"> Ingrese busqueda </label>
+  <input type="search" name="buscar"  class="campoT" style="width:250px; ">
+  <label style="float:left; width:150px; margin-right:15%"> Buscar por: </label>
+  <select name="opcion" class="campoT" style="width:250px; ">
+    <option value="id_paciente" selected>Id. de paciente</option>
+    <option value="nombres">Nombre</option>
+    <option value="apellido_paterno">Apellido paterno</option>
+    <option value="apellido_materno">Apellido materno</option>
+  </select>
+  <label style="float:left; width:150px; margin-right:15%"> En la sucursal: </label>
+  <select name="sucursal" class="campoT" style="width:250px; ">
+  <?php 
+    $result=$conn->query("SELECT * from sucursales WHERE id_sucursal!=0 AND id_sucursal!=$sucursal");
+    while($sucs = $result->fetch_assoc()){
+      echo "<option value='".$sucs['id_sucursal']."'> ".$sucs['id_sucursal'].".- ".$sucs['sucursal']." </option> ";
+    }
+   ?>
+  </select><br><br>
   <input type="submit" value="buscar"  style="color:white; margin-top:-35px; margin-bottom:50px " >
-  
+<p style="color:red; font-size:10px;">NOTA: Las fotografias y radiografias no seran visibles para el paciente seleccionado; esta opcion es unicamente es para consultas</p>
 </form>
 <div style="margin-left:33%;" >   
-  <a href="busqueda_avanzada.php"><img src="images/addH.png" alt="Busqueda_Avanzada" style="float:left; width:30px; margin-left:10px;margin-right:10px; margin-top:1px">
-  <h1 style="padding:7px">Busqueda avanzada</h1></a><br><br>
-  <a href="buscar_sucursal_externa.php">Buscar paciente en otra sucursal</a>
+  <!-- <a href="busqueda_avanzada.php"><img src="images/addH.png" alt="Busqueda_Avanzada" style="float:left; width:30px; margin-left:10px;margin-right:10px; margin-top:1px"></a>
+  <h1 style="padding:7px">Busqueda avanzada</h1> -->
 </div><br>
 <?php
-include('php/base.php');
+
       //echo '<h9>Resultados para: ',$_POST['b_paciente'],'</h9><br><br><br>';
-$buscar = $_POST['b_paciente'];
-$id = $_POST['id'];
-?>
-<!--a href="menu.php">Regresar</a-->
-<?php
-if($id == 0)
-  $result2 = $conn->query(($sucursal==0) ? "SELECT * from paciente where nombres like '%$buscar%' or apellido_paterno like '%$buscar%' or apellido_materno like '%$buscar%' or id_paciente like '%$buscar%' or n_registro like '%$buscar%'  LIMIT 10;" : "SELECT * from paciente where (nombres like '%$buscar%' or apellido_paterno like '%$buscar%' or apellido_materno like '%$buscar%' or id_paciente like '%$buscar%' or n_registro like '%$buscar%') and id_sucursal=$sucursal LIMIT 10;" );
-        //$result2 = $conn->query("SELECT * from paciente where nombres like '%$buscar%' or apellido_paterno like '%$buscar%' or apellido_materno like '%$buscar%' or id_paciente like '%$buscar%' or n_registro like '%$buscar%'  LIMIT 10;");
-else
-  $result2 = $conn->query(($sucursal==0) ?  "SELECT * from paciente where  id_paciente like '%$id%'  LIMIT 10;" : "SELECT * from paciente where  id_paciente like '%$id%' and id_sucursal=$sucursal LIMIT 10;" );
-        //$result2 = $conn->query("SELECT * from paciente where  id_paciente like '%$id%'  LIMIT 10;");
-while ($row2 = $result2->fetch_row()) {
-    //while ($row2 = mysql_fetch_array($result2, MYSQL_NUM) ) {
-      //while ($row2 = mysql_fetch_array($result2, MYSQL_NUM)) {
+$p_buscar     =   (isset($_POST['buscar'])) ? $_POST['buscar'] : NULL;
+$p_sucursal   =   $_POST['sucursal'];
+$p_opcion     =   $_POST['opcion'];
+
+if($p_buscar != NULL){
+  $result2 = $conn->query("SELECT * from paciente where $p_opcion like '%$p_buscar%' and id_sucursal=$p_sucursal order by $p_opcion LIMIT 10;");
   
-  echo ' <br><br><fieldset><legend style="width:90%; background:#585A5A; padding:6px; padding-left:24px;">
-  <h10 style="color:#FFFFFF">Datos Personales</legend></h10>';
-  echo "<div style='width:90%; background:#FFFFFF; padding:15px;  '>
-  <div  style='width:25%; height:220px; float:left; '>";
-  echo "<br><br>";
-  if($row2[21] == "")
-    echo "<img src='pacientes/images_pacientes/predeterminado.png' width='130px' height='130px' style='border-radius:50%;  border: 1px solid #D8D8D8;'> </div>";
-  else
-    echo "<img src='pacientes/images_pacientes/",$row2[21],"' width='130px' height='130px' style='border-radius:50%;  border: 1px solid #D8D8D8;'> </div>";
-    echo "<div  style='width:50%; height:220px; float:left; margin-left:-5%; ' ><br><br><br>";
-    echo "<label style='width:200px; float:left; margin-left:15px; '>Numero de ficha:</label> ", $row2[0], "<br>";
+  while ($row2 = $result2->fetch_row()) {
+    
+    echo ' <br><br><fieldset><legend style="width:90%; background:#585A5A; padding:6px; padding-left:24px;">
+    <h10 style="color:#FFFFFF">Datos Personales</legend></h10>';
+    echo "<div style='width:90%; background:#FFFFFF; padding:15px;  '>
+    <div  style='width:25%; height:220px; float:left; '>";
+    echo "<br><br>";
+    if($row2[21] == "")
+      echo "<img src='pacientes/images_pacientes/predeterminado.png' width='130px' height='130px' style='border-radius:50%;  border: 1px solid #D8D8D8;'> </div>";
+    else
+      echo "<img src='pacientes/images_pacientes/",$row2[21],"' width='130px' height='130px' style='border-radius:50%;  border: 1px solid #D8D8D8;'> </div>";
+      echo "<div  style='width:50%; height:220px; float:left; margin-left:-5%; ' ><br><br><br>";
+      echo "<label style='width:200px; float:left; margin-left:15px; '>Numero de ficha:</label> ", $row2[0], "<br>";
 
-    $result_sucursal    =   mysqli_query($conn, "SELECT sucursal from sucursales WHERE id_sucursal=".$row2[33]);
-    $renglon_sucursal  =   $result_sucursal->fetch_assoc();
-    echo "<label style='width:200px; float:left; margin-left:15px; '>Sucursal:</label> ", $renglon_sucursal['sucursal'], "<br>";
+      $result_sucursal    =   $conn->query("SELECT sucursal from sucursales WHERE id_sucursal=".$row2[33]);
+      $renglon_sucursal  =   $result_sucursal->fetch_assoc();
+      echo "<label style='width:200px; float:left; margin-left:15px; '>Sucursal:</label> ", $renglon_sucursal['sucursal'], "<br>";
 
-    echo "<label style='width:200px; float:left; margin-left:15px; '>Nombre: </label>", $row2[1]," ", $row2[2]," ",$row2[3],"<br>";
-    echo "<label style='width:200px; float:left; margin-left:15px; '>Fecha de nacimiento: </label>", $row2[4];
-    echo "<br><label style='width:200px; float:left; margin-left:15px;'>Sexo: </label>", $row2[23];
-    echo "<br><label style='width:200px; float:left; margin-left:15px;'>Referencia: </label>", $row2[16];
-    echo "</div>
-    <div  style='width:25%; height:220px; floar:right; margin-left:70%'> ";
-    echo "<br><br><br><br><br>
-    <div id='botn'><a href='pacientes/ficha-paciente.php?id=",$row2[0],"'>Revisar</a></div><br>";
-    echo "</div></div></fieldset>";
-      //echo "<hr style='margin-bottom:20px;'>";
+      echo "<label style='width:200px; float:left; margin-left:15px; '>Nombre: </label>", $row2[1]," ", $row2[2]," ",$row2[3],"<br>";
+      echo "<label style='width:200px; float:left; margin-left:15px; '>Fecha de nacimiento: </label>", $row2[4];
+      echo "<br><label style='width:200px; float:left; margin-left:15px;'>Sexo: </label>", $row2[23];
+      echo "<br><label style='width:200px; float:left; margin-left:15px;'>Referencia: </label>", $row2[16];
+      echo "</div>
+      <div  style='width:25%; height:220px; floar:right; margin-left:70%'> ";
+      echo "<br><br><br><br><br>
+      <div id='botn'><a href='pacientes/ficha-paciente.php?id=",$row2[0],"'>Revisar</a></div><br>";
+      echo "</div></div></fieldset>";
+        //echo "<hr style='margin-bottom:20px;'>";
+  }
 }
 ?>
 <a href='buscar-paciente.php'> << Regresar </a> 
