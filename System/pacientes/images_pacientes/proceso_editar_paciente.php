@@ -29,13 +29,18 @@
 			$diferencia_de_fechas = time() - $fecha_de_nacimiento;
 			return ($diferencia_de_fechas / (60 * 60 * 24 * 365));
 		}
+
+		$paciente = $_POST['paciente'];
+		$id = $_POST['id'];
+
 		if($_FILES['imagen']['name']!=""){
 			copy($_FILES['imagen']['tmp_name'],$_FILES['imagen']['name']);
 			$imagen=$_FILES['imagen']['name'];
 			$imagen=htmlspecialchars($imagen);
+			//chmod("$paciente", 0777);
+			//rename("$paciente", "p_$paciente.jpg");
 		}
-		$paciente = $_POST['paciente'];
-		$id = $_POST['id'];
+		
 		//$expediente = $_POST['expediente'];
 		$sucursal = $_POST['sucursal'];	
 		$nombre = $_POST['nombre'];
@@ -101,8 +106,8 @@
 			$resul = $conn->query($select) or die ("problema con la solicitud");
 			$renglon = $resul->fetch_assoc();
 			$ultimo = $renglon['id_paciente'];
-			rename($imagen,$ultimo);
-			$sentencia = "UPDATE paciente SET foto_ingreso='$ultimo' WHERE id_paciente='$ultimo';";
+			rename($imagen,"imagenes/p_$ultimo.jpg");
+			$sentencia = "UPDATE paciente SET foto_ingreso='p_$ultimo.jpg' WHERE id_paciente='$ultimo';";
 			if(!$conn->query($sentencia))
 				die('Error de consulta: '.mysqli_error($conn));
 			mysqli_close($conn);

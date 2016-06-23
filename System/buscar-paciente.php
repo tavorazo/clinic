@@ -107,7 +107,7 @@ while ($row2 = $result2->fetch_row()) {
   if($row2[21] == "")
     echo "<img src='pacientes/images_pacientes/predeterminado.png' width='130px' height='130px' style='border-radius:50%;  border: 1px solid #D8D8D8;'> </div>";
   else
-    echo "<img src='pacientes/images_pacientes/",$row2[21],"' width='130px' height='130px' style='border-radius:50%;  border: 1px solid #D8D8D8;'> </div>";
+    echo "<img src='pacientes/images_pacientes/imagenes/",$row2[21],"' width='130px' height='130px' style='border-radius:50%;  border: 1px solid #D8D8D8;'> </div>";
     echo "<div  style='width:50%; height:220px; float:left; margin-left:-5%; ' ><br><br><br>";
     echo "<label style='width:200px; float:left; margin-left:15px; '>Numero de ficha:</label> ", $row2[0], "<br>";
 

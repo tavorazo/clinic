@@ -30,6 +30,7 @@
 	}
 	if($_POST['val']!=""){
 		$imagen=$_POST['ruta'];
+		$val=$_POST['val'];
 	}
 	else
 		$imagen="predeterminado.png";
@@ -93,7 +94,9 @@
 		$ultimo = $renglon['id_paciente'];
 		//rename($imagen,$ultimo_registro);
 		echo $imagen = $ultimo_registro;
-		$sentencia = "UPDATE paciente SET foto_ingreso='p_".$ultimo_registro."' WHERE id_paciente='$ultimo_registro';";
+		file_put_contents("imagenes/p_".$ultimo_registro.".jpg", base64_decode($val));
+		chmod("imagenes/p_".$ultimo_registro.".jpg", 0777);
+		$sentencia = "UPDATE paciente SET foto_ingreso='p_".$ultimo_registro.".jpg' WHERE id_paciente='$ultimo_registro';";
 		//echo "<br>".$sentencia;
 		if(!$conn->query($sentencia))
 			die('Error de consulta 4: '.mysqli_error($conn));

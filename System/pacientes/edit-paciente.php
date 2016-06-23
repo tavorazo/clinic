@@ -186,7 +186,7 @@ $usr_sucursal = $result_suc->fetch_assoc();
       <input type="number" name="Num_seguro" class="campoT" required value="<?php echo $renglon['Num_seguro']?>"></br>
 
     <label style="float:left; width:150px; margin-right:15%">Foto de ingreso</label>
-    	<?php echo "<img src='images_pacientes/",$renglon['foto_ingreso'],"' style='width:150px; height:150px; border-radius:200px; border: #BDBDBD 1px solid'>"?>
+    	<?php echo "<img src='images_pacientes/imagenes/",$renglon['foto_ingreso'],"' style='width:150px; height:150px; border-radius:200px; border: #BDBDBD 1px solid'>"?>
     	<br>
     	<br><br><label>selecciona otra imagen para cambiar o deja el espacio en blanco</label><br><br>
       <input type="file" name="imagen" class="campoT" style="float:left"><br>

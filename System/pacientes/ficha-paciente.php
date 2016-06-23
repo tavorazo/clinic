@@ -79,7 +79,7 @@ while ($row2 = $result2->fetch_row()) {
   if($row2[21] == "predeterminado.png")
     echo "<br><img src='images_pacientes/predeterminado.png'>";
   else
-    echo "<br><img src='http://192.168.1.200/imagenes/NOEOCTAVIOABURTOINCLAN690/clinicas/pacientes/Fotos-endoperio/",$row2[21],".jpg'>";
+    echo "<br><img src='images_pacientes/imagenes/",$row2[21],"'>";
 
   echo "</div><div id='fieldset1' style='padding-top: 50px; margin-left:-200px;'>
   <label style='display: block; width:150px; float:left'>N&uacute;mero de ficha: </label>", $row2[0], "<br>";
@@ -298,12 +298,12 @@ if($_SESSION['rol']=='admin' || $_SESSION['rol']=='dentista'){
   $result3 = $conn->query("SELECT * from fotografias_intra where id_paciente='$buscar' order by fecha_foto desc;");
   $img_count = 1;
   while ($row_intra = $result3->fetch_row()) {
-  echo "<a href='http://192.168.1.200/imagenes/NOEOCTAVIOABURTOINCLAN690/intra/",$row_intra[2],".jpg' >
-        <img src='http://192.168.1.200/imagenes/NOEOCTAVIOABURTOINCLAN690/intra/",$row_intra[2],".jpg' width='108px' style='border: 1px solid gray; margin-left:5% '>";
+  echo "<a href='intra/",$row_intra[2],"' >
+        <img src='intra/",$row_intra[2],"' width='108px' style='border: 1px solid gray; margin-left:5% '>";
         $img_count++;
   }
 echo "<div id='botn' style='float:left; width:90%; margin:30px'>
-  <a href='../php/camara_intra.php?id=",$row2[0],"&count=",$img_count,"' target='_blank'> Tomar foto</a>
+  <a href='../php/camara_intra.php?id=",$row2[0],"&count=",$img_count,"' > Tomar foto</a>
 </div>
 <br></fieldset><br>";
 }

@@ -242,8 +242,8 @@ $usr_sucursal = $result->fetch_assoc();
 		<select id="cameraNames" size="1" onChange="changeCamera()" style="width:245px;font-size:10px;height:25px;">
 		</select></p>
     <input type="hidden" name="val" value="" id="formfield">
-    <input type="hidden" name="ruta" value="pacientes/Fotos-endoperio/<?php echo $nombre_foto; ?>.jpg" id="formfield">
-    <input type="button" name="ajax" class="buttom" value="Guardar Foto" id="ajax" style="margin-left:54%;">
+    <input type="hidden" name="ruta" value="<?php echo $nombre_foto; ?>.jpg" id="formfield">
+    <!-- <input type="button" name="ajax" class="buttom" value="Guardar Foto" id="ajax" style="margin-left:54%;"> -->
     <!-- Se envía por post ajax la nueva foto de paciente -->
 		
         <br><br>    
@@ -289,22 +289,6 @@ $usr_sucursal = $result->fetch_assoc();
   } catch(e) { Muse.Assert.fail('Error calling selector function:' + e); }});
 
 var request;
-$("#ajax").click(function(){
-  var values = $("#paciente_form").serialize();
-
-  $.ajax({
-        url: "http://192.168.1.200/imagenes/NOEOCTAVIOABURTOINCLAN690/clinicas/guardarb64.php",
-        type: "post",
-        data: values ,
-        success: function (response) {
-          $("#ajax").val("Foto guardada")
-          //window.location.href = "pacientes/fotografias_externas/procesar_foto_externa.php?id="+ $("#id_paciente").val()+ "&descripcion="+ $("#descripcion").val() + "&nombre_foto="+ $("#nombre_foto").val();
-        },
-        error: function(jqXHR, textStatus, errorThrown) {
-           console.log(textStatus, errorThrown);
-        }
-    });
-});
   </script>
 </body>
 </html>

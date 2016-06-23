@@ -88,7 +88,7 @@ if($_SESSION['rol']=='admin')
    ?>
   </select><br><br>
   <input type="submit" value="buscar"  style="color:white; margin-top:-35px; margin-bottom:50px " >
-<p style="color:red; font-size:10px;">NOTA: Las fotografias y radiografias no seran visibles para el paciente seleccionado; esta opcion es unicamente es para consultas</p>
+<!-- <p style="color:red; font-size:10px;">NOTA: Las fotografias y radiografias no seran visibles para el paciente seleccionado; esta opcion es unicamente es para consultas</p> -->
 </form>
 <div style="margin-left:33%;" >   
   <!-- <a href="busqueda_avanzada.php"><img src="images/addH.png" alt="Busqueda_Avanzada" style="float:left; width:30px; margin-left:10px;margin-right:10px; margin-top:1px"></a>
@@ -114,7 +114,7 @@ if($p_buscar != NULL){
     if($row2[21] == "")
       echo "<img src='pacientes/images_pacientes/predeterminado.png' width='130px' height='130px' style='border-radius:50%;  border: 1px solid #D8D8D8;'> </div>";
     else
-      echo "<img src='pacientes/images_pacientes/",$row2[21],"' width='130px' height='130px' style='border-radius:50%;  border: 1px solid #D8D8D8;'> </div>";
+      echo "<img src='pacientes/images_pacientes/imagenes/",$row2[21],"' width='130px' height='130px' style='border-radius:50%;  border: 1px solid #D8D8D8;'> </div>";
       echo "<div  style='width:50%; height:220px; float:left; margin-left:-5%; ' ><br><br><br>";
       echo "<label style='width:200px; float:left; margin-left:15px; '>Numero de ficha:</label> ", $row2[0], "<br>";
 
