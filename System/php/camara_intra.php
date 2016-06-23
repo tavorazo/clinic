@@ -23,13 +23,13 @@ include ("../+/head2.php");
 	<p><img src="../scriptcam/webcamlogo.png" style="vertical-align:text-top"/>
 	<select id="cameraNames" size="1" onChange="changeCamera()" style="width:245px;font-size:10px;height:25px;">
 	</select></p>
-    <form id="ajax"  method="POST">
+    <form id="ajax" method="POST" action="procesar_foto_intra.php">
     <br><input type="button" value="Capturar" id="save" class="campoT" onclick="base64_tofield_and_image()">
     <br><br>
     <input type="hidden" value="<?php echo $id; ?>" name="id" id="id_paciente">
     <input type="hidden" name="val" value="" id="formfield">
-    <input type="hidden" name="ruta" value="intra/<?php echo $nombre_foto; ?>.jpg" id="formfield"> 
-    <input type="hidden" value="<?php echo $nombre_foto; ?>" name="nombre_foto" id="nombre_foto">
+    <input type="hidden" name="ruta" value="<?php echo $nombre_foto; ?>.jpg" id="formfield"> 
+    <input type="hidden" value="<?php echo $nombre_foto; ?>.jpg" name="nombre_foto" id="nombre_foto">
     <input type="submit" class="buttom" value="Guardar">
     </form>
 
@@ -67,28 +67,28 @@ $(document).ready(function() { try {
   Muse.Utils.transformMarkupToFixBrowserProblems();/* body */
 
 var request;
-$("#ajax").submit(function(event){
-  var values = $(this).serialize();
+// $("#ajax").submit(function(event){
+//   var values = $(this).serialize();
 
-  var url = "procesar_foto_intra.php?id="+ $("#id_paciente").val()+ "&nombre_foto="+ $("#nombre_foto").val();
+//   var url = "procesar_foto_intra.php?id="+ $("#id_paciente").val()+ "&nombre_foto="+ $("#nombre_foto").val();
 
-  $.ajax({
-        url: "http://192.168.1.200/imagenes/NOEOCTAVIOABURTOINCLAN690/guardarb64.php",
-        type: "post",
-        data: values ,
-        success: function (response) {
-          window.location.href = url;
-        },
-        error: function(jqXHR, textStatus, errorThrown) {
-            $.ajax({
-              url: url,
-              type: "get"
-            });
+//   $.ajax({
+//         url: "http://192.168.1.200/imagenes/NOEOCTAVIOABURTOINCLAN690/guardarb64.php",
+//         type: "post",
+//         data: values ,
+//         success: function (response) {
+//           window.location.href = url;
+//         },
+//         error: function(jqXHR, textStatus, errorThrown) {
+//             $.ajax({
+//               url: url,
+//               type: "get"
+//             });
 
-            alert("Guardado! ");
-        }
-    });
-});
+//             alert("Guardado! ");
+//         }
+//     });
+// });
 
 } catch(e) { Muse.Assert.fail('Error calling selector function:' + e); }});
 </script>
