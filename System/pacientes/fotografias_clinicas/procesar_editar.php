@@ -23,6 +23,7 @@
 		<?php
 		$a = $_POST['id'];
 		$b = $_POST['id_paciente'];
+		$c = $_POST['nombre_foto'];
 
 		if($_FILES['imagen']['name']!=""){
 			copy($_FILES['imagen']['tmp_name'],$_FILES['imagen']['name']);
@@ -43,10 +44,11 @@
 
 		if($imagen!="")
 			$ultimo = $renglon['id_foto'];
-			unlink($renglon['nombre_foto']);
-			rename($imagen,$ultimo);
+			unlink('imagenes/'.$c);
+			rename($imagen,"imagenes/$c");
+			chmod("imagenes/$c", 0777);
 
-			$insertar = "update fotografias_clinicas set nombre_foto='$ultimo' where id_foto='$a'";
+			$insertar = "update fotografias_clinicas set nombre_foto='$c' where id_foto='$a'";
 
 		if(!$conn->query($insertar))
 			die('Error de consulta: '.mysqli_error($conn));

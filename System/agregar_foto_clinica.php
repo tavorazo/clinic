@@ -52,15 +52,15 @@ $usuario = $_SESSION['u'];
     $nombre_foto = "c_".$id_paciente."_".$img_num;
     ?>
     Agregar Foto Externa</h1> <hr><br><br><br>
-    <form id="ajax" method="POST">
+    <form method="POST" action="pacientes/fotografias_clinicas/procesar_foto_clinica.php" enctype="multipart/form-data">
       <label>Imagen: </label>
       <input type="file" name="imagen" id="archivo"><br><br><br>
       <label>Descripcion: </label>
       <textarea name="descripcion" id="descripcion"></textarea><br>
       <input type="hidden" value="<?php echo $id_paciente; ?>" name="id" id="id_paciente">
-      <input type="hidden" value="" name="val" id="val">
-      <input type="hidden" value="<?php echo $nombre_foto; ?>" name="nombre_foto" id="nombre_foto">
-      <input type="hidden" value="clinicas/<?php echo $nombre_foto; ?>.jpg" name="ruta">
+      <!-- <input type="hidden" value="" name="val" id="val"> -->
+      <input type="hidden" value="<?php echo $nombre_foto; ?>.jpg" name="nombre_foto" id="nombre_foto">
+      <!-- <input type="hidden" value="clinicas/<?php echo $nombre_foto; ?>.jpg" name="ruta"> -->
       <input type="submit" value="Enviar"><input type="reset" value="borrar">
     </form>
   </div>
@@ -93,47 +93,47 @@ $(document).ready(function() { try {
   Muse.Utils.transformMarkupToFixBrowserProblems();/* body */
 
 var request;
-$("#ajax").submit(function(event){
-  var values = $(this).serialize();
-  var url = "pacientes/fotografias_clinicas/procesar_foto_clinica.php?id="+ $("#id_paciente").val()+ 
-    "&descripcion="+ $("#descripcion").val() + "&nombre_foto="+ $("#nombre_foto").val();
+// $("#ajax").submit(function(event){
+//   var values = $(this).serialize();
+//   var url = "pacientes/fotografias_clinicas/procesar_foto_clinica.php?id="+ $("#id_paciente").val()+ 
+//     "&descripcion="+ $("#descripcion").val() + "&nombre_foto="+ $("#nombre_foto").val();
 
-  $.ajax({
-        url: "http://192.168.1.200/imagenes/NOEOCTAVIOABURTOINCLAN690/guardarb64.php",
-        type: "post",
-        data: values ,
-        success: function (response) {
-          window.location.href = url;
-        },
-        error: function(jqXHR, textStatus, errorThrown) {
-            $.ajax({
-              url: url,
-              type: "get"
-            });
+//   $.ajax({
+//         url: "http://192.168.1.200/imagenes/NOEOCTAVIOABURTOINCLAN690/guardarb64.php",
+//         type: "post",
+//         data: values ,
+//         success: function (response) {
+//           window.location.href = url;
+//         },
+//         error: function(jqXHR, textStatus, errorThrown) {
+//             $.ajax({
+//               url: url,
+//               type: "get"
+//             });
 
-            alert("Guardado!");
-        }
-    });
+//             alert("Guardado!");
+//         }
+//     });
 
   
-});
+// });
 
-File.prototype.convertToBase64 = function(callback){
-  var FR= new FileReader();
-  FR.onload = function(e) {
-      callback(e.target.result)  //convierte a base64
-  };       
-  FR.readAsDataURL(this);
-}
+// File.prototype.convertToBase64 = function(callback){
+//   var FR= new FileReader();
+//   FR.onload = function(e) {
+//       callback(e.target.result)  //convierte a base64
+//   };       
+//   FR.readAsDataURL(this);
+// }
 
-$("#archivo").on('change',function(){
-      var selectedFile = this.files[0];
-      selectedFile.convertToBase64(function(base64){
-           var result = base64.split('base64,'); //divide la cadena para que sólo quede el código base 64
-           $('#val').attr( "value", result[1] );
-           //alert($("#descripcion").val());
-      }) 
-});
+// $("#archivo").on('change',function(){
+//       var selectedFile = this.files[0];
+//       selectedFile.convertToBase64(function(base64){
+//            var result = base64.split('base64,'); //divide la cadena para que sólo quede el código base 64
+//            $('#val').attr( "value", result[1] );
+//            //alert($("#descripcion").val());
+//       }) 
+// });
 
 } catch(e) { Muse.Assert.fail('Error calling selector function:' + e); }});
 </script>

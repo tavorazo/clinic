@@ -318,8 +318,8 @@ $img_count = 1;
 while ($row_clinica = $result3->fetch_row()) {
   echo  "<tr>
   <td width='25%'>
-  <a href='http://192.168.1.200/imagenes/NOEOCTAVIOABURTOINCLAN690/clinicas/",$row_clinica[2],".jpg' >
-  <img src='http://192.168.1.200/imagenes/NOEOCTAVIOABURTOINCLAN690/clinicas/",$row_clinica[2],".jpg' width='108px' style='border: 1px solid gray; margin-left:5% '> 
+  <a href='fotografias_clinicas/imagenes/",$row_clinica[2],"' >
+  <img src='fotografias_clinicas/imagenes/",$row_clinica[2],"' width='108px' style='border: 1px solid gray; margin-left:5% '> 
   </a> 
   </td><td width='40%'><div> 
   <font color='black'>",$row_clinica[3],"</font><br>",$row_clinica[4],"</div>

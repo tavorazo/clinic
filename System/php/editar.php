@@ -60,9 +60,9 @@ $usuario = $_SESSION['u'];
         //$renglon = mysql_fetch_assoc($resul);
         $imagen = $renglon['nombre_foto'];
         echo "<form action='../pacientes/fotografias_clinicas/procesar_editar.php' method='POST' enctype='multipart/form-data'>";
-        echo "<img src='../pacientes/fotografias_clinicas/",$renglon['nombre_foto'],"' width='100px'><br>";
+        echo "<img src='../pacientes/fotografias_clinicas/imagenes/",$renglon['nombre_foto'],"' width='100px'><br>";
         echo "<input type='file' name='imagen'  required>";
-      //echo '<input type="hidden" name="id" value="',$id,'">';
+        echo '<input type="hidden" name="nombre_foto" value="',$renglon['nombre_foto'],'">';
         echo "<input type='hidden' name='id' value='",$id,"'>";
         echo "<input type='hidden' name='id_paciente' value='",$renglon['id_paciente'],"'>";
       }
