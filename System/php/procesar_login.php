@@ -66,7 +66,7 @@
 		$_SESSION['rol']=$renglon['rol'];
 		$_SESSION['nombres'] = $renglon['nombres'];
     $_SESSION['sucursal'] = $renglon['id_sucursal'];
-		echo "<br>Correcto. . .";
+		echo "<br>Correcto. . . Bienvenido ".$_SESSION['nombres'];
 		if ($renglon['rol'] == 'merca') 
 			echo '<META HTTP-EQUIV="Refresh" CONTENT="5; URL=../merca/">';
 		else
