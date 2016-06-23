@@ -35,7 +35,7 @@
 				//$resul = $conn->query($select) or die ("problema con la solicitud");
 				//$renglon = mysql_fetch_assoc($resul);
 				$imagen = $renglon['nombre_foto'];
-				unlink('../pacientes/fotografias_externas/'.$imagen);
+				unlink('../pacientes/fotografias_externas/imagenes/'.$imagen);
 				$eliminar = 'DELETE from fotografias_externas where id_foto="'.$id.'";';
 				
 			}

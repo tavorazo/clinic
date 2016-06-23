@@ -359,8 +359,8 @@ $img_count = 1; // Numera las imagenes
 while ($row_externa = $result3->fetch_row()) {
   echo "<tr>
   <td width='25%'>
-  <a   href='http://192.168.1.200/imagenes/NOEOCTAVIOABURTOINCLAN690/externas/",$row_externa[2],".jpg'    >
-  <img src='http://192.168.1.200/imagenes/NOEOCTAVIOABURTOINCLAN690/externas/",$row_externa[2],".jpg' width='125px' style='border: 1px solid gray; margin-left:5% '></a>
+  <a   href='fotografias_externas/imagenes/",$row_externa[2],"'    >
+  <img src='fotografias_externas/imagenes/",$row_externa[2],"' width='125px' style='border: 1px solid gray; margin-left:5% '></a>
   </td><td width='40%'>
   <div style='margin-left:10%; width:200px'> 
   <font color='black'>",$row_externa[3],"</font><br>",$row_externa[4],"</div>
