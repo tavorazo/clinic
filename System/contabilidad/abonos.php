@@ -24,7 +24,7 @@ while ($row3 = $result_pagos->fetch_row()){
 	$renglon = $resul->fetch_assoc();
 	//$resul = $conn->query($select) or die ("problema con la solicitud");
 	//$renglon = mysql_fetch_assoc($resul);
-	echo "<br><br><hr> <i>Pago recibido por: ".$renglon['nombres']." ".$renglon['apellido_paterno']." ".$renglon['apellido_materno']."<br>";
+	echo "<br><br><hr> <i>Pago recibido por: ".utf8_encode($renglon['nombres'])." ".utf8_encode($renglon['apellido_paterno'])." ".utf8_encode($renglon['apellido_materno'])."<br>";
 	echo "Cantidad: ", $row3[4], "<br>";
 	
 	$tipo = $row3[1];
