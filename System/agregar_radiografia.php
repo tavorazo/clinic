@@ -52,15 +52,15 @@ $usuario = $_SESSION['u'];
     $nombre_foto = "r_".$id_paciente."_".$img_num;
     ?>
     Agregar Foto Externa</h1> <hr><br><br><br>
-    <form id="ajax" method="POST">
+    <form method="POST" action="pacientes/radiografias/procesar_radiografia.php" enctype="multipart/form-data">
       <label>Imagen: </label>
       <input type="file" name="imagen" id="archivo"><br><br><br>
       <label>Descripcion: </label>
       <textarea name="descripcion" id="descripcion"></textarea><br>
       <input type="hidden" value="<?php echo $id_paciente; ?>" name="id" id="id_paciente">
-      <input type="hidden" value="" name="val" id="val">
-      <input type="hidden" value="<?php echo $nombre_foto; ?>" name="nombre_foto" id="nombre_foto">
-      <input type="hidden" value="radiografias/<?php echo $nombre_foto; ?>.jpg" name="ruta">
+      <!-- <input type="hidden" value="" name="val" id="val"> -->
+      <input type="hidden" value="<?php echo $nombre_foto; ?>.jpg" name="nombre_foto" id="nombre_foto">
+      <!-- <input type="hidden" value="radiografias/<?php echo $nombre_foto; ?>.jpg" name="ruta"> -->
       <input type="submit" value="Enviar"><input type="reset" value="borrar">
     </form>
   </div>

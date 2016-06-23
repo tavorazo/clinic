@@ -406,8 +406,8 @@ $img_count = 1; // Numera las imagenes
 while ($row_radio = $result3->fetch_row()) {
   echo "<tr>
   <td width='25%'>
-  <a href='http://192.168.1.200/imagenes/NOEOCTAVIOABURTOINCLAN690/radiografias/",$row_radio[2],".jpg'  >
-  <img src='http://192.168.1.200/imagenes/NOEOCTAVIOABURTOINCLAN690/radiografias/",$row_radio[2],".jpg' width='125px' style='border: 1px solid gray; margin-left:5% '> 
+  <a href='radiografias/imagenes/",$row_radio[2],"'  >
+  <img src='radiografias/imagenes/",$row_radio[2],"' width='125px' style='border: 1px solid gray; margin-left:5% '> 
   </a>
   </td><td width='40%'>";
   $img_count++;

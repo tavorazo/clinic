@@ -46,7 +46,7 @@
 				//$resul = $conn->query($select) or die ("problema con la solicitud");
 				//$renglon = mysql_fetch_assoc($resul);
 				$imagen = $renglon['nombre_foto'];
-				unlink('../pacientes/radiografias/'.$imagen);
+				unlink('../pacientes/radiografias/imagenes/'.$imagen);
 				$eliminar = 'DELETE from radiografias where id_foto="'.$id.'";';
 				
 			}
