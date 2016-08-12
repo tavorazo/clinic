@@ -113,7 +113,7 @@ $usr_sucursal = $result->fetch_assoc();
       <input type="password" name="contraR" class="campoT"  required style="width:250"><br>
       
       <label style="float:left; width:150px; margin-right:15%">Foto de ingreso</label>
-      <input type="file" name="imagen" class="campoT" style="float:left"><br><br><br><br>
+      <input type="file" name="imagen" class="campoT" accept="image/jpeg" style="float:left"><br><br><br><br>
       <input type="submit" value="Guardar" style="margin-left:10px">
       <input type="reset" value="Resetear">
       
