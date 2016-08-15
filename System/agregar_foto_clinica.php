@@ -54,7 +54,7 @@ $usuario = $_SESSION['u'];
     Agregar Foto Externa</h1> <hr><br><br><br>
     <form method="POST" action="pacientes/fotografias_clinicas/procesar_foto_clinica.php" enctype="multipart/form-data">
       <label>Imagen: </label>
-      <input type="file" name="imagen" id="archivo" accept="image/jpeg"><br><br><br>
+      <input type="file" name="imagen" id="archivo" accept="image/x-png, image/jpeg"><br><br><br>
       <label>Descripcion: </label>
       <textarea name="descripcion" id="descripcion"></textarea><br>
       <input type="hidden" value="<?php echo $id_paciente; ?>" name="id" id="id_paciente">

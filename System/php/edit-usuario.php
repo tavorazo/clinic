@@ -114,7 +114,7 @@ $usr_sucursal = $result_suc->fetch_assoc();
       <img src="../usuarios/<?php echo $renglon['imagen']; ?>" width="100px"><br><br>
       <input type="hidden" name="imagen_vieja" value="<?php echo $renglon['imagen']; ?>">;
       <label style="float:left; width:150px; margin-right:15%" >Cambiar imagen</label>
-      <input type="file" name="imagen" class="campoT" accept="image/jpeg" style="float:left"><br>
+      <input type="file" name="imagen" class="campoT" accept="image/x-png, image/jpeg" style="float:left"><br>
       <br>
       <br>
       <input type="submit" value="Editar" style="margin-left:10px">

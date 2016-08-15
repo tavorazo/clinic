@@ -189,7 +189,7 @@ $usr_sucursal = $result_suc->fetch_assoc();
     	<?php echo "<img src='images_pacientes/imagenes/",$renglon['foto_ingreso'],"' style='width:150px; height:150px; border-radius:200px; border: #BDBDBD 1px solid'>"?>
     	<br>
     	<br><br><label>selecciona otra imagen para cambiar o deja el espacio en blanco</label><br><br>
-      <input type="file" name="imagen" class="campoT" accept="image/jpeg" style="float:left"><br>
+      <input type="file" name="imagen" class="campoT" accept="image/x-png, image/jpeg" style="float:left"><br>
     <br><br>
     <input type="hidden" name="paciente" value="<?php echo $paciente; ?>">
     <input type="submit" value="Editar" style="margin-left:0%; float:bottom; ">
