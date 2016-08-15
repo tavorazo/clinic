@@ -49,18 +49,16 @@ $usuario = $_SESSION['u'];
     $id_paciente = $_GET['id'];
     $img_num = $_GET['count'];
     echo " <h1><a href='pacientes/ficha-paciente.php?id=",$id_paciente,"'> < Regresar </a>  |";
-    $nombre_foto = "c_".$id_paciente."_".$img_num;
+    // $nombre_foto = "e_".$id_paciente."_".$img_num;
     ?>
-    Agregar Foto Externa</h1> <hr><br><br><br>
+    Agregar Foto Clinica</h1> <hr><br><br><br>
     <form method="POST" action="pacientes/fotografias_clinicas/procesar_foto_clinica.php" enctype="multipart/form-data">
-      <label>Imagen: </label>
-      <input type="file" name="imagen" id="archivo" accept="image/x-png, image/jpeg"><br><br><br>
+      <label>Imagen(es): </label>
+      <input type="file" name="imagen[]" id="archivo" accept="image/x-png, image/jpeg" multiple="multiple"><br><br><br>
       <label>Descripcion: </label>
       <textarea name="descripcion" id="descripcion"></textarea><br>
       <input type="hidden" value="<?php echo $id_paciente; ?>" name="id" id="id_paciente">
-      <!-- <input type="hidden" value="" name="val" id="val"> -->
-      <input type="hidden" value="<?php echo $nombre_foto; ?>.jpg" name="nombre_foto" id="nombre_foto">
-      <!-- <input type="hidden" value="clinicas/<?php echo $nombre_foto; ?>.jpg" name="ruta"> -->
+      <input type="hidden" value="<?php echo $img_num; ?>" name="img_num" id="img_num">
       <input type="submit" value="Enviar"><input type="reset" value="borrar">
     </form>
   </div>
@@ -95,8 +93,8 @@ $(document).ready(function() { try {
 var request;
 // $("#ajax").submit(function(event){
 //   var values = $(this).serialize();
-//   var url = "pacientes/fotografias_clinicas/procesar_foto_clinica.php?id="+ $("#id_paciente").val()+ 
-//     "&descripcion="+ $("#descripcion").val() + "&nombre_foto="+ $("#nombre_foto").val();
+//   var url = "pacientes/fotografias_externas/procesar_foto_externa.php?id="+ $("#id_paciente").val()+ 
+//   "&descripcion="+ $("#descripcion").val() + "&nombre_foto="+ $("#nombre_foto").val();
 
 //   $.ajax({
 //         url: "http://192.168.1.200/imagenes/NOEOCTAVIOABURTOINCLAN690/guardarb64.php",
@@ -114,8 +112,6 @@ var request;
 //             alert("Guardado!");
 //         }
 //     });
-
-  
 // });
 
 // File.prototype.convertToBase64 = function(callback){
