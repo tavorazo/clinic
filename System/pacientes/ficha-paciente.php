@@ -435,7 +435,7 @@ while ($row_radio = $result3->fetch_row()) {
 echo "</table><br>";
 if($_SESSION['rol']=='admin' || $_SESSION['rol']=='dentista' || $_SESSION['rol']=='recepcionista'){
  echo " <div id='botn' style='float:left; margin-left: 5%; width:280px; background:#333 '>
- <a href='../agregar_radiografia.php?id=",$row2[0],"&count=",$img_count+1,"'   >Agregar Radriografia</a></div>";
+ <a href='../agregar_radiografia.php?id=",$row2[0],"&count=",$img_count+1,"'   >Agregar Radiografia</a></div>";
  echo "<br><br><br><br>";
 }
 echo "<a href='historial_completo.php?id_paciente=",$row2[0],"&tipo=5' style='color:gray; font-size:14px; float:right'>Historial completo</a>";
